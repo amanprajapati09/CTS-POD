@@ -15,6 +15,12 @@
 		07317FB72A7E2BE80066341F /* CTS_PODTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317FB62A7E2BE80066341F /* CTS_PODTests.swift */; };
 		07317FC12A7E2BE80066341F /* CTS_PODUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317FC02A7E2BE80066341F /* CTS_PODUITests.swift */; };
 		07317FC32A7E2BE80066341F /* CTS_PODUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317FC22A7E2BE80066341F /* CTS_PODUITestsLaunchTests.swift */; };
+		07317FD32A7F55720066341F /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317FD22A7F55720066341F /* APIHandler.swift */; };
+		07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317FD42A7F56A50066341F /* NetworkEnums.swift */; };
+		07317FD82A7FFEA40066341F /* GetCustomerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317FD72A7FFEA40066341F /* GetCustomerClient.swift */; };
+		07317FDA2A7FFEB70066341F /* GetConstomerUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317FD92A7FFEB70066341F /* GetConstomerUsecase.swift */; };
+		07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07835EB82A8739E60071A3AD /* EndpointProtocol.swift */; };
+		07835EBB2A874A640071A3AD /* URLRequest+Etension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07835EBA2A874A640071A3AD /* URLRequest+Etension.swift */; };
 		2B63F500AAC09FB522A46AD7 /* Pods_CTS_POD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040AAF3EBBE2122DB5EF9F66 /* Pods_CTS_POD.framework */; };
 		949E1B4A1699706D8E03A7F5 /* Pods_CTS_POD_CTS_PODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */; };
 		AB269F495F93B9734900A913 /* Pods_CTS_PODTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 315C1FFBC51599B6C3A70F9B /* Pods_CTS_PODTests.framework */; };
@@ -51,6 +57,12 @@
 		07317FBC2A7E2BE80066341F /* CTS PODUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CTS PODUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07317FC02A7E2BE80066341F /* CTS_PODUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTS_PODUITests.swift; sourceTree = "<group>"; };
 		07317FC22A7E2BE80066341F /* CTS_PODUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTS_PODUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		07317FD22A7F55720066341F /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
+		07317FD42A7F56A50066341F /* NetworkEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkEnums.swift; sourceTree = "<group>"; };
+		07317FD72A7FFEA40066341F /* GetCustomerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomerClient.swift; sourceTree = "<group>"; };
+		07317FD92A7FFEB70066341F /* GetConstomerUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConstomerUsecase.swift; sourceTree = "<group>"; };
+		07835EB82A8739E60071A3AD /* EndpointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointProtocol.swift; sourceTree = "<group>"; };
+		07835EBA2A874A640071A3AD /* URLRequest+Etension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Etension.swift"; sourceTree = "<group>"; };
 		315C1FFBC51599B6C3A70F9B /* Pods_CTS_PODTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTS_PODTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61267F8948813E3BD457786C /* Pods-CTS POD-CTS PODUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD-CTS PODUITests.release.xcconfig"; path = "Target Support Files/Pods-CTS POD-CTS PODUITests/Pods-CTS POD-CTS PODUITests.release.xcconfig"; sourceTree = "<group>"; };
 		81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTS_POD_CTS_PODUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +126,7 @@
 		07317F9E2A7E2BE10066341F /* CTS POD */ = {
 			isa = PBXGroup;
 			children = (
+				07317FD12A7F55520066341F /* APIHandler */,
 				07317FCF2A7E30DE0066341F /* Module */,
 				07317F9F2A7E2BE10066341F /* AppDelegate.swift */,
 				07317FA12A7E2BE10066341F /* SceneDelegate.swift */,
@@ -145,6 +158,7 @@
 		07317FCF2A7E30DE0066341F /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				07317FD62A7FFE820066341F /* APIClasses */,
 				07317FD02A7E30E90066341F /* GetCustomer */,
 			);
 			path = Module;
@@ -155,6 +169,26 @@
 			children = (
 			);
 			path = GetCustomer;
+			sourceTree = "<group>";
+		};
+		07317FD12A7F55520066341F /* APIHandler */ = {
+			isa = PBXGroup;
+			children = (
+				07317FD42A7F56A50066341F /* NetworkEnums.swift */,
+				07317FD22A7F55720066341F /* APIHandler.swift */,
+			);
+			path = APIHandler;
+			sourceTree = "<group>";
+		};
+		07317FD62A7FFE820066341F /* APIClasses */ = {
+			isa = PBXGroup;
+			children = (
+				07317FD72A7FFEA40066341F /* GetCustomerClient.swift */,
+				07317FD92A7FFEB70066341F /* GetConstomerUsecase.swift */,
+				07835EB82A8739E60071A3AD /* EndpointProtocol.swift */,
+				07835EBA2A874A640071A3AD /* URLRequest+Etension.swift */,
+			);
+			path = APIClasses;
 			sourceTree = "<group>";
 		};
 		A091F4A7635ABFF1798BDAF6 /* Frameworks */ = {
@@ -418,9 +452,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */,
 				07317FA42A7E2BE10066341F /* ViewController.swift in Sources */,
+				07835EBB2A874A640071A3AD /* URLRequest+Etension.swift in Sources */,
 				07317FA02A7E2BE10066341F /* AppDelegate.swift in Sources */,
+				07317FD82A7FFEA40066341F /* GetCustomerClient.swift in Sources */,
+				07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */,
 				07317FA22A7E2BE10066341F /* SceneDelegate.swift in Sources */,
+				07317FD32A7F55720066341F /* APIHandler.swift in Sources */,
+				07317FDA2A7FFEB70066341F /* GetConstomerUsecase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
