@@ -18,6 +18,7 @@
 		2B63F500AAC09FB522A46AD7 /* Pods_CTS_POD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040AAF3EBBE2122DB5EF9F66 /* Pods_CTS_POD.framework */; };
 		949E1B4A1699706D8E03A7F5 /* Pods_CTS_POD_CTS_PODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */; };
 		AB269F495F93B9734900A913 /* Pods_CTS_PODTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 315C1FFBC51599B6C3A70F9B /* Pods_CTS_PODTests.framework */; };
+		D0F892602A908A6A003773C5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F8925F2A908A6A003773C5 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		8DD0E45136CA5B4D6716F584 /* Pods-CTS POD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD.release.xcconfig"; path = "Target Support Files/Pods-CTS POD/Pods-CTS POD.release.xcconfig"; sourceTree = "<group>"; };
 		A8BFD85A5BB426317E1E7825 /* Pods-CTS POD-CTS PODUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD-CTS PODUITests.debug.xcconfig"; path = "Target Support Files/Pods-CTS POD-CTS PODUITests/Pods-CTS POD-CTS PODUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE7ADB1AF33682688DD46DCB /* Pods-CTS PODTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS PODTests.release.xcconfig"; path = "Target Support Files/Pods-CTS PODTests/Pods-CTS PODTests.release.xcconfig"; sourceTree = "<group>"; };
+		D0F8925F2A908A6A003773C5 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DCE5216669F67F6A3CB6076C /* Pods-CTS PODTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS PODTests.debug.xcconfig"; path = "Target Support Files/Pods-CTS PODTests/Pods-CTS PODTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD7794EF65ADE2313D6343AA /* Pods-CTS POD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD.debug.xcconfig"; path = "Target Support Files/Pods-CTS POD/Pods-CTS POD.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +119,7 @@
 				07317FCF2A7E30DE0066341F /* Module */,
 				07317F9F2A7E2BE10066341F /* AppDelegate.swift */,
 				07317FA12A7E2BE10066341F /* SceneDelegate.swift */,
+				D0F8925E2A908A5B003773C5 /* LocationManager */,
 				07317FA32A7E2BE10066341F /* ViewController.swift */,
 				07317FA82A7E2BE80066341F /* Assets.xcassets */,
 				07317FAA2A7E2BE80066341F /* LaunchScreen.storyboard */,
@@ -178,6 +181,14 @@
 				CE7ADB1AF33682688DD46DCB /* Pods-CTS PODTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D0F8925E2A908A5B003773C5 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				D0F8925F2A908A6A003773C5 /* LocationManager.swift */,
+			);
+			path = LocationManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0F892602A908A6A003773C5 /* LocationManager.swift in Sources */,
 				07317FA42A7E2BE10066341F /* ViewController.swift in Sources */,
 				07317FA02A7E2BE10066341F /* AppDelegate.swift in Sources */,
 				07317FA22A7E2BE10066341F /* SceneDelegate.swift in Sources */,
