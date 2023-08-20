@@ -52,9 +52,8 @@ class DashboardViewController: UIViewController {
         collectionView.register(DashBoardCell.self)
     }
     
-    private func setLogo() {
-        guard let customer = viewModel.customer else { return }
-        if let imageData = Data(base64Encoded: customer.logo) {
+    private func setLogo() {        
+        if let imageData = Data(base64Encoded: viewModel.customer.logo) {
             iconImage.image = UIImage(data: imageData)
         }
     }
@@ -80,7 +79,7 @@ class DashboardViewController: UIViewController {
 
 extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (viewModel.customer?.workflow.count ?? 0) + 1
+        return optionList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

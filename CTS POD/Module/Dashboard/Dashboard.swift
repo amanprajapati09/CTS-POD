@@ -13,8 +13,8 @@ final class Dashboard {
         let string = Strings()
     }
     
-    static func build() -> DashboardViewController {
-        let viewController = DashboardViewController(viewModel: .init(configuration: .init()))
+    static func build(customer: Customer) -> DashboardViewController {
+        let viewController = DashboardViewController(viewModel: .init(configuration: .init(), customer: customer))
         return viewController
     }
     

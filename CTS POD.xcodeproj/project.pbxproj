@@ -24,6 +24,7 @@
 		07317FDA2A7FFEB70066341F /* GetConstomerUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317FD92A7FFEB70066341F /* GetConstomerUsecase.swift */; };
 		07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07835EB82A8739E60071A3AD /* EndpointProtocol.swift */; };
 		07835EBB2A874A640071A3AD /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07835EBA2A874A640071A3AD /* URLRequest+Extension.swift */; };
+		078B21222A9294FE000F6A1E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078B21212A9294FE000F6A1E /* SplashViewController.swift */; };
 		0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0794229E2A8E7E5400684513 /* GetCustomerViewController.swift */; };
 		079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422A02A8E7E6B00684513 /* GetCustomerViewModel.swift */; };
 		079422A32A90FE3F00684513 /* GetCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422A22A90FE3F00684513 /* GetCustomer.swift */; };
@@ -82,6 +83,7 @@
 		07317FD92A7FFEB70066341F /* GetConstomerUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConstomerUsecase.swift; sourceTree = "<group>"; };
 		07835EB82A8739E60071A3AD /* EndpointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointProtocol.swift; sourceTree = "<group>"; };
 		07835EBA2A874A640071A3AD /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
+		078B21212A9294FE000F6A1E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		0794229E2A8E7E5400684513 /* GetCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomerViewController.swift; sourceTree = "<group>"; };
 		079422A02A8E7E6B00684513 /* GetCustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomerViewModel.swift; sourceTree = "<group>"; };
 		079422A22A90FE3F00684513 /* GetCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomer.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				07317FA12A7E2BE10066341F /* SceneDelegate.swift */,
 				07317FAA2A7E2BE80066341F /* LaunchScreen.storyboard */,
 				07317FAD2A7E2BE80066341F /* Info.plist */,
+				078B21212A9294FE000F6A1E /* SplashViewController.swift */,
 			);
 			path = "CTS POD";
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				071882D02A92160E00EE4747 /* Dashboard.swift in Sources */,
 				07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */,
 				079422B22A91234700684513 /* Constant.swift in Sources */,
+				078B21222A9294FE000F6A1E /* SplashViewController.swift in Sources */,
 				07046A332A926CF40074C711 /* DashBoardCell.swift in Sources */,
 				07835EBB2A874A640071A3AD /* URLRequest+Extension.swift in Sources */,
 				07317FA02A7E2BE10066341F /* AppDelegate.swift in Sources */,

@@ -73,6 +73,7 @@ class GetCustomerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
         setupView()
         bind()
         activityIndicator.stopAnimating()
@@ -144,10 +145,10 @@ class GetCustomerViewController: UIViewController {
                 case .loading:
                     self.activityIndicator.startAnimating()
                     self.btnGo.isHidden = true
-                case .loaded:
+                case .loaded(let customer):
                     self.activityIndicator.stopAnimating()
                     self.btnGo.isHidden = false
-                    self.navigateToDashboard()
+                    self.navigateToDashboard(customer: customer)
                 case .error(let errorString):
                     self.showErrorAlert(message: errorString)
                     self.activityIndicator.stopAnimating()
@@ -165,8 +166,8 @@ class GetCustomerViewController: UIViewController {
         navigationController?.present(alert, animated: true)
     }
     
-    private func navigateToDashboard() {
+    private func navigateToDashboard(customer: Customer) {
         guard let navigationController  else { return }
-        navigationController.pushViewController(Dashboard.build(), animated: true)
+        navigationController.pushViewController(Dashboard.build(customer: customer), animated: true)
     }
 }
