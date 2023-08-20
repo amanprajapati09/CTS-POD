@@ -8,7 +8,7 @@
 import Foundation
 
 protocol GetCustomerUsecaseProtocol {
-    func getGustomer()
+    func getGustomer(name: String) async throws -> Void
 }
 
 final class GetCustomerUsecase: GetCustomerUsecaseProtocol {
@@ -16,7 +16,10 @@ final class GetCustomerUsecase: GetCustomerUsecaseProtocol {
     init(client: GetCustomerClientProtocol) {
         self.client = client
     }
-    func getGustomer() {
-        
+    
+    func getGustomer(name: String) async throws -> Void {
+        return try await client.getCustomer(name: name, completion: { result in
+            
+        })
     }
 }

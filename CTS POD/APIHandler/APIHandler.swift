@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol WebClient {
-    func load<T: Codable, E: Error>(urlRequest: URLRequest, completion: @escaping (Result<T, E>)->()) -> URLSessionDataTask?
+    func load<T: Decodable, E: Error>(urlRequest: URLRequest, completion: @escaping (Result<T, E>)->()) -> URLSessionDataTask?
 }
 
 struct APIClient {
@@ -31,13 +31,13 @@ struct APIClient {
 }
 
 extension APIClient: WebClient  {
-    func load<T: Codable, E: Error>(urlRequest: URLRequest, completion: @escaping (Result<T, E>) -> ()) -> URLSessionDataTask? {
+    func load<T: Decodable, E: Error>(urlRequest: URLRequest, completion: @escaping (Result<T, E>) -> ()) -> URLSessionDataTask? {
         let session = URLSession.shared
         return executeTask(session: session, request: urlRequest, completion: completion)
     }
     
     
-    private func executeTask<T: Codable, E: Error>(session:URLSession, request: URLRequest, completion: @escaping (Result<T, E>)->()) -> URLSessionDataTask? {
+    private func executeTask<T: Decodable, E: Error>(session:URLSession, request: URLRequest, completion: @escaping (Result<T, E>)->()) -> URLSessionDataTask? {
         do {
             let task = session.dataTask(with: request) { data, response, error in
                 DispatchQueue.main.async {
