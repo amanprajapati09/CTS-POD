@@ -30,6 +30,9 @@
 		079422B02A91214200684513 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422AF2A91214200684513 /* Fonts.swift */; };
 		079422B22A91234700684513 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422B12A91234700684513 /* Constant.swift */; };
 		079422B52A912D8500684513 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422B42A912D8500684513 /* UIColor+Extension.swift */; };
+		079422B72A91FBAA00684513 /* SharedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422B62A91FBAA00684513 /* SharedObject.swift */; };
+		079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422B92A92045900684513 /* DashboardViewModel.swift */; };
+		079422BC2A92046D00684513 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422BB2A92046D00684513 /* DashboardViewController.swift */; };
 		2B63F500AAC09FB522A46AD7 /* Pods_CTS_POD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040AAF3EBBE2122DB5EF9F66 /* Pods_CTS_POD.framework */; };
 		949E1B4A1699706D8E03A7F5 /* Pods_CTS_POD_CTS_PODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */; };
 		AB269F495F93B9734900A913 /* Pods_CTS_PODTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 315C1FFBC51599B6C3A70F9B /* Pods_CTS_PODTests.framework */; };
@@ -81,6 +84,9 @@
 		079422AF2A91214200684513 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		079422B12A91234700684513 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		079422B42A912D8500684513 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		079422B62A91FBAA00684513 /* SharedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedObject.swift; sourceTree = "<group>"; };
+		079422B92A92045900684513 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		079422BB2A92046D00684513 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		315C1FFBC51599B6C3A70F9B /* Pods_CTS_PODTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTS_PODTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61267F8948813E3BD457786C /* Pods-CTS POD-CTS PODUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD-CTS PODUITests.release.xcconfig"; path = "Target Support Files/Pods-CTS POD-CTS PODUITests/Pods-CTS POD-CTS PODUITests.release.xcconfig"; sourceTree = "<group>"; };
 		81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTS_POD_CTS_PODUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,7 +183,7 @@
 		07317FCF2A7E30DE0066341F /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				07317FD62A7FFE820066341F /* APIClasses */,
+				079422B82A92044300684513 /* Dashboard */,
 				07317FD02A7E30E90066341F /* GetCustomer */,
 			);
 			path = Module;
@@ -199,6 +205,7 @@
 		07317FD12A7F55520066341F /* APIHandler */ = {
 			isa = PBXGroup;
 			children = (
+				07317FD62A7FFE820066341F /* APIClasses */,
 				07317FD42A7F56A50066341F /* NetworkEnums.swift */,
 				07317FD22A7F55720066341F /* APIHandler.swift */,
 			);
@@ -238,6 +245,7 @@
 			children = (
 				079422AF2A91214200684513 /* Fonts.swift */,
 				079422B12A91234700684513 /* Constant.swift */,
+				079422B62A91FBAA00684513 /* SharedObject.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -248,6 +256,15 @@
 				079422B42A912D8500684513 /* UIColor+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		079422B82A92044300684513 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				079422B92A92045900684513 /* DashboardViewModel.swift */,
+				079422BB2A92046D00684513 /* DashboardViewController.swift */,
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		A091F4A7635ABFF1798BDAF6 /* Frameworks */ = {
@@ -515,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				079422B02A91214200684513 /* Fonts.swift in Sources */,
+				079422BC2A92046D00684513 /* DashboardViewController.swift in Sources */,
 				07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */,
 				079422B22A91234700684513 /* Constant.swift in Sources */,
 				07835EBB2A874A640071A3AD /* URLRequest+Extension.swift in Sources */,
@@ -522,9 +540,11 @@
 				07317FD82A7FFEA40066341F /* GetCustomerClient.swift in Sources */,
 				07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */,
 				079422A52A91072300684513 /* GetCustomerModels.swift in Sources */,
+				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,
 				079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */,
 				079422B52A912D8500684513 /* UIColor+Extension.swift in Sources */,
 				07317FA22A7E2BE10066341F /* SceneDelegate.swift in Sources */,
+				079422B72A91FBAA00684513 /* SharedObject.swift in Sources */,
 				0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */,
 				07317FD32A7F55720066341F /* APIHandler.swift in Sources */,
 				079422A32A90FE3F00684513 /* GetCustomer.swift in Sources */,

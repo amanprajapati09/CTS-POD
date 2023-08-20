@@ -10,11 +10,22 @@ import Foundation
 extension URLRequest {
 
     init(endpoint: EndpointConfiguration, requestBodyEncoder: RequestBodyEncoder = JSONEncoder() ) throws {
-        guard let url = URL(string: endpoint.path) else {
-            throw NetworkError.custom("Invalid URL")
+        
+        var urlComponent = URLComponents(string: endpoint.path)
+        
+        if let queryParam = endpoint.queryParam {
+            if urlComponent != nil {
+                urlComponent!.queryItems =  queryParam
+            } else {
+                throw NetworkError.custom("Invalid URL")
+            }
         }
         
-        self.init(url:url)
+        guard let url = urlComponent?.url else {
+            throw NetworkError.custom("Invalid URL")
+        }
+        self.init(url: url)
+        
         httpMethod = endpoint.method.rawValue
         
         if let body = endpoint.body {

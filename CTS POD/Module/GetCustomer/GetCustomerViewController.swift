@@ -7,10 +7,12 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 class GetCustomerViewController: UIViewController {
-
-    var viewModel: GetCustomerViewModel
+    
+    private var viewModel: GetCustomerViewModel
+    private var cancellable = Set<AnyCancellable>()
     
     private lazy var iconImage: UIImageView = {
         let view = UIImageView()
@@ -51,6 +53,7 @@ class GetCustomerViewController: UIViewController {
         view.setTitleColor(Colors.colorWhite, for: .normal)
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
+        view.addTarget(self, action: #selector(buttonGoTap), for: .touchUpInside)
         return view
     }()
     
@@ -62,9 +65,17 @@ class GetCustomerViewController: UIViewController {
         return view
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        bind()
+        activityIndicator.stopAnimating()
     }
     
     init(viewModel: GetCustomerViewModel) {
@@ -75,9 +86,9 @@ class GetCustomerViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = Colors.viewBackground
         view.addSubview(containerView)
         
         containerView.snp.makeConstraints {
@@ -99,9 +110,46 @@ class GetCustomerViewController: UIViewController {
             $0.width.equalToSuperview()
         }
         
+        view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalTo(btnGo.snp.center)
+        }
+        
         containerView.setCustomSpacing(20, after: iconImage)
         containerView.setCustomSpacing(10, after: lableTitle)
         containerView.setCustomSpacing(30, after: infoLabel)
         containerView.setCustomSpacing(25, after: txtCustomer)
+    }
+    
+    @objc
+    func buttonGoTap() {
+        guard let customerName = txtCustomer.text,
+        customerName.count > 0 else { return }
+        viewModel.fetchCustomer(name: customerName)
+    }
+    
+    private func bind() {
+        viewModel.$viewState
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                guard let self else { return }
+                switch value {
+                case .loading:
+                    self.activityIndicator.startAnimating()
+                    self.btnGo.isHidden = true
+                case .loaded:
+                    self.activityIndicator.stopAnimating()
+                    self.btnGo.isHidden = false
+                case .error(let errorString):
+                    self.showErrorAlert(message: errorString)
+                    self.activityIndicator.stopAnimating()
+                    self.btnGo.isHidden = false
+                case .none: self.activityIndicator.stopAnimating()
+                }
+            }.store(in: &cancellable)
+    }
+    
+    private func showErrorAlert(message: String) {
+        
     }
 }

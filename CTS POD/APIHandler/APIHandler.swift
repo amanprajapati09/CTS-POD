@@ -45,7 +45,8 @@ extension APIClient: WebClient  {
                         guard let response = response else { return }
                         switch self.handleNetworkResponse(response as! HTTPURLResponse) {
                         case .success:
-                            let result = try JSONDecoder().decode(T.self, from: data!)
+                            guard let data else { return }
+                            let result = try JSONDecoder().decode(T.self, from: data)
                             completion(.success(result))
                         case .failure:
                             if let error = error {
@@ -55,9 +56,9 @@ extension APIClient: WebClient  {
                     } catch (let err) {
                         completion(.failure(err as! E))
                     }
-                    
                 }
             }
+            task.resume()
             return task
         }
     }

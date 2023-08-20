@@ -18,3 +18,13 @@ struct Workflow: Decodable {
     let flowID: Int
     let flowName: String
 }
+
+struct DataClass: Decodable {
+    let Customer: Customer
+}
+
+struct CustomerResult: Decodable {
+    let status: String
+    let message: String
+    let data: DataClass
+}

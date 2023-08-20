@@ -7,7 +7,7 @@
 
 import Foundation
 protocol GetCustomerClientProtocol {
-    func getCustomer(name: String, completion: @escaping (Result<Customer, Error>)->()) async throws -> Void
+    func getCustomer(name: String, completion: @escaping (Result<CustomerResult, Error>)->()) async throws -> Void
 }
 
 final class GetCustomerClient: GetCustomerClientProtocol {
@@ -17,7 +17,7 @@ final class GetCustomerClient: GetCustomerClientProtocol {
         case getCustomer(name: String)
         
         var path: String {
-            return "User/GetCustomer"
+            return Constant.baseURL + "User/GetCustomer"
         }
         
         var method: RequestMethods { return .GET }
@@ -34,7 +34,7 @@ final class GetCustomerClient: GetCustomerClientProtocol {
         }
     }
     
-    func getCustomer(name: String, completion: @escaping (Result<Customer, Error>)->()) async throws -> Void {
+    func getCustomer(name: String, completion: @escaping (Result<CustomerResult, Error>)->()) async throws -> Void {
         let configuration = GetCustomerClient.Endpoint.getCustomer(name: name)
         let request = try URLRequest.init(endpoint: configuration)
         _ = APIClient.sharedObject.load(urlRequest: request, completion: completion)

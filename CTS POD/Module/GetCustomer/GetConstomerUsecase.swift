@@ -8,7 +8,7 @@
 import Foundation
 
 protocol GetCustomerUsecaseProtocol {
-    func getGustomer(name: String) async throws -> Void
+    func getGustomer(name: String, completion: @escaping (Result<CustomerResult, Error>)->()) async throws -> Void
 }
 
 final class GetCustomerUsecase: GetCustomerUsecaseProtocol {
@@ -17,9 +17,7 @@ final class GetCustomerUsecase: GetCustomerUsecaseProtocol {
         self.client = client
     }
     
-    func getGustomer(name: String) async throws -> Void {
-        return try await client.getCustomer(name: name, completion: { result in
-            
-        })
+    func getGustomer(name: String, completion: @escaping (Result<CustomerResult, Error>)->()) async throws -> Void {
+        return try await client.getCustomer(name: name, completion: completion)
     }
 }
