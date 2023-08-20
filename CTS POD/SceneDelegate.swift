@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
         let window = UIWindow(windowScene: windowScene)
                 
-        let viewController = ViewController()
+        let viewController = GetCustomer.build()
         let navigation = UINavigationController(rootViewController: viewController)
                 
         window.rootViewController = navigation
@@ -55,6 +55,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    
+    private func decideRootViewController() {
+        if let customer = LocalTempStorage.getValue(fromUserDefault: Customer.self, key: "customer") {
+            
+        } else {
+            
+        }
+    }
 }
 
