@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07046A332A926CF40074C711 /* DashBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07046A322A926CF30074C711 /* DashBoardCell.swift */; };
+		07046A352A926E9E0074C711 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07046A342A926E9E0074C711 /* Reusable.swift */; };
 		071882CE2A9213DE00EE4747 /* LocalTempStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071882CD2A9213DE00EE4747 /* LocalTempStorage.swift */; };
 		071882D02A92160E00EE4747 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071882CF2A92160E00EE4747 /* Dashboard.swift */; };
 		07317FA02A7E2BE10066341F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317F9F2A7E2BE10066341F /* AppDelegate.swift */; };
@@ -59,6 +61,8 @@
 
 /* Begin PBXFileReference section */
 		040AAF3EBBE2122DB5EF9F66 /* Pods_CTS_POD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTS_POD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07046A322A926CF30074C711 /* DashBoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardCell.swift; sourceTree = "<group>"; };
+		07046A342A926E9E0074C711 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		071882CD2A9213DE00EE4747 /* LocalTempStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTempStorage.swift; sourceTree = "<group>"; };
 		071882CF2A92160E00EE4747 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		07317F9C2A7E2BE10066341F /* CTS POD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CTS POD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,6 +255,7 @@
 				079422B12A91234700684513 /* Constant.swift */,
 				079422B62A91FBAA00684513 /* SharedObject.swift */,
 				071882CD2A9213DE00EE4747 /* LocalTempStorage.swift */,
+				07046A342A926E9E0074C711 /* Reusable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				079422B92A92045900684513 /* DashboardViewModel.swift */,
 				079422BB2A92046D00684513 /* DashboardViewController.swift */,
 				071882CF2A92160E00EE4747 /* Dashboard.swift */,
+				07046A322A926CF30074C711 /* DashBoardCell.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -542,12 +548,14 @@
 				071882D02A92160E00EE4747 /* Dashboard.swift in Sources */,
 				07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */,
 				079422B22A91234700684513 /* Constant.swift in Sources */,
+				07046A332A926CF40074C711 /* DashBoardCell.swift in Sources */,
 				07835EBB2A874A640071A3AD /* URLRequest+Extension.swift in Sources */,
 				07317FA02A7E2BE10066341F /* AppDelegate.swift in Sources */,
 				07317FD82A7FFEA40066341F /* GetCustomerClient.swift in Sources */,
 				07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */,
 				071882CE2A9213DE00EE4747 /* LocalTempStorage.swift in Sources */,
 				079422A52A91072300684513 /* GetCustomerModels.swift in Sources */,
+				07046A352A926E9E0074C711 /* Reusable.swift in Sources */,
 				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,
 				079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */,
 				079422B52A912D8500684513 /* UIColor+Extension.swift in Sources */,
