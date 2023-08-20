@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
         let window = UIWindow(windowScene: windowScene)
                 
-        let viewController = decideRootViewController()
+        let viewController = SplashViewController()
         let navigation = UINavigationController(rootViewController: viewController)
                 
         window.rootViewController = navigation
@@ -54,13 +54,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-    
-    private func decideRootViewController()-> UIViewController {
-        if let customer = LocalTempStorage.getValue(fromUserDefault: Customer.self, key: "customer") {
-            return Dashboard.build()
-        } else {
-            return GetCustomer.build()
-        }
-    }
+
 }
 

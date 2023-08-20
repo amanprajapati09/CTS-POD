@@ -10,7 +10,7 @@ import Combine
 
 enum APIState {
     case loading
-    case loaded
+    case loaded(Customer)
     case error(String)
 }
 
@@ -33,7 +33,7 @@ class GetCustomerViewModel {
                         if let customer = customerResult.data?.Customer {
                             SharedObject.shared.customer = customer
                             LocalTempStorage.storeValuse(inUserdefault: customer, key: "customer")
-                            self.viewState = .loaded
+                            self.viewState = .loaded(customer)
                         } else {
                             self.viewState = .error(customerResult.message)
                         }
