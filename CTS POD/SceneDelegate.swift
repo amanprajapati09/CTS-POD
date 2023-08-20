@@ -55,6 +55,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    
+    private func decideRootViewController() {
+        if let customer = LocalTempStorage.getValue(fromUserDefault: Customer.self, key: "customer") {
+            
+        } else {
+            
+        }
+    }
 }
 

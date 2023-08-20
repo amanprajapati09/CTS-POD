@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071882CE2A9213DE00EE4747 /* LocalTempStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071882CD2A9213DE00EE4747 /* LocalTempStorage.swift */; };
+		071882D02A92160E00EE4747 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071882CF2A92160E00EE4747 /* Dashboard.swift */; };
 		07317FA02A7E2BE10066341F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317F9F2A7E2BE10066341F /* AppDelegate.swift */; };
 		07317FA22A7E2BE10066341F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317FA12A7E2BE10066341F /* SceneDelegate.swift */; };
 		07317FA92A7E2BE80066341F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07317FA82A7E2BE80066341F /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 
 /* Begin PBXFileReference section */
 		040AAF3EBBE2122DB5EF9F66 /* Pods_CTS_POD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTS_POD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		071882CD2A9213DE00EE4747 /* LocalTempStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTempStorage.swift; sourceTree = "<group>"; };
+		071882CF2A92160E00EE4747 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		07317F9C2A7E2BE10066341F /* CTS POD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CTS POD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07317F9F2A7E2BE10066341F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07317FA12A7E2BE10066341F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -246,6 +250,7 @@
 				079422AF2A91214200684513 /* Fonts.swift */,
 				079422B12A91234700684513 /* Constant.swift */,
 				079422B62A91FBAA00684513 /* SharedObject.swift */,
+				071882CD2A9213DE00EE4747 /* LocalTempStorage.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 			children = (
 				079422B92A92045900684513 /* DashboardViewModel.swift */,
 				079422BB2A92046D00684513 /* DashboardViewController.swift */,
+				071882CF2A92160E00EE4747 /* Dashboard.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -533,12 +539,14 @@
 			files = (
 				079422B02A91214200684513 /* Fonts.swift in Sources */,
 				079422BC2A92046D00684513 /* DashboardViewController.swift in Sources */,
+				071882D02A92160E00EE4747 /* Dashboard.swift in Sources */,
 				07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */,
 				079422B22A91234700684513 /* Constant.swift in Sources */,
 				07835EBB2A874A640071A3AD /* URLRequest+Extension.swift in Sources */,
 				07317FA02A7E2BE10066341F /* AppDelegate.swift in Sources */,
 				07317FD82A7FFEA40066341F /* GetCustomerClient.swift in Sources */,
 				07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */,
+				071882CE2A9213DE00EE4747 /* LocalTempStorage.swift in Sources */,
 				079422A52A91072300684513 /* GetCustomerModels.swift in Sources */,
 				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,
 				079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */,

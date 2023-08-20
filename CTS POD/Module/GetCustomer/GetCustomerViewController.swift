@@ -124,7 +124,7 @@ class GetCustomerViewController: UIViewController {
     @objc
     func buttonGoTap() {
         guard let customerName = txtCustomer.text,
-        customerName.count > 0 else { return }
+              customerName.count > 0 else { return }
         viewModel.fetchCustomer(name: customerName)
     }
     
