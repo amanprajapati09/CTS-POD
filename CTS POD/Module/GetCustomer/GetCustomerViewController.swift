@@ -58,7 +58,7 @@ class GetCustomerViewController: UIViewController {
     }()
     
     private lazy var containerView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [iconImage, lableTitle, infoLabel, txtCustomer, btnGo])
+        let view = UIStackView(arrangedSubviews: [iconImage, lableTitle, infoLabel, txtCustomer])
         view.axis = .vertical
         view.alignment = .center
         view.distribution = .fill
@@ -94,7 +94,7 @@ class GetCustomerViewController: UIViewController {
         containerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
-            $0.height.equalTo(300)
+            $0.height.equalTo(230)
         }
         
         iconImage.snp.makeConstraints {
@@ -110,15 +110,22 @@ class GetCustomerViewController: UIViewController {
             $0.width.equalToSuperview()
         }
         
+        view.addSubview(btnGo)
+        btnGo.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(containerView.snp.bottom).offset(30)
+        }
+        
         view.addSubview(activityIndicator)
         activityIndicator.snp.makeConstraints {
             $0.center.equalTo(btnGo.snp.center)
         }
         
+        
+        
         containerView.setCustomSpacing(20, after: iconImage)
         containerView.setCustomSpacing(10, after: lableTitle)
         containerView.setCustomSpacing(30, after: infoLabel)
-        containerView.setCustomSpacing(25, after: txtCustomer)
     }
     
     @objc
@@ -140,6 +147,7 @@ class GetCustomerViewController: UIViewController {
                 case .loaded:
                     self.activityIndicator.stopAnimating()
                     self.btnGo.isHidden = false
+                    self.navigateToDashboard()
                 case .error(let errorString):
                     self.showErrorAlert(message: errorString)
                     self.activityIndicator.stopAnimating()
@@ -150,6 +158,15 @@ class GetCustomerViewController: UIViewController {
     }
     
     private func showErrorAlert(message: String) {
-        
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+            alert.dismiss(animated: true)
+        }))
+        navigationController?.present(alert, animated: true)
+    }
+    
+    private func navigateToDashboard() {
+        guard let navigationController  else { return }
+        navigationController.pushViewController(Dashboard.build(), animated: true)
     }
 }

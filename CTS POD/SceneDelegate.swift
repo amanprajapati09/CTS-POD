@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
         let window = UIWindow(windowScene: windowScene)
                 
-        let viewController = GetCustomer.build()
+        let viewController = decideRootViewController()
         let navigation = UINavigationController(rootViewController: viewController)
                 
         window.rootViewController = navigation
@@ -55,11 +55,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    private func decideRootViewController() {
+    private func decideRootViewController()-> UIViewController {
         if let customer = LocalTempStorage.getValue(fromUserDefault: Customer.self, key: "customer") {
-            
+            return Dashboard.build()
         } else {
-            
+            return GetCustomer.build()
         }
     }
 }

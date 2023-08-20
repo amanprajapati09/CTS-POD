@@ -9,10 +9,10 @@ import Foundation
 
 class LocalTempStorage {
     
-    static func storeValuse<T: Codable>(inUserdefault value: T, key: String) {
+    static func storeValuse(inUserdefault value: Codable, key: String) {
         do {
             let data = try JSONEncoder().encode(value)
-            UserDefaults.standard.set(value, forKey: key)
+            UserDefaults.standard.set(data, forKey: key)
         } catch {
             print("Error in storage")
         }

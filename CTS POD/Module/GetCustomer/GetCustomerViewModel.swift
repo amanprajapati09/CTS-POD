@@ -28,17 +28,21 @@ class GetCustomerViewModel {
         Task {
             do {
                 try await configuration.usecase.getGustomer(name: name, completion: { result in
-                    self.viewState = .loaded
                     switch result {
                     case .success(let customerResult):
-                        SharedObject.shared.customer = customerResult.data.Customer
+                        if let customer = customerResult.data?.Customer {
+                            SharedObject.shared.customer = customer
+                            LocalTempStorage.storeValuse(inUserdefault: customer, key: "customer")
+                            self.viewState = .loaded
+                        } else {
+                            self.viewState = .error(customerResult.message)
+                        }
                     case .failure:
-                        self.viewState = .error("")
+                        self.viewState = .error("Somthing went wrong!")
                     }
                 })
-            } catch {
-                print("error")
-                viewState = .error("Locha")
+            } catch {               
+                viewState = .error("Somthing went wrong!")
             }
         }
     }

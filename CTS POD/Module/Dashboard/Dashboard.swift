@@ -13,28 +13,32 @@ final class Dashboard {
         let string = Strings()
     }
     
-    static func build() -> GetCustomerViewController {
-        let viewController = d
+    static func build() -> DashboardViewController {
+        let viewController = DashboardViewController(viewModel: .init(configuration: .init()))
         return viewController
+    }
+    
+    public enum DashboardOption: Int {
+        case login = 0
+        case vehical = 1
+        case job = 2
+        case deliveries = 3
     }
 }
 
 extension Dashboard.Configuration {
     
     struct Images {
-        let logo = UIImage(named: "logoImage")
+        let signin = UIImage(named: "0_dashboard")
+        let vehicalCheck = UIImage(named: "1_dashboard")
+        let jobConfirm = UIImage(named: "2_dashboard")
+        let deleviry = UIImage(named: "3_dashboard")
     }
     
     struct Strings {
-        let title = "Organization"
-        let info = "Please enter your organization name"
-        let buttonTitle = "Go"
+        let signin = "Sign In"
+        let deleviry = "Deliverie"
+        let vehicalCheck = "Vehicle Cheklist"
+        let jobConfirm = "Job Confirm"
     }
 }
-
-
-//let newImageData = Data(base64Encoded: imageBase64String!)
-//
-//if let newImageData = newImageData {
-//   myImageView.image = UIImage(data: newImageData)
-//}
