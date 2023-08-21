@@ -41,6 +41,12 @@
 		2B63F500AAC09FB522A46AD7 /* Pods_CTS_POD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040AAF3EBBE2122DB5EF9F66 /* Pods_CTS_POD.framework */; };
 		949E1B4A1699706D8E03A7F5 /* Pods_CTS_POD_CTS_PODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */; };
 		AB269F495F93B9734900A913 /* Pods_CTS_PODTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 315C1FFBC51599B6C3A70F9B /* Pods_CTS_PODTests.framework */; };
+		D0A9F7052A936F2100C87638 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F7042A936F2100C87638 /* SignInViewController.swift */; };
+		D0A9F7072A936F2D00C87638 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F7062A936F2D00C87638 /* SignInViewModel.swift */; };
+		D0A9F7092A936F3C00C87638 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F7082A936F3C00C87638 /* SignIn.swift */; };
+		D0A9F70B2A93713C00C87638 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F70A2A93713C00C87638 /* BaseViewController.swift */; };
+		D0A9F70D2A93BD4600C87638 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F70C2A93BD4600C87638 /* SignInUseCase.swift */; };
+		D0A9F70F2A93BDCE00C87638 /* SignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F70E2A93BDCE00C87638 /* SignInClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +109,12 @@
 		8DD0E45136CA5B4D6716F584 /* Pods-CTS POD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD.release.xcconfig"; path = "Target Support Files/Pods-CTS POD/Pods-CTS POD.release.xcconfig"; sourceTree = "<group>"; };
 		A8BFD85A5BB426317E1E7825 /* Pods-CTS POD-CTS PODUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD-CTS PODUITests.debug.xcconfig"; path = "Target Support Files/Pods-CTS POD-CTS PODUITests/Pods-CTS POD-CTS PODUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE7ADB1AF33682688DD46DCB /* Pods-CTS PODTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS PODTests.release.xcconfig"; path = "Target Support Files/Pods-CTS PODTests/Pods-CTS PODTests.release.xcconfig"; sourceTree = "<group>"; };
+		D0A9F7042A936F2100C87638 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		D0A9F7062A936F2D00C87638 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		D0A9F7082A936F3C00C87638 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
+		D0A9F70A2A93713C00C87638 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		D0A9F70C2A93BD4600C87638 /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
+		D0A9F70E2A93BDCE00C87638 /* SignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInClient.swift; sourceTree = "<group>"; };
 		DCE5216669F67F6A3CB6076C /* Pods-CTS PODTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS PODTests.debug.xcconfig"; path = "Target Support Files/Pods-CTS PODTests/Pods-CTS PODTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD7794EF65ADE2313D6343AA /* Pods-CTS POD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD.debug.xcconfig"; path = "Target Support Files/Pods-CTS POD/Pods-CTS POD.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,6 +206,7 @@
 		07317FCF2A7E30DE0066341F /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				D0A9F7032A933A1E00C87638 /* SignIn */,
 				079422B82A92044300684513 /* Dashboard */,
 				07317FD02A7E30E90066341F /* GetCustomer */,
 			);
@@ -259,6 +272,7 @@
 				079422B62A91FBAA00684513 /* SharedObject.swift */,
 				071882CD2A9213DE00EE4747 /* LocalTempStorage.swift */,
 				07046A342A926E9E0074C711 /* Reusable.swift */,
+				D0A9F70A2A93713C00C87638 /* BaseViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -303,6 +317,18 @@
 				CE7ADB1AF33682688DD46DCB /* Pods-CTS PODTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D0A9F7032A933A1E00C87638 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				D0A9F7042A936F2100C87638 /* SignInViewController.swift */,
+				D0A9F70C2A93BD4600C87638 /* SignInUseCase.swift */,
+				D0A9F7082A936F3C00C87638 /* SignIn.swift */,
+				D0A9F7062A936F2D00C87638 /* SignInViewModel.swift */,
+				D0A9F70E2A93BDCE00C87638 /* SignInClient.swift */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -547,9 +573,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				079422B02A91214200684513 /* Fonts.swift in Sources */,
+				D0A9F7092A936F3C00C87638 /* SignIn.swift in Sources */,
+				D0A9F70F2A93BDCE00C87638 /* SignInClient.swift in Sources */,
 				079422BC2A92046D00684513 /* DashboardViewController.swift in Sources */,
 				071882D02A92160E00EE4747 /* Dashboard.swift in Sources */,
 				07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */,
+				D0A9F70B2A93713C00C87638 /* BaseViewController.swift in Sources */,
 				079422B22A91234700684513 /* Constant.swift in Sources */,
 				078B21222A9294FE000F6A1E /* SplashViewController.swift in Sources */,
 				07046A332A926CF40074C711 /* DashBoardCell.swift in Sources */,
@@ -560,12 +589,15 @@
 				071882CE2A9213DE00EE4747 /* LocalTempStorage.swift in Sources */,
 				079422A52A91072300684513 /* GetCustomerModels.swift in Sources */,
 				07046A352A926E9E0074C711 /* Reusable.swift in Sources */,
+				D0A9F7072A936F2D00C87638 /* SignInViewModel.swift in Sources */,
 				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,
 				079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */,
 				079422B52A912D8500684513 /* UIColor+Extension.swift in Sources */,
 				07317FA22A7E2BE10066341F /* SceneDelegate.swift in Sources */,
 				079422B72A91FBAA00684513 /* SharedObject.swift in Sources */,
 				0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */,
+				D0A9F70D2A93BD4600C87638 /* SignInUseCase.swift in Sources */,
+				D0A9F7052A936F2100C87638 /* SignInViewController.swift in Sources */,
 				07317FD32A7F55720066341F /* APIHandler.swift in Sources */,
 				079422A32A90FE3F00684513 /* GetCustomer.swift in Sources */,
 				07317FDA2A7FFEB70066341F /* GetConstomerUsecase.swift in Sources */,
