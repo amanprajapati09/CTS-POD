@@ -92,4 +92,14 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
         return CGSize(width: view.frame.size.width/2 - 30, height: view.frame.size.width/2 - 30)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch optionList[indexPath.row].type {
+        case .login:
+            let signInVC = SignIn.build(customer: viewModel.customer)
+            self.navigationController?.pushViewController(signInVC, animated: true)
+        default:
+            print("Default")
+        }
+    }
+    
 }
