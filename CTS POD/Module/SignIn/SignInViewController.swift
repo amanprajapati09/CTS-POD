@@ -47,8 +47,24 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         return view
     }()
     
+    private lazy var headerStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [iconImage, lableTitle, subTitleLabel])
+        view.axis = .vertical
+        view.alignment = .center
+        view.distribution = .fill
+        return view
+    }()
+    
+    private lazy var textFieldsStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [txtUserName, txtPassword])
+        view.axis = .vertical
+        view.alignment = .center
+        view.distribution = .fill
+        return view
+    }()
+    
     private lazy var containerView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [iconImage, lableTitle, subTitleLabel, txtUserName, txtPassword, btnSignIn])
+        let view = UIStackView(arrangedSubviews: [iconImage, lableTitle, subTitleLabel, txtUserName, txtPassword, btnSignIn, btnForgotPassword])
         view.axis = .vertical
         view.alignment = .center
         view.distribution = .fill
@@ -64,6 +80,15 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
         view.addTarget(self, action: #selector(buttonSignInTap), for: .touchUpInside)
+        return view
+    }()
+    
+    private lazy var btnForgotPassword: UIButton = {
+        let view = UIButton()
+        view.titleLabel?.font = Fonts.popRegular
+        view.setTitle(viewModel.configuration.string.forgotPassword, for: .normal)
+        view.setTitleColor(Colors.colorGray, for: .normal)
+        view.addTarget(self, action: #selector(buttonForgotPasswordTap), for: .touchUpInside)
         return view
     }()
     
@@ -99,6 +124,8 @@ class SignInViewController: BaseViewController<SignInViewModel> {
     private func setupView() {
         view.backgroundColor = Colors.viewBackground
         view.addSubview(containerView)
+        containerView.addArrangedSubview(headerStackView)
+        containerView.addArrangedSubview(textFieldsStackView)
 
         containerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(30)
@@ -109,6 +136,10 @@ class SignInViewController: BaseViewController<SignInViewModel> {
             $0.height.width.equalTo(70)
         }
         
+        textFieldsStackView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+        }
+        
         txtUserName.snp.makeConstraints {
             $0.width.equalToSuperview()
         }
@@ -117,6 +148,7 @@ class SignInViewController: BaseViewController<SignInViewModel> {
             $0.width.equalToSuperview()
         }
 
+        view.addSubview(btnSignIn)
         btnSignIn.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(containerView.snp.bottom).offset(30)
@@ -128,12 +160,17 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         activityIndicator.snp.makeConstraints {
             $0.center.equalTo(btnSignIn.snp.center)
         }
+        
+        view.addSubview(btnForgotPassword)
+        btnForgotPassword.snp.makeConstraints {
+            $0.top.equalTo(btnSignIn.snp.bottom).offset(30)
+            $0.leading.equalToSuperview().inset(30)
+        }
 
-        containerView.setCustomSpacing(30, after: iconImage)
-        containerView.setCustomSpacing(10, after: lableTitle)
-        containerView.setCustomSpacing(30, after: subTitleLabel)
-        containerView.setCustomSpacing(30, after: txtUserName)
-        containerView.setCustomSpacing(40, after: txtPassword)
+        headerStackView.setCustomSpacing(30, after: iconImage)
+        headerStackView.setCustomSpacing(10, after: lableTitle)
+        containerView.setCustomSpacing(30, after: headerStackView)
+        textFieldsStackView.setCustomSpacing(30, after: txtUserName)
     }
     
     @objc
@@ -141,6 +178,11 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         guard let userName = txtUserName.text, let password = txtPassword.text,
                 (userName.count > 0 && password.count > 0) else { return }
         viewModel.signIn(username: userName, password: password)
+    }
+    
+    @objc
+    func buttonForgotPasswordTap() {
+        self.navigationController?.pushViewController(ForgotPassword.build(customer: viewModel.customer), animated: true)
     }
 
     /*
