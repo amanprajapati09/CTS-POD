@@ -1,42 +1,41 @@
-//
-//  SignInClient.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 21/08/23.
-//
+
 
 import Foundation
 protocol SignInClientProtocol {
-    func signIn(username: String, password: String, completion: @escaping (Result<CustomerResult, Error>)->()) async throws -> Void
+    func signIn(loginRequest: LoginRequestModel, completion: @escaping (Result<LoginResponse, Error>)->()) async throws -> Void
 }
 
 final class SignInClient: SignInClientProtocol {
     
     enum Endpoint: EndpointConfiguration {
        
-        case signIn(username: String, password: String)
+        case signIn(LoginRequestModel)
         
         var path: String {
-            return Constant.baseURL + " /User/"
+            return Constant.baseURL + "User/LogIn"
         }
-        
-        var method: RequestMethods { return .GET }
+         
+        var method: RequestMethods { return .POST }
         
         var body: Encodable? {
-            return nil
+            switch self {
+            case .signIn(let request):
+                return request.loginRequest
+            }
         }
         
         var queryParam: [URLQueryItem]? {
-            switch self {
-            case .signIn(let username, let password):
-                return [URLQueryItem(name: "domain", value: username)]
-            }
+            return nil
         }
     }
     
-    func signIn(username: String, password: String, completion: @escaping (Result<CustomerResult, Error>)->()) async throws -> Void {
-        let configuration = SignInClient.Endpoint.signIn(username: username, password: password)
-        let request = try URLRequest.init(endpoint: configuration)
+    func signIn(loginRequest: LoginRequestModel, completion: @escaping (Result<LoginResponse, Error>)->()) async throws -> Void {
+        let configuration = SignInClient.Endpoint.signIn(loginRequest)
+        var request = try URLRequest.init(endpoint: configuration)
+        request.setValue(loginRequest.deviceID, forHTTPHeaderField: "deviceID")
+        request.setValue(loginRequest.apiClient, forHTTPHeaderField: "apiClient")
+        request.setValue(loginRequest.appVersion, forHTTPHeaderField: "appVersion")
+        request.setValue(loginRequest.version, forHTTPHeaderField: "version")
         _ = APIClient.sharedObject.load(urlRequest: request, completion: completion)
     }
 }

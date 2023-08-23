@@ -1,7 +1,3 @@
-//
-//  NetworkEnums.swift
-//  NetworkLayer
-//  WWL
 
 import Foundation
 /**

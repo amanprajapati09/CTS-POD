@@ -1,23 +1,17 @@
-//
-//  GetCustomerViewModel.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/17/23.
-//
 
 import Foundation
 import Combine
 
-enum APIState {
+enum APIState<T: Decodable> {
     case loading
-    case loaded(Customer)
+    case loaded(T)
     case error(String)
 }
 
 class GetCustomerViewModel {
     let configuration: GetCustomer.Configuration
     
-    @Published var viewState: APIState?    
+    @Published var viewState: APIState<Customer>?    
     
     init(configuration: GetCustomer.Configuration) {
         self.configuration = configuration
@@ -32,7 +26,7 @@ class GetCustomerViewModel {
                     case .success(let customerResult):
                         if let customer = customerResult.data?.Customer {
                             SharedObject.shared.customer = customer
-                            LocalTempStorage.storeValuse(inUserdefault: customer, key: "customer")
+                            LocalTempStorage.storeValue(inUserdefault: customer, key: "customer")
                             self.viewState = .loaded(customer)
                         } else {
                             self.viewState = .error(customerResult.message)

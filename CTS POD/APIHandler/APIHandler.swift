@@ -1,9 +1,3 @@
-//
-//  APIHandler.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/6/23.
-//
 
 import Foundation
 import UIKit
@@ -49,7 +43,11 @@ extension APIClient: WebClient  {
                             let result = try JSONDecoder().decode(T.self, from: data)
                             completion(.success(result))
                         case .failure:
-                            if let error = error {
+                            if let data {
+                                let result = try JSONDecoder().decode(T.self, from: data)
+                                completion(.success(result))
+                                
+                            } else if let error = error {
                                 completion(.failure(error as! E))
                             }
                         }
