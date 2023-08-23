@@ -28,7 +28,7 @@ class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
         view.titleLabel?.font = Fonts.popRegular
         view.setTitle(viewModel.configuration.string.didNotReceiveCode, for: .normal)
         view.setTitleColor(Colors.colorGray, for: .normal)
-//        view.addTarget(self, action: #selector(buttonForgotPasswordTap), for: .touchUpInside)
+        //view.addTarget(self, action: #selector(buttonForgotPasswordTap), for: .touchUpInside)
         return view
     }()
     
@@ -40,7 +40,7 @@ class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
         view.setTitleColor(Colors.colorWhite, for: .normal)
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
-  //      view.addTarget(self, action: #selector(buttonSignInTap), for: .touchUpInside)
+        view.addTarget(self, action: #selector(verifyTapped), for: .touchUpInside)
         return view
     }()
     
@@ -86,6 +86,15 @@ class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
         
         contentView.setCustomSpacing(20, after: codeView)
         contentView.setCustomSpacing(40, after: btnDidNotReceiveCode)
+    }
+    
+
+    @objc func verifyTapped() {
+        navigateToResetPassword()
+    }
+    
+    func navigateToResetPassword() {
+        self.navigationController?.pushViewController(ResetPassword.build(customer: viewModel.customer), animated: true)
     }
     /*
     // MARK: - Navigation

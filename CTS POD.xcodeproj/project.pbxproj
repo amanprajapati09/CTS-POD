@@ -44,6 +44,9 @@
 		D00F0AE02A96048E00F9F310 /* EnterCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F0ADF2A96048E00F9F310 /* EnterCode.swift */; };
 		D00F0AE22A96049F00F9F310 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F0AE12A96049F00F9F310 /* EnterCodeViewController.swift */; };
 		D00F0AE42A9604AB00F9F310 /* EnterCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F0AE32A9604AB00F9F310 /* EnterCodeViewModel.swift */; };
+		D022EA432A960CF600B44E4B /* ResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022EA422A960CF600B44E4B /* ResetPassword.swift */; };
+		D022EA452A960D0100B44E4B /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022EA442A960D0100B44E4B /* ResetPasswordViewController.swift */; };
+		D022EA472A960D1000B44E4B /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022EA462A960D1000B44E4B /* ResetPasswordViewModel.swift */; };
 		D094E8012A947D4500FDFD61 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094E8002A947D4500FDFD61 /* ForgotPasswordViewController.swift */; };
 		D094E8032A947DBD00FDFD61 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094E8022A947DBD00FDFD61 /* ForgotPassword.swift */; };
 		D094E8052A947E7300FDFD61 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094E8042A947E7300FDFD61 /* ForgotPasswordViewModel.swift */; };
@@ -118,6 +121,9 @@
 		D00F0ADF2A96048E00F9F310 /* EnterCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCode.swift; sourceTree = "<group>"; };
 		D00F0AE12A96049F00F9F310 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
 		D00F0AE32A9604AB00F9F310 /* EnterCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewModel.swift; sourceTree = "<group>"; };
+		D022EA422A960CF600B44E4B /* ResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassword.swift; sourceTree = "<group>"; };
+		D022EA442A960D0100B44E4B /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		D022EA462A960D1000B44E4B /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		D094E8002A947D4500FDFD61 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D094E8022A947DBD00FDFD61 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		D094E8042A947E7300FDFD61 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
@@ -218,6 +224,7 @@
 		07317FCF2A7E30DE0066341F /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				D022EA412A960CE200B44E4B /* ResetPassword */,
 				D00F0ADE2A96047600F9F310 /* EnterCode */,
 				D094E7FF2A947D2F00FDFD61 /* ForgotPassword */,
 				D0A9F7032A933A1E00C87638 /* SignIn */,
@@ -341,6 +348,16 @@
 				D00F0AE32A9604AB00F9F310 /* EnterCodeViewModel.swift */,
 			);
 			path = EnterCode;
+			sourceTree = "<group>";
+		};
+		D022EA412A960CE200B44E4B /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				D022EA422A960CF600B44E4B /* ResetPassword.swift */,
+				D022EA442A960D0100B44E4B /* ResetPasswordViewController.swift */,
+				D022EA462A960D1000B44E4B /* ResetPasswordViewModel.swift */,
+			);
+			path = ResetPassword;
 			sourceTree = "<group>";
 		};
 		D094E7FF2A947D2F00FDFD61 /* ForgotPassword */ = {
@@ -607,6 +624,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				079422B02A91214200684513 /* Fonts.swift in Sources */,
+				D022EA472A960D1000B44E4B /* ResetPasswordViewModel.swift in Sources */,
 				D0A9F7092A936F3C00C87638 /* SignIn.swift in Sources */,
 				D00F0AE22A96049F00F9F310 /* EnterCodeViewController.swift in Sources */,
 				D0A9F70F2A93BDCE00C87638 /* SignInClient.swift in Sources */,
@@ -615,9 +633,11 @@
 				07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */,
 				D0A9F70B2A93713C00C87638 /* BaseViewController.swift in Sources */,
 				079422B22A91234700684513 /* Constant.swift in Sources */,
+				D022EA452A960D0100B44E4B /* ResetPasswordViewController.swift in Sources */,
 				D094E8052A947E7300FDFD61 /* ForgotPasswordViewModel.swift in Sources */,
 				078B21222A9294FE000F6A1E /* SplashViewController.swift in Sources */,
 				07046A332A926CF40074C711 /* DashBoardCell.swift in Sources */,
+				D022EA432A960CF600B44E4B /* ResetPassword.swift in Sources */,
 				07835EBB2A874A640071A3AD /* URLRequest+Extension.swift in Sources */,
 				07317FA02A7E2BE10066341F /* AppDelegate.swift in Sources */,
 				07317FD82A7FFEA40066341F /* GetCustomerClient.swift in Sources */,
