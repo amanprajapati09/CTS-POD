@@ -1,9 +1,3 @@
-//
-//  Dashboard.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/20/23.
-//
 
 import UIKit
 
@@ -37,8 +31,10 @@ extension Dashboard.Configuration {
     
     struct Strings {
         let signin = "Sign In"
+        let signOut = "Sign out"
         let deleviry = "Deliverie"
         let vehicalCheck = "Vehicle Cheklist"
         let jobConfirm = "Job Confirm"
+        let logoutAlertMessage = "Are you sure want to logout?"
     }
 }

@@ -1,9 +1,3 @@
-//
-//  SignIn.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 21/08/23.
-//
 
 import UIKit
 
@@ -18,18 +12,12 @@ final class SignIn {
         }
     }
     
-    static func build(customer: Customer) -> SignInViewController {
+    static func build(customer: Customer, complition: @escaping ()->()) -> SignInViewController {
         let configuration = SignIn.Configuration(usecase: SignInUseCase(client: SignInClient()))
         let viewModel = SignInViewModel(configuration: configuration, customer: customer)
+        viewModel.didCompleteLogin = complition
         let viewController = SignInViewController(viewModel: viewModel)
         return viewController
-    }
-    
-    public enum DashboardOption: Int {
-        case login = 0
-        case vehical = 1
-        case job = 2
-        case deliveries = 3
     }
 }
 

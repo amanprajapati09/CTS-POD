@@ -1,9 +1,3 @@
-//
-//  SignInViewModel.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 21/08/23.
-//
 
 import UIKit
 
@@ -11,7 +5,8 @@ final class SignInViewModel {
     
     let configuration: SignIn.Configuration
     let customer: Customer
-    @Published var viewState: APIState?
+    public var didCompleteLogin: (()->())?
+    @Published var viewState: APIState<LoginDetails>?
     
     init(configuration: SignIn.Configuration, customer: Customer) {
         self.configuration = configuration
@@ -22,13 +17,13 @@ final class SignInViewModel {
         viewState = .loading
         Task {
             do {
-                try await configuration.usecase.signIn(username: username, password: password, completion: { result in
+                try await configuration.usecase.signIn(loginRequest: LoginRequestModel(loginRequest: .init(userName: username, password: password, customerDomain: customer.domainname)), completion: { result in
                     switch result {
                     case .success(let customerResult):
-                        if let customer = customerResult.data?.Customer {
-                            SharedObject.shared.customer = customer
-                            LocalTempStorage.storeValuse(inUserdefault: customer, key: "customer")
-                            self.viewState = .loaded(customer)
+                        if let user = customerResult.data?.loginDetails {
+                            LocalTempStorage.storeValue(inUserdefault: user, key: "user")
+                            self.viewState = .loaded(user)
+                            self.didCompleteLogin?()
                         } else {
                             self.viewState = .error(customerResult.message)
                         }

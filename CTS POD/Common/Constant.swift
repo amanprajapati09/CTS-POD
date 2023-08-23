@@ -1,14 +1,16 @@
-//
-//  Constant.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/19/23.
-//
 
 import UIKit
 
 struct Constant {
     static let baseURL = "https://ctstestapi.cooksconnection.com.au/api/v1/"
+    
+    static var deviceID: String {
+        return UIDevice.current.identifierForVendor!.uuidString
+    }
+    
+    static var isLogin: Bool {
+        return LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: "user") != nil
+    }
 }
 
 struct Colors {

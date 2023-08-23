@@ -1,14 +1,11 @@
-//
-//  SignInViewController.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 21/08/23.
-//
 
 import UIKit
+import Combine
 
 class SignInViewController: BaseViewController<SignInViewModel> {
 
+    private var cancellable = Set<AnyCancellable>()
+    
     private lazy var iconImage: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
@@ -79,6 +76,7 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         navigationController?.setNavigationBarHidden(true, animated: false)
         setupView()
         setLogo()
+        bind()
     }
     
     init(viewModel: SignInViewModel) {
@@ -136,21 +134,41 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         containerView.setCustomSpacing(40, after: txtPassword)
     }
     
+    private func bind() {
+        viewModel.$viewState
+            .receive(on: DispatchQueue.main)
+            .sink { value in
+                switch value {
+                case .loading:
+                    self.activityIndicator.startAnimating()
+                    self.btnSignIn.isHidden = true
+                case .loaded:
+                    self.activityIndicator.stopAnimating()
+                    self.btnSignIn.isHidden = false
+                    self.navigationController?.popViewController(animated: true)
+                case .error(let errorString):
+                    self.showErrorAlert(message: errorString)
+                    self.activityIndicator.stopAnimating()
+                    self.btnSignIn.isHidden = false
+                case .none: self.activityIndicator.stopAnimating()
+                }
+            }.store(in: &cancellable)
+    }
+    
     @objc
     func buttonSignInTap() {
         guard let userName = txtUserName.text, let password = txtPassword.text,
                 (userName.count > 0 && password.count > 0) else { return }
         viewModel.signIn(username: userName, password: password)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    private func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+            alert.dismiss(animated: true)
+        }))
+        navigationController?.present(alert, animated: true)
     }
-    */
+    
 
 }

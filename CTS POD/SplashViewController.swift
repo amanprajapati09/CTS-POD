@@ -1,9 +1,3 @@
-//
-//  SplashViewController.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/21/23.
-//
 
 import UIKit
 
@@ -71,7 +65,7 @@ class SplashViewController: UIViewController {
                     case .success(let customerResult):
                         if let customer = customerResult.data?.Customer {
                             SharedObject.shared.customer = customer
-                            LocalTempStorage.storeValuse(inUserdefault: customer, key: "customer")
+                            LocalTempStorage.storeValue(inUserdefault: customer, key: "customer")
                             self.navigateToDashboard(customer: customer)
                         } else {
                             self.showErrorAlert(message: customerResult.message)

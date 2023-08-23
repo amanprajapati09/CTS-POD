@@ -1,16 +1,14 @@
-//
-//  DashboardViewController.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/20/23.
-//
 
 import UIKit
 
 class DashboardViewController: UIViewController {
     
     private let viewModel: DashboardViewModel
-    private let optionList: [DashboardDisplayModel]
+    private var optionList: [DashboardDisplayModel] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     private lazy var iconImage: UIImageView = {
         let view = UIImageView()
@@ -95,11 +93,28 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch optionList[indexPath.row].type {
         case .login:
-            let signInVC = SignIn.build(customer: viewModel.customer)
-            self.navigationController?.pushViewController(signInVC, animated: true)
+            if Constant.isLogin {
+                showlogoutAlert()
+            } else {
+                let signInVC = SignIn.build(customer: viewModel.customer) {
+                    self.optionList = self.viewModel.fetchOptions()
+                }
+                self.navigationController?.pushViewController(signInVC, animated: true)
+            }            
         default:
             print("Default")
         }
     }
     
+    private func showlogoutAlert() {
+        let alert = UIAlertController(title: "Error", message: viewModel.configuration.string.logoutAlertMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
+            alert.dismiss(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            LocalTempStorage.removeValue(for: "user")
+            self.optionList = self.viewModel.fetchOptions()
+        }))
+        navigationController?.present(alert, animated: true)
+    }
 }
