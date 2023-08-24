@@ -42,6 +42,15 @@
 		2B63F500AAC09FB522A46AD7 /* Pods_CTS_POD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040AAF3EBBE2122DB5EF9F66 /* Pods_CTS_POD.framework */; };
 		949E1B4A1699706D8E03A7F5 /* Pods_CTS_POD_CTS_PODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */; };
 		AB269F495F93B9734900A913 /* Pods_CTS_PODTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 315C1FFBC51599B6C3A70F9B /* Pods_CTS_PODTests.framework */; };
+		D00F0AE02A96048E00F9F310 /* EnterCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F0ADF2A96048E00F9F310 /* EnterCode.swift */; };
+		D00F0AE22A96049F00F9F310 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F0AE12A96049F00F9F310 /* EnterCodeViewController.swift */; };
+		D00F0AE42A9604AB00F9F310 /* EnterCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F0AE32A9604AB00F9F310 /* EnterCodeViewModel.swift */; };
+		D022EA432A960CF600B44E4B /* ResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022EA422A960CF600B44E4B /* ResetPassword.swift */; };
+		D022EA452A960D0100B44E4B /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022EA442A960D0100B44E4B /* ResetPasswordViewController.swift */; };
+		D022EA472A960D1000B44E4B /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022EA462A960D1000B44E4B /* ResetPasswordViewModel.swift */; };
+		D094E8012A947D4500FDFD61 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094E8002A947D4500FDFD61 /* ForgotPasswordViewController.swift */; };
+		D094E8032A947DBD00FDFD61 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094E8022A947DBD00FDFD61 /* ForgotPassword.swift */; };
+		D094E8052A947E7300FDFD61 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094E8042A947E7300FDFD61 /* ForgotPasswordViewModel.swift */; };
 		D0A9F7052A936F2100C87638 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F7042A936F2100C87638 /* SignInViewController.swift */; };
 		D0A9F7072A936F2D00C87638 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F7062A936F2D00C87638 /* SignInViewModel.swift */; };
 		D0A9F7092A936F3C00C87638 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F7082A936F3C00C87638 /* SignIn.swift */; };
@@ -111,6 +120,15 @@
 		8DD0E45136CA5B4D6716F584 /* Pods-CTS POD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD.release.xcconfig"; path = "Target Support Files/Pods-CTS POD/Pods-CTS POD.release.xcconfig"; sourceTree = "<group>"; };
 		A8BFD85A5BB426317E1E7825 /* Pods-CTS POD-CTS PODUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD-CTS PODUITests.debug.xcconfig"; path = "Target Support Files/Pods-CTS POD-CTS PODUITests/Pods-CTS POD-CTS PODUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE7ADB1AF33682688DD46DCB /* Pods-CTS PODTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS PODTests.release.xcconfig"; path = "Target Support Files/Pods-CTS PODTests/Pods-CTS PODTests.release.xcconfig"; sourceTree = "<group>"; };
+		D00F0ADF2A96048E00F9F310 /* EnterCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCode.swift; sourceTree = "<group>"; };
+		D00F0AE12A96049F00F9F310 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
+		D00F0AE32A9604AB00F9F310 /* EnterCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewModel.swift; sourceTree = "<group>"; };
+		D022EA422A960CF600B44E4B /* ResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassword.swift; sourceTree = "<group>"; };
+		D022EA442A960D0100B44E4B /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		D022EA462A960D1000B44E4B /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		D094E8002A947D4500FDFD61 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		D094E8022A947DBD00FDFD61 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
+		D094E8042A947E7300FDFD61 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		D0A9F7042A936F2100C87638 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D0A9F7062A936F2D00C87638 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		D0A9F7082A936F3C00C87638 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
@@ -208,6 +226,9 @@
 		07317FCF2A7E30DE0066341F /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				D022EA412A960CE200B44E4B /* ResetPassword */,
+				D00F0ADE2A96047600F9F310 /* EnterCode */,
+				D094E7FF2A947D2F00FDFD61 /* ForgotPassword */,
 				D0A9F7032A933A1E00C87638 /* SignIn */,
 				079422B82A92044300684513 /* Dashboard */,
 				07317FD02A7E30E90066341F /* GetCustomer */,
@@ -319,6 +340,36 @@
 				CE7ADB1AF33682688DD46DCB /* Pods-CTS PODTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D00F0ADE2A96047600F9F310 /* EnterCode */ = {
+			isa = PBXGroup;
+			children = (
+				D00F0ADF2A96048E00F9F310 /* EnterCode.swift */,
+				D00F0AE12A96049F00F9F310 /* EnterCodeViewController.swift */,
+				D00F0AE32A9604AB00F9F310 /* EnterCodeViewModel.swift */,
+			);
+			path = EnterCode;
+			sourceTree = "<group>";
+		};
+		D022EA412A960CE200B44E4B /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				D022EA422A960CF600B44E4B /* ResetPassword.swift */,
+				D022EA442A960D0100B44E4B /* ResetPasswordViewController.swift */,
+				D022EA462A960D1000B44E4B /* ResetPasswordViewModel.swift */,
+			);
+			path = ResetPassword;
+			sourceTree = "<group>";
+		};
+		D094E7FF2A947D2F00FDFD61 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				D094E8002A947D4500FDFD61 /* ForgotPasswordViewController.swift */,
+				D094E8022A947DBD00FDFD61 /* ForgotPassword.swift */,
+				D094E8042A947E7300FDFD61 /* ForgotPasswordViewModel.swift */,
+			);
+			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
 		D0A9F7032A933A1E00C87638 /* SignIn */ = {
@@ -576,15 +627,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				079422B02A91214200684513 /* Fonts.swift in Sources */,
+				D022EA472A960D1000B44E4B /* ResetPasswordViewModel.swift in Sources */,
 				D0A9F7092A936F3C00C87638 /* SignIn.swift in Sources */,
+				D00F0AE22A96049F00F9F310 /* EnterCodeViewController.swift in Sources */,
 				D0A9F70F2A93BDCE00C87638 /* SignInClient.swift in Sources */,
 				079422BC2A92046D00684513 /* DashboardViewController.swift in Sources */,
 				071882D02A92160E00EE4747 /* Dashboard.swift in Sources */,
 				07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */,
 				D0A9F70B2A93713C00C87638 /* BaseViewController.swift in Sources */,
 				079422B22A91234700684513 /* Constant.swift in Sources */,
+				D022EA452A960D0100B44E4B /* ResetPasswordViewController.swift in Sources */,
+				D094E8052A947E7300FDFD61 /* ForgotPasswordViewModel.swift in Sources */,
 				078B21222A9294FE000F6A1E /* SplashViewController.swift in Sources */,
 				07046A332A926CF40074C711 /* DashBoardCell.swift in Sources */,
+				D022EA432A960CF600B44E4B /* ResetPassword.swift in Sources */,
 				07835EBB2A874A640071A3AD /* URLRequest+Extension.swift in Sources */,
 				07317FA02A7E2BE10066341F /* AppDelegate.swift in Sources */,
 				07317FD82A7FFEA40066341F /* GetCustomerClient.swift in Sources */,
@@ -595,13 +651,17 @@
 				D0A9F7072A936F2D00C87638 /* SignInViewModel.swift in Sources */,
 				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,
 				079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */,
+				D00F0AE02A96048E00F9F310 /* EnterCode.swift in Sources */,
+				D094E8032A947DBD00FDFD61 /* ForgotPassword.swift in Sources */,
 				079422B52A912D8500684513 /* UIColor+Extension.swift in Sources */,
 				07317FA22A7E2BE10066341F /* SceneDelegate.swift in Sources */,
 				079422B72A91FBAA00684513 /* SharedObject.swift in Sources */,
 				0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */,
 				D0A9F70D2A93BD4600C87638 /* SignInUseCase.swift in Sources */,
 				D0A9F7052A936F2100C87638 /* SignInViewController.swift in Sources */,
+				D094E8012A947D4500FDFD61 /* ForgotPasswordViewController.swift in Sources */,
 				07317FD32A7F55720066341F /* APIHandler.swift in Sources */,
+				D00F0AE42A9604AB00F9F310 /* EnterCodeViewModel.swift in Sources */,
 				079422A32A90FE3F00684513 /* GetCustomer.swift in Sources */,
 				07317FDA2A7FFEB70066341F /* GetConstomerUsecase.swift in Sources */,
 				07ABD1772A952BD600460A8A /* SignInModel.swift in Sources */,

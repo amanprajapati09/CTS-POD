@@ -56,4 +56,6 @@ struct Colors {
     static let colortransparentGray = UIColor(hex:"#90D3D3")
     
     static let viewBackground = UIColor(hex:"#F9F9F9")
+    
+    static let forgotPasswordViewBackground = UIColor(hex:"#FAFAFA")
 }
