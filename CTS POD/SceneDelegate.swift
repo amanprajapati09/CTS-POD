@@ -1,9 +1,3 @@
-//
-//  SceneDelegate.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/5/23.
-//
 
 import UIKit
 

@@ -1,14 +1,11 @@
-//
-//  SignInViewController.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 21/08/23.
-//
 
 import UIKit
+import Combine
 
 class SignInViewController: BaseViewController<SignInViewModel> {
 
+    private var cancellable = Set<AnyCancellable>()
+    
     private lazy var iconImage: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
@@ -104,6 +101,7 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         navigationController?.setNavigationBarHidden(true, animated: false)
         setupView()
         setLogo()
+        bind()
     }
     
     init(viewModel: SignInViewModel) {
@@ -173,6 +171,27 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         textFieldsStackView.setCustomSpacing(30, after: txtUserName)
     }
     
+    private func bind() {
+        viewModel.$viewState
+            .receive(on: DispatchQueue.main)
+            .sink { value in
+                switch value {
+                case .loading:
+                    self.activityIndicator.startAnimating()
+                    self.btnSignIn.isHidden = true
+                case .loaded:
+                    self.activityIndicator.stopAnimating()
+                    self.btnSignIn.isHidden = false
+                    self.navigationController?.popViewController(animated: true)
+                case .error(let errorString):
+                    self.showErrorAlert(message: errorString)
+                    self.activityIndicator.stopAnimating()
+                    self.btnSignIn.isHidden = false
+                case .none: self.activityIndicator.stopAnimating()
+                }
+            }.store(in: &cancellable)
+    }
+    
     @objc
     func buttonSignInTap() {
         guard let userName = txtUserName.text, let password = txtPassword.text,
@@ -185,6 +204,14 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         self.navigationController?.pushViewController(ForgotPassword.build(customer: viewModel.customer), animated: true)
     }
 
+    private func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+            alert.dismiss(animated: true)
+        }))
+        navigationController?.present(alert, animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -193,6 +220,7 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+    
+     */
 
 }

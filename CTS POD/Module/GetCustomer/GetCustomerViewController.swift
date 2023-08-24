@@ -1,9 +1,3 @@
-//
-//  GetCustomerViewController.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/17/23.
-//
 
 import UIKit
 import SnapKit

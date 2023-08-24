@@ -1,9 +1,3 @@
-//
-//  DashBoardCell.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/20/23.
-//
 
 import UIKit
 
@@ -63,6 +57,7 @@ class DashBoardCell: UICollectionViewCell, Reusable {
             guard let dashboardDisplayModel else {return}
             iconImage.image = dashboardDisplayModel.icon
             titleLabel.text = dashboardDisplayModel.title
+            titleLabel.textColor = dashboardDisplayModel.textColor
             containerView.backgroundColor = dashboardDisplayModel.backgroundColor
         }
     }

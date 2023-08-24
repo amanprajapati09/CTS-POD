@@ -1,9 +1,3 @@
-//
-//  GetCustomer.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/19/23.
-//
 
 import UIKit
 

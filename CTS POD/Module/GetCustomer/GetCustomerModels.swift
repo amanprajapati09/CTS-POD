@@ -1,9 +1,3 @@
-//
-//  GetCustomerModels.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/19/23.
-//
 
 import UIKit
 
@@ -22,7 +16,8 @@ struct Workflow: Codable {
         return DashboardDisplayModel(title: flowName,
                                      icon: UIImage(named: "\(flowID)_dashboard") ?? UIImage() ,
                                      type: Dashboard.DashboardOption(rawValue: flowID) ?? .login,
-                                     backgroundColor: Colors.colorPrimaryDark)
+                                     backgroundColor: Colors.colorPrimaryDark,
+                                     textColor: Colors.colorPrimary)
     }
 }
 

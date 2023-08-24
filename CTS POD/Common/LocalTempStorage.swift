@@ -1,15 +1,9 @@
-//
-//  LocalTempStorage.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/20/23.
-//
 
 import Foundation
 
 class LocalTempStorage {
     
-    static func storeValuse(inUserdefault value: Codable, key: String) {
+    static func storeValue(inUserdefault value: Codable, key: String) {
         do {
             let data = try JSONEncoder().encode(value)
             UserDefaults.standard.set(data, forKey: key)
@@ -29,5 +23,9 @@ class LocalTempStorage {
         } else {
             return nil
         }
+    }
+    
+    static func removeValue(for key: String) {
+        UserDefaults.standard.set(nil, forKey: key)
     }
 }
