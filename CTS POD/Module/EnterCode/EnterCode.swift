@@ -1,9 +1,3 @@
-//
-//  EnterCode.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 23/08/23.
-//
 
 import UIKit
 

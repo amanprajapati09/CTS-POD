@@ -1,9 +1,3 @@
-//
-//  ResetPasswordViewController.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 23/08/23.
-//
 
 import UIKit
 
@@ -17,7 +11,6 @@ class ResetPasswordViewController: BaseViewController<ResetPasswordViewModel> {
         view.setTitleColor(Colors.colorWhite, for: .normal)
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
-  //      view.addTarget(self, action: #selector(buttonSignInTap), for: .touchUpInside)
         return view
     }()
     
@@ -100,14 +93,4 @@ class ResetPasswordViewController: BaseViewController<ResetPasswordViewModel> {
             make.height.equalTo(45)
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -3,6 +3,8 @@ import Foundation
 
 protocol SignInUseCaseProtocol {
     func signIn(loginRequest: LoginRequestModel, completion: @escaping (Result<LoginResponse, Error>)->()) async throws -> Void
+    func generateOTP(forgotPasswordRequest: ForgotPasswordRequest, completion: @escaping(Result<ForgotPasswordResponse, Error>)->())  async throws -> Void
+    func validateOTP(validateOTPRequest: ValidateOTPRequest, completion: @escaping(Result<ForgotPasswordResponse, Error>)->())  async throws -> Void
 }
 
 final class SignInUseCase: SignInUseCaseProtocol {
@@ -13,6 +15,14 @@ final class SignInUseCase: SignInUseCaseProtocol {
     
     func signIn(loginRequest: LoginRequestModel, completion: @escaping (Result<LoginResponse, Error>)->()) async throws -> Void  {
         return try await client.signIn(loginRequest: loginRequest, completion: completion)
+    }
+    
+    func generateOTP(forgotPasswordRequest: ForgotPasswordRequest, completion: @escaping(Result<ForgotPasswordResponse, Error>)->())  async throws -> Void {
+        return try await client.generateOTP(forgotPasswordRequest: forgotPasswordRequest, completion: completion)
+    }
+    
+    func validateOTP(validateOTPRequest: ValidateOTPRequest, completion: @escaping(Result<ForgotPasswordResponse, Error>)->())  async throws -> Void {
+        return try await client.validateOTP(validateOTPRequest: validateOTPRequest, completion: completion)
     }
 }
 

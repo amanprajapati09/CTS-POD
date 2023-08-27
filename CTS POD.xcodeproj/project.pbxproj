@@ -25,6 +25,8 @@
 		07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07835EB82A8739E60071A3AD /* EndpointProtocol.swift */; };
 		07835EBB2A874A640071A3AD /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07835EBA2A874A640071A3AD /* URLRequest+Extension.swift */; };
 		078B21222A9294FE000F6A1E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078B21212A9294FE000F6A1E /* SplashViewController.swift */; };
+		078E762B2A97C57B008F7F8A /* ForgotPasswordModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E762A2A97C57B008F7F8A /* ForgotPasswordModels.swift */; };
+		078E762D2A98F051008F7F8A /* ValidateOTPModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E762C2A98F051008F7F8A /* ValidateOTPModels.swift */; };
 		0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0794229E2A8E7E5400684513 /* GetCustomerViewController.swift */; };
 		079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422A02A8E7E6B00684513 /* GetCustomerViewModel.swift */; };
 		079422A32A90FE3F00684513 /* GetCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422A22A90FE3F00684513 /* GetCustomer.swift */; };
@@ -100,6 +102,8 @@
 		07835EB82A8739E60071A3AD /* EndpointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointProtocol.swift; sourceTree = "<group>"; };
 		07835EBA2A874A640071A3AD /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
 		078B21212A9294FE000F6A1E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		078E762A2A97C57B008F7F8A /* ForgotPasswordModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModels.swift; sourceTree = "<group>"; };
+		078E762C2A98F051008F7F8A /* ValidateOTPModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateOTPModels.swift; sourceTree = "<group>"; };
 		0794229E2A8E7E5400684513 /* GetCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomerViewController.swift; sourceTree = "<group>"; };
 		079422A02A8E7E6B00684513 /* GetCustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomerViewModel.swift; sourceTree = "<group>"; };
 		079422A22A90FE3F00684513 /* GetCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomer.swift; sourceTree = "<group>"; };
@@ -348,6 +352,7 @@
 				D00F0ADF2A96048E00F9F310 /* EnterCode.swift */,
 				D00F0AE12A96049F00F9F310 /* EnterCodeViewController.swift */,
 				D00F0AE32A9604AB00F9F310 /* EnterCodeViewModel.swift */,
+				078E762C2A98F051008F7F8A /* ValidateOTPModels.swift */,
 			);
 			path = EnterCode;
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 				D094E8002A947D4500FDFD61 /* ForgotPasswordViewController.swift */,
 				D094E8022A947DBD00FDFD61 /* ForgotPassword.swift */,
 				D094E8042A947E7300FDFD61 /* ForgotPasswordViewModel.swift */,
+				078E762A2A97C57B008F7F8A /* ForgotPasswordModels.swift */,
 			);
 			path = ForgotPassword;
 			sourceTree = "<group>";
@@ -647,6 +653,8 @@
 				07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */,
 				071882CE2A9213DE00EE4747 /* LocalTempStorage.swift in Sources */,
 				079422A52A91072300684513 /* GetCustomerModels.swift in Sources */,
+				078E762D2A98F051008F7F8A /* ValidateOTPModels.swift in Sources */,
+				078E762B2A97C57B008F7F8A /* ForgotPasswordModels.swift in Sources */,
 				07046A352A926E9E0074C711 /* Reusable.swift in Sources */,
 				D0A9F7072A936F2D00C87638 /* SignInViewModel.swift in Sources */,
 				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,

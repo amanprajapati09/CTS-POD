@@ -41,6 +41,7 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         let view = UITextField()
         view.font = Fonts.popSemiBold
         view.placeholder = viewModel.configuration.string.password
+        view.isSecureTextEntry = true
         return view
     }()
     
@@ -203,24 +204,4 @@ class SignInViewController: BaseViewController<SignInViewModel> {
     func buttonForgotPasswordTap() {
         self.navigationController?.pushViewController(ForgotPassword.build(customer: viewModel.customer), animated: true)
     }
-
-    private func showErrorAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
-            alert.dismiss(animated: true)
-        }))
-        navigationController?.present(alert, animated: true)
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    
-     */
-
 }

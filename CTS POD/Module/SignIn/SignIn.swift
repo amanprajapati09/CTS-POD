@@ -23,9 +23,7 @@ final class SignIn {
 
 extension SignIn.Configuration {
     
-    struct Images {
-        
-    }
+    struct Images {}
     
     struct Strings {
         let title = "Sign In"

@@ -1,9 +1,3 @@
-//
-//  ForgotPassword.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 22/08/23.
-//
 
 import UIKit
 

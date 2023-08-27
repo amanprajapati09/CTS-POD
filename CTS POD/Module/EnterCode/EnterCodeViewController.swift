@@ -1,15 +1,14 @@
-//
-//  EnterCodeViewController.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 23/08/23.
-//
 
 import UIKit
 import SVPinView
+import RxSwift
+import Combine
 
 class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
 
+    private var cancellable = Set<AnyCancellable>()
+    let disposeBag = DisposeBag()
+    
     private lazy var codeView: SVPinView = {
         let pinView = SVPinView()
         pinView.pinLength = 6
@@ -52,6 +51,12 @@ class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
         return view
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
@@ -84,10 +89,39 @@ class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
             make.width.equalTo(150)
         }
         
+        view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalTo(btnVerifyCode.snp.center)
+        }
+        
         contentView.setCustomSpacing(20, after: codeView)
         contentView.setCustomSpacing(40, after: btnDidNotReceiveCode)
     }
     
+    private func bind() {
+        viewModel.$viewState
+            .receive(on: DispatchQueue.main)
+            .sink { value in
+                switch value {
+                case .loading:
+                    self.activityIndicator.startAnimating()
+                    self.btnVerifyCode.isHidden = true
+                case .loaded:
+                    self.activityIndicator.stopAnimating()
+                    self.btnVerifyCode.isHidden = false
+                    self.navigationController?.pushViewController(EnterCode.build(customer: self.viewModel.customer), animated: true)
+                case .error(let errorString):
+                    self.showErrorAlert(message: errorString)
+                    self.activityIndicator.stopAnimating()
+                    self.btnVerifyCode.isHidden = false
+                case .none: self.activityIndicator.stopAnimating()
+                }
+            }.store(in: &cancellable)
+        
+        btnVerifyCode.rx.tap.subscribe(onNext: { [unowned self] in
+//            self.viewModel.generateOTP(username: username, client: customerName)
+        }).disposed(by: disposeBag)
+    }
 
     @objc func verifyTapped() {
         navigateToResetPassword()
@@ -96,14 +130,4 @@ class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
     func navigateToResetPassword() {
         self.navigationController?.pushViewController(ResetPassword.build(customer: viewModel.customer), animated: true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
