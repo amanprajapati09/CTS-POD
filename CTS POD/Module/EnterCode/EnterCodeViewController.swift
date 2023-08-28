@@ -27,7 +27,7 @@ class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
         view.titleLabel?.font = Fonts.popRegular
         view.setTitle(viewModel.configuration.string.didNotReceiveCode, for: .normal)
         view.setTitleColor(Colors.colorGray, for: .normal)
-        //view.addTarget(self, action: #selector(buttonForgotPasswordTap), for: .touchUpInside)
+        view.addTarget(self, action: #selector(dinNotReceiveCodeTapped), for: .touchUpInside)
         return view
     }()
     
@@ -121,5 +121,9 @@ class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
         btnVerifyCode.rx.tap.subscribe(onNext: { [unowned self] in
             self.viewModel.verifyOTP(otpValue: codeView.getPin())
         }).disposed(by: disposeBag)
+    }
+    
+    @objc func dinNotReceiveCodeTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

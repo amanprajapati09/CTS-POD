@@ -34,6 +34,12 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         let view = UITextField()
         view.font = Fonts.popSemiBold
         view.placeholder = viewModel.configuration.string.userName
+        view.borderStyle = .none
+        view.layer.cornerRadius = 5
+        view.backgroundColor = .white
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: view.frame.height))
+        view.leftView = paddingView
+        view.leftViewMode = .always
         return view
     }()
     
@@ -42,6 +48,12 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         view.font = Fonts.popSemiBold
         view.placeholder = viewModel.configuration.string.password
         view.isSecureTextEntry = true
+        view.backgroundColor = .white
+        view.borderStyle = .none
+        view.layer.cornerRadius = 5
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: view.frame.height))
+        view.leftView = paddingView
+        view.leftViewMode = .always
         return view
     }()
     
@@ -141,10 +153,12 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         
         txtUserName.snp.makeConstraints {
             $0.width.equalToSuperview()
+            $0.height.equalTo(45)
         }
         
         txtPassword.snp.makeConstraints {
             $0.width.equalToSuperview()
+            $0.height.equalTo(45)
         }
 
         view.addSubview(btnSignIn)

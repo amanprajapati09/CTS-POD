@@ -28,7 +28,7 @@ extension ForgotPassword.Configuration {
     }
     
     struct Strings {
-        let generateCode = "Generate Code"
+        let generateCode = "GENERATE CODE"
         let note = "Note: Contact admistrator for instant password change."
         let userName = "Username"
     }

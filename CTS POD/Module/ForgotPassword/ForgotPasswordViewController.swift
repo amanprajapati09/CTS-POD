@@ -101,6 +101,7 @@ class ForgotPasswordViewController: BaseViewController<ForgotPasswordViewModel> 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
+        self.title = "Forgot Password"
         self.navigationItem.title = "Forgot Password"
         setupView()
         bind()
