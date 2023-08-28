@@ -111,7 +111,6 @@ class SignInViewController: BaseViewController<SignInViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: false)
         setupView()
         setLogo()
         bind()
@@ -120,6 +119,10 @@ class SignInViewController: BaseViewController<SignInViewModel> {
     init(viewModel: SignInViewModel) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     required init?(coder: NSCoder) {

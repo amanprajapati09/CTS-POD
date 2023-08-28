@@ -6,7 +6,8 @@ class BaseViewController<VM>: UIViewController {
     var viewModel: VM!
     
     override func viewDidLoad() {
-        navigationController?.navigationBar.tintColor = .black        
+        navigationController?.navigationBar.tintColor = .black
+        navigationItem.backButtonDisplayMode = .minimal
     }
     deinit {
         debugPrint("Disposed ...\(String(describing: type(of: self)))")
