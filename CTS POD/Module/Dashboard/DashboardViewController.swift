@@ -107,7 +107,7 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     private func showlogoutAlert() {
-        let alert = UIAlertController(title: "Error", message: viewModel.configuration.string.logoutAlertMessage, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Logout", message: viewModel.configuration.string.logoutAlertMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
             alert.dismiss(animated: true)
         }))

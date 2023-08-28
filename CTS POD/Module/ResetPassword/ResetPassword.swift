@@ -1,9 +1,3 @@
-//
-//  ResetPassword.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 23/08/23.
-//
 
 import UIKit
 
@@ -18,9 +12,9 @@ final class ResetPassword {
         }
     }
     
-    static func build(customer: Customer) -> ResetPasswordViewController {
+    static func build(customer: Customer, otp: OTP) -> ResetPasswordViewController {
         let configuration = ResetPassword.Configuration(usecase: SignInUseCase(client: SignInClient()))
-        let viewModel = ResetPasswordViewModel(configuration: configuration, customer: customer)
+        let viewModel = ResetPasswordViewModel(configuration: configuration, customer: customer, otp: otp)
         let viewController = ResetPasswordViewController(viewModel: viewModel)
         return viewController
     }

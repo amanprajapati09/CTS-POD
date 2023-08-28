@@ -25,6 +25,10 @@
 		07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07835EB82A8739E60071A3AD /* EndpointProtocol.swift */; };
 		07835EBB2A874A640071A3AD /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07835EBA2A874A640071A3AD /* URLRequest+Extension.swift */; };
 		078B21222A9294FE000F6A1E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078B21212A9294FE000F6A1E /* SplashViewController.swift */; };
+		078E762B2A97C57B008F7F8A /* ForgotPasswordModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E762A2A97C57B008F7F8A /* ForgotPasswordModels.swift */; };
+		078E762D2A98F051008F7F8A /* ValidateOTPModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E762C2A98F051008F7F8A /* ValidateOTPModels.swift */; };
+		078E762F2A9CB57E008F7F8A /* ResetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E762E2A9CB57E008F7F8A /* ResetPasswordRequest.swift */; };
+		078E76312A9CCB27008F7F8A /* NavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E76302A9CCB27008F7F8A /* NavigationController+Extension.swift */; };
 		0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0794229E2A8E7E5400684513 /* GetCustomerViewController.swift */; };
 		079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422A02A8E7E6B00684513 /* GetCustomerViewModel.swift */; };
 		079422A32A90FE3F00684513 /* GetCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422A22A90FE3F00684513 /* GetCustomer.swift */; };
@@ -100,6 +104,10 @@
 		07835EB82A8739E60071A3AD /* EndpointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointProtocol.swift; sourceTree = "<group>"; };
 		07835EBA2A874A640071A3AD /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
 		078B21212A9294FE000F6A1E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		078E762A2A97C57B008F7F8A /* ForgotPasswordModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModels.swift; sourceTree = "<group>"; };
+		078E762C2A98F051008F7F8A /* ValidateOTPModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateOTPModels.swift; sourceTree = "<group>"; };
+		078E762E2A9CB57E008F7F8A /* ResetPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordRequest.swift; sourceTree = "<group>"; };
+		078E76302A9CCB27008F7F8A /* NavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationController+Extension.swift"; sourceTree = "<group>"; };
 		0794229E2A8E7E5400684513 /* GetCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomerViewController.swift; sourceTree = "<group>"; };
 		079422A02A8E7E6B00684513 /* GetCustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomerViewModel.swift; sourceTree = "<group>"; };
 		079422A22A90FE3F00684513 /* GetCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomer.swift; sourceTree = "<group>"; };
@@ -304,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				079422B42A912D8500684513 /* UIColor+Extension.swift */,
+				078E76302A9CCB27008F7F8A /* NavigationController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -348,6 +357,7 @@
 				D00F0ADF2A96048E00F9F310 /* EnterCode.swift */,
 				D00F0AE12A96049F00F9F310 /* EnterCodeViewController.swift */,
 				D00F0AE32A9604AB00F9F310 /* EnterCodeViewModel.swift */,
+				078E762C2A98F051008F7F8A /* ValidateOTPModels.swift */,
 			);
 			path = EnterCode;
 			sourceTree = "<group>";
@@ -358,6 +368,7 @@
 				D022EA422A960CF600B44E4B /* ResetPassword.swift */,
 				D022EA442A960D0100B44E4B /* ResetPasswordViewController.swift */,
 				D022EA462A960D1000B44E4B /* ResetPasswordViewModel.swift */,
+				078E762E2A9CB57E008F7F8A /* ResetPasswordRequest.swift */,
 			);
 			path = ResetPassword;
 			sourceTree = "<group>";
@@ -368,6 +379,7 @@
 				D094E8002A947D4500FDFD61 /* ForgotPasswordViewController.swift */,
 				D094E8022A947DBD00FDFD61 /* ForgotPassword.swift */,
 				D094E8042A947E7300FDFD61 /* ForgotPasswordViewModel.swift */,
+				078E762A2A97C57B008F7F8A /* ForgotPasswordModels.swift */,
 			);
 			path = ForgotPassword;
 			sourceTree = "<group>";
@@ -633,7 +645,9 @@
 				D0A9F70F2A93BDCE00C87638 /* SignInClient.swift in Sources */,
 				079422BC2A92046D00684513 /* DashboardViewController.swift in Sources */,
 				071882D02A92160E00EE4747 /* Dashboard.swift in Sources */,
+				078E76312A9CCB27008F7F8A /* NavigationController+Extension.swift in Sources */,
 				07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */,
+				078E762F2A9CB57E008F7F8A /* ResetPasswordRequest.swift in Sources */,
 				D0A9F70B2A93713C00C87638 /* BaseViewController.swift in Sources */,
 				079422B22A91234700684513 /* Constant.swift in Sources */,
 				D022EA452A960D0100B44E4B /* ResetPasswordViewController.swift in Sources */,
@@ -647,6 +661,8 @@
 				07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */,
 				071882CE2A9213DE00EE4747 /* LocalTempStorage.swift in Sources */,
 				079422A52A91072300684513 /* GetCustomerModels.swift in Sources */,
+				078E762D2A98F051008F7F8A /* ValidateOTPModels.swift in Sources */,
+				078E762B2A97C57B008F7F8A /* ForgotPasswordModels.swift in Sources */,
 				07046A352A926E9E0074C711 /* Reusable.swift in Sources */,
 				D0A9F7072A936F2D00C87638 /* SignInViewModel.swift in Sources */,
 				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,

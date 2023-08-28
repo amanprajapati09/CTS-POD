@@ -7,7 +7,7 @@ protocol GetCustomerClientProtocol {
 final class GetCustomerClient: GetCustomerClientProtocol {
     
     enum Endpoint: EndpointConfiguration {
-       
+        
         case getCustomer(name: String)
         
         var path: String {
@@ -26,6 +26,11 @@ final class GetCustomerClient: GetCustomerClientProtocol {
                 return [URLQueryItem(name: "domain", value: name)]
             }
         }
+        
+        var header: [String : String] {
+            return [:]
+        }
+       
     }
     
     func getCustomer(name: String, completion: @escaping (Result<CustomerResult, Error>)->()) async throws -> Void {

@@ -3,9 +3,9 @@ import UIKit
 import SnapKit
 import Combine
 
-class GetCustomerViewController: UIViewController {
+class GetCustomerViewController: BaseViewController<GetCustomerViewModel> {
     
-    private var viewModel: GetCustomerViewModel
+    
     private var cancellable = Set<AnyCancellable>()
     
     private lazy var iconImage: UIImageView = {
@@ -74,8 +74,8 @@ class GetCustomerViewController: UIViewController {
     }
     
     init(viewModel: GetCustomerViewModel) {
-        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        self.viewModel = viewModel
     }
     
     required init?(coder: NSCoder) {
@@ -150,14 +150,6 @@ class GetCustomerViewController: UIViewController {
                 case .none: self.activityIndicator.stopAnimating()
                 }
             }.store(in: &cancellable)
-    }
-    
-    private func showErrorAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
-            alert.dismiss(animated: true)
-        }))
-        navigationController?.present(alert, animated: true)
     }
     
     private func navigateToDashboard(customer: Customer) {

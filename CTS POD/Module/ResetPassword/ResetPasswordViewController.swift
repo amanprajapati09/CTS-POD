@@ -1,14 +1,13 @@
-//
-//  ResetPasswordViewController.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 23/08/23.
-//
 
 import UIKit
+import RxSwift
+import Combine
 
 class ResetPasswordViewController: BaseViewController<ResetPasswordViewModel> {
 
+    private var cancellable = Set<AnyCancellable>()
+    let disposeBag = DisposeBag()
+    
     private lazy var btnResetpPassword: UIButton = {
         let view = UIButton()
         view.titleLabel?.font = Fonts.popRegular
@@ -17,7 +16,6 @@ class ResetPasswordViewController: BaseViewController<ResetPasswordViewModel> {
         view.setTitleColor(Colors.colorWhite, for: .normal)
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
-  //      view.addTarget(self, action: #selector(buttonSignInTap), for: .touchUpInside)
         return view
     }()
     
@@ -55,11 +53,18 @@ class ResetPasswordViewController: BaseViewController<ResetPasswordViewModel> {
         return view
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationItem.title = "Reset Password"
         setupView()
+        bind()
     }
     
     init(viewModel: ResetPasswordViewModel) {
@@ -95,19 +100,46 @@ class ResetPasswordViewController: BaseViewController<ResetPasswordViewModel> {
             make.height.equalTo(45)
         }
         
+        view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalTo(btnResetpPassword.snp.center)
+        }
+        
         txtConfirmPassword.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.height.equalTo(45)
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    private func bind() {
+        viewModel.$viewState
+            .receive(on: DispatchQueue.main)
+            .sink { value in
+                switch value {
+                case .loading:
+                    self.activityIndicator.startAnimating()
+                    self.btnResetpPassword.isHidden = true
+                case .loaded:
+                    self.activityIndicator.stopAnimating()
+                    self.btnResetpPassword.isHidden = false
+                    self.navigationController?.popToViewController(ofClass: DashboardViewController.self, animated: true)
+                case .error(let errorString):
+                    self.showErrorAlert(message: errorString)
+                    self.activityIndicator.stopAnimating()
+                    self.btnResetpPassword.isHidden = false
+                case .none: self.activityIndicator.stopAnimating()
+                }
+            }.store(in: &cancellable)
+        
+        btnResetpPassword.rx.tap.subscribe(onNext: { [unowned self] in
+            guard let password = txtPassword.text, password.count >= 4 else {
+                showErrorAlert(message: "Please enter more then 4 count value.")
+                return
+            }
+            guard let conformPass = txtConfirmPassword.text, conformPass == password else {
+                showErrorAlert(message: "Please match password and confirm password.")
+                return }
+            self.viewModel.resetPassword(newPassword: txtPassword.text ?? "", conformPassword: txtConfirmPassword.text ?? "")
+        }).disposed(by: disposeBag)
     }
-    */
-
 }

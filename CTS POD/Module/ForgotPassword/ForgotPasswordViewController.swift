@@ -1,15 +1,13 @@
-//
-//  ForgotPasswordViewController.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 22/08/23.
-//
 
 import UIKit
 import RxSwift
 import RxCocoa
+import Combine
 
 class ForgotPasswordViewController: BaseViewController<ForgotPasswordViewModel> {
+    
+    private var cancellable = Set<AnyCancellable>()
+    let disposeBag = DisposeBag()
     
     enum ForgotPasswordOption {
         case regenerateCode
@@ -94,11 +92,18 @@ class ForgotPasswordViewController: BaseViewController<ForgotPasswordViewModel> 
         return view
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationItem.title = "Forgot Password"
         setupView()
+        bind()
     }
     
     init(viewModel: ForgotPasswordViewModel) {
@@ -143,6 +148,11 @@ class ForgotPasswordViewController: BaseViewController<ForgotPasswordViewModel> 
             make.height.equalTo(50)
         }
         
+        view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalTo(btnForgotPassword.snp.center)
+        }
+        
         view.addSubview(noteLabel)
         noteLabel.snp.makeConstraints { make in
             make.bottom.equalTo(safearea).inset(20)
@@ -154,18 +164,37 @@ class ForgotPasswordViewController: BaseViewController<ForgotPasswordViewModel> 
     }
     
     func navigateToEnterCode() {
-        self.navigationController?.pushViewController(EnterCode.build(customer: viewModel.customer), animated: true)
+        self.navigationController?.pushViewController(EnterCode.build(customer: viewModel.customer, user: nil), animated: true)
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
+    private func bind() {
+        viewModel.$viewState
+            .receive(on: DispatchQueue.main)
+            .sink { value in
+                switch value {
+                case .loading:
+                    self.activityIndicator.startAnimating()
+                    self.btnForgotPassword.isHidden = true
+                case .loaded(let otp):
+                    self.activityIndicator.stopAnimating()
+                    self.btnForgotPassword.isHidden = false
+                    self.navigationController?.pushViewController(EnterCode.build(customer: self.viewModel.customer, user: self.txtUserName.text), animated: true)
+                case .error(let errorString):
+                    self.showErrorAlert(message: errorString)
+                    self.activityIndicator.stopAnimating()
+                    self.btnForgotPassword.isHidden = false
+                case .none: self.activityIndicator.stopAnimating()
+                }
+            }.store(in: &cancellable)
+        
+        btnForgotPassword.rx.tap.subscribe(onNext: { [unowned self] in
+            guard let username = txtUserName.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  let customerName = txtCustomerName.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+            !username.isEmpty,
+            !customerName.isEmpty else { return  }
+            self.viewModel.generateOTP(username: username, client: customerName)
+        }).disposed(by: disposeBag)
+    }
 }
 
 extension ForgotPasswordViewController {
@@ -229,7 +258,6 @@ extension ForgotPasswordViewController {
                 }
             }).disposed(by: disposeBag)
         }
-        
         
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
