@@ -61,10 +61,19 @@ class ResetPasswordViewController: BaseViewController<ResetPasswordViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.title = "Reset Password"
         setupView()
         bind()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationItem.setHidesBackButton(false, animated: false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     init(viewModel: ResetPasswordViewModel) {
