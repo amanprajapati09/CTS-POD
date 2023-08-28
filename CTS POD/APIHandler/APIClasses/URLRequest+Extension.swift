@@ -21,10 +21,14 @@ extension URLRequest {
         self.init(url: url)
         
         httpMethod = endpoint.method.rawValue
-        
+            
         if let body = endpoint.body {
             httpBody = try JSONEncoder().encode(body)
             setValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+        
+        for value in endpoint.header {
+            setValue(value.value, forHTTPHeaderField: value.key)
         }
     }
 }

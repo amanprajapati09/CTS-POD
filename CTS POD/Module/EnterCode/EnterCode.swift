@@ -12,9 +12,9 @@ final class EnterCode {
         }
     }
     
-    static func build(customer: Customer) -> EnterCodeViewController {
+    static func build(customer: Customer, user: String?) -> EnterCodeViewController {
         let configuration = EnterCode.Configuration(usecase: SignInUseCase(client: SignInClient()))
-        let viewModel = EnterCodeViewModel(configuration: configuration, customer: customer)
+        let viewModel = EnterCodeViewModel(configuration: configuration, customer: customer, user: user)
         let viewController = EnterCodeViewController(viewModel: viewModel)
         return viewController
     }

@@ -4,7 +4,7 @@ import UIKit
 final class ForgotPasswordViewModel {
     let configuration: ForgotPassword.Configuration
     let customer: Customer
-    @Published var viewState: APIState<Otp>?
+    @Published var viewState: APIState<OTP>?
     
     init(configuration: ForgotPassword.Configuration, customer: Customer) {
         self.configuration = configuration
@@ -24,6 +24,7 @@ final class ForgotPasswordViewModel {
                         } else {
                             self.viewState = .error(otpResult.message)
                         }
+                        
                     case .failure:
                         self.viewState = .error("Somthing went wrong!")
                     }

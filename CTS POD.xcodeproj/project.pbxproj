@@ -27,6 +27,8 @@
 		078B21222A9294FE000F6A1E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078B21212A9294FE000F6A1E /* SplashViewController.swift */; };
 		078E762B2A97C57B008F7F8A /* ForgotPasswordModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E762A2A97C57B008F7F8A /* ForgotPasswordModels.swift */; };
 		078E762D2A98F051008F7F8A /* ValidateOTPModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E762C2A98F051008F7F8A /* ValidateOTPModels.swift */; };
+		078E762F2A9CB57E008F7F8A /* ResetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E762E2A9CB57E008F7F8A /* ResetPasswordRequest.swift */; };
+		078E76312A9CCB27008F7F8A /* NavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E76302A9CCB27008F7F8A /* NavigationController+Extension.swift */; };
 		0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0794229E2A8E7E5400684513 /* GetCustomerViewController.swift */; };
 		079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422A02A8E7E6B00684513 /* GetCustomerViewModel.swift */; };
 		079422A32A90FE3F00684513 /* GetCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422A22A90FE3F00684513 /* GetCustomer.swift */; };
@@ -104,6 +106,8 @@
 		078B21212A9294FE000F6A1E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		078E762A2A97C57B008F7F8A /* ForgotPasswordModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModels.swift; sourceTree = "<group>"; };
 		078E762C2A98F051008F7F8A /* ValidateOTPModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateOTPModels.swift; sourceTree = "<group>"; };
+		078E762E2A9CB57E008F7F8A /* ResetPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordRequest.swift; sourceTree = "<group>"; };
+		078E76302A9CCB27008F7F8A /* NavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationController+Extension.swift"; sourceTree = "<group>"; };
 		0794229E2A8E7E5400684513 /* GetCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomerViewController.swift; sourceTree = "<group>"; };
 		079422A02A8E7E6B00684513 /* GetCustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomerViewModel.swift; sourceTree = "<group>"; };
 		079422A22A90FE3F00684513 /* GetCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomer.swift; sourceTree = "<group>"; };
@@ -308,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				079422B42A912D8500684513 /* UIColor+Extension.swift */,
+				078E76302A9CCB27008F7F8A /* NavigationController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 				D022EA422A960CF600B44E4B /* ResetPassword.swift */,
 				D022EA442A960D0100B44E4B /* ResetPasswordViewController.swift */,
 				D022EA462A960D1000B44E4B /* ResetPasswordViewModel.swift */,
+				078E762E2A9CB57E008F7F8A /* ResetPasswordRequest.swift */,
 			);
 			path = ResetPassword;
 			sourceTree = "<group>";
@@ -639,7 +645,9 @@
 				D0A9F70F2A93BDCE00C87638 /* SignInClient.swift in Sources */,
 				079422BC2A92046D00684513 /* DashboardViewController.swift in Sources */,
 				071882D02A92160E00EE4747 /* Dashboard.swift in Sources */,
+				078E76312A9CCB27008F7F8A /* NavigationController+Extension.swift in Sources */,
 				07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */,
+				078E762F2A9CB57E008F7F8A /* ResetPasswordRequest.swift in Sources */,
 				D0A9F70B2A93713C00C87638 /* BaseViewController.swift in Sources */,
 				079422B22A91234700684513 /* Constant.swift in Sources */,
 				D022EA452A960D0100B44E4B /* ResetPasswordViewController.swift in Sources */,

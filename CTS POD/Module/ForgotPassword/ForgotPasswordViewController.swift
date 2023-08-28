@@ -164,7 +164,7 @@ class ForgotPasswordViewController: BaseViewController<ForgotPasswordViewModel> 
     }
     
     func navigateToEnterCode() {
-        self.navigationController?.pushViewController(EnterCode.build(customer: viewModel.customer), animated: true)
+        self.navigationController?.pushViewController(EnterCode.build(customer: viewModel.customer, user: nil), animated: true)
     }
     
     private func bind() {
@@ -175,10 +175,10 @@ class ForgotPasswordViewController: BaseViewController<ForgotPasswordViewModel> 
                 case .loading:
                     self.activityIndicator.startAnimating()
                     self.btnForgotPassword.isHidden = true
-                case .loaded:
+                case .loaded(let otp):
                     self.activityIndicator.stopAnimating()
                     self.btnForgotPassword.isHidden = false
-                    self.navigationController?.pushViewController(EnterCode.build(customer: self.viewModel.customer), animated: true)
+                    self.navigationController?.pushViewController(EnterCode.build(customer: self.viewModel.customer, user: self.txtUserName.text), animated: true)
                 case .error(let errorString):
                     self.showErrorAlert(message: errorString)
                     self.activityIndicator.stopAnimating()
@@ -188,8 +188,8 @@ class ForgotPasswordViewController: BaseViewController<ForgotPasswordViewModel> 
             }.store(in: &cancellable)
         
         btnForgotPassword.rx.tap.subscribe(onNext: { [unowned self] in
-            guard let username = txtUserName.text,
-            let customerName = txtUserName.text,
+            guard let username = txtUserName.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  let customerName = txtCustomerName.text?.trimmingCharacters(in: .whitespacesAndNewlines),
             !username.isEmpty,
             !customerName.isEmpty else { return  }
             self.viewModel.generateOTP(username: username, client: customerName)
@@ -258,7 +258,6 @@ extension ForgotPasswordViewController {
                 }
             }).disposed(by: disposeBag)
         }
-        
         
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")

@@ -39,7 +39,6 @@ class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
         view.setTitleColor(Colors.colorWhite, for: .normal)
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
-        view.addTarget(self, action: #selector(verifyTapped), for: .touchUpInside)
         return view
     }()
     
@@ -62,6 +61,7 @@ class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
         navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationItem.title = "Enter Code"
         setupView()
+        bind()
     }
     
     init(viewModel: EnterCodeViewModel) {
@@ -106,10 +106,10 @@ class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
                 case .loading:
                     self.activityIndicator.startAnimating()
                     self.btnVerifyCode.isHidden = true
-                case .loaded:
+                case .loaded(let otp):
                     self.activityIndicator.stopAnimating()
                     self.btnVerifyCode.isHidden = false
-                    self.navigationController?.pushViewController(EnterCode.build(customer: self.viewModel.customer), animated: true)
+                    self.navigationController?.pushViewController(ResetPassword.build(customer: self.viewModel.customer, otp: otp), animated: true)
                 case .error(let errorString):
                     self.showErrorAlert(message: errorString)
                     self.activityIndicator.stopAnimating()
@@ -119,15 +119,7 @@ class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
             }.store(in: &cancellable)
         
         btnVerifyCode.rx.tap.subscribe(onNext: { [unowned self] in
-//            self.viewModel.generateOTP(username: username, client: customerName)
+            self.viewModel.verifyOTP(otpValue: codeView.getPin())
         }).disposed(by: disposeBag)
-    }
-
-    @objc func verifyTapped() {
-        navigateToResetPassword()
-    }
-    
-    func navigateToResetPassword() {
-        self.navigationController?.pushViewController(ResetPassword.build(customer: viewModel.customer), animated: true)
     }
 }

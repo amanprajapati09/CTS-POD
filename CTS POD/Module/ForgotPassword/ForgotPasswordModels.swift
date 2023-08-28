@@ -18,14 +18,14 @@ struct ForgotPasswordResponse: Codable {
 }
 
 struct ForgotPasswordDataClass: Codable {
-    let otp: Otp?
+    let otp: OTP?
 
     enum CodingKeys: String, CodingKey {
         case otp = "OTP"
     }
 }
 
-struct Otp: Codable {
+struct OTP: Codable {
     let otpID, generatedOTP, createdDate, userID: String
 
     enum CodingKeys: String, CodingKey {

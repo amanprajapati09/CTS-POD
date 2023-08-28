@@ -2,10 +2,6 @@
 import Foundation
 
 struct LoginRequestModel {
-    let apiClient = "2"
-    let deviceID = Constant.deviceID
-    let appVersion = "1"
-    let version = "1"
     let loginRequest: LoginRequest
 }
 
