@@ -222,3 +222,8 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         self.navigationController?.pushViewController(ForgotPassword.build(customer: viewModel.customer), animated: true)
     }
 }
+
+
+//if let user = LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: "user") {
+//    setValue("bearer \(user.token)", forHTTPHeaderField: "Authorization")
+//}

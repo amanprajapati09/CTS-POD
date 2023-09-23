@@ -21,7 +21,7 @@ final class SignInViewModel {
                     switch result {
                     case .success(let customerResult):
                         if let user = customerResult.data?.loginDetails {
-                            LocalTempStorage.storeValue(inUserdefault: user, key: "user")
+                            LocalTempStorage.storeValue(inUserdefault: user, key: UserDefaultKeys.user)
                             self.viewState = .loaded(user)
                             self.didCompleteLogin?()
                         } else {

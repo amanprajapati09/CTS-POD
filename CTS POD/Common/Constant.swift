@@ -9,7 +9,22 @@ struct Constant {
     }
     
     static var isLogin: Bool {
-        return LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: "user") != nil
+        return LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: UserDefaultKeys.user) != nil
+    }
+    
+    static var isVehicalCheck: Bool {
+        let lastCheckDate = UserDefaults.standard.value(forKey: UserDefaultKeys.checkVehicle) as? Date
+        if Constant.isLogin {
+            if lastCheckDate == nil {
+                return true
+                
+            } else {
+                if lastCheckDate!.getDiffrenceBetweenDates() > 24 {
+                  return true
+                }
+            }
+        }
+        return false
     }
 }
 
@@ -58,4 +73,10 @@ struct Colors {
     static let viewBackground = UIColor(hex:"#F9F9F9")
     
     static let forgotPasswordViewBackground = UIColor(hex:"#FAFAFA")
+}
+
+struct UserDefaultKeys {
+    static let user = "user"
+    static let customer = "customers"
+    static let checkVehicle = "checkVehicle"
 }

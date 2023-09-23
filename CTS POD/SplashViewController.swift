@@ -38,7 +38,7 @@ class SplashViewController: UIViewController {
     }
 
     private func checkCustomer() {
-        if let customer = LocalTempStorage.getValue(fromUserDefault: Customer.self, key: "customer") {
+        if let customer = LocalTempStorage.getValue(fromUserDefault: Customer.self, key: UserDefaultKeys.customer) {
           fetchCustomer(customer: customer)
         } else {
            navigateToCustomer()

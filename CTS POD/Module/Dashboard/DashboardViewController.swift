@@ -100,7 +100,12 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
                     self.optionList = self.viewModel.fetchOptions()
                 }
                 self.navigationController?.pushViewController(signInVC, animated: true)
-            }            
+            }
+        case .vehical:
+            if Constant.isVehicalCheck {
+                let controller = VehicleCheckList.build()
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
         default:
             print("Default")
         }
@@ -112,7 +117,7 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
             alert.dismiss(animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-            LocalTempStorage.removeValue(for: "user")
+            LocalTempStorage.removeValue(for: UserDefaultKeys.user)
             self.optionList = self.viewModel.fetchOptions()
         }))
         navigationController?.present(alert, animated: true)
