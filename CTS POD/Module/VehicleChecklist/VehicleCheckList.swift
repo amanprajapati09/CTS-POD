@@ -21,12 +21,13 @@ final class VehicleCheckList {
 
 extension VehicleCheckList.Configuration {
     
-    struct Images {
-       
-    }
+    struct Images {}
     
     struct Strings {
-       let navigationTitle = "Vehicle Checklist"
+        let navigationTitle = "Vehicle Checklist"
+        let buttonSafeTitle = "Vehicle safe"
+        let buttonUnSafeTitle = "Vehicle unsafe"
+        let commentMessage = "Please enter a comment"
     }
 }
 

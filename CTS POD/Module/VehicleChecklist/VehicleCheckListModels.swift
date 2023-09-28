@@ -27,8 +27,8 @@ struct Value: Codable {
     let id: Int
     let name: String
     
-    func map() -> CheckBoxInfo {
-        return CheckBoxInfo(title: name, id: id)
+    func map() -> DetailValueOption {
+        return DetailValueOption(title: name, id: id)
     }
 }
 

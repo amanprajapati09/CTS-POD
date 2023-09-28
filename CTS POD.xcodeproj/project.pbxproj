@@ -36,7 +36,7 @@
 		078E762D2A98F051008F7F8A /* ValidateOTPModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E762C2A98F051008F7F8A /* ValidateOTPModels.swift */; };
 		078E762F2A9CB57E008F7F8A /* ResetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E762E2A9CB57E008F7F8A /* ResetPasswordRequest.swift */; };
 		078E76312A9CCB27008F7F8A /* NavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E76302A9CCB27008F7F8A /* NavigationController+Extension.swift */; };
-		078F7E3F2AA1F3F800125F88 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078F7E3E2AA1F3F800125F88 /* CheckBoxView.swift */; };
+		078F7E3F2AA1F3F800125F88 /* CheckboxContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078F7E3E2AA1F3F800125F88 /* CheckboxContainer.swift */; };
 		0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0794229E2A8E7E5400684513 /* GetCustomerViewController.swift */; };
 		079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422A02A8E7E6B00684513 /* GetCustomerViewModel.swift */; };
 		079422A32A90FE3F00684513 /* GetCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422A22A90FE3F00684513 /* GetCustomer.swift */; };
@@ -51,6 +51,15 @@
 		079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422B92A92045900684513 /* DashboardViewModel.swift */; };
 		079422BC2A92046D00684513 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422BB2A92046D00684513 /* DashboardViewController.swift */; };
 		07ABD1772A952BD600460A8A /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ABD1762A952BD600460A8A /* SignInModel.swift */; };
+		07DCAD5B2AC154210002D2FF /* ScrollableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD5A2AC154210002D2FF /* ScrollableStackView.swift */; };
+		07DCAD5D2AC170C20002D2FF /* TextContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD5C2AC170C20002D2FF /* TextContainerView.swift */; };
+		07DCAD5F2AC1BDDA0002D2FF /* DropdownContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD5E2AC1BDDA0002D2FF /* DropdownContainer.swift */; };
+		07DCAD612AC1BE8F0002D2FF /* VehicleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD602AC1BE8F0002D2FF /* VehicleTextField.swift */; };
+		07DCAD632AC31D840002D2FF /* NumberContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD622AC31D830002D2FF /* NumberContainer.swift */; };
+		07DCAD652AC3556E0002D2FF /* BaseContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD642AC3556E0002D2FF /* BaseContainerView.swift */; };
+		07DCAD672AC355E40002D2FF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD662AC355E40002D2FF /* String+Extension.swift */; };
+		07DCAD692AC461DB0002D2FF /* VehicleStatusUpdateRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD682AC461DB0002D2FF /* VehicleStatusUpdateRequestModel.swift */; };
+		07DCAD6B2AC48F0D0002D2FF /* UIStackview+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD6A2AC48F0D0002D2FF /* UIStackview+extension.swift */; };
 		2B63F500AAC09FB522A46AD7 /* Pods_CTS_POD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040AAF3EBBE2122DB5EF9F66 /* Pods_CTS_POD.framework */; };
 		949E1B4A1699706D8E03A7F5 /* Pods_CTS_POD_CTS_PODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */; };
 		AB269F495F93B9734900A913 /* Pods_CTS_PODTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 315C1FFBC51599B6C3A70F9B /* Pods_CTS_PODTests.framework */; };
@@ -123,7 +132,7 @@
 		078E762C2A98F051008F7F8A /* ValidateOTPModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateOTPModels.swift; sourceTree = "<group>"; };
 		078E762E2A9CB57E008F7F8A /* ResetPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordRequest.swift; sourceTree = "<group>"; };
 		078E76302A9CCB27008F7F8A /* NavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationController+Extension.swift"; sourceTree = "<group>"; };
-		078F7E3E2AA1F3F800125F88 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
+		078F7E3E2AA1F3F800125F88 /* CheckboxContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxContainer.swift; sourceTree = "<group>"; };
 		0794229E2A8E7E5400684513 /* GetCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomerViewController.swift; sourceTree = "<group>"; };
 		079422A02A8E7E6B00684513 /* GetCustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomerViewModel.swift; sourceTree = "<group>"; };
 		079422A22A90FE3F00684513 /* GetCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomer.swift; sourceTree = "<group>"; };
@@ -138,6 +147,15 @@
 		079422B92A92045900684513 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		079422BB2A92046D00684513 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		07ABD1762A952BD600460A8A /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
+		07DCAD5A2AC154210002D2FF /* ScrollableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableStackView.swift; sourceTree = "<group>"; };
+		07DCAD5C2AC170C20002D2FF /* TextContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextContainerView.swift; sourceTree = "<group>"; };
+		07DCAD5E2AC1BDDA0002D2FF /* DropdownContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownContainer.swift; sourceTree = "<group>"; };
+		07DCAD602AC1BE8F0002D2FF /* VehicleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTextField.swift; sourceTree = "<group>"; };
+		07DCAD622AC31D830002D2FF /* NumberContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberContainer.swift; sourceTree = "<group>"; };
+		07DCAD642AC3556E0002D2FF /* BaseContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseContainerView.swift; sourceTree = "<group>"; };
+		07DCAD662AC355E40002D2FF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		07DCAD682AC461DB0002D2FF /* VehicleStatusUpdateRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleStatusUpdateRequestModel.swift; sourceTree = "<group>"; };
+		07DCAD6A2AC48F0D0002D2FF /* UIStackview+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackview+extension.swift"; sourceTree = "<group>"; };
 		315C1FFBC51599B6C3A70F9B /* Pods_CTS_PODTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTS_PODTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61267F8948813E3BD457786C /* Pods-CTS POD-CTS PODUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD-CTS PODUITests.release.xcconfig"; path = "Target Support Files/Pods-CTS POD-CTS PODUITests/Pods-CTS POD-CTS PODUITests.release.xcconfig"; sourceTree = "<group>"; };
 		81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTS_POD_CTS_PODUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,6 +321,7 @@
 				0772F4C82AA0F293000951BF /* VehicleCheckListClient.swift */,
 				0772F4CA2AA0F53E000951BF /* VehicleCheckListModels.swift */,
 				0772F4CC2AA0F8B4000951BF /* VehicleCheckList.swift */,
+				07DCAD682AC461DB0002D2FF /* VehicleStatusUpdateRequestModel.swift */,
 			);
 			path = VehicleChecklist;
 			sourceTree = "<group>";
@@ -310,7 +329,11 @@
 		078F7E3D2AA1F3DA00125F88 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				078F7E3E2AA1F3F800125F88 /* CheckBoxView.swift */,
+				078F7E3E2AA1F3F800125F88 /* CheckboxContainer.swift */,
+				07DCAD5C2AC170C20002D2FF /* TextContainerView.swift */,
+				07DCAD5E2AC1BDDA0002D2FF /* DropdownContainer.swift */,
+				07DCAD622AC31D830002D2FF /* NumberContainer.swift */,
+				07DCAD642AC3556E0002D2FF /* BaseContainerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -337,6 +360,8 @@
 		079422AE2A91213500684513 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				07DCAD602AC1BE8F0002D2FF /* VehicleTextField.swift */,
+				07DCAD5A2AC154210002D2FF /* ScrollableStackView.swift */,
 				079422AF2A91214200684513 /* Fonts.swift */,
 				079422B12A91234700684513 /* Constant.swift */,
 				079422B62A91FBAA00684513 /* SharedObject.swift */,
@@ -353,6 +378,8 @@
 				079422B42A912D8500684513 /* UIColor+Extension.swift */,
 				078E76302A9CCB27008F7F8A /* NavigationController+Extension.swift */,
 				0772F4BE2AA0ED10000951BF /* Date+Extension.swift */,
+				07DCAD662AC355E40002D2FF /* String+Extension.swift */,
+				07DCAD6A2AC48F0D0002D2FF /* UIStackview+extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -678,12 +705,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07DCAD612AC1BE8F0002D2FF /* VehicleTextField.swift in Sources */,
 				079422B02A91214200684513 /* Fonts.swift in Sources */,
 				0772F4BF2AA0ED10000951BF /* Date+Extension.swift in Sources */,
 				D022EA472A960D1000B44E4B /* ResetPasswordViewModel.swift in Sources */,
 				D0A9F7092A936F3C00C87638 /* SignIn.swift in Sources */,
-				078F7E3F2AA1F3F800125F88 /* CheckBoxView.swift in Sources */,
+				07DCAD6B2AC48F0D0002D2FF /* UIStackview+extension.swift in Sources */,
+				07DCAD632AC31D840002D2FF /* NumberContainer.swift in Sources */,
+				078F7E3F2AA1F3F800125F88 /* CheckboxContainer.swift in Sources */,
 				D00F0AE22A96049F00F9F310 /* EnterCodeViewController.swift in Sources */,
+				07DCAD5F2AC1BDDA0002D2FF /* DropdownContainer.swift in Sources */,
 				D0A9F70F2A93BDCE00C87638 /* SignInClient.swift in Sources */,
 				079422BC2A92046D00684513 /* DashboardViewController.swift in Sources */,
 				071882D02A92160E00EE4747 /* Dashboard.swift in Sources */,
@@ -694,6 +725,7 @@
 				0772F4CB2AA0F53E000951BF /* VehicleCheckListModels.swift in Sources */,
 				D0A9F70B2A93713C00C87638 /* BaseViewController.swift in Sources */,
 				079422B22A91234700684513 /* Constant.swift in Sources */,
+				07DCAD5B2AC154210002D2FF /* ScrollableStackView.swift in Sources */,
 				D022EA452A960D0100B44E4B /* ResetPasswordViewController.swift in Sources */,
 				D094E8052A947E7300FDFD61 /* ForgotPasswordViewModel.swift in Sources */,
 				0772F4C92AA0F293000951BF /* VehicleCheckListClient.swift in Sources */,
@@ -709,6 +741,7 @@
 				079422A52A91072300684513 /* GetCustomerModels.swift in Sources */,
 				078E762D2A98F051008F7F8A /* ValidateOTPModels.swift in Sources */,
 				078E762B2A97C57B008F7F8A /* ForgotPasswordModels.swift in Sources */,
+				07DCAD692AC461DB0002D2FF /* VehicleStatusUpdateRequestModel.swift in Sources */,
 				07046A352A926E9E0074C711 /* Reusable.swift in Sources */,
 				D0A9F7072A936F2D00C87638 /* SignInViewModel.swift in Sources */,
 				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,
@@ -717,16 +750,19 @@
 				D094E8032A947DBD00FDFD61 /* ForgotPassword.swift in Sources */,
 				079422B52A912D8500684513 /* UIColor+Extension.swift in Sources */,
 				07317FA22A7E2BE10066341F /* SceneDelegate.swift in Sources */,
+				07DCAD672AC355E40002D2FF /* String+Extension.swift in Sources */,
 				079422B72A91FBAA00684513 /* SharedObject.swift in Sources */,
 				0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */,
 				D0A9F70D2A93BD4600C87638 /* SignInUseCase.swift in Sources */,
 				D0A9F7052A936F2100C87638 /* SignInViewController.swift in Sources */,
 				D094E8012A947D4500FDFD61 /* ForgotPasswordViewController.swift in Sources */,
 				07317FD32A7F55720066341F /* APIHandler.swift in Sources */,
+				07DCAD5D2AC170C20002D2FF /* TextContainerView.swift in Sources */,
 				D00F0AE42A9604AB00F9F310 /* EnterCodeViewModel.swift in Sources */,
 				0772F4C72AA0F27A000951BF /* VehicleCheckListUsecase.swift in Sources */,
 				079422A32A90FE3F00684513 /* GetCustomer.swift in Sources */,
 				07317FDA2A7FFEB70066341F /* GetConstomerUsecase.swift in Sources */,
+				07DCAD652AC3556E0002D2FF /* BaseContainerView.swift in Sources */,
 				07ABD1772A952BD600460A8A /* SignInModel.swift in Sources */,
 				0772F4C12AA0F230000951BF /* VehicleCheckListViewController.swift in Sources */,
 			);
@@ -896,8 +932,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M243A8GXSD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CTS POD/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -910,8 +949,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.CTS-POD";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exigotech.ctspod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "css-pod Adhoc";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -924,8 +965,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M243A8GXSD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CTS POD/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -938,8 +982,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.CTS-POD";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exigotech.ctspod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "css-pod Adhoc";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -104,6 +104,9 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
         case .vehical:
             if Constant.isVehicalCheck {
                 let controller = VehicleCheckList.build()
+                controller.vehicalCheckUpdate = {
+                    self.optionList = self.viewModel.fetchOptions()
+                }
                 self.navigationController?.pushViewController(controller, animated: true)
             }
         default:
