@@ -10,6 +10,7 @@ class LocalTempStorage {
         } catch {
             print("Error in storage")
         }
+        UserDefaults.standard.synchronize()
     }
     
     static func getValue<T: Codable>(fromUserDefault type: T.Type, key: String) -> T? {
@@ -23,9 +24,11 @@ class LocalTempStorage {
         } else {
             return nil
         }
+        UserDefaults.standard.synchronize()
     }
     
     static func removeValue(for key: String) {
         UserDefaults.standard.set(nil, forKey: key)
+        UserDefaults.standard.synchronize()
     }
 }
