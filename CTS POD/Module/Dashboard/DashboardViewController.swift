@@ -26,12 +26,33 @@ class DashboardViewController: UIViewController {
         return view
     }()
     
+    private lazy var footerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    private lazy var driverNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = Fonts.popSemiBold
+        label.textColor = Colors.colorBlack
+        return label
+    }()
+    
+    private lazy var versionLabel: UILabel = {
+        let label = UILabel()
+        label.font = Fonts.popSemiBold
+        label.textColor = Colors.colorBlack
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         navigationController?.setNavigationBarHidden(true, animated: false)
         setLogo()
         prepareCollectionView()
+        prepareFooterView()
     }
     
     init(viewModel: DashboardViewModel) {
@@ -50,6 +71,17 @@ class DashboardViewController: UIViewController {
         collectionView.register(DashBoardCell.self)
     }
     
+    private func prepareFooterView() {
+        if let user = LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: "user") {
+            footerView.isHidden = false
+            driverNameLabel.text = user.user.username
+            versionLabel.text = "Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
+            footerView.layoutIfNeeded()
+        } else {
+            footerView.isHidden = true
+        }
+    }
+    
     private func setLogo() {        
         if let imageData = Data(base64Encoded: viewModel.customer.logo) {
             iconImage.image = UIImage(data: imageData)
@@ -58,7 +90,7 @@ class DashboardViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = Colors.colorPrimary
-        
+        let safearea = view.safeAreaLayoutGuide
         view.addSubview(iconImage)
         iconImage.snp.makeConstraints {
             $0.height.width.equalTo(150)
@@ -71,6 +103,26 @@ class DashboardViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.top.equalTo(iconImage.snp.bottom).offset(30)
             $0.height.equalTo(view.frame.size.width + 30)
+        }
+        
+        view.addSubview(footerView)
+        footerView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(safearea)
+            $0.bottom.equalToSuperview()
+        }
+        
+        footerView.addSubview(driverNameLabel)
+        driverNameLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(16)
+            $0.top.equalToSuperview().inset(5)
+            $0.bottom.equalTo(safearea).inset(10)
+        }
+        
+        footerView.addSubview(versionLabel)
+        versionLabel.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(16)
+            $0.top.equalToSuperview().inset(5)
+            $0.bottom.equalTo(safearea).inset(10)
         }
     }
 }
@@ -98,6 +150,7 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
             } else {
                 let signInVC = SignIn.build(customer: viewModel.customer) {
                     self.optionList = self.viewModel.fetchOptions()
+                    self.prepareFooterView()
                 }
                 self.navigationController?.pushViewController(signInVC, animated: true)
             }
@@ -122,6 +175,7 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             LocalTempStorage.removeValue(for: UserDefaultKeys.user)
             self.optionList = self.viewModel.fetchOptions()
+            self.prepareFooterView()
         }))
         navigationController?.present(alert, animated: true)
     }
