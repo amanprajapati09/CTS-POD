@@ -108,7 +108,6 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         return view
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
