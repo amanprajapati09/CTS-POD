@@ -32,6 +32,12 @@ class DashboardViewController: UIViewController {
         return view
     }()
     
+    private lazy var contentFooterView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
     private lazy var driverNameLabel: UILabel = {
         let label = UILabel()
         label.font = Fonts.popSemiBold
@@ -44,6 +50,16 @@ class DashboardViewController: UIViewController {
         label.font = Fonts.popSemiBold
         label.textColor = Colors.colorBlack
         return label
+    }()
+    
+    private lazy var supportButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = Fonts.popRegular
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 5
+        button.setTitle("Support", for: .normal)
+        button.layer.borderColor = UIColor.white.cgColor
+        return button
     }()
     
     override func viewDidLoad() {
@@ -104,26 +120,41 @@ class DashboardViewController: UIViewController {
             $0.top.equalTo(iconImage.snp.bottom).offset(30)
             $0.height.equalTo(view.frame.size.width + 30)
         }
-        
+            
         view.addSubview(footerView)
         footerView.snp.makeConstraints {
             $0.leading.trailing.equalTo(safearea)
             $0.bottom.equalToSuperview()
         }
         
-        footerView.addSubview(driverNameLabel)
+        footerView.addSubview(contentFooterView)
+        contentFooterView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(safearea)
+            $0.bottom.equalToSuperview()
+        }
+        
+        contentFooterView.addSubview(driverNameLabel)
         driverNameLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(16)
             $0.top.equalToSuperview().inset(5)
             $0.bottom.equalTo(safearea).inset(10)
         }
         
-        footerView.addSubview(versionLabel)
+        contentFooterView.addSubview(versionLabel)
         versionLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16)
             $0.top.equalToSuperview().inset(5)
             $0.bottom.equalTo(safearea).inset(10)
         }
+        
+        footerView.addSubview(supportButton)
+        supportButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(16)
+            $0.bottom.equalTo(contentFooterView.snp.top).inset(-16)
+            $0.height.equalTo(40)
+            $0.width.equalTo(100)
+        }
+        
     }
 }
 
