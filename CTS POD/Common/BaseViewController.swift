@@ -8,6 +8,7 @@ class BaseViewController<VM>: UIViewController {
     override func viewDidLoad() {
         navigationController?.navigationBar.tintColor = .black
         navigationItem.backButtonDisplayMode = .minimal
+        navigationController?.navigationBar.topItem?.title = " "
     }
     deinit {
         debugPrint("Disposed ...\(String(describing: type(of: self)))")

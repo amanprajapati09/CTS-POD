@@ -26,7 +26,7 @@ class GetCustomerViewModel {
                     case .success(let customerResult):
                         if let customer = customerResult.data?.Customer {
                             SharedObject.shared.customer = customer
-                            LocalTempStorage.storeValue(inUserdefault: customer, key: "customer")
+                            LocalTempStorage.storeValue(inUserdefault: customer, key: UserDefaultKeys.customer)
                             self.viewState = .loaded(customer)
                         } else {
                             self.viewState = .error(customerResult.message)

@@ -16,7 +16,6 @@ struct LoginResponse: Codable {
     let data: LoginDataClass?
 }
 
-// MARK: - DataClass
 struct LoginDataClass: Codable {
     let loginDetails: LoginDetails?
     
@@ -36,6 +35,10 @@ struct Token: Codable {
     private enum CodingKeys: String, CodingKey {
         case tokenType = "token_type"
         case autheticationToken = "authetication_token"
+    }
+    
+    var authToken: String {
+        return "\(tokenType) \(autheticationToken)"
     }
 }
 

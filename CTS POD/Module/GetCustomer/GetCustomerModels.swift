@@ -13,7 +13,8 @@ struct Workflow: Codable {
     let flowName: String
     
     func mapToDisplay() -> DashboardDisplayModel {
-        return DashboardDisplayModel(title: flowName,
+        return DashboardDisplayModel(id: flowID,
+                                     title: flowName,
                                      icon: UIImage(named: "\(flowID)_dashboard") ?? UIImage() ,
                                      type: Dashboard.DashboardOption(rawValue: flowID) ?? .login,
                                      backgroundColor: Colors.colorPrimaryDark,
