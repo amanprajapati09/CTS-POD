@@ -7,13 +7,16 @@ class DeliveriesConfirmViewController: BaseViewController<DeliveriesConfirmViewM
     private var cancellable = Set<AnyCancellable>()
     let disposeBag = DisposeBag()
     
+    var arrData : [Bool] = [false]
+    
     private lazy var tableView: UITableView = {
-        let view = UITableView()
-        view.dataSource = self
-        view.delegate = self
-        view.rowHeight = UITableView.automaticDimension
-        view.estimatedRowHeight = 100
-        return view
+        let tableView = UITableView()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
+        tableView.allowsMultipleSelection = false
+        return tableView
     }()
     
     override func viewDidLoad() {
@@ -67,11 +70,13 @@ extension DeliveriesConfirmViewController: UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: DeliveriesConfirmListTableViewCell = tableView.dequeue(DeliveriesConfirmListTableViewCell.self, for: indexPath)
+        cell.isExpand = arrData[indexPath.row]
+        cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return arrData.count
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -80,5 +85,15 @@ extension DeliveriesConfirmViewController: UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        arrData[indexPath.row] = true
+        tableView.reloadRows(at: [indexPath], with: .fade)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        arrData[indexPath.row] = false
+        tableView.reloadRows(at: [indexPath], with: .fade)
     }
 }

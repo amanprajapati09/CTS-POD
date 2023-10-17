@@ -9,7 +9,13 @@ import UIKit
 import SnapKit
 
 class DeliveriesConfirmListTableViewCell: UITableViewCell, Reusable {
-
+    
+    var isExpand: Bool = false {
+        didSet {
+            expandCollapseCell(isExpand: isExpand)
+        }
+    }
+    
     private lazy var headerView: UIView = {
         let view = UIView()
         return view
@@ -61,17 +67,6 @@ class DeliveriesConfirmListTableViewCell: UITableViewCell, Reusable {
         view.distribution = .fill
         return view
     }()
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        setUpHeaderView()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -133,6 +128,23 @@ class DeliveriesConfirmListTableViewCell: UITableViewCell, Reusable {
             stackView.addArrangedSubview(view)
         }
     }
+    
+    private func expandCollapseCell(isExpand: Bool) {
+        if isExpand {
+            dataView.snp.makeConstraints { make in
+                make.top.equalTo(headerView.snp.bottom).offset(10)
+                make.leading.equalTo(headerView.snp.leading).inset(10)
+                make.trailing.equalTo(headerView.snp.trailing).inset(10)
+                make.bottom.equalToSuperview()
+            }
+        } else {
+            headerView.snp.makeConstraints { make in
+                make.top.equalToSuperview().inset(10)
+                make.leading.trailing.equalToSuperview()
+                make.bottom.equalToSuperview()
+            }
+        }
+    }
 }
 
 
@@ -179,4 +191,6 @@ class RowView: UIView {
             make.leading.equalTo(icon.snp.trailing)
         }
     }
+    
+    
 }

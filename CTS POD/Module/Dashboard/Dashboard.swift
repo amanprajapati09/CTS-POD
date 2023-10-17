@@ -3,6 +3,7 @@ import UIKit
 
 final class Dashboard {
     struct Configuration {
+        var jobConformUsecase: JobConfirmUseCaseProtocol = JobConfirmUseCase(client: JobConfirmClient())
         let images = Images()
         let string = Strings()
     }
@@ -27,6 +28,7 @@ extension Dashboard.Configuration {
         let vehicalCheck = UIImage(named: "1_dashboard")
         let jobConfirm = UIImage(named: "2_dashboard")
         let deleviry = UIImage(named: "3_dashboard")
+        let fetchJobs = UIImage(named: "sync_icon")
     }
     
     struct Strings {
@@ -36,5 +38,6 @@ extension Dashboard.Configuration {
         let vehicalCheck = "Vehicle Cheklist"
         let jobConfirm = "Job Confirm"
         let logoutAlertMessage = "Are you sure want to logout?"
+        let fetchJobTitle = "Fetch Jobs"
     }
 }

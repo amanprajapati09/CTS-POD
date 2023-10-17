@@ -1,9 +1,11 @@
 
 import UIKit
+import Combine
 
 class DashboardViewController: UIViewController {
     
     private let viewModel: DashboardViewModel
+    private var cancellable = Set<AnyCancellable>()
     private var optionList: [DashboardDisplayModel] {
         didSet {
             collectionView.reloadData()
@@ -52,6 +54,17 @@ class DashboardViewController: UIViewController {
         return label
     }()
     
+    private lazy var fetchButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(viewModel.configuration.string.fetchJobTitle, for: .normal)
+        button.setImage(viewModel.configuration.images.fetchJobs, for: .normal)
+        button.backgroundColor = Colors.colorPrimaryDark
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        button.addTarget(self, action: #selector(fetchButtonClick), for: .touchUpInside)
+        return button
+    }()
+    
     private lazy var supportButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = Fonts.popRegular
@@ -62,6 +75,13 @@ class DashboardViewController: UIViewController {
         return button
     }()
     
+    private lazy var buttonContainer: UIView = {
+        let view = UIView()
+        view.addSubview(fetchButton)
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -69,6 +89,10 @@ class DashboardViewController: UIViewController {
         setLogo()
         prepareCollectionView()
         prepareFooterView()
+        bind()
+        canShowFetchButton()
+        fetchJobList()
+        print(RealmManager.shared.printRealmPath())
     }
     
     init(viewModel: DashboardViewModel) {
@@ -118,9 +142,20 @@ class DashboardViewController: UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
             $0.centerX.equalToSuperview()
         }
+    
+        let containerStack = UIStackView(arrangedSubviews: [buttonContainer, collectionView])
+        containerStack.axis = .vertical
         
-        view.addSubview(collectionView)
-        collectionView.snp.makeConstraints {
+        buttonContainer.snp.makeConstraints { $0.height.equalTo(50)}
+        
+        fetchButton.snp.makeConstraints {
+            $0.height.equalTo(40)
+            $0.width.equalTo(170)
+            $0.center.equalToSuperview()
+        }
+        
+        view.addSubview(containerStack)
+        containerStack.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.top.equalTo(iconImage.snp.bottom).offset(30)
             $0.height.equalTo(view.frame.size.width + 30)
@@ -161,6 +196,35 @@ class DashboardViewController: UIViewController {
         }
         
     }
+    
+    private func bind() {
+        viewModel.$canShowFetchButton.subscribe(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.buttonContainer.isHidden = value
+            }.store(in: &cancellable)
+        
+        viewModel.$updateJobListComplete.subscribe(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                guard value == true else { return }
+                guard let self else { return }
+                self.optionList = self.viewModel.fetchOptions()
+            }.store(in: &cancellable)
+    }
+    
+    @objc
+    func fetchButtonClick() {
+        viewModel.updateJobStatus()
+    }
+    
+    private func canShowFetchButton() {
+        buttonContainer.isHidden =  viewModel.checkFetchButtonStatus()
+    }
+    
+    func fetchJobList() {
+        if Constant.isLogin, Constant.isVehicalSubmit {
+            viewModel.fetchJobList()
+        }
+    }
 }
 
 extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -195,6 +259,7 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
                 let controller = VehicleCheckList.build()
                 controller.vehicalCheckUpdate = {
                     self.optionList = self.viewModel.fetchOptions()
+                    self.fetchJobList()
                 }
                 self.navigationController?.pushViewController(controller, animated: true)
             }
@@ -211,10 +276,12 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
             alert.dismiss(animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-            LocalTempStorage.removeValue(for: UserDefaultKeys.user)
+            self.viewModel.signOutDriver()
             self.optionList = self.viewModel.fetchOptions()
             self.prepareFooterView()
+            self.canShowFetchButton()
         }))
         navigationController?.present(alert, animated: true)
     }
+
 }
