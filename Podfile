@@ -10,7 +10,9 @@ target 'CTS POD' do
   pod 'RxCocoa'
   pod 'SVPinView'
   pod 'IQKeyboardManagerSwift'
-  
+  pod 'SignaturePad'
+  pod 'RealmSwift'
+
   # Pods for CTS POD
 
   target 'CTS PODTests' do

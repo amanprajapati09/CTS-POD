@@ -1,5 +1,10 @@
 PODS:
   - IQKeyboardManagerSwift (6.5.12)
+  - Realm (10.42.0):
+    - Realm/Headers (= 10.42.0)
+  - Realm/Headers (10.42.0)
+  - RealmSwift (10.42.0):
+    - Realm (= 10.42.0)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -11,6 +16,7 @@ PODS:
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift
+  - RealmSwift
   - RxCocoa
   - RxSwift
   - SnapKit
@@ -19,6 +25,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - IQKeyboardManagerSwift
+    - Realm
+    - RealmSwift
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -27,12 +35,14 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 371b08cb39664fb56030f5345c815a4ffc74bbc0
+  Realm: 490aad28f1360e58fc22256d5d686d3a36525346
+  RealmSwift: f6a9b56d747bbdd7931de1835896c5f024b6898a
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
 
-PODFILE CHECKSUM: 3749ebe743308f6604fdfb88443244171f17bf7c
+PODFILE CHECKSUM: 77d8e42bbb70eace3c0b85b5e925045b58a6bf36
 
 COCOAPODS: 1.11.2

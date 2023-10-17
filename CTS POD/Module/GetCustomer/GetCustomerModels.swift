@@ -6,6 +6,12 @@ struct Customer: Codable {
     let workflow: [Workflow]
     let status: Int
     let domainname, forgotpassword: String
+    
+    var hasVehicalCheckList: Bool {
+        return workflow.filter{
+            $0.flowID == 1
+        }.isEmpty
+    }
 }
 
 struct Workflow: Codable {

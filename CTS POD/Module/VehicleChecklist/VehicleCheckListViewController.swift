@@ -150,6 +150,7 @@ class VehicleCheckListViewController: BaseViewController<VehicleCheckListViewMod
             case .loading:
                 self.manageUpdateLoading(showLoading: true)
             case .loaded(_):
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.isVehicalSubmit)
                 self.vehicalCheckUpdate?()
                 self.navigationController?.popViewController(animated: true)
                 self.manageUpdateLoading(showLoading: false)
