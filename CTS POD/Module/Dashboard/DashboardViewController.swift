@@ -87,6 +87,11 @@ class DashboardViewController: UIViewController {
         collectionView.register(DashBoardCell.self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     private func prepareFooterView() {
         if let user = LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: "user") {
             footerView.isHidden = false
@@ -193,6 +198,8 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
                 }
                 self.navigationController?.pushViewController(controller, animated: true)
             }
+        case .job:
+            self.navigationController?.pushViewController(DeliveriesConfirm.build(), animated: true)
         default:
             print("Default")
         }
