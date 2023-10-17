@@ -17,14 +17,17 @@ struct Constant {
         if Constant.isLogin {
             if lastCheckDate == nil {
                 return true
-                
             } else {
-                if lastCheckDate!.getDiffrenceBetweenDates() > 24 {
+                if lastCheckDate!.getDiffrenceBetweenDates() > 12 {
                   return true
                 }
             }
         }
         return false
+    }
+    
+    static var isVehicalSubmit: Bool {
+        return (UserDefaults.standard.value(forKey: UserDefaultKeys.isVehicalSubmit) as? Bool) ?? false
     }
 }
 
@@ -79,4 +82,5 @@ struct UserDefaultKeys {
     static let user = "user"
     static let customer = "customers"
     static let checkVehicle = "checkVehicle"
+    static let isVehicalSubmit = "VehicalSubmit"
 }

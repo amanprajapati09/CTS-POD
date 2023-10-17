@@ -22,6 +22,9 @@
 		07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317FD42A7F56A50066341F /* NetworkEnums.swift */; };
 		07317FD82A7FFEA40066341F /* GetCustomerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317FD72A7FFEA40066341F /* GetCustomerClient.swift */; };
 		07317FDA2A7FFEB70066341F /* GetConstomerUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317FD92A7FFEB70066341F /* GetConstomerUsecase.swift */; };
+		07668D082AD2F7D800D5AD3B /* JobConfirmClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07668D072AD2F7D800D5AD3B /* JobConfirmClient.swift */; };
+		07668D0A2AD2F7F100D5AD3B /* JobConfirmUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07668D092AD2F7F100D5AD3B /* JobConfirmUseCase.swift */; };
+		07668D0C2AD2F89000D5AD3B /* JobConfirmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07668D0B2AD2F89000D5AD3B /* JobConfirmModel.swift */; };
 		0772F4BF2AA0ED10000951BF /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0772F4BE2AA0ED10000951BF /* Date+Extension.swift */; };
 		0772F4C12AA0F230000951BF /* VehicleCheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0772F4C02AA0F230000951BF /* VehicleCheckListViewController.swift */; };
 		0772F4C32AA0F24C000951BF /* VehicleCheckListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0772F4C22AA0F24C000951BF /* VehicleCheckListViewModel.swift */; };
@@ -51,6 +54,9 @@
 		079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422B92A92045900684513 /* DashboardViewModel.swift */; };
 		079422BC2A92046D00684513 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079422BB2A92046D00684513 /* DashboardViewController.swift */; };
 		07ABD1772A952BD600460A8A /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ABD1762A952BD600460A8A /* SignInModel.swift */; };
+		07B6575A2AD58BD300E6CA08 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B657592AD58BD300E6CA08 /* RealmManager.swift */; };
+		07B6575D2ADD675F00E6CA08 /* LocalDataBaseWraper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6575C2ADD675F00E6CA08 /* LocalDataBaseWraper.swift */; };
+		07B6575F2ADD984400E6CA08 /* JobStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6575E2ADD984400E6CA08 /* JobStatusRequest.swift */; };
 		07DCAD5B2AC154210002D2FF /* ScrollableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD5A2AC154210002D2FF /* ScrollableStackView.swift */; };
 		07DCAD5D2AC170C20002D2FF /* TextContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD5C2AC170C20002D2FF /* TextContainerView.swift */; };
 		07DCAD5F2AC1BDDA0002D2FF /* DropdownContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD5E2AC1BDDA0002D2FF /* DropdownContainer.swift */; };
@@ -119,6 +125,9 @@
 		07317FD42A7F56A50066341F /* NetworkEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkEnums.swift; sourceTree = "<group>"; };
 		07317FD72A7FFEA40066341F /* GetCustomerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomerClient.swift; sourceTree = "<group>"; };
 		07317FD92A7FFEB70066341F /* GetConstomerUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConstomerUsecase.swift; sourceTree = "<group>"; };
+		07668D072AD2F7D800D5AD3B /* JobConfirmClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobConfirmClient.swift; sourceTree = "<group>"; };
+		07668D092AD2F7F100D5AD3B /* JobConfirmUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobConfirmUseCase.swift; sourceTree = "<group>"; };
+		07668D0B2AD2F89000D5AD3B /* JobConfirmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobConfirmModel.swift; sourceTree = "<group>"; };
 		0772F4BE2AA0ED10000951BF /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		0772F4C02AA0F230000951BF /* VehicleCheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCheckListViewController.swift; sourceTree = "<group>"; };
 		0772F4C22AA0F24C000951BF /* VehicleCheckListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCheckListViewModel.swift; sourceTree = "<group>"; };
@@ -148,6 +157,9 @@
 		079422B92A92045900684513 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		079422BB2A92046D00684513 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		07ABD1762A952BD600460A8A /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
+		07B657592AD58BD300E6CA08 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		07B6575C2ADD675F00E6CA08 /* LocalDataBaseWraper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataBaseWraper.swift; sourceTree = "<group>"; };
+		07B6575E2ADD984400E6CA08 /* JobStatusRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobStatusRequest.swift; sourceTree = "<group>"; };
 		07DCAD5A2AC154210002D2FF /* ScrollableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableStackView.swift; sourceTree = "<group>"; };
 		07DCAD5C2AC170C20002D2FF /* TextContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextContainerView.swift; sourceTree = "<group>"; };
 		07DCAD5E2AC1BDDA0002D2FF /* DropdownContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownContainer.swift; sourceTree = "<group>"; };
@@ -236,6 +248,7 @@
 		07317F9E2A7E2BE10066341F /* CTS POD */ = {
 			isa = PBXGroup;
 			children = (
+				07B6575B2ADD673800E6CA08 /* LocalDataBase */,
 				079422B32A912D6D00684513 /* Extension */,
 				079422AE2A91213500684513 /* Common */,
 				079422A62A91076B00684513 /* Assets */,
@@ -271,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				0772F4BD2AA0C28D000951BF /* VehicleChecklist */,
+				075E2B1D2AD2D74B00CD3942 /* JobConfirm */,
 				D022EA412A960CE200B44E4B /* ResetPassword */,
 				D00F0ADE2A96047600F9F310 /* EnterCode */,
 				D094E7FF2A947D2F00FDFD61 /* ForgotPassword */,
@@ -311,6 +325,17 @@
 				07835EBA2A874A640071A3AD /* URLRequest+Extension.swift */,
 			);
 			path = APIClasses;
+			sourceTree = "<group>";
+		};
+		075E2B1D2AD2D74B00CD3942 /* JobConfirm */ = {
+			isa = PBXGroup;
+			children = (
+				07668D072AD2F7D800D5AD3B /* JobConfirmClient.swift */,
+				07668D092AD2F7F100D5AD3B /* JobConfirmUseCase.swift */,
+				07668D0B2AD2F89000D5AD3B /* JobConfirmModel.swift */,
+				07B6575E2ADD984400E6CA08 /* JobStatusRequest.swift */,
+			);
+			path = JobConfirm;
 			sourceTree = "<group>";
 		};
 		0772F4BD2AA0C28D000951BF /* VehicleChecklist */ = {
@@ -396,6 +421,15 @@
 				07046A322A926CF30074C711 /* DashBoardCell.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		07B6575B2ADD673800E6CA08 /* LocalDataBase */ = {
+			isa = PBXGroup;
+			children = (
+				07B657592AD58BD300E6CA08 /* RealmManager.swift */,
+				07B6575C2ADD675F00E6CA08 /* LocalDataBaseWraper.swift */,
+			);
+			path = LocalDataBase;
 			sourceTree = "<group>";
 		};
 		A091F4A7635ABFF1798BDAF6 /* Frameworks */ = {
@@ -709,6 +743,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07DCAD612AC1BE8F0002D2FF /* VehicleTextField.swift in Sources */,
+				07668D0A2AD2F7F100D5AD3B /* JobConfirmUseCase.swift in Sources */,
 				079422B02A91214200684513 /* Fonts.swift in Sources */,
 				0772F4BF2AA0ED10000951BF /* Date+Extension.swift in Sources */,
 				D022EA472A960D1000B44E4B /* ResetPasswordViewModel.swift in Sources */,
@@ -738,11 +773,13 @@
 				07046A332A926CF40074C711 /* DashBoardCell.swift in Sources */,
 				D022EA432A960CF600B44E4B /* ResetPassword.swift in Sources */,
 				07835EBB2A874A640071A3AD /* URLRequest+Extension.swift in Sources */,
+				07668D082AD2F7D800D5AD3B /* JobConfirmClient.swift in Sources */,
 				07317FA02A7E2BE10066341F /* AppDelegate.swift in Sources */,
 				07317FD82A7FFEA40066341F /* GetCustomerClient.swift in Sources */,
 				07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */,
 				071882CE2A9213DE00EE4747 /* LocalTempStorage.swift in Sources */,
 				079422A52A91072300684513 /* GetCustomerModels.swift in Sources */,
+				07B6575D2ADD675F00E6CA08 /* LocalDataBaseWraper.swift in Sources */,
 				078E762D2A98F051008F7F8A /* ValidateOTPModels.swift in Sources */,
 				078E762B2A97C57B008F7F8A /* ForgotPasswordModels.swift in Sources */,
 				07DCAD692AC461DB0002D2FF /* VehicleStatusUpdateRequestModel.swift in Sources */,
@@ -750,6 +787,7 @@
 				D0A9F7072A936F2D00C87638 /* SignInViewModel.swift in Sources */,
 				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,
 				079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */,
+				07668D0C2AD2F89000D5AD3B /* JobConfirmModel.swift in Sources */,
 				D00F0AE02A96048E00F9F310 /* EnterCode.swift in Sources */,
 				D094E8032A947DBD00FDFD61 /* ForgotPassword.swift in Sources */,
 				079422B52A912D8500684513 /* UIColor+Extension.swift in Sources */,
@@ -757,6 +795,7 @@
 				07DCAD672AC355E40002D2FF /* String+Extension.swift in Sources */,
 				079422B72A91FBAA00684513 /* SharedObject.swift in Sources */,
 				0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */,
+				07B6575A2AD58BD300E6CA08 /* RealmManager.swift in Sources */,
 				D0A9F70D2A93BD4600C87638 /* SignInUseCase.swift in Sources */,
 				D0A9F7052A936F2100C87638 /* SignInViewController.swift in Sources */,
 				D094E8012A947D4500FDFD61 /* ForgotPasswordViewController.swift in Sources */,
@@ -769,6 +808,7 @@
 				07DCAD652AC3556E0002D2FF /* BaseContainerView.swift in Sources */,
 				07ABD1772A952BD600460A8A /* SignInModel.swift in Sources */,
 				0772F4C12AA0F230000951BF /* VehicleCheckListViewController.swift in Sources */,
+				07B6575F2ADD984400E6CA08 /* JobStatusRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
