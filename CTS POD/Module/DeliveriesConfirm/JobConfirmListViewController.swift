@@ -2,12 +2,15 @@ import UIKit
 import RxSwift
 import Combine
 
-class DeliveriesConfirmViewController: BaseViewController<DeliveriesConfirmViewModel> {
+class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> {
 
     private var cancellable = Set<AnyCancellable>()
     let disposeBag = DisposeBag()
-    
-    var arrData : [Bool] = [false]
+    var jobs: [JobDisplayModel]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -32,8 +35,10 @@ class DeliveriesConfirmViewController: BaseViewController<DeliveriesConfirmViewM
             ]
             navigationBar.titleTextAttributes = titleTextAttributes
         }
-        tableView.register(DeliveriesConfirmListTableViewCell.self)
+        tableView.register(JobConfirmListTableViewCell.self)
         setupView()
+        bindView()
+        viewModel.fetchList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -45,7 +50,7 @@ class DeliveriesConfirmViewController: BaseViewController<DeliveriesConfirmViewM
         super.viewWillAppear(animated)
     }
     
-    init(viewModel: DeliveriesConfirmViewModel) {
+    init(viewModel: JobConfirmListViewModel) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
     }
@@ -64,19 +69,27 @@ class DeliveriesConfirmViewController: BaseViewController<DeliveriesConfirmViewM
             make.edges.equalToSuperview()
         }
     }
+    
+    private func bindView() {
+        viewModel.$jobList.subscribe(on: DispatchQueue.main)
+            .sink { [weak self] jobList in
+                self?.jobs = jobList
+            }.store(in: &cancellable)
+    }
 }
 
-extension DeliveriesConfirmViewController: UITableViewDataSource, UITableViewDelegate {
+extension JobConfirmListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: DeliveriesConfirmListTableViewCell = tableView.dequeue(DeliveriesConfirmListTableViewCell.self, for: indexPath)
-        cell.isExpand = arrData[indexPath.row]
+        let cell: JobConfirmListTableViewCell = tableView.dequeue(JobConfirmListTableViewCell.self, for: indexPath)
+        cell.isExpand = jobs?[indexPath.row].isExpand ?? false
+        cell.job = jobs?[indexPath.row].job
         cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrData.count
+        return jobs?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -88,12 +101,13 @@ extension DeliveriesConfirmViewController: UITableViewDataSource, UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        arrData[indexPath.row] = true
+        jobs?[indexPath.row].isExpand = true
         tableView.reloadRows(at: [indexPath], with: .fade)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        arrData[indexPath.row] = false
+        jobs?[indexPath.row].isExpand = false
         tableView.reloadRows(at: [indexPath], with: .fade)
     }
 }
+

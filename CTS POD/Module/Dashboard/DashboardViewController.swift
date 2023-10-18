@@ -264,7 +264,10 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
                 self.navigationController?.pushViewController(controller, animated: true)
             }
         case .job:
-            self.navigationController?.pushViewController(DeliveriesConfirm.build(), animated: true)
+            self.navigationController?.pushViewController(JobConfirm.build(), animated: true)
+//            if viewModel.updateJobListComplete {
+//
+//            }
         default:
             print("Default")
         }

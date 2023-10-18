@@ -136,12 +136,12 @@ final class DashboardViewModel {
                     switch result {
                     case .success(let res):
                         if res.status == "Success" {
-                            self.updateJobListComplete = true                           
                             self.fetchManager.updateJobStatus(jobs: self.jobList)
                         }
                     default:
                         print("error")
                     }
+                    self.updateJobListComplete = true
                 })
             }
         }

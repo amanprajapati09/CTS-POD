@@ -1,19 +1,25 @@
-//
-//  DeliveriesConfirmListTableViewCell.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 07/10/23.
-//
 
 import UIKit
 import SnapKit
 
-class DeliveriesConfirmListTableViewCell: UITableViewCell, Reusable {
+class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     
     var isExpand: Bool = false {
         didSet {
             expandCollapseCell(isExpand: isExpand)
         }
+    }
+    
+    var job: Job? {
+        didSet {
+            updateValue()
+        }
+    }
+    
+    private func updateValue() {
+        guard let job else { return }
+        titleLabel.text = job.cmpName
+        subTitleLabel.text = job.yourRef
     }
     
     private lazy var headerView: UIView = {
@@ -26,7 +32,6 @@ class DeliveriesConfirmListTableViewCell: UITableViewCell, Reusable {
         view.font = Fonts.popRegular
         view.textColor = Colors.colorGray
         view.textAlignment = .center
-        view.text = "North Shore Plumbing Group Construction"
         view.numberOfLines = 0
         return view
     }()
@@ -36,13 +41,13 @@ class DeliveriesConfirmListTableViewCell: UITableViewCell, Reusable {
         view.font = Fonts.popRegular
         view.textColor = Colors.colorGray
         view.textAlignment = .center
-        view.text = "97099940-MILPERRA"
         view.numberOfLines = 0
         return view
     }()
     
     private lazy var expandCollapseIcon: UIImageView = {
         let view = UIImageView()
+        view.image = UIImage(named: "expand_icon")
         view.contentMode = .scaleAspectFill
         return view
     }()
@@ -191,6 +196,9 @@ class RowView: UIView {
             make.leading.equalTo(icon.snp.trailing)
         }
     }
-    
-    
+}
+
+struct JobDisplayModel {
+    var isExpand: Bool
+    var job: Job
 }

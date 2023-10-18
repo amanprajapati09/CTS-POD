@@ -8,7 +8,7 @@
 import Foundation
 
 class LocalDataBaseWraper {
-    let realmManager = RealmManager.shared
+    private let realmManager = RealmManager.shared
     
     func fetchJobListForUpdateReadStatus() -> [Job] {
         let jobs = realmManager.fetchList(type: Job.self)?.filter({

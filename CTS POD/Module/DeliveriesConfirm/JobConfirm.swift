@@ -1,7 +1,7 @@
 
 import UIKit
 
-final class DeliveriesConfirm {
+final class JobConfirm {
     struct Configuration {
         let images = Images()
         let string = Strings()
@@ -10,17 +10,17 @@ final class DeliveriesConfirm {
         init() { }
     }
     
-    static func build() -> DeliveriesConfirmViewController {
-        let configuration = DeliveriesConfirm.Configuration()
-        let viewModel = DeliveriesConfirmViewModel(configuration: configuration)
+    static func build() -> JobConfirmListViewController {
+        let configuration = JobConfirm.Configuration()
+        let viewModel = JobConfirmListViewModel(configuration: configuration)
         //ResetPasswordViewModel(configuration: configuration, customer: customer, otp: otp)
-        let viewController = DeliveriesConfirmViewController(viewModel: viewModel)
+        let viewController = JobConfirmListViewController(viewModel: viewModel)
         return viewController
     }
     
 }
 
-extension DeliveriesConfirm.Configuration {
+extension JobConfirm.Configuration {
 
     struct Images {
     }
