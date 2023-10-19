@@ -292,11 +292,11 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
             alert.dismiss(animated: true)
         }))
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in        
             self.viewModel.signOutDriver()
-            self.optionList = self.viewModel.fetchOptions()
             self.prepareFooterView()
             self.canShowFetchButton()
+            self.optionList = self.viewModel.fetchOptions()
         }))
         navigationController?.present(alert, animated: true)
     }
