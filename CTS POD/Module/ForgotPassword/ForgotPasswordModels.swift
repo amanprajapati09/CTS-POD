@@ -1,9 +1,3 @@
-//
-//  ForgotPasswordModels.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/24/23.
-//
 
 import Foundation
 

@@ -1,9 +1,3 @@
-//
-//  ResetPasswordRequest.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 8/28/23.
-//
 
 import Foundation
 

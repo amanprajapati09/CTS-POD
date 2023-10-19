@@ -83,6 +83,12 @@ class DashboardViewController: UIViewController {
         return view
     }()
     
+    private lazy var fetchActivityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -196,6 +202,11 @@ class DashboardViewController: UIViewController {
             $0.width.equalTo(100)
         }
         
+        view.addSubview(fetchActivityIndicator)
+        fetchActivityIndicator.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalTo(fetchButton.center)
+        }
     }
     
     private func bind() {
@@ -208,12 +219,15 @@ class DashboardViewController: UIViewController {
             .sink { [weak self] value in
                 guard value == true else { return }
                 guard let self else { return }
-                self.optionList = self.viewModel.fetchOptions()
+                self.optionList = self.viewModel.fetchOptions()                
+                self.fetchActivityIndicator.stopAnimating()
             }.store(in: &cancellable)
     }
     
     @objc
     func fetchButtonClick() {
+        fetchButton.isHidden = true
+        fetchActivityIndicator.startAnimating()
         viewModel.updateJobStatus()
     }
     
@@ -265,10 +279,9 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
                 self.navigationController?.pushViewController(controller, animated: true)
             }
         case .job:
-            self.navigationController?.pushViewController(JobConfirm.build(), animated: true)
-//            if viewModel.updateJobListComplete {
-//
-//            }
+            if viewModel.updateJobListComplete {
+                self.navigationController?.pushViewController(JobConfirm.build(), animated: true)
+            }
         default:
             print("Default")
         }

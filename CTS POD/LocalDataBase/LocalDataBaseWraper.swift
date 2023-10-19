@@ -1,9 +1,3 @@
-//
-//  LocalDataBaseWraper.swift
-//  CTS POD
-//
-//  Created by Aman Prajapati on 10/16/23.
-//
 
 import Foundation
 

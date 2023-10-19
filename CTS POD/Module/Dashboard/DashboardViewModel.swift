@@ -61,7 +61,7 @@ final class DashboardViewModel {
     }
     
     private func updateJobConfirmOption(optionList: [DashboardDisplayModel]) -> [DashboardDisplayModel] {
-        if jobList.count > 0 {
+        if fetchManager.fetchUpdatedJobs().count > 0 {
             return optionList.map { model in
                 if model.id == 2 {
                     return DashboardDisplayModel(id: model.id,
@@ -81,6 +81,9 @@ final class DashboardViewModel {
     
     private func fetchJobsForUpdate() {
         jobList = fetchManager.fetchJobListForUpdateReadStatus()
+        if jobList.isEmpty {
+            updateJobListComplete = true
+        }
     }
     
     func checkFetchButtonStatus() -> Bool  {
@@ -130,6 +133,10 @@ final class DashboardViewModel {
         Task { @MainActor in
             do {
                 let ids = jobList.map { $0.id }
+                guard ids.count > 0 else {
+                    self.updateJobListComplete = true
+                    return
+                }
                 let requestModel = JobStatusUpdate(ids: ids, status: 5, branchCode: "code")
                 try await configuration.jobConformUsecase.updateJob(request: requestModel, completion: { result in
                     self.canShowFetchButton = true

@@ -19,11 +19,11 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     private func updateValue() {
         guard let job else { return }
         titleLabel.text = job.cmpName
-        subTitleLabel.text = job.yourRef
+        subTitleLabel.text = job.titleAddress
         
-        locationRow.titleLabel.text = job.delAddressLine1
+        locationRow.titleLabel.text = job.delAddressLine3
         messageRow.titleLabel.text = job.comments
-        callRow.titleLabel.text = job.delPhone
+        callRow.titleLabel.text = job.orderNumber
     }
     
     private lazy var titleLabel: UILabel = {
@@ -103,7 +103,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     
     private lazy var callRow: RowView = {
         let view = RowView()
-        view.icon.image = UIImage(named: "job_call")
+        view.icon.image = UIImage(named: "job_order")
         return view
     }()
     
@@ -148,6 +148,10 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
             make.height.equalTo(dataStackView.snp.height)
         }
         
+        dataStackView.addArrangedSubview(callRow)
+        callRow.snp.makeConstraints { make in
+            make.height.equalTo(50)
+        }
         dataStackView.addArrangedSubview(locationRow)
         locationRow.snp.makeConstraints { make in
             make.height.equalTo(50)
@@ -156,17 +160,13 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         messageRow.snp.makeConstraints { make in
             make.height.equalTo(50)
         }
-        dataStackView.addArrangedSubview(callRow)
-        callRow.snp.makeConstraints { make in
-            make.height.equalTo(50)
-        }
-        
         
         containerStack.addArrangedSubview(dataView)
     }
     
     private func expandCollapseCell() {
         dataView.isHidden = !isExpand
+        expandCollapseIcon.image = isExpand ? UIImage(named: "collaps_icon") : UIImage(named: "expand_icon")
     }
 }
 

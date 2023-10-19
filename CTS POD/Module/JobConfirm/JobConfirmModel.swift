@@ -91,4 +91,15 @@ class Job: Object, Decodable {
         return JobDisplayModel(isExpand: false,
                                job: self)
     }
+    
+    var titleAddress: String {
+        if let delFullAddress {
+            return delFullAddress
+        } else {
+            if let orderNumber {
+                return orderNumber + "-" + (delCity ?? "")
+            }
+        }
+        return ""
+    }
 }
