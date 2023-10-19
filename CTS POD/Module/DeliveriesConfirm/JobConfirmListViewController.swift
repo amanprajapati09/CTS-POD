@@ -96,7 +96,7 @@ extension JobConfirmListViewController: UITableViewDataSource, UITableViewDelega
         if let value = jobs?[indexPath.row].isExpand, value == false {
             return 70
         }
-        return 220
+        return 230
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

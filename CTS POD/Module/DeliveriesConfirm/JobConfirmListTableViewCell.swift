@@ -91,6 +91,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     private lazy var containerStack: UIStackView = {
         let view = UIStackView(arrangedSubviews: [headerView])
         view.axis = .vertical
+        view.spacing = 10
         return view
     }()
     
@@ -175,9 +176,6 @@ class RowView: UIView {
     lazy var icon: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
-        view.snp.makeConstraints {
-            $0.height.width.equalTo(30)
-        }
         return view
     }()
     
@@ -187,6 +185,12 @@ class RowView: UIView {
         view.textColor = Colors.colorGray
         view.textAlignment = .left
         view.numberOfLines = 0
+        return view
+    }()
+    
+    lazy var view: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.gray
         return view
     }()
     
@@ -200,15 +204,25 @@ class RowView: UIView {
     }
     
     private func setUpView() {
+        addSubview(icon)
+        icon.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(15)
+            $0.centerY.equalToSuperview()
+            $0.height.width.equalTo(30)
+        }
         
-        let stackView = UIStackView(arrangedSubviews: [icon, titleLabel])
-        stackView.axis = .horizontal
-        stackView.spacing = 10
+        addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.leading.equalTo(icon.snp.trailing).offset(10)
+            make.trailing.equalToSuperview().inset(10)
+        }
         
-        addSubview(stackView)
-        stackView.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.leading.trailing.equalToSuperview().inset(10)
+        addSubview(view)
+        view.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(1)
+            
         }
     }
 }
