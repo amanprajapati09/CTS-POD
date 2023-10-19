@@ -92,22 +92,19 @@ extension JobConfirmListViewController: UITableViewDataSource, UITableViewDelega
         return jobs?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        if let value = jobs?[indexPath.row].isExpand, value == false {
+            return 70
+        }
+        return 220
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        jobs?[indexPath.row].isExpand = true
-        tableView.reloadRows(at: [indexPath], with: .fade)
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        jobs?[indexPath.row].isExpand = false
+        if let status = jobs?[indexPath.row].isExpand, status == true {
+            jobs?[indexPath.row].isExpand = false
+        } else {
+            jobs?[indexPath.row].isExpand = true
+        }
         tableView.reloadRows(at: [indexPath], with: .fade)
     }
 }
-

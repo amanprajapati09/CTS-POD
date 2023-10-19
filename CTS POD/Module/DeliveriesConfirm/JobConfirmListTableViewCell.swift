@@ -6,7 +6,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     
     var isExpand: Bool = false {
         didSet {
-            expandCollapseCell(isExpand: isExpand)
+            expandCollapseCell()
         }
     }
     
@@ -20,18 +20,17 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         guard let job else { return }
         titleLabel.text = job.cmpName
         subTitleLabel.text = job.yourRef
+        
+        locationRow.titleLabel.text = job.delAddressLine1
+        messageRow.titleLabel.text = job.comments
+        callRow.titleLabel.text = job.delPhone
     }
-    
-    private lazy var headerView: UIView = {
-        let view = UIView()
-        return view
-    }()
     
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = Fonts.popRegular
         view.textColor = Colors.colorGray
-        view.textAlignment = .center
+        view.textAlignment = .left
         view.numberOfLines = 0
         return view
     }()
@@ -54,28 +53,69 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     
     private lazy var checkBoxIcon: UIImageView = {
         let view = UIImageView()
+        view.image = UIImage(named: "check_empty")
         view.contentMode = .scaleAspectFill
+        return view
+    }()
+    
+    private lazy var titleContainer: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [titleLabel, subTitleLabel])
+        view.axis = .vertical
+        view.alignment = .leading
+        return view
+    }()
+    
+    private lazy var headerView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [expandCollapseIcon, titleContainer , checkBoxIcon])
+        view.axis = .horizontal
+        view.alignment = .top
+        view.spacing = 5
         return view
     }()
     
     private lazy var dataView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 10
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
         return view
     }()
     
-    private lazy var stackView: UIStackView = {
+    private lazy var dataStackView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
         view.distribution = .fill
+        view.spacing = 5
+        return view
+    }()
+    
+    private lazy var containerStack: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [headerView])
+        view.axis = .vertical
+        return view
+    }()
+    
+    private lazy var locationRow: RowView = {
+        let view = RowView()
+        view.icon.image = UIImage(named: "job_location")
+        return view
+    }()
+    
+    private lazy var callRow: RowView = {
+        let view = RowView()
+        view.icon.image = UIImage(named: "job_call")
+        return view
+    }()
+    
+    private lazy var messageRow: RowView = {
+        let view = RowView()
+        view.icon.image = UIImage(named: "job_message")
         return view
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpHeaderView()
+        prepareDataView()
     }
     
     required init?(coder: NSCoder) {
@@ -83,99 +123,76 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     }
     
     private func setUpHeaderView() {
-        self.addSubview(headerView)
-        headerView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(10)
-            make.leading.trailing.equalToSuperview()
+        contentView.addSubview(containerStack)
+        containerStack.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(10)
         }
         
-        headerView.addSubview(expandCollapseIcon)
         expandCollapseIcon.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(10)
-            make.leading.equalToSuperview().inset(10)
+            make.height.width.equalTo(20)
         }
         
-        headerView.addSubview(checkBoxIcon)
         checkBoxIcon.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(20)
-            make.centerY.equalToSuperview()
-        }
-        
-        headerView.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(expandCollapseIcon.snp.trailing).offset(10)
-            make.top.equalTo(expandCollapseIcon.snp.top)
-            make.trailing.equalTo(checkBoxIcon.snp.leading)
-        }
-        
-        headerView.addSubview(subTitleLabel)
-        subTitleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(titleLabel.snp.leading)
-            make.top.equalTo(titleLabel.snp.bottom).offset(5)
-            make.bottom.equalToSuperview()
-        }
-        
-        self.addSubview(dataView)
-        dataView.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom).offset(10)
-            make.leading.equalTo(headerView.snp.leading).inset(10)
-            make.trailing.equalTo(headerView.snp.trailing).inset(10)
-            make.bottom.equalToSuperview()
-        }
-        
-        dataView.addSubview(stackView)
-        stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        for _ in 0...2 {
-            let view = RowView(title: "test", icon: UIImage(named: "icn_radio_on")!)
-            stackView.addArrangedSubview(view)
+            make.height.width.equalTo(15)
         }
     }
     
-    private func expandCollapseCell(isExpand: Bool) {
-        if isExpand {
-            dataView.snp.makeConstraints { make in
-                make.top.equalTo(headerView.snp.bottom).offset(10)
-                make.leading.equalTo(headerView.snp.leading).inset(10)
-                make.trailing.equalTo(headerView.snp.trailing).inset(10)
-                make.bottom.equalToSuperview()
-            }
-        } else {
-            headerView.snp.makeConstraints { make in
-                make.top.equalToSuperview().inset(10)
-                make.leading.trailing.equalToSuperview()
-                make.bottom.equalToSuperview()
-            }
+    private func prepareDataView() {
+        dataView.addSubview(dataStackView)
+        dataStackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
+        
+        dataView.snp.makeConstraints { make in
+            make.height.equalTo(dataStackView.snp.height)
+        }
+        
+        dataStackView.addArrangedSubview(locationRow)
+        locationRow.snp.makeConstraints { make in
+            make.height.equalTo(50)
+        }
+        dataStackView.addArrangedSubview(messageRow)
+        messageRow.snp.makeConstraints { make in
+            make.height.equalTo(50)
+        }
+        dataStackView.addArrangedSubview(callRow)
+        callRow.snp.makeConstraints { make in
+            make.height.equalTo(50)
+        }
+        
+        
+        containerStack.addArrangedSubview(dataView)
+    }
+    
+    private func expandCollapseCell() {
+        dataView.isHidden = !isExpand
     }
 }
 
 
 class RowView: UIView {
     
-    private lazy var icon: UIImageView = {
+    lazy var icon: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
+        view.snp.makeConstraints {
+            $0.height.width.equalTo(30)
+        }
         return view
     }()
     
-    private lazy var titleLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = Fonts.popRegular
         view.textColor = Colors.colorGray
-        view.textAlignment = .center
-        view.text = "North Shore Plumbing Group Construction"
+        view.textAlignment = .left
         view.numberOfLines = 0
         return view
     }()
     
-    init(title: String,icon: UIImage) {
+    init() {
         super.init(frame: .zero)
         setUpView()
-        self.titleLabel.text = title
-        self.icon.image = icon
     }
     
     required init?(coder: NSCoder) {
@@ -184,16 +201,14 @@ class RowView: UIView {
     
     private func setUpView() {
         
-        self.addSubview(icon)
-        icon.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().inset(10)
-        }
+        let stackView = UIStackView(arrangedSubviews: [icon, titleLabel])
+        stackView.axis = .horizontal
+        stackView.spacing = 10
         
-        self.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.top.bottom.leading.equalToSuperview()
-            make.leading.equalTo(icon.snp.trailing)
+        addSubview(stackView)
+        stackView.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.leading.trailing.equalToSuperview().inset(10)
         }
     }
 }

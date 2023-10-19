@@ -7,7 +7,7 @@ final class DashboardViewModel {
     let customer: Customer
     let fetchManager = LocalDataBaseWraper()
     
-    @Published var canShowFetchButton: Bool = false
+    @Published var canShowFetchButton: Bool = true
     @Published var updateJobListComplete: Bool = false
     
     private var jobList = [Job]()

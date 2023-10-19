@@ -79,6 +79,7 @@ class DashboardViewController: UIViewController {
         let view = UIView()
         view.addSubview(fetchButton)
         view.backgroundColor = .clear
+        view.isHidden = true
         return view
     }()
     
@@ -200,7 +201,7 @@ class DashboardViewController: UIViewController {
     private func bind() {
         viewModel.$canShowFetchButton.subscribe(on: DispatchQueue.main)
             .sink { [weak self] value in
-                self?.buttonContainer.isHidden = value
+                  self?.buttonContainer.isHidden = value
             }.store(in: &cancellable)
         
         viewModel.$updateJobListComplete.subscribe(on: DispatchQueue.main)
