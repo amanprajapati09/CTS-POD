@@ -1,9 +1,3 @@
-//
-//  CTS_PODUITestsLaunchTests.swift
-//  CTS PODUITests
-//
-//  Created by Aman Prajapati on 8/5/23.
-//
 
 import XCTest
 

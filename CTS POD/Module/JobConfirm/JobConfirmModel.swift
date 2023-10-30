@@ -86,4 +86,20 @@ class Job: Object, Decodable {
         case delPhone = "del_Phone"
         case document, comments, notes, type, status, latitude, longitude, customOrder, isDeleted, branch, jobStatus, customerID, driverSign, supervisonSign, customerSign, customerPhotos, deliveryComment, selectedJob, ETAStatus, deliveryStatus
     }
+    
+    func mapToJobConfirmDisplay() -> JobDisplayModel {
+        return JobDisplayModel(isExpand: false,
+                               job: self)
+    }
+    
+    var titleAddress: String {
+        if let delFullAddress {
+            return delFullAddress
+        } else {
+            if let orderNumber {
+                return orderNumber + "-" + (delCity ?? "")
+            }
+        }
+        return ""
+    }
 }

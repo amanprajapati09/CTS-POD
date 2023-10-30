@@ -79,6 +79,13 @@ class DashboardViewController: UIViewController {
         let view = UIView()
         view.addSubview(fetchButton)
         view.backgroundColor = .clear
+        view.isHidden = true
+        return view
+    }()
+    
+    private lazy var fetchActivityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
         return view
     }()
     
@@ -109,6 +116,11 @@ class DashboardViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(DashBoardCell.self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func prepareFooterView() {
@@ -190,24 +202,32 @@ class DashboardViewController: UIViewController {
             $0.width.equalTo(100)
         }
         
+        view.addSubview(fetchActivityIndicator)
+        fetchActivityIndicator.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalTo(fetchButton.center)
+        }
     }
     
     private func bind() {
         viewModel.$canShowFetchButton.subscribe(on: DispatchQueue.main)
             .sink { [weak self] value in
-                self?.buttonContainer.isHidden = value
+                  self?.buttonContainer.isHidden = value
             }.store(in: &cancellable)
         
         viewModel.$updateJobListComplete.subscribe(on: DispatchQueue.main)
             .sink { [weak self] value in
                 guard value == true else { return }
                 guard let self else { return }
-                self.optionList = self.viewModel.fetchOptions()
+                self.optionList = self.viewModel.fetchOptions()                
+                self.fetchActivityIndicator.stopAnimating()
             }.store(in: &cancellable)
     }
     
     @objc
     func fetchButtonClick() {
+        fetchButton.isHidden = true
+        fetchActivityIndicator.startAnimating()
         viewModel.updateJobStatus()
     }
     
@@ -258,6 +278,10 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
                 }
                 self.navigationController?.pushViewController(controller, animated: true)
             }
+        case .job:
+            if viewModel.updateJobListComplete {
+                self.navigationController?.pushViewController(JobConfirm.build(), animated: true)
+            }
         default:
             print("Default")
         }
@@ -268,11 +292,11 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
             alert.dismiss(animated: true)
         }))
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in        
             self.viewModel.signOutDriver()
-            self.optionList = self.viewModel.fetchOptions()
             self.prepareFooterView()
             self.canShowFetchButton()
+            self.optionList = self.viewModel.fetchOptions()
         }))
         navigationController?.present(alert, animated: true)
     }

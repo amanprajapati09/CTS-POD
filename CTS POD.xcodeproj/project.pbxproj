@@ -76,6 +76,10 @@
 		D022EA452A960D0100B44E4B /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022EA442A960D0100B44E4B /* ResetPasswordViewController.swift */; };
 		D022EA472A960D1000B44E4B /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022EA462A960D1000B44E4B /* ResetPasswordViewModel.swift */; };
 		D0481D3C2AC1796100DC8A4C /* Preferances.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0481D3B2AC1796100DC8A4C /* Preferances.swift */; };
+		D04D28752AD12F4100C22A93 /* JobConfirmListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D28742AD12F4100C22A93 /* JobConfirmListViewController.swift */; };
+		D04D28772AD12F5D00C22A93 /* JobConfirmListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D28762AD12F5D00C22A93 /* JobConfirmListViewModel.swift */; };
+		D04D28792AD135DE00C22A93 /* JobConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D28782AD135DE00C22A93 /* JobConfirm.swift */; };
+		D04D287B2AD138A000C22A93 /* JobConfirmListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D287A2AD138A000C22A93 /* JobConfirmListTableViewCell.swift */; };
 		D094E8012A947D4500FDFD61 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094E8002A947D4500FDFD61 /* ForgotPasswordViewController.swift */; };
 		D094E8032A947DBD00FDFD61 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094E8022A947DBD00FDFD61 /* ForgotPassword.swift */; };
 		D094E8052A947E7300FDFD61 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094E8042A947E7300FDFD61 /* ForgotPasswordViewModel.swift */; };
@@ -182,6 +186,10 @@
 		D022EA442A960D0100B44E4B /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		D022EA462A960D1000B44E4B /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		D0481D3B2AC1796100DC8A4C /* Preferances.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferances.swift; sourceTree = "<group>"; };
+		D04D28742AD12F4100C22A93 /* JobConfirmListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobConfirmListViewController.swift; sourceTree = "<group>"; };
+		D04D28762AD12F5D00C22A93 /* JobConfirmListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobConfirmListViewModel.swift; sourceTree = "<group>"; };
+		D04D28782AD135DE00C22A93 /* JobConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobConfirm.swift; sourceTree = "<group>"; };
+		D04D287A2AD138A000C22A93 /* JobConfirmListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobConfirmListTableViewCell.swift; sourceTree = "<group>"; };
 		D094E8002A947D4500FDFD61 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D094E8022A947DBD00FDFD61 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		D094E8042A947E7300FDFD61 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
@@ -284,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				0772F4BD2AA0C28D000951BF /* VehicleChecklist */,
+				D04D28712AD12EAF00C22A93 /* DeliveriesConfirm */,
 				075E2B1D2AD2D74B00CD3942 /* JobConfirm */,
 				D022EA412A960CE200B44E4B /* ResetPassword */,
 				D00F0ADE2A96047600F9F310 /* EnterCode */,
@@ -475,6 +484,17 @@
 				078E762E2A9CB57E008F7F8A /* ResetPasswordRequest.swift */,
 			);
 			path = ResetPassword;
+			sourceTree = "<group>";
+		};
+		D04D28712AD12EAF00C22A93 /* DeliveriesConfirm */ = {
+			isa = PBXGroup;
+			children = (
+				D04D28742AD12F4100C22A93 /* JobConfirmListViewController.swift */,
+				D04D28782AD135DE00C22A93 /* JobConfirm.swift */,
+				D04D28762AD12F5D00C22A93 /* JobConfirmListViewModel.swift */,
+				D04D287A2AD138A000C22A93 /* JobConfirmListTableViewCell.swift */,
+			);
+			path = DeliveriesConfirm;
 			sourceTree = "<group>";
 		};
 		D094E7FF2A947D2F00FDFD61 /* ForgotPassword */ = {
@@ -760,6 +780,7 @@
 				078E76312A9CCB27008F7F8A /* NavigationController+Extension.swift in Sources */,
 				07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */,
 				0772F4C32AA0F24C000951BF /* VehicleCheckListViewModel.swift in Sources */,
+				D04D28752AD12F4100C22A93 /* JobConfirmListViewController.swift in Sources */,
 				078E762F2A9CB57E008F7F8A /* ResetPasswordRequest.swift in Sources */,
 				0772F4CB2AA0F53E000951BF /* VehicleCheckListModels.swift in Sources */,
 				D0A9F70B2A93713C00C87638 /* BaseViewController.swift in Sources */,
@@ -784,6 +805,7 @@
 				078E762B2A97C57B008F7F8A /* ForgotPasswordModels.swift in Sources */,
 				07DCAD692AC461DB0002D2FF /* VehicleStatusUpdateRequestModel.swift in Sources */,
 				07046A352A926E9E0074C711 /* Reusable.swift in Sources */,
+				D04D287B2AD138A000C22A93 /* JobConfirmListTableViewCell.swift in Sources */,
 				D0A9F7072A936F2D00C87638 /* SignInViewModel.swift in Sources */,
 				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,
 				079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */,
@@ -794,6 +816,8 @@
 				07317FA22A7E2BE10066341F /* SceneDelegate.swift in Sources */,
 				07DCAD672AC355E40002D2FF /* String+Extension.swift in Sources */,
 				079422B72A91FBAA00684513 /* SharedObject.swift in Sources */,
+				D04D28772AD12F5D00C22A93 /* JobConfirmListViewModel.swift in Sources */,
+				D04D28792AD135DE00C22A93 /* JobConfirm.swift in Sources */,
 				0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */,
 				07B6575A2AD58BD300E6CA08 /* RealmManager.swift in Sources */,
 				D0A9F70D2A93BD4600C87638 /* SignInUseCase.swift in Sources */,

@@ -1,9 +1,3 @@
-//
-//  CTS_PODTests.swift
-//  CTS PODTests
-//
-//  Created by Aman Prajapati on 8/5/23.
-//
 
 import XCTest
 @testable import CTS_POD

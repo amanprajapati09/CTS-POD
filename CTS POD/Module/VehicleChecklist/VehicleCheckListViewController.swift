@@ -105,14 +105,17 @@ class VehicleCheckListViewController: BaseViewController<VehicleCheckListViewMod
         containerView.addSubview(containerStack)
         containerStack.snp.makeConstraints {
             $0.leading.top.trailing.equalToSuperview().inset(10)
-            $0.bottom.equalTo(buttonContainer.snp.top).inset(20)
+            $0.bottom.equalTo(buttonContainer.snp.top).inset(-20)
         }
         
         containerStack.addSubview(activityIndicator)
         activityIndicator.snp.makeConstraints { $0.center.equalToSuperview() }
     
         containerStack.addSubview(updateActivityIndicator)
-        updateActivityIndicator.snp.makeConstraints { $0.center.equalTo(buttonContainer.snp.center) }
+        updateActivityIndicator.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(-20)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     private func prepareView() {

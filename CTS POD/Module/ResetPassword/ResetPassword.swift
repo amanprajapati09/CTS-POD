@@ -31,7 +31,3 @@ extension ResetPassword.Configuration {
         let resetPassword = "Confirm password"
     }
 }
-
-
-
-
