@@ -69,6 +69,9 @@
 		2B63F500AAC09FB522A46AD7 /* Pods_CTS_POD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040AAF3EBBE2122DB5EF9F66 /* Pods_CTS_POD.framework */; };
 		949E1B4A1699706D8E03A7F5 /* Pods_CTS_POD_CTS_PODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */; };
 		AB269F495F93B9734900A913 /* Pods_CTS_PODTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 315C1FFBC51599B6C3A70F9B /* Pods_CTS_PODTests.framework */; };
+		D00D0EF62AEE2DF2008F7722 /* MyDeliveriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D0EF52AEE2DF2008F7722 /* MyDeliveriesListViewController.swift */; };
+		D00D0EF82AEE2EB9008F7722 /* MyDeliveriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D0EF72AEE2EB9008F7722 /* MyDeliveriesList.swift */; };
+		D00D0EFA2AEE2F01008F7722 /* MyDeliveriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D0EF92AEE2F01008F7722 /* MyDeliveriesListViewModel.swift */; };
 		D00F0AE02A96048E00F9F310 /* EnterCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F0ADF2A96048E00F9F310 /* EnterCode.swift */; };
 		D00F0AE22A96049F00F9F310 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F0AE12A96049F00F9F310 /* EnterCodeViewController.swift */; };
 		D00F0AE42A9604AB00F9F310 /* EnterCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F0AE32A9604AB00F9F310 /* EnterCodeViewModel.swift */; };
@@ -179,6 +182,9 @@
 		8DD0E45136CA5B4D6716F584 /* Pods-CTS POD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD.release.xcconfig"; path = "Target Support Files/Pods-CTS POD/Pods-CTS POD.release.xcconfig"; sourceTree = "<group>"; };
 		A8BFD85A5BB426317E1E7825 /* Pods-CTS POD-CTS PODUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD-CTS PODUITests.debug.xcconfig"; path = "Target Support Files/Pods-CTS POD-CTS PODUITests/Pods-CTS POD-CTS PODUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE7ADB1AF33682688DD46DCB /* Pods-CTS PODTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS PODTests.release.xcconfig"; path = "Target Support Files/Pods-CTS PODTests/Pods-CTS PODTests.release.xcconfig"; sourceTree = "<group>"; };
+		D00D0EF52AEE2DF2008F7722 /* MyDeliveriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeliveriesListViewController.swift; sourceTree = "<group>"; };
+		D00D0EF72AEE2EB9008F7722 /* MyDeliveriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeliveriesList.swift; sourceTree = "<group>"; };
+		D00D0EF92AEE2F01008F7722 /* MyDeliveriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeliveriesListViewModel.swift; sourceTree = "<group>"; };
 		D00F0ADF2A96048E00F9F310 /* EnterCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCode.swift; sourceTree = "<group>"; };
 		D00F0AE12A96049F00F9F310 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
 		D00F0AE32A9604AB00F9F310 /* EnterCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewModel.swift; sourceTree = "<group>"; };
@@ -291,6 +297,7 @@
 		07317FCF2A7E30DE0066341F /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				D00D0EF42AEE2DD0008F7722 /* MyDeliveriesList */,
 				0772F4BD2AA0C28D000951BF /* VehicleChecklist */,
 				D04D28712AD12EAF00C22A93 /* DeliveriesConfirm */,
 				075E2B1D2AD2D74B00CD3942 /* JobConfirm */,
@@ -462,6 +469,16 @@
 				CE7ADB1AF33682688DD46DCB /* Pods-CTS PODTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D00D0EF42AEE2DD0008F7722 /* MyDeliveriesList */ = {
+			isa = PBXGroup;
+			children = (
+				D00D0EF52AEE2DF2008F7722 /* MyDeliveriesListViewController.swift */,
+				D00D0EF72AEE2EB9008F7722 /* MyDeliveriesList.swift */,
+				D00D0EF92AEE2F01008F7722 /* MyDeliveriesListViewModel.swift */,
+			);
+			path = MyDeliveriesList;
 			sourceTree = "<group>";
 		};
 		D00F0ADE2A96047600F9F310 /* EnterCode */ = {
@@ -810,16 +827,19 @@
 				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,
 				079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */,
 				07668D0C2AD2F89000D5AD3B /* JobConfirmModel.swift in Sources */,
+				D00D0EF82AEE2EB9008F7722 /* MyDeliveriesList.swift in Sources */,
 				D00F0AE02A96048E00F9F310 /* EnterCode.swift in Sources */,
 				D094E8032A947DBD00FDFD61 /* ForgotPassword.swift in Sources */,
 				079422B52A912D8500684513 /* UIColor+Extension.swift in Sources */,
 				07317FA22A7E2BE10066341F /* SceneDelegate.swift in Sources */,
+				D00D0EF62AEE2DF2008F7722 /* MyDeliveriesListViewController.swift in Sources */,
 				07DCAD672AC355E40002D2FF /* String+Extension.swift in Sources */,
 				079422B72A91FBAA00684513 /* SharedObject.swift in Sources */,
 				D04D28772AD12F5D00C22A93 /* JobConfirmListViewModel.swift in Sources */,
 				D04D28792AD135DE00C22A93 /* JobConfirm.swift in Sources */,
 				0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */,
 				07B6575A2AD58BD300E6CA08 /* RealmManager.swift in Sources */,
+				D00D0EFA2AEE2F01008F7722 /* MyDeliveriesListViewModel.swift in Sources */,
 				D0A9F70D2A93BD4600C87638 /* SignInUseCase.swift in Sources */,
 				D0A9F7052A936F2100C87638 /* SignInViewController.swift in Sources */,
 				D094E8012A947D4500FDFD61 /* ForgotPasswordViewController.swift in Sources */,

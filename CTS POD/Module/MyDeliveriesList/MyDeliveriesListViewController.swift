@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import Combine
 
-class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> {
+class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewModel> {
 
     private var cancellable = Set<AnyCancellable>()
     let disposeBag = DisposeBag()
@@ -46,7 +46,7 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
         super.viewWillAppear(animated)
     }
     
-    init(viewModel: JobConfirmListViewModel) {
+    init(viewModel: MyDeliveriesListViewModel) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
     }
@@ -67,6 +67,8 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
     }
     
     private func bindView() {
+//        self.jobs = [JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test")), JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test"))]
+//        self.tableView.reloadData()
         viewModel.$jobList.subscribe(on: DispatchQueue.main)
             .sink { [weak self] jobList in
                 self?.jobs = jobList
@@ -75,7 +77,7 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
     }
 }
 
-extension JobConfirmListViewController: UITableViewDataSource, UITableViewDelegate {
+extension MyDeliveriesListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: JobConfirmListTableViewCell = tableView.dequeue(JobConfirmListTableViewCell.self, for: indexPath)
@@ -91,10 +93,6 @@ extension JobConfirmListViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-//        if let value = jobs?[indexPath.row].isExpand, value == false {
-//            return 70
-//        }
-//        return 230
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
