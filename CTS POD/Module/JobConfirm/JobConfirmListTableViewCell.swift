@@ -93,9 +93,6 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         view.axis = .vertical
         view.alignment = .center
         view.distribution = .fillEqually
-        view.snp.makeConstraints { make in
-            make.width.equalTo(30)
-        }
         return view
     }()
     
@@ -105,6 +102,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         view.axis = .horizontal
         view.alignment = .top
         view.spacing = 2
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -129,6 +127,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
         view.spacing = 10
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -177,6 +176,10 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
             make.height.width.equalTo(15)
         }
         
+        signContainer.snp.makeConstraints { make in
+            make.width.equalTo(30)
+        }
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(checkBoxDidTap))
         checkBoxIcon.addGestureRecognizer(tapGesture)
         
@@ -197,7 +200,6 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         dataView.isHidden = !isExpand
         expandCollapseIcon.image = isExpand ? UIImage(named: "collaps_icon") : UIImage(named: "expand_icon")
     }
-    
     
     @objc private func checkBoxDidTap() {
         if jobModel != nil {

@@ -72,6 +72,14 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigation()
+        tableView.register(JobConfirmListTableViewCell.self)
+        setupView()
+        bindView()
+        viewModel.fetchList()
+    }
+    
+    private func setupNavigation() {
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.navigationBar.tintColor = .black
@@ -83,10 +91,6 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
             ]
             navigationBar.titleTextAttributes = titleTextAttributes
         }
-        tableView.register(JobConfirmListTableViewCell.self)
-        setupView()
-        bindView()
-        viewModel.fetchList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -210,10 +214,11 @@ extension JobConfirmListViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let value = jobs?[indexPath.row].isExpand, value == false {
-            return 70
-        }
-        return 230
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
