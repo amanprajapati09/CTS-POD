@@ -29,5 +29,9 @@ extension JobConfirm.Configuration {
         let newPassword = "New Password"
         let confirmPassword = "Confirm password"
         let resetPassword = "Confirm password"
+        
+        let driverSignTitle = "Driver Sign"
+        let superVisionTitle = "Supervisor sign"
+        let allTitle = "All"
     }
 }

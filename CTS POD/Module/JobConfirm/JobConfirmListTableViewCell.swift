@@ -13,8 +13,17 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     var job: Job? {
         didSet {
             updateValue()
+            manageSignMark()
         }
     }
+    
+    var jobModel: JobDisplayModel? {
+        didSet {
+            job = jobModel?.job
+        }
+    }
+    
+    var didTapCheckbox: ((_ index: Int) -> ())?
     
     private func updateValue() {
         guard let job else { return }
@@ -24,6 +33,8 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         locationRow.titleLabel.text = job.delAddressLine3
         messageRow.titleLabel.text = job.comments
         callRow.titleLabel.text = job.orderNumber
+                
+        checkBoxIcon.image =  (jobModel?.isSelected ?? false) ? UIImage(named: "check_mark") : UIImage(named: "check_empty")
     }
     
     private lazy var titleLabel: UILabel = {
@@ -55,21 +66,43 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         let view = UIImageView()
         view.image = UIImage(named: "check_empty")
         view.contentMode = .scaleAspectFill
+        view.isUserInteractionEnabled = true
         return view
     }()
     
     private lazy var titleContainer: UIStackView = {
         let view = UIStackView(arrangedSubviews: [titleLabel, subTitleLabel])
         view.axis = .vertical
-        view.alignment = .leading
+        view.alignment = .leading        
+        return view
+    }()
+    
+    private lazy var driverSign: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "driver_sign_done"))
+        return view
+    }()
+    
+    private lazy var supervisorSign: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "supervisor_sign_done"))
+        return view
+    }()
+    
+    private lazy var signContainer: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [driverSign, supervisorSign])
+        view.axis = .vertical
+        view.alignment = .center
+        view.distribution = .fillEqually
+        view.snp.makeConstraints { make in
+            make.width.equalTo(30)
+        }
         return view
     }()
     
     private lazy var headerView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [expandCollapseIcon, titleContainer , checkBoxIcon])
+        let view = UIStackView(arrangedSubviews: [expandCollapseIcon, titleContainer, signContainer, checkBoxIcon])
         view.axis = .horizontal
         view.alignment = .top
-        view.spacing = 5
+        view.spacing = 2
         return view
     }()
     
@@ -136,6 +169,10 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         checkBoxIcon.snp.makeConstraints { make in
             make.height.width.equalTo(15)
         }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(checkBoxDidTap))
+        checkBoxIcon.addGestureRecognizer(tapGesture)
+        
     }
     
     private func prepareDataView() {
@@ -167,6 +204,24 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     private func expandCollapseCell() {
         dataView.isHidden = !isExpand
         expandCollapseIcon.image = isExpand ? UIImage(named: "collaps_icon") : UIImage(named: "expand_icon")
+    }
+    
+    
+    @objc private func checkBoxDidTap() {
+        if jobModel != nil {
+            if jobModel!.isSelected {
+                jobModel!.isSelected = false
+            } else {
+                jobModel!.isSelected = true
+            }
+            updateValue()
+            didTapCheckbox?(tag)
+        }
+    }
+    
+    private func manageSignMark() {
+        driverSign.isHidden = (job?.driverSign == nil)
+        supervisorSign.isHidden = (job?.supervisonSign == nil)
     }
 }
 
@@ -230,4 +285,5 @@ class RowView: UIView {
 struct JobDisplayModel {
     var isExpand: Bool
     var job: Job
+    var isSelected: Bool = false
 }
