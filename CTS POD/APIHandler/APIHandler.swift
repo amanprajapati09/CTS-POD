@@ -13,6 +13,13 @@ struct APIClient {
      */
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> ResponseStatus {
         //* Comment this code becaus API does not implement status code*/
+        if response.statusCode == 401 {
+            if let appDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate, let window = appDelegate.window, let navigationController = window.rootViewController as? UINavigationController, let dashboardVC = navigationController.viewControllers.last(where: { $0.isKind(of: DashboardViewController.self) }) as? DashboardViewController{
+                dashboardVC.logOutUser()
+                navigationController.popToViewController(dashboardVC, animated: true)
+            }
+            return .failure
+        }
         switch response.statusCode {
         case 200...299: return .success
         case 401,403: return .failure

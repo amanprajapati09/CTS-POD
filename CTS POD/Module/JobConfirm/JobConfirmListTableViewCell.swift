@@ -72,6 +72,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     
     private lazy var titleContainer: UIStackView = {
         let view = UIStackView(arrangedSubviews: [titleLabel, subTitleLabel])
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
         view.alignment = .leading        
         return view
@@ -100,6 +101,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     
     private lazy var headerView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [expandCollapseIcon, titleContainer, signContainer, checkBoxIcon])
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
         view.alignment = .top
         view.spacing = 2
@@ -117,12 +119,14 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         let view = UIStackView()
         view.axis = .vertical
         view.distribution = .fill
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.spacing = 5
         return view
     }()
     
     private lazy var containerStack: UIStackView = {
         let view = UIStackView(arrangedSubviews: [headerView])
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
         view.spacing = 10
         return view
@@ -131,18 +135,21 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     private lazy var locationRow: RowView = {
         let view = RowView()
         view.icon.image = UIImage(named: "job_location")
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var callRow: RowView = {
         let view = RowView()
-        view.icon.image = UIImage(named: "job_order")
+        view.icon.image = UIImage(named: "job_call")
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var messageRow: RowView = {
         let view = RowView()
         view.icon.image = UIImage(named: "job_message")
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -157,7 +164,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     }
     
     private func setUpHeaderView() {
-        contentView.addSubview(containerStack)
+        self.addSubview(containerStack)
         containerStack.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(10)
         }
@@ -180,24 +187,9 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         dataStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
-        dataView.snp.makeConstraints { make in
-            make.height.equalTo(dataStackView.snp.height)
-        }
-        
-        dataStackView.addArrangedSubview(callRow)
-        callRow.snp.makeConstraints { make in
-            make.height.equalTo(50)
-        }
         dataStackView.addArrangedSubview(locationRow)
-        locationRow.snp.makeConstraints { make in
-            make.height.equalTo(50)
-        }
         dataStackView.addArrangedSubview(messageRow)
-        messageRow.snp.makeConstraints { make in
-            make.height.equalTo(50)
-        }
-        
+        dataStackView.addArrangedSubview(callRow)
         containerStack.addArrangedSubview(dataView)
     }
     
@@ -231,6 +223,7 @@ class RowView: UIView {
     lazy var icon: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -240,12 +233,14 @@ class RowView: UIView {
         view.textColor = Colors.colorGray
         view.textAlignment = .left
         view.numberOfLines = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     lazy var view: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.gray
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -262,13 +257,13 @@ class RowView: UIView {
         addSubview(icon)
         icon.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(15)
-            $0.centerY.equalToSuperview()
             $0.height.width.equalTo(30)
+            $0.top.bottom.equalToSuperview().inset(15)
         }
         
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
+            make.top.bottom.equalToSuperview().inset(15)
             make.leading.equalTo(icon.snp.trailing).offset(10)
             make.trailing.equalToSuperview().inset(10)
         }
@@ -277,7 +272,6 @@ class RowView: UIView {
         view.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(1)
-            
         }
     }
 }

@@ -4,7 +4,7 @@ import Combine
 
 class DashboardViewController: UIViewController {
     
-    private let viewModel: DashboardViewModel
+    let viewModel: DashboardViewModel
     private var cancellable = Set<AnyCancellable>()
     private var optionList: [DashboardDisplayModel] {
         didSet {
@@ -282,6 +282,8 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
             if viewModel.updateJobListComplete {
                 self.navigationController?.pushViewController(JobConfirm.build(), animated: true)
             }
+        case .deliveries:
+            self.navigationController?.pushViewController(MyDeliveriesList.build(), animated: true)
         default:
             print("Default")
         }
@@ -292,13 +294,18 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
             alert.dismiss(animated: true)
         }))
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in        
-            self.viewModel.signOutDriver()
-            self.prepareFooterView()
-            self.canShowFetchButton()
-            self.optionList = self.viewModel.fetchOptions()
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            self.logOutUser()
         }))
         navigationController?.present(alert, animated: true)
+    }
+    
+    public func logOutUser() {
+        self.viewModel.signOutDriver()
+        self.optionList = self.viewModel.fetchOptions()
+        self.prepareFooterView()
+        self.canShowFetchButton()
     }
 
 }
