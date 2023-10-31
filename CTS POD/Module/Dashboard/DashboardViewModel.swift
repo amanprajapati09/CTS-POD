@@ -102,8 +102,7 @@ final class DashboardViewModel {
     func signOutDriver() {
         LocalTempStorage.removeValue(for: UserDefaultKeys.user)
         LocalTempStorage.removeValue(for: UserDefaultKeys.checkVehicle)
-        LocalTempStorage.removeValue(for: UserDefaultKeys.isVehicalSubmit)
-        RealmManager.shared.clearDatabase()
+        LocalTempStorage.removeValue(for: UserDefaultKeys.isVehicalSubmit)        
     }
     
     func fetchJobList() {

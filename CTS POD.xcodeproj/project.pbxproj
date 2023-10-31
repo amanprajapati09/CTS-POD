@@ -67,6 +67,9 @@
 		07DCAD692AC461DB0002D2FF /* VehicleStatusUpdateRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD682AC461DB0002D2FF /* VehicleStatusUpdateRequestModel.swift */; };
 		07DCAD6B2AC48F0D0002D2FF /* UIStackview+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCAD6A2AC48F0D0002D2FF /* UIStackview+extension.swift */; };
 		2B63F500AAC09FB522A46AD7 /* Pods_CTS_POD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040AAF3EBBE2122DB5EF9F66 /* Pods_CTS_POD.framework */; };
+		750175462AF0274C00F4888B /* SignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750175452AF0274C00F4888B /* SignViewController.swift */; };
+		750175482AF0D42100F4888B /* SignViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750175472AF0D42100F4888B /* SignViewModel.swift */; };
+		7501754A2AF0D7EC00F4888B /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750175492AF0D7EC00F4888B /* Signature.swift */; };
 		949E1B4A1699706D8E03A7F5 /* Pods_CTS_POD_CTS_PODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */; };
 		AB269F495F93B9734900A913 /* Pods_CTS_PODTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 315C1FFBC51599B6C3A70F9B /* Pods_CTS_PODTests.framework */; };
 		D00D0EF62AEE2DF2008F7722 /* MyDeliveriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D0EF52AEE2DF2008F7722 /* MyDeliveriesListViewController.swift */; };
@@ -178,6 +181,9 @@
 		07DCAD6A2AC48F0D0002D2FF /* UIStackview+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackview+extension.swift"; sourceTree = "<group>"; };
 		315C1FFBC51599B6C3A70F9B /* Pods_CTS_PODTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTS_PODTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61267F8948813E3BD457786C /* Pods-CTS POD-CTS PODUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD-CTS PODUITests.release.xcconfig"; path = "Target Support Files/Pods-CTS POD-CTS PODUITests/Pods-CTS POD-CTS PODUITests.release.xcconfig"; sourceTree = "<group>"; };
+		750175452AF0274C00F4888B /* SignViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignViewController.swift; sourceTree = "<group>"; };
+		750175472AF0D42100F4888B /* SignViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignViewModel.swift; sourceTree = "<group>"; };
+		750175492AF0D7EC00F4888B /* Signature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
 		81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTS_POD_CTS_PODUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD0E45136CA5B4D6716F584 /* Pods-CTS POD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD.release.xcconfig"; path = "Target Support Files/Pods-CTS POD/Pods-CTS POD.release.xcconfig"; sourceTree = "<group>"; };
 		A8BFD85A5BB426317E1E7825 /* Pods-CTS POD-CTS PODUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD-CTS PODUITests.debug.xcconfig"; path = "Target Support Files/Pods-CTS POD-CTS PODUITests/Pods-CTS POD-CTS PODUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -297,6 +303,7 @@
 		07317FCF2A7E30DE0066341F /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				750175442AF026A100F4888B /* SignatureView */,
 				D00D0EF42AEE2DD0008F7722 /* MyDeliveriesList */,
 				0772F4BD2AA0C28D000951BF /* VehicleChecklist */,
 				D04D28712AD12EAF00C22A93 /* DeliveriesConfirm */,
@@ -346,6 +353,10 @@
 		075E2B1D2AD2D74B00CD3942 /* JobConfirm */ = {
 			isa = PBXGroup;
 			children = (
+				D04D28742AD12F4100C22A93 /* JobConfirmListViewController.swift */,
+				D04D28782AD135DE00C22A93 /* JobConfirm.swift */,
+				D04D28762AD12F5D00C22A93 /* JobConfirmListViewModel.swift */,
+				D04D287A2AD138A000C22A93 /* JobConfirmListTableViewCell.swift */,
 				07668D072AD2F7D800D5AD3B /* JobConfirmClient.swift */,
 				07668D092AD2F7F100D5AD3B /* JobConfirmUseCase.swift */,
 				07668D0B2AD2F89000D5AD3B /* JobConfirmModel.swift */,
@@ -448,6 +459,16 @@
 			path = LocalDataBase;
 			sourceTree = "<group>";
 		};
+		750175442AF026A100F4888B /* SignatureView */ = {
+			isa = PBXGroup;
+			children = (
+				750175452AF0274C00F4888B /* SignViewController.swift */,
+				750175472AF0D42100F4888B /* SignViewModel.swift */,
+				750175492AF0D7EC00F4888B /* Signature.swift */,
+			);
+			path = SignatureView;
+			sourceTree = "<group>";
+		};
 		A091F4A7635ABFF1798BDAF6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,10 +527,6 @@
 		D04D28712AD12EAF00C22A93 /* DeliveriesConfirm */ = {
 			isa = PBXGroup;
 			children = (
-				D04D28742AD12F4100C22A93 /* JobConfirmListViewController.swift */,
-				D04D28782AD135DE00C22A93 /* JobConfirm.swift */,
-				D04D28762AD12F5D00C22A93 /* JobConfirmListViewModel.swift */,
-				D04D287A2AD138A000C22A93 /* JobConfirmListTableViewCell.swift */,
 			);
 			path = DeliveriesConfirm;
 			sourceTree = "<group>";
@@ -801,6 +818,7 @@
 				078E762F2A9CB57E008F7F8A /* ResetPasswordRequest.swift in Sources */,
 				0772F4CB2AA0F53E000951BF /* VehicleCheckListModels.swift in Sources */,
 				D0A9F70B2A93713C00C87638 /* BaseViewController.swift in Sources */,
+				7501754A2AF0D7EC00F4888B /* Signature.swift in Sources */,
 				079422B22A91234700684513 /* Constant.swift in Sources */,
 				07DCAD5B2AC154210002D2FF /* ScrollableStackView.swift in Sources */,
 				D022EA452A960D0100B44E4B /* ResetPasswordViewController.swift in Sources */,
@@ -822,6 +840,7 @@
 				078E762B2A97C57B008F7F8A /* ForgotPasswordModels.swift in Sources */,
 				07DCAD692AC461DB0002D2FF /* VehicleStatusUpdateRequestModel.swift in Sources */,
 				07046A352A926E9E0074C711 /* Reusable.swift in Sources */,
+				750175462AF0274C00F4888B /* SignViewController.swift in Sources */,
 				D04D287B2AD138A000C22A93 /* JobConfirmListTableViewCell.swift in Sources */,
 				D0A9F7072A936F2D00C87638 /* SignInViewModel.swift in Sources */,
 				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,
@@ -832,6 +851,7 @@
 				D094E8032A947DBD00FDFD61 /* ForgotPassword.swift in Sources */,
 				079422B52A912D8500684513 /* UIColor+Extension.swift in Sources */,
 				07317FA22A7E2BE10066341F /* SceneDelegate.swift in Sources */,
+				750175482AF0D42100F4888B /* SignViewModel.swift in Sources */,
 				D00D0EF62AEE2DF2008F7722 /* MyDeliveriesListViewController.swift in Sources */,
 				07DCAD672AC355E40002D2FF /* String+Extension.swift in Sources */,
 				079422B72A91FBAA00684513 /* SharedObject.swift in Sources */,
@@ -1029,8 +1049,8 @@
 				INFOPLIST_FILE = "CTS POD/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1040,7 +1060,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.exigotech.ctspod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "css-pod Adhoc";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ctspod-distribution";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1062,8 +1082,8 @@
 				INFOPLIST_FILE = "CTS POD/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1073,7 +1093,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.exigotech.ctspod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "css-pod Adhoc";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ctspod-distribution";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

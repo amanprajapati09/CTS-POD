@@ -10,8 +10,11 @@ target 'CTS POD' do
   pod 'RxCocoa'
   pod 'SVPinView'
   pod 'IQKeyboardManagerSwift'
-  pod 'SignaturePad'
+  pod 'SignaturePad', '~> 1.0.3'
   pod 'RealmSwift'
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
 
   # Pods for CTS POD
 
