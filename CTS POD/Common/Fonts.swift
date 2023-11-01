@@ -2,9 +2,8 @@
 import UIKit
 
 struct Fonts {
-    static let popRegular = UIFont(name: "poppins_regular", size: 12)
-    static let popMedium = UIFont(name: "poppins_medium", size: 12)
-    static let popSemiBold = UIFont(name: "poppins_semibold", size: 12)
-    
-    static let popRegularSmall = UIFont(name: "poppins_regular", size: 10)
+    static let popRegular = UIFont(name: "Poppins-Regular", size: 12)
+    static let popMedium = UIFont(name: "Poppins-Medium", size: 12)
+    static let popSemiBold = UIFont(name: "Poppins-SemiBold", size: 12)
+    static let popRegularSmall = UIFont(name: "Poppins-Regular", size: 10)
 }
