@@ -75,6 +75,9 @@
 		D00F0AE02A96048E00F9F310 /* EnterCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F0ADF2A96048E00F9F310 /* EnterCode.swift */; };
 		D00F0AE22A96049F00F9F310 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F0AE12A96049F00F9F310 /* EnterCodeViewController.swift */; };
 		D00F0AE42A9604AB00F9F310 /* EnterCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F0AE32A9604AB00F9F310 /* EnterCodeViewModel.swift */; };
+		D01344C02AF2A68D00CD2CBD /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D01344BF2AF2A68D00CD2CBD /* Poppins-SemiBold.ttf */; };
+		D01344C22AF2A6A400CD2CBD /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D01344C12AF2A6A400CD2CBD /* Poppins-Medium.ttf */; };
+		D01344C42AF2A6B300CD2CBD /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D01344C32AF2A6B300CD2CBD /* Poppins-Regular.ttf */; };
 		D022EA432A960CF600B44E4B /* ResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022EA422A960CF600B44E4B /* ResetPassword.swift */; };
 		D022EA452A960D0100B44E4B /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022EA442A960D0100B44E4B /* ResetPasswordViewController.swift */; };
 		D022EA472A960D1000B44E4B /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022EA462A960D1000B44E4B /* ResetPasswordViewModel.swift */; };
@@ -93,12 +96,6 @@
 		D0A9F70D2A93BD4600C87638 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F70C2A93BD4600C87638 /* SignInUseCase.swift */; };
 		D0A9F70F2A93BDCE00C87638 /* SignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F70E2A93BDCE00C87638 /* SignInClient.swift */; };
 		D0EFCCB52AF26DB300281EC9 /* MyDeliveriesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EFCCB42AF26DB300281EC9 /* MyDeliveriesListTableViewCell.swift */; };
-		D0EFCCC32AF2792600281EC9 /* poppins_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0EFCCC02AF2792600281EC9 /* poppins_semibold.ttf */; };
-		D0EFCCC42AF2792600281EC9 /* poppins_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0EFCCC12AF2792600281EC9 /* poppins_medium.ttf */; };
-		D0EFCCC52AF2792600281EC9 /* poppins_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0EFCCC22AF2792600281EC9 /* poppins_regular.ttf */; };
-		D0EFCCC72AF2799100281EC9 /* poppins_semibold.ttf in Sources */ = {isa = PBXBuildFile; fileRef = D0EFCCC02AF2792600281EC9 /* poppins_semibold.ttf */; };
-		D0EFCCC82AF2799B00281EC9 /* poppins_medium.ttf in Sources */ = {isa = PBXBuildFile; fileRef = D0EFCCC12AF2792600281EC9 /* poppins_medium.ttf */; };
-		D0EFCCC92AF2799B00281EC9 /* poppins_regular.ttf in Sources */ = {isa = PBXBuildFile; fileRef = D0EFCCC22AF2792600281EC9 /* poppins_regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,6 +192,9 @@
 		D00F0ADF2A96048E00F9F310 /* EnterCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCode.swift; sourceTree = "<group>"; };
 		D00F0AE12A96049F00F9F310 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
 		D00F0AE32A9604AB00F9F310 /* EnterCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewModel.swift; sourceTree = "<group>"; };
+		D01344BF2AF2A68D00CD2CBD /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		D01344C12AF2A6A400CD2CBD /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		D01344C32AF2A6B300CD2CBD /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		D022EA422A960CF600B44E4B /* ResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassword.swift; sourceTree = "<group>"; };
 		D022EA442A960D0100B44E4B /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		D022EA462A960D1000B44E4B /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
@@ -213,9 +213,6 @@
 		D0A9F70C2A93BD4600C87638 /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
 		D0A9F70E2A93BDCE00C87638 /* SignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInClient.swift; sourceTree = "<group>"; };
 		D0EFCCB42AF26DB300281EC9 /* MyDeliveriesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeliveriesListTableViewCell.swift; sourceTree = "<group>"; };
-		D0EFCCC02AF2792600281EC9 /* poppins_semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = poppins_semibold.ttf; sourceTree = "<group>"; };
-		D0EFCCC12AF2792600281EC9 /* poppins_medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = poppins_medium.ttf; sourceTree = "<group>"; };
-		D0EFCCC22AF2792600281EC9 /* poppins_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = poppins_regular.ttf; sourceTree = "<group>"; };
 		DCE5216669F67F6A3CB6076C /* Pods-CTS PODTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS PODTests.debug.xcconfig"; path = "Target Support Files/Pods-CTS PODTests/Pods-CTS PODTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD7794EF65ADE2313D6343AA /* Pods-CTS POD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD.debug.xcconfig"; path = "Target Support Files/Pods-CTS POD/Pods-CTS POD.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -554,9 +551,9 @@
 		D0EFCCC62AF2797300281EC9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				D0EFCCC02AF2792600281EC9 /* poppins_semibold.ttf */,
-				D0EFCCC12AF2792600281EC9 /* poppins_medium.ttf */,
-				D0EFCCC22AF2792600281EC9 /* poppins_regular.ttf */,
+				D01344BF2AF2A68D00CD2CBD /* Poppins-SemiBold.ttf */,
+				D01344C12AF2A6A400CD2CBD /* Poppins-Medium.ttf */,
+				D01344C32AF2A6B300CD2CBD /* Poppins-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -670,11 +667,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0EFCCC52AF2792600281EC9 /* poppins_regular.ttf in Resources */,
+				D01344C02AF2A68D00CD2CBD /* Poppins-SemiBold.ttf in Resources */,
+				D01344C22AF2A6A400CD2CBD /* Poppins-Medium.ttf in Resources */,
+				D01344C42AF2A6B300CD2CBD /* Poppins-Regular.ttf in Resources */,
 				07317FAC2A7E2BE80066341F /* LaunchScreen.storyboard in Resources */,
 				07317FA92A7E2BE80066341F /* Assets.xcassets in Resources */,
-				D0EFCCC32AF2792600281EC9 /* poppins_semibold.ttf in Resources */,
-				D0EFCCC42AF2792600281EC9 /* poppins_medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,9 +799,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0EFCCC82AF2799B00281EC9 /* poppins_medium.ttf in Sources */,
-				D0EFCCC92AF2799B00281EC9 /* poppins_regular.ttf in Sources */,
-				D0EFCCC72AF2799100281EC9 /* poppins_semibold.ttf in Sources */,
 				07DCAD612AC1BE8F0002D2FF /* VehicleTextField.swift in Sources */,
 				07668D0A2AD2F7F100D5AD3B /* JobConfirmUseCase.swift in Sources */,
 				079422B02A91214200684513 /* Fonts.swift in Sources */,
