@@ -102,4 +102,55 @@ class Job: Object, Decodable {
         }
         return ""
     }
+    
+    init(id: String, cmpCode: String? = nil, createdDate: String? = nil, deliveryNo: String? = nil, shipmentStatus: String? = nil, deliveryDate: String? = nil, hid: String? = nil, cmpName: String? = nil, orderNumber: String? = nil, yourRef: String? = nil, sendEmail: String? = nil, branchCode: String? = nil, voteCount: String? = nil, delDebtorName: String? = nil, delAddressLine1: String? = nil, delAddressLine2: String? = nil, delAddressLine3: String? = nil, delCity: String? = nil, delStateCode: String? = nil, delPostCode: String? = nil, delFullAddress: String? = nil, delContactperson: String? = nil, delContactemail: String? = nil, delPhone: String? = nil, document: String? = nil, comments: String? = nil, notes: String? = nil, type: String? = nil, status: Int? = nil, latitude: Double? = nil, longitude: Double? = nil, customOrder: Int? = nil, isDeleted: Bool? = nil, branch: String? = nil, jobStatus: String? = nil, customerID: String? = nil, driverSign: Data? = nil, supervisonSign: Data? = nil, customerSign: Data? = nil, customerPhotos: Data? = nil, deliveryComment: String? = nil, selectedJob: String? = nil, ETAStatus: String? = nil, deliveryStatus: String? = nil) {
+        super.init()
+        self.id = id
+        self.cmpCode = cmpCode
+        self.createdDate = createdDate
+        self.deliveryNo = deliveryNo
+        self.shipmentStatus = shipmentStatus
+        self.deliveryDate = deliveryDate
+        self.hid = hid
+        self.cmpName = cmpName
+        self.orderNumber = orderNumber
+        self.yourRef = yourRef
+        self.sendEmail = sendEmail
+        self.branchCode = branchCode
+        self.voteCount = voteCount
+        self.delDebtorName = delDebtorName
+        self.delAddressLine1 = delAddressLine1
+        self.delAddressLine2 = delAddressLine2
+        self.delAddressLine3 = delAddressLine3
+        self.delCity = delCity
+        self.delStateCode = delStateCode
+        self.delPostCode = delPostCode
+        self.delFullAddress = delFullAddress
+        self.delContactperson = delContactperson
+        self.delContactemail = delContactemail
+        self.delPhone = delPhone
+        self.document = document
+        self.comments = comments
+        self.notes = notes
+        self.type = type
+        self.status = status
+        self.latitude = latitude
+        self.longitude = longitude
+        self.customOrder = customOrder
+        self.isDeleted = isDeleted
+        self.branch = branch
+        self.jobStatus = jobStatus
+        self.customerID = customerID
+        self.driverSign = driverSign
+        self.supervisonSign = supervisonSign
+        self.customerSign = customerSign
+        self.customerPhotos = customerPhotos
+        self.deliveryComment = deliveryComment
+        self.selectedJob = selectedJob
+        self.ETAStatus = ETAStatus
+        self.deliveryStatus = deliveryStatus
+    }
+    
+    required override init() {
+    }
 }

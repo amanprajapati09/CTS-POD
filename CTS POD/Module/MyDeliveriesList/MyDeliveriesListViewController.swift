@@ -31,7 +31,7 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
             ]
             navigationBar.titleTextAttributes = titleTextAttributes
         }
-        tableView.register(JobConfirmListTableViewCell.self)
+        tableView.register(MyDeliveriesListTableViewCell.self)
         setupView()
         bindView()
         viewModel.fetchList()
@@ -67,20 +67,20 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
     }
     
     private func bindView() {
-//        self.jobs = [JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test")), JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test"))]
-//        self.tableView.reloadData()
-        viewModel.$jobList.subscribe(on: DispatchQueue.main)
-            .sink { [weak self] jobList in
-                self?.jobs = jobList
-                self?.tableView.reloadData()
-            }.store(in: &cancellable)
+        self.jobs = [JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test")), JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test"))]
+        self.tableView.reloadData()
+//        viewModel.$jobList.subscribe(on: DispatchQueue.main)
+//            .sink { [weak self] jobList in
+//                self?.jobs = jobList
+//                self?.tableView.reloadData()
+//            }.store(in: &cancellable)
     }
 }
 
 extension MyDeliveriesListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: JobConfirmListTableViewCell = tableView.dequeue(JobConfirmListTableViewCell.self, for: indexPath)
+        let cell: MyDeliveriesListTableViewCell = tableView.dequeue(MyDeliveriesListTableViewCell.self, for: indexPath)
         cell.isExpand = jobs?[indexPath.row].isExpand ?? false
         cell.job = jobs?[indexPath.row].job
         cell.selectionStyle = .none
