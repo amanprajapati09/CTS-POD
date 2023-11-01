@@ -12,6 +12,6 @@ final class MyDeliveriesListViewModel {
     }
     
     func fetchList() {
-        jobList = fetchManager.fetchUpdatedJobs().map { $0.mapToJobConfirmDisplay() }
+        jobList = fetchManager.fetchJobsForDeliveryList().map { $0.mapToJobConfirmDisplay() }
     }
 }

@@ -67,6 +67,9 @@
 		750175462AF0274C00F4888B /* SignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750175452AF0274C00F4888B /* SignViewController.swift */; };
 		750175482AF0D42100F4888B /* SignViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750175472AF0D42100F4888B /* SignViewModel.swift */; };
 		7501754A2AF0D7EC00F4888B /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750175492AF0D7EC00F4888B /* Signature.swift */; };
+		75DD8B912AF26BA90030DF89 /* ETAUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */; };
+		75DD8B932AF26BB20030DF89 /* ETAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B922AF26BB20030DF89 /* ETAClient.swift */; };
+		75DD8B952AF26D270030DF89 /* ETAModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B942AF26D270030DF89 /* ETAModel.swift */; };
 		949E1B4A1699706D8E03A7F5 /* Pods_CTS_POD_CTS_PODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */; };
 		AB269F495F93B9734900A913 /* Pods_CTS_PODTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 315C1FFBC51599B6C3A70F9B /* Pods_CTS_PODTests.framework */; };
 		D00D0EF62AEE2DF2008F7722 /* MyDeliveriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D0EF52AEE2DF2008F7722 /* MyDeliveriesListViewController.swift */; };
@@ -185,6 +188,9 @@
 		750175452AF0274C00F4888B /* SignViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignViewController.swift; sourceTree = "<group>"; };
 		750175472AF0D42100F4888B /* SignViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignViewModel.swift; sourceTree = "<group>"; };
 		750175492AF0D7EC00F4888B /* Signature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
+		75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAUsecase.swift; sourceTree = "<group>"; };
+		75DD8B922AF26BB20030DF89 /* ETAClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAClient.swift; sourceTree = "<group>"; };
+		75DD8B942AF26D270030DF89 /* ETAModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAModel.swift; sourceTree = "<group>"; };
 		81A3368DE9A43064888E7B08 /* Pods_CTS_POD_CTS_PODUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTS_POD_CTS_PODUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD0E45136CA5B4D6716F584 /* Pods-CTS POD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD.release.xcconfig"; path = "Target Support Files/Pods-CTS POD/Pods-CTS POD.release.xcconfig"; sourceTree = "<group>"; };
 		A8BFD85A5BB426317E1E7825 /* Pods-CTS POD-CTS PODUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD-CTS PODUITests.debug.xcconfig"; path = "Target Support Files/Pods-CTS POD-CTS PODUITests/Pods-CTS POD-CTS PODUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -494,6 +500,9 @@
 				D00D0EF72AEE2EB9008F7722 /* MyDeliveriesList.swift */,
 				D00D0EF92AEE2F01008F7722 /* MyDeliveriesListViewModel.swift */,
 				D0EFCCB42AF26DB300281EC9 /* MyDeliveriesListTableViewCell.swift */,
+				75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */,
+				75DD8B922AF26BB20030DF89 /* ETAClient.swift */,
+				75DD8B942AF26D270030DF89 /* ETAModel.swift */,
 			);
 			path = MyDeliveriesList;
 			sourceTree = "<group>";
@@ -824,6 +833,7 @@
 				07317FD52A7F56A50066341F /* NetworkEnums.swift in Sources */,
 				D0EFCCB52AF26DB300281EC9 /* MyDeliveriesListTableViewCell.swift in Sources */,
 				0772F4C32AA0F24C000951BF /* VehicleCheckListViewModel.swift in Sources */,
+				75DD8B912AF26BA90030DF89 /* ETAUsecase.swift in Sources */,
 				D04D28752AD12F4100C22A93 /* JobConfirmListViewController.swift in Sources */,
 				078E762F2A9CB57E008F7F8A /* ResetPasswordRequest.swift in Sources */,
 				0772F4CB2AA0F53E000951BF /* VehicleCheckListModels.swift in Sources */,
@@ -852,6 +862,7 @@
 				07046A352A926E9E0074C711 /* Reusable.swift in Sources */,
 				750175462AF0274C00F4888B /* SignViewController.swift in Sources */,
 				D04D287B2AD138A000C22A93 /* JobConfirmListTableViewCell.swift in Sources */,
+				75DD8B932AF26BB20030DF89 /* ETAClient.swift in Sources */,
 				D0A9F7072A936F2D00C87638 /* SignInViewModel.swift in Sources */,
 				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,
 				079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */,
@@ -872,6 +883,7 @@
 				D00D0EFA2AEE2F01008F7722 /* MyDeliveriesListViewModel.swift in Sources */,
 				D0A9F70D2A93BD4600C87638 /* SignInUseCase.swift in Sources */,
 				D0A9F7052A936F2100C87638 /* SignInViewController.swift in Sources */,
+				75DD8B952AF26D270030DF89 /* ETAModel.swift in Sources */,
 				D094E8012A947D4500FDFD61 /* ForgotPasswordViewController.swift in Sources */,
 				07317FD32A7F55720066341F /* APIHandler.swift in Sources */,
 				07DCAD5D2AC170C20002D2FF /* TextContainerView.swift in Sources */,
@@ -1057,6 +1069,9 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M243A8GXSD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CTS POD/Info.plist";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "CTS needs your location permission please allow for more accurate result";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";
@@ -1090,6 +1105,9 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M243A8GXSD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CTS POD/Info.plist";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "CTS needs your location permission please allow for more accurate result";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";

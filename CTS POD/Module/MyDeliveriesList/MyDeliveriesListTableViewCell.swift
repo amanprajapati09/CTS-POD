@@ -18,7 +18,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     var job: Job? {
         didSet {
             updateValue()
-            manageSignMark()
+            manageETAButton()
         }
     }
     
@@ -35,11 +35,11 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         titleLabel.text = job.cmpName
         subTitleLabel.text = job.titleAddress
         
-        locationRow.titleLabel.text = job.delAddressLine3
+        locationRow.titleLabel.text = job.locationAddress
         messageRow.titleLabel.text = job.comments
         callRow.titleLabel.text = job.orderNumber
                 
-        checkBoxIcon.image =  (jobModel?.isSelected ?? false) ? UIImage(named: "check_mark") : UIImage(named: "check_empty")
+        checkBoxIcon.setImage((jobModel?.isSelected ?? false) ? UIImage(named: "check_mark") : UIImage(named: "check_empty"), for: .normal)
     }
     
     private lazy var titleLabel: UILabel = {
@@ -59,7 +59,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         view.numberOfLines = 0
         return view
     }()
-    
+        
     private lazy var expandCollapseIcon: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "expand_icon")
@@ -69,7 +69,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     
     private lazy var etaButton: UIButton = {
         let view = UIButton()
-        view.backgroundColor = Colors.colorPrimary
+        view.backgroundColor = Colors.colorBlue
         view.titleLabel?.textColor = UIColor.white
         view.setTitle("ETA", for: .normal)
         view.setTitleColor(.white, for: .normal)
@@ -77,11 +77,11 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         return view
     }()
     
-    private lazy var checkBoxIcon: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "check_empty")
-        view.contentMode = .scaleAspectFill
+    private lazy var checkBoxIcon: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage(named: "check_empty"), for: .normal)
         view.isUserInteractionEnabled = true
+        view.addTarget(self, action: #selector(checkBoxDidTap), for: .touchUpInside)
         return view
     }()
     
@@ -93,30 +93,12 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         return view
     }()
     
-    private lazy var driverSign: UIImageView = {
-        let view = UIImageView(image: UIImage(named: "driver_sign_done"))
-        return view
-    }()
-    
-    private lazy var supervisorSign: UIImageView = {
-        let view = UIImageView(image: UIImage(named: "supervisor_sign_done"))
-        return view
-    }()
-    
-    private lazy var signContainer: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [driverSign, supervisorSign])
-        view.axis = .vertical
-        view.alignment = .center
-        view.distribution = .fillEqually
-        return view
-    }()
-    
     private lazy var headerView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [expandCollapseIcon, titleContainer, etaButton, signContainer, checkBoxIcon])
+        let view = UIStackView(arrangedSubviews: [expandCollapseIcon, titleContainer, etaButton, checkBoxIcon])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
-        view.alignment = .top
-        view.spacing = 2
+        view.alignment = .center
+        view.spacing = 5
         view.isUserInteractionEnabled = true
         return view
     }()
@@ -149,19 +131,19 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     }()
     
     private lazy var callButton: ActionButtonView = {
-        let view = ActionButtonView(title: "call", image: UIImage(named: "job_location")!)
+        let view = ActionButtonView(title: "call", image: UIImage(named: "action_call")!, viewColor: Colors.colorPrimary)
         view.tappedButton.addTarget(self, action: #selector(callButtonTapped), for: .touchUpInside)
         return view
     }()
     
     private lazy var navButton: ActionButtonView = {
-        let view = ActionButtonView(title: "Nav", image: UIImage(named: "job_location")!)
+        let view = ActionButtonView(title: "Nav", image: UIImage(named: "action_location")!, viewColor: Colors.colorBlue)
         view.tappedButton.addTarget(self, action: #selector(navButtonTapped), for: .touchUpInside)
         return view
     }()
     
     private lazy var pdfButton: ActionButtonView = {
-        let view = ActionButtonView(title: "Nav", image: UIImage(named: "job_location")!)
+        let view = ActionButtonView(title: nil, image: UIImage(named: "action_pdf")!, viewColor: Colors.colororagne)
         view.tappedButton.addTarget(self, action: #selector(pdfButtonTapped), for: .touchUpInside)
         return view
     }()
@@ -209,7 +191,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     
     private func setUpHeaderView() {
         self.contentView.addSubview(containerStack)
-        
+    
         etaButton.snp.makeConstraints { make in
             make.height.width.equalTo(35)
         }
@@ -225,10 +207,6 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         
         checkBoxIcon.snp.makeConstraints { make in
             make.height.width.equalTo(15)
-        }
-        
-        signContainer.snp.makeConstraints { make in
-            make.width.equalTo(30)
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(checkBoxDidTap))
@@ -265,11 +243,6 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         }
     }
     
-    private func manageSignMark() {
-        driverSign.isHidden = (job?.driverSign == nil)
-        supervisorSign.isHidden = (job?.supervisonSign == nil)
-    }
-    
     @objc private func callButtonTapped() {
         
     }
@@ -281,21 +254,43 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     @objc private func pdfButtonTapped() {
         
     }
+    
+    private func manageETAButton() {
+        var title: String
+        guard let etaTitle = job?.ETAStatus else {
+            title = "EAT"
+            etaButton.backgroundColor = Colors.colorBlue
+            etaButton.isUserInteractionEnabled = true
+            etaButton.setTitle(title, for: .normal)
+            return
+        }
+        title = "Delay"
+        if etaTitle == ETAString.eta.rawValue {
+            etaButton.isUserInteractionEnabled = true
+        } else {
+            etaButton.isUserInteractionEnabled = false
+        }
+        etaButton.backgroundColor = Colors.colorGray
+        etaButton.setTitle(title, for: .normal)
+    }
 }
 
 class ActionButtonView: UIView {
+    
+    private var viewColor: UIColor
     
     lazy var icon: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.tintColor = viewColor
         return view
     }()
     
     lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = Fonts.popRegular
-        view.textColor = Colors.colorGray
+        view.textColor = viewColor
         view.textAlignment = .left
         view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -307,11 +302,12 @@ class ActionButtonView: UIView {
         return button
     }()
     
-    init(title: String?, image: UIImage) {
+    init(title: String?, image: UIImage, viewColor: UIColor) {
+        self.viewColor = viewColor
         super.init(frame: .zero)
         setUpView()
         self.titleLabel.text = title
-        self.icon.image = image
+        self.icon.image = image.withRenderingMode(.alwaysTemplate)
     }
     
     required init?(coder: NSCoder) {
@@ -322,7 +318,7 @@ class ActionButtonView: UIView {
         addSubview(icon)
         self.layer.cornerRadius = 5
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.blue.cgColor
+        self.layer.borderColor = viewColor.cgColor
         icon.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(15)
             $0.height.width.equalTo(30)

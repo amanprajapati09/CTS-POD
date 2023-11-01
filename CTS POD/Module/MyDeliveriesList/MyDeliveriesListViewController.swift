@@ -6,7 +6,11 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
 
     private var cancellable = Set<AnyCancellable>()
     let disposeBag = DisposeBag()
-    var jobs: [JobDisplayModel]?
+    var jobs: [JobDisplayModel]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -67,13 +71,11 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
     }
     
     private func bindView() {
-        self.jobs = [JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test")), JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test"))]
-        self.tableView.reloadData()
-//        viewModel.$jobList.subscribe(on: DispatchQueue.main)
-//            .sink { [weak self] jobList in
-//                self?.jobs = jobList
-//                self?.tableView.reloadData()
-//            }.store(in: &cancellable)
+        viewModel.$jobList.subscribe(on: DispatchQueue.main)
+            .sink { [weak self] jobList in
+                self?.jobs = jobList
+                self?.tableView.reloadData()
+            }.store(in: &cancellable)
     }
 }
 
@@ -82,8 +84,19 @@ extension MyDeliveriesListViewController: UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyDeliveriesListTableViewCell = tableView.dequeue(MyDeliveriesListTableViewCell.self, for: indexPath)
         cell.isExpand = jobs?[indexPath.row].isExpand ?? false
-        cell.job = jobs?[indexPath.row].job
+        cell.jobModel = jobs?[indexPath.row]
         cell.selectionStyle = .none
+        cell.tag = indexPath.row
+        cell.didTapCheckbox = { index in
+            if let jobList = self.jobs {
+                let job = jobList[index]
+                if job.isSelected {
+                    self.jobs?[index].isSelected = false
+                } else {
+                    self.jobs?[index].isSelected = true
+                }
+            }
+        }
         return cell
     }
     

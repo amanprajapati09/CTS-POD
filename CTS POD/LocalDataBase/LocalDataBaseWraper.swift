@@ -21,7 +21,14 @@ class LocalDataBaseWraper {
     
     func fetchUpdatedJobs() -> [Job] {
         let jobs = realmManager.fetchList(type: Job.self)?.filter({
-            $0.status == 5
+            $0.status == 5 && $0.jobStatus == nil
+        }) ?? []
+        return jobs
+    }
+    
+    func fetchJobsForDeliveryList() -> [Job] {
+        let jobs = realmManager.fetchList(type: Job.self)?.filter({
+            $0.status == 5 && $0.jobStatus == StatusString.jobConfirm.rawValue
         }) ?? []
         return jobs
     }

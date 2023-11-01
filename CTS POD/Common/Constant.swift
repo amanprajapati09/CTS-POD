@@ -12,15 +12,12 @@ struct Constant {
         return LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: UserDefaultKeys.user) != nil
     }
     
-    static var isVehicalCheck: Bool {
-        let lastCheckDate = UserDefaults.standard.value(forKey: UserDefaultKeys.checkVehicle) as? Date
+    static var isVehicalCheck: Bool {        
         if Constant.isLogin {
-            if lastCheckDate == nil {
-                return true
+            if let date = UserDefaults.standard.value(forKey: UserDefaultKeys.checkVehicle) {
+                return false
             } else {
-                if lastCheckDate!.getDiffrenceBetweenDates() > 12 {
-                  return true
-                }
+                return true
             }
         }
         return false

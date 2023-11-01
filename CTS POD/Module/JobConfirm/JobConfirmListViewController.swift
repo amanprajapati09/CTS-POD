@@ -91,6 +91,33 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
             ]
             navigationBar.titleTextAttributes = titleTextAttributes
         }
+        
+        let rightButton = UIBarButtonItem(image: UIImage(named: "done"), 
+                                          style: .done, target: self, 
+                                          action: #selector(navigationRightClick))
+        navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    @objc
+    private func navigationRightClick() {
+        guard let jobs else { return }
+        let selectedItems = jobs.filter {
+            $0.isSelected == true && $0.job.driverSign != nil && $0.job.supervisonSign != nil
+        }
+        if selectedItems.count > 0 {
+            selectedItems.forEach { item in
+                do {
+                    try RealmManager.shared.realm.write {
+                        item.job.jobStatus = StatusString.jobConfirm.rawValue
+                    }
+                } catch {
+                    print("error in update the data")
+                }
+            }
+            viewModel.fetchList()
+        } else {
+            showSelectedJobAlert()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -185,6 +212,15 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
             }
         })
         tableView.reloadData()
+    }
+    
+    private func showSelectedJobAlert() {
+        let alert = UIAlertController(title: "Error!", message: "Please select jobs which complete driver and supervisor sign", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Okay", style: .cancel) { _ in
+            alert.dismiss(animated: true)
+        }
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 }
 

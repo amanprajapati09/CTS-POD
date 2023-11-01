@@ -30,11 +30,11 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         titleLabel.text = job.cmpName
         subTitleLabel.text = job.titleAddress
         
-        locationRow.titleLabel.text = job.delAddressLine3
+        locationRow.titleLabel.text = job.locationAddress
         messageRow.titleLabel.text = job.comments
         callRow.titleLabel.text = job.orderNumber
                 
-        checkBoxIcon.image =  (jobModel?.isSelected ?? false) ? UIImage(named: "check_mark") : UIImage(named: "check_empty")
+        checkBoxIcon.setImage((jobModel?.isSelected ?? false) ? UIImage(named: "check_mark") : UIImage(named: "check_empty"), for: .normal)
     }
     
     private lazy var titleLabel: UILabel = {
@@ -62,11 +62,11 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         return view
     }()
     
-    private lazy var checkBoxIcon: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "check_empty")
-        view.contentMode = .scaleAspectFill
+    private lazy var checkBoxIcon: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage(named: "check_empty"), for: .normal)
         view.isUserInteractionEnabled = true
+        view.addTarget(self, action: #selector(checkBoxDidTap), for: .touchUpInside)
         return view
     }()
     
@@ -100,8 +100,8 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         let view = UIStackView(arrangedSubviews: [expandCollapseIcon, titleContainer, signContainer, checkBoxIcon])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
-        view.alignment = .top
-        view.spacing = 2
+        view.alignment = .center
+        view.spacing = 5
         view.isUserInteractionEnabled = true
         return view
     }()
@@ -163,7 +163,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     }
     
     private func setUpHeaderView() {
-        self.addSubview(containerStack)
+        contentView.addSubview(containerStack)
         containerStack.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(10)
         }
