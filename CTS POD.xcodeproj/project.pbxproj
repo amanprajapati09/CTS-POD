@@ -67,6 +67,11 @@
 		750175462AF0274C00F4888B /* SignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750175452AF0274C00F4888B /* SignViewController.swift */; };
 		750175482AF0D42100F4888B /* SignViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750175472AF0D42100F4888B /* SignViewModel.swift */; };
 		7501754A2AF0D7EC00F4888B /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750175492AF0D7EC00F4888B /* Signature.swift */; };
+		7549D86A2AF3817E00D49C62 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D8692AF3817E00D49C62 /* LocationManager.swift */; };
+		7549D86D2AF3C68D00D49C62 /* DeliverySubmit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D86C2AF3C68D00D49C62 /* DeliverySubmit.swift */; };
+		7549D86F2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D86E2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift */; };
+		7549D8712AF3C7CC00D49C62 /* DeliverySubmitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D8702AF3C7CC00D49C62 /* DeliverySubmitViewModel.swift */; };
+		75705B392AF2B23D00FDC42A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75705B382AF2B23D00FDC42A /* GoogleService-Info.plist */; };
 		75DD8B912AF26BA90030DF89 /* ETAUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */; };
 		75DD8B932AF26BB20030DF89 /* ETAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B922AF26BB20030DF89 /* ETAClient.swift */; };
 		75DD8B952AF26D270030DF89 /* ETAModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B942AF26D270030DF89 /* ETAModel.swift */; };
@@ -185,6 +190,12 @@
 		750175452AF0274C00F4888B /* SignViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignViewController.swift; sourceTree = "<group>"; };
 		750175472AF0D42100F4888B /* SignViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignViewModel.swift; sourceTree = "<group>"; };
 		750175492AF0D7EC00F4888B /* Signature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
+		7549D8692AF3817E00D49C62 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7549D86C2AF3C68D00D49C62 /* DeliverySubmit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverySubmit.swift; sourceTree = "<group>"; };
+		7549D86E2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverySubmitViewController.swift; sourceTree = "<group>"; };
+		7549D8702AF3C7CC00D49C62 /* DeliverySubmitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverySubmitViewModel.swift; sourceTree = "<group>"; };
+		755410912AF2B86C004214A2 /* CTS POD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CTS POD.entitlements"; sourceTree = "<group>"; };
+		75705B382AF2B23D00FDC42A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAUsecase.swift; sourceTree = "<group>"; };
 		75DD8B922AF26BB20030DF89 /* ETAClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAClient.swift; sourceTree = "<group>"; };
 		75DD8B942AF26D270030DF89 /* ETAModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAModel.swift; sourceTree = "<group>"; };
@@ -276,6 +287,7 @@
 		07317F9E2A7E2BE10066341F /* CTS POD */ = {
 			isa = PBXGroup;
 			children = (
+				755410912AF2B86C004214A2 /* CTS POD.entitlements */,
 				D0EFCCC62AF2797300281EC9 /* Fonts */,
 				07B6575B2ADD673800E6CA08 /* LocalDataBase */,
 				079422B32A912D6D00684513 /* Extension */,
@@ -286,6 +298,7 @@
 				07317F9F2A7E2BE10066341F /* AppDelegate.swift */,
 				07317FA12A7E2BE10066341F /* SceneDelegate.swift */,
 				07317FAA2A7E2BE80066341F /* LaunchScreen.storyboard */,
+				75705B382AF2B23D00FDC42A /* GoogleService-Info.plist */,
 				07317FAD2A7E2BE80066341F /* Info.plist */,
 				078B21212A9294FE000F6A1E /* SplashViewController.swift */,
 			);
@@ -312,10 +325,10 @@
 		07317FCF2A7E30DE0066341F /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				7549D86B2AF3C67300D49C62 /* DeliverySubmit */,
 				750175442AF026A100F4888B /* SignatureView */,
 				D00D0EF42AEE2DD0008F7722 /* MyDeliveriesList */,
 				0772F4BD2AA0C28D000951BF /* VehicleChecklist */,
-				D04D28712AD12EAF00C22A93 /* DeliveriesConfirm */,
 				075E2B1D2AD2D74B00CD3942 /* JobConfirm */,
 				D022EA412A960CE200B44E4B /* ResetPassword */,
 				D00F0ADE2A96047600F9F310 /* EnterCode */,
@@ -421,6 +434,7 @@
 				D0481D3B2AC1796100DC8A4C /* Preferances.swift */,
 				07046A342A926E9E0074C711 /* Reusable.swift */,
 				D0A9F70A2A93713C00C87638 /* BaseViewController.swift */,
+				7549D8692AF3817E00D49C62 /* LocationManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -465,6 +479,16 @@
 				750175492AF0D7EC00F4888B /* Signature.swift */,
 			);
 			path = SignatureView;
+			sourceTree = "<group>";
+		};
+		7549D86B2AF3C67300D49C62 /* DeliverySubmit */ = {
+			isa = PBXGroup;
+			children = (
+				7549D86C2AF3C68D00D49C62 /* DeliverySubmit.swift */,
+				7549D86E2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift */,
+				7549D8702AF3C7CC00D49C62 /* DeliverySubmitViewModel.swift */,
+			);
+			path = DeliverySubmit;
 			sourceTree = "<group>";
 		};
 		A091F4A7635ABFF1798BDAF6 /* Frameworks */ = {
@@ -524,13 +548,6 @@
 				078E762E2A9CB57E008F7F8A /* ResetPasswordRequest.swift */,
 			);
 			path = ResetPassword;
-			sourceTree = "<group>";
-		};
-		D04D28712AD12EAF00C22A93 /* DeliveriesConfirm */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DeliveriesConfirm;
 			sourceTree = "<group>";
 		};
 		D094E7FF2A947D2F00FDFD61 /* ForgotPassword */ = {
@@ -681,6 +698,7 @@
 				D01344C42AF2A6B300CD2CBD /* Poppins-Regular.ttf in Resources */,
 				07317FAC2A7E2BE80066341F /* LaunchScreen.storyboard in Resources */,
 				07317FA92A7E2BE80066341F /* Assets.xcassets in Resources */,
+				75705B392AF2B23D00FDC42A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -819,6 +837,7 @@
 				07DCAD632AC31D840002D2FF /* NumberContainer.swift in Sources */,
 				078F7E3F2AA1F3F800125F88 /* CheckboxContainer.swift in Sources */,
 				D00F0AE22A96049F00F9F310 /* EnterCodeViewController.swift in Sources */,
+				7549D86D2AF3C68D00D49C62 /* DeliverySubmit.swift in Sources */,
 				07DCAD5F2AC1BDDA0002D2FF /* DropdownContainer.swift in Sources */,
 				D0A9F70F2A93BDCE00C87638 /* SignInClient.swift in Sources */,
 				079422BC2A92046D00684513 /* DashboardViewController.swift in Sources */,
@@ -871,9 +890,11 @@
 				07DCAD672AC355E40002D2FF /* String+Extension.swift in Sources */,
 				079422B72A91FBAA00684513 /* SharedObject.swift in Sources */,
 				D04D28772AD12F5D00C22A93 /* JobConfirmListViewModel.swift in Sources */,
+				7549D86F2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift in Sources */,
 				D04D28792AD135DE00C22A93 /* JobConfirm.swift in Sources */,
 				0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */,
 				07B6575A2AD58BD300E6CA08 /* RealmManager.swift in Sources */,
+				7549D86A2AF3817E00D49C62 /* LocationManager.swift in Sources */,
 				D00D0EFA2AEE2F01008F7722 /* MyDeliveriesListViewModel.swift in Sources */,
 				D0A9F70D2A93BD4600C87638 /* SignInUseCase.swift in Sources */,
 				D0A9F7052A936F2100C87638 /* SignInViewController.swift in Sources */,
@@ -885,6 +906,7 @@
 				0772F4C72AA0F27A000951BF /* VehicleCheckListUsecase.swift in Sources */,
 				079422A32A90FE3F00684513 /* GetCustomer.swift in Sources */,
 				07317FDA2A7FFEB70066341F /* GetConstomerUsecase.swift in Sources */,
+				7549D8712AF3C7CC00D49C62 /* DeliverySubmitViewModel.swift in Sources */,
 				07DCAD652AC3556E0002D2FF /* BaseContainerView.swift in Sources */,
 				07ABD1772A952BD600460A8A /* SignInModel.swift in Sources */,
 				0772F4C12AA0F230000951BF /* VehicleCheckListViewController.swift in Sources */,
@@ -1056,9 +1078,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_ENTITLEMENTS = "CTS POD/CTS POD.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M243A8GXSD;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1079,7 +1102,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.exigotech.ctspod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ctspod-adhoc";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "cstpod-development";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1092,9 +1115,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_ENTITLEMENTS = "CTS POD/CTS POD.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M243A8GXSD;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1115,7 +1139,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.exigotech.ctspod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ctspod-adhoc";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "cstpod-development";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

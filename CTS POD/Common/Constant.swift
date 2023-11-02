@@ -5,7 +5,7 @@ struct Constant {
     static let baseURL = "https://ctstestapi.cooksconnection.com.au/api/v1/"
     
     static var deviceID: String {
-        return UIDevice.current.identifierForVendor!.uuidString
+        return UserDefaults.standard.string(forKey: UserDefaultKeys.fcmToke) ?? UIDevice.current.identifierForVendor!.uuidString
     }
     
     static var isLogin: Bool {
@@ -80,4 +80,5 @@ struct UserDefaultKeys {
     static let customer = "customers"
     static let checkVehicle = "checkVehicle"
     static let isVehicalSubmit = "VehicalSubmit"
+    static let fcmToke = "fcmToken"
 }

@@ -24,21 +24,30 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(false, animated: false)
-        navigationController?.navigationItem.setHidesBackButton(true, animated: false)
-        navigationController?.navigationBar.tintColor = .black
-        self.title = "Deliveries Confirm"
-        if let navigationBar = navigationController?.navigationBar {
-            let titleTextAttributes: [NSAttributedString.Key: Any] = [
-                .foregroundColor: UIColor.black, // You can change this color to the desired one
-                .font: UIFont.boldSystemFont(ofSize: 17) // You can change the font and size as needed
-            ]
-            navigationBar.titleTextAttributes = titleTextAttributes
-        }
+        setupNavigation()
         tableView.register(MyDeliveriesListTableViewCell.self)
         setupView()
         bindView()
         viewModel.fetchList()
+    }
+    
+    private func setupNavigation() {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationItem.setHidesBackButton(true, animated: false)
+        navigationController?.navigationBar.tintColor = .black
+        self.title = viewModel.configuration.string.navigationTitle
+        if let navigationBar = navigationController?.navigationBar {
+            let titleTextAttributes: [NSAttributedString.Key: Any] = [
+                .foregroundColor: UIColor.black,
+                .font: UIFont.boldSystemFont(ofSize: 17)
+            ]
+            navigationBar.titleTextAttributes = titleTextAttributes
+        }
+        
+        let rightButton = UIBarButtonItem(image: UIImage(named: "done"),
+                                          style: .done, target: self,
+                                          action: #selector(navigationRightClick))
+        navigationItem.rightBarButtonItem = rightButton
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -60,11 +69,8 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
     }
 
     private func setupView() {
-        let safearea = view.safeAreaLayoutGuide
         view.backgroundColor = Colors.forgotPasswordViewBackground
-        
         view.addSubview(tableView)
-        
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -76,6 +82,44 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
                 self?.jobs = jobList
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
+        
+        viewModel.$state.subscribe(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .LocationPermission:
+                    self?.showErrorAlert(message: "Please allow location permission to access the location.")
+                case .success:
+                    self?.viewModel.fetchList()
+                case .error(let message):
+                    self?.showErrorAlert(message: message)
+                default:
+                    print("nothing")
+                }
+            }.store(in: &cancellable)
+    }
+    
+    @objc
+    private func navigationRightClick() {
+        guard let jobs else { return }
+        let selectedItems = jobs.filter {
+            $0.isSelected == true
+        }
+        if selectedItems.count > 0 {
+            let joblist = selectedItems.map{ $0.job }
+            let controller = DeliverySubmit.build(jobs: joblist)
+            navigationController?.pushViewController(controller, animated: true)
+        } else {
+            showSelectedJobAlert()
+        }
+    }
+    
+    private func showSelectedJobAlert() {
+        let alert = UIAlertController(title: "Error!", message: "Please select jobs which complete driver and supervisor sign", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Okay", style: .cancel) { _ in
+            alert.dismiss(animated: true)
+        }
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 }
 
@@ -95,6 +139,12 @@ extension MyDeliveriesListViewController: UITableViewDataSource, UITableViewDele
                 } else {
                     self.jobs?[index].isSelected = true
                 }
+            }
+        }
+        cell.didTapETAButton = { index in
+            if let jobList = self.jobs {
+                let job = jobList[index]
+                self.viewModel.updateStatus(selectedJob: job.job)
             }
         }
         return cell

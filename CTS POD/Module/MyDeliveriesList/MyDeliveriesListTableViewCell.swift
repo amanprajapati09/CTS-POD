@@ -1,9 +1,3 @@
-//
-//  MyDeliveriesListTableViewCell.swift
-//  CTS POD
-//
-//  Created by jayesh kanzariya on 01/11/23.
-//
 
 import UIKit
 
@@ -29,6 +23,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     }
     
     var didTapCheckbox: ((_ index: Int) -> ())?
+    var didTapETAButton: ((_ index: Int) -> ())?
     
     private func updateValue() {
         guard let job else { return }
@@ -74,6 +69,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         view.setTitle("ETA", for: .normal)
         view.setTitleColor(.white, for: .normal)
         view.titleLabel?.font = Fonts.popRegularSmall
+        view.addTarget(self, action: #selector(etaButtonTapped), for: .touchUpInside)
         return view
     }()
     
@@ -253,6 +249,10 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     
     @objc private func pdfButtonTapped() {
         
+    }
+    
+    @objc private func etaButtonTapped() {
+        didTapETAButton?(tag)
     }
     
     private func manageETAButton() {

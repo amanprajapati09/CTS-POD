@@ -83,7 +83,7 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.navigationBar.tintColor = .black
-        self.title = "Deliveries Confirm"
+        self.title = viewModel.configuration.string.navigationTitle
         if let navigationBar = navigationController?.navigationBar {
             let titleTextAttributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: UIColor.black, // You can change this color to the desired one

@@ -4,7 +4,7 @@ final class MyDeliveriesList {
     struct Configuration {
         let images = Images()
         let string = Strings()
-        var usecase: SignInUseCaseProtocol = SignInUseCase(client: SignInClient())
+        var usecase: ETAUseCaseProtocol = ETAUseCase(client: ETAClient())
         
         init() { }
     }
@@ -16,7 +16,6 @@ final class MyDeliveriesList {
         let viewController = MyDeliveriesListViewController(viewModel: viewModel)
         return viewController
     }
-    
 }
 
 extension MyDeliveriesList.Configuration {
@@ -28,5 +27,6 @@ extension MyDeliveriesList.Configuration {
         let newPassword = "New Password"
         let confirmPassword = "Confirm password"
         let resetPassword = "Confirm password"
+        let navigationTitle = "My Deliveries List"
     }
 }

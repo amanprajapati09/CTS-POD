@@ -12,10 +12,10 @@ class LocalDataBaseWraper {
     }
     
     func updateJobStatus(jobs: [Job]) {
-       try! realmManager.realm.write {
-           _ = jobs.map { job in
-               job.status = 5
-           }
+        try! realmManager.realm.write {
+            _ = jobs.map { job in
+                job.status = 5
+            }
         }
     }
     
@@ -32,4 +32,11 @@ class LocalDataBaseWraper {
         }) ?? []
         return jobs
     }
+    
+    func updateEtaStatus(job: Job, status: ETAString) {
+        try! realmManager.realm.write {
+            job.ETAStatus = status.rawValue
+        }
+    }
 }
+
