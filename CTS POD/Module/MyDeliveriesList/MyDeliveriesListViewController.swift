@@ -77,11 +77,13 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
     }
     
     private func bindView() {
-        viewModel.$jobList.subscribe(on: DispatchQueue.main)
-            .sink { [weak self] jobList in
-                self?.jobs = jobList
-                self?.tableView.reloadData()
-            }.store(in: &cancellable)
+        self.jobs = [JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test")), JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test"))]
+        self.tableView.reloadData()
+//        viewModel.$jobList.subscribe(on: DispatchQueue.main)
+//            .sink { [weak self] jobList in
+//                self?.jobs = jobList
+//                self?.tableView.reloadData()
+//            }.store(in: &cancellable)
         
         viewModel.$state.subscribe(on: DispatchQueue.main)
             .sink { [weak self] state in

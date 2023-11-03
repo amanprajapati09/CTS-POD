@@ -97,6 +97,7 @@
 		D094E8012A947D4500FDFD61 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094E8002A947D4500FDFD61 /* ForgotPasswordViewController.swift */; };
 		D094E8032A947DBD00FDFD61 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094E8022A947DBD00FDFD61 /* ForgotPassword.swift */; };
 		D094E8052A947E7300FDFD61 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094E8042A947E7300FDFD61 /* ForgotPasswordViewModel.swift */; };
+		D0950BBB2AF4CB170096ACE7 /* SignatureImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0950BBA2AF4CB170096ACE7 /* SignatureImageCollectionViewCell.swift */; };
 		D0A9F7052A936F2100C87638 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F7042A936F2100C87638 /* SignInViewController.swift */; };
 		D0A9F7072A936F2D00C87638 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F7062A936F2D00C87638 /* SignInViewModel.swift */; };
 		D0A9F7092A936F3C00C87638 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F7082A936F3C00C87638 /* SignIn.swift */; };
@@ -223,6 +224,7 @@
 		D094E8002A947D4500FDFD61 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D094E8022A947DBD00FDFD61 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		D094E8042A947E7300FDFD61 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		D0950BBA2AF4CB170096ACE7 /* SignatureImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		D0A9F7042A936F2100C87638 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D0A9F7062A936F2D00C87638 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		D0A9F7082A936F3C00C87638 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 			children = (
 				7549D86C2AF3C68D00D49C62 /* DeliverySubmit.swift */,
 				7549D86E2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift */,
+				D0950BBA2AF4CB170096ACE7 /* SignatureImageCollectionViewCell.swift */,
 				7549D8702AF3C7CC00D49C62 /* DeliverySubmitViewModel.swift */,
 			);
 			path = DeliverySubmit;
@@ -839,6 +842,7 @@
 				D00F0AE22A96049F00F9F310 /* EnterCodeViewController.swift in Sources */,
 				7549D86D2AF3C68D00D49C62 /* DeliverySubmit.swift in Sources */,
 				07DCAD5F2AC1BDDA0002D2FF /* DropdownContainer.swift in Sources */,
+				D0950BBB2AF4CB170096ACE7 /* SignatureImageCollectionViewCell.swift in Sources */,
 				D0A9F70F2A93BDCE00C87638 /* SignInClient.swift in Sources */,
 				079422BC2A92046D00684513 /* DashboardViewController.swift in Sources */,
 				071882D02A92160E00EE4747 /* Dashboard.swift in Sources */,
