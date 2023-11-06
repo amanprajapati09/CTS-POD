@@ -83,13 +83,40 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.navigationBar.tintColor = .black
-        self.title = "Deliveries Confirm"
+        self.title = viewModel.configuration.string.navigationTitle
         if let navigationBar = navigationController?.navigationBar {
             let titleTextAttributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: UIColor.black, // You can change this color to the desired one
                 .font: UIFont.boldSystemFont(ofSize: 17) // You can change the font and size as needed
             ]
             navigationBar.titleTextAttributes = titleTextAttributes
+        }
+        
+        let rightButton = UIBarButtonItem(image: UIImage(named: "done"), 
+                                          style: .done, target: self, 
+                                          action: #selector(navigationRightClick))
+        navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    @objc
+    private func navigationRightClick() {
+        guard let jobs else { return }
+        let selectedItems = jobs.filter {
+            $0.isSelected == true && $0.job.driverSign != nil && $0.job.supervisonSign != nil
+        }
+        if selectedItems.count > 0 {
+            selectedItems.forEach { item in
+                do {
+                    try RealmManager.shared.realm.write {
+                        item.job.jobStatus = StatusString.jobConfirm.rawValue
+                    }
+                } catch {
+                    print("error in update the data")
+                }
+            }
+            viewModel.fetchList()
+        } else {
+            showSelectedJobAlert()
         }
     }
     
@@ -185,6 +212,15 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
             }
         })
         tableView.reloadData()
+    }
+    
+    private func showSelectedJobAlert() {
+        let alert = UIAlertController(title: "Error!", message: "Please select jobs which complete driver and supervisor sign", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Okay", style: .cancel) { _ in
+            alert.dismiss(animated: true)
+        }
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 }
 

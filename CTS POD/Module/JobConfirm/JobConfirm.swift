@@ -33,5 +33,7 @@ extension JobConfirm.Configuration {
         let driverSignTitle = "Driver Sign"
         let superVisionTitle = "Supervisor sign"
         let allTitle = "All"
+        
+        let navigationTitle = "Deliveries Confirm"
     }
 }

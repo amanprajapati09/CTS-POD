@@ -5,22 +5,19 @@ struct Constant {
     static let baseURL = "https://ctstestapi.cooksconnection.com.au/api/v1/"
     
     static var deviceID: String {
-        return UIDevice.current.identifierForVendor!.uuidString
+        return UserDefaults.standard.string(forKey: UserDefaultKeys.fcmToke) ?? UIDevice.current.identifierForVendor!.uuidString
     }
     
     static var isLogin: Bool {
         return LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: UserDefaultKeys.user) != nil
     }
     
-    static var isVehicalCheck: Bool {
-        let lastCheckDate = UserDefaults.standard.value(forKey: UserDefaultKeys.checkVehicle) as? Date
+    static var isVehicalCheck: Bool {        
         if Constant.isLogin {
-            if lastCheckDate == nil {
-                return true
+            if let date = UserDefaults.standard.value(forKey: UserDefaultKeys.checkVehicle) {
+                return false
             } else {
-                if lastCheckDate!.getDiffrenceBetweenDates() > 12 {
-                  return true
-                }
+                return true
             }
         }
         return false
@@ -83,4 +80,5 @@ struct UserDefaultKeys {
     static let customer = "customers"
     static let checkVehicle = "checkVehicle"
     static let isVehicalSubmit = "VehicalSubmit"
+    static let fcmToke = "fcmToken"
 }

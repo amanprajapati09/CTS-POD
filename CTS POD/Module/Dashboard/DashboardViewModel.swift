@@ -24,7 +24,8 @@ final class DashboardViewModel {
         optionList += options
         
         let list = updateVehicleCheckListOption(optionList: optionList).sorted(by: { $0.id < $1.id })
-        return updateJobConfirmOption(optionList: list)
+        let updatedJobList = updateDeliveryConfirmOption(optionList: list)
+        return updateJobConfirmOption(optionList: updatedJobList)
     }
     
     private func getSiginOption() -> DashboardDisplayModel {
@@ -55,28 +56,48 @@ final class DashboardViewModel {
                                              backgroundColor: Colors.colorWhite,
                                              textColor: Colors.colorPrimary)
             }
-            
             return model
         }
     }
     
     private func updateJobConfirmOption(optionList: [DashboardDisplayModel]) -> [DashboardDisplayModel] {
-        if fetchManager.fetchUpdatedJobs().count > 0 {
-            return optionList.map { model in
-                if model.id == 2 {
-                    return DashboardDisplayModel(id: model.id,
-                                                 title: model.title,
-                                                 icon: model.icon,
-                                                 type: model.type,
-                                                 backgroundColor: Colors.colorWhite,
-                                                 textColor: Colors.colorPrimary)
+        guard Constant.isLogin else { return optionList }
+        if customer.hasVehicalCheckList == false, Constant.isVehicalSubmit {
+            if fetchManager.fetchUpdatedJobs().count > 0 {
+                return optionList.map { model in
+                    if model.id == 2 {
+                        return DashboardDisplayModel(id: model.id,
+                                                     title: model.title,
+                                                     icon: model.icon,
+                                                     type: model.type,
+                                                     backgroundColor: Colors.colorWhite,
+                                                     textColor: Colors.colorPrimary)
+                    }
+                    return model
                 }
-                
-                return model
             }
-        } else {
-            return optionList
         }
+        return optionList
+    }
+    
+    private func updateDeliveryConfirmOption(optionList: [DashboardDisplayModel]) -> [DashboardDisplayModel] {
+        guard Constant.isLogin else { return optionList }
+        if customer.hasVehicalCheckList == false, Constant.isVehicalSubmit {
+            if fetchManager.fetchJobsForDeliveryList().count > 0 {
+                return optionList.map { model in
+                    if model.id == 3 {
+                        return DashboardDisplayModel(id: model.id,
+                                                     title: model.title,
+                                                     icon: model.icon,
+                                                     type: model.type,
+                                                     backgroundColor: Colors.colorWhite,
+                                                     textColor: Colors.colorPrimary)
+                    }                    
+                    return model
+                }
+            }
+        }
+        return optionList
     }
     
     private func fetchJobsForUpdate() {
