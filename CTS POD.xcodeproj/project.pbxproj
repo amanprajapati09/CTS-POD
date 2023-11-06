@@ -76,6 +76,7 @@
 		7549D8792AF812B900D49C62 /* JobSubmitUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D8782AF812B900D49C62 /* JobSubmitUsecase.swift */; };
 		7549D87B2AF812C600D49C62 /* JobSubmitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D87A2AF812C600D49C62 /* JobSubmitClient.swift */; };
 		75705B392AF2B23D00FDC42A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75705B382AF2B23D00FDC42A /* GoogleService-Info.plist */; };
+		759985D82AF9542A0067F661 /* UINavigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985D72AF9542A0067F661 /* UINavigation+Extension.swift */; };
 		75DD8B912AF26BA90030DF89 /* ETAUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */; };
 		75DD8B932AF26BB20030DF89 /* ETAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B922AF26BB20030DF89 /* ETAClient.swift */; };
 		75DD8B952AF26D270030DF89 /* ETAModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B942AF26D270030DF89 /* ETAModel.swift */; };
@@ -206,6 +207,7 @@
 		7549D87A2AF812C600D49C62 /* JobSubmitClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSubmitClient.swift; sourceTree = "<group>"; };
 		755410912AF2B86C004214A2 /* CTS POD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CTS POD.entitlements"; sourceTree = "<group>"; };
 		75705B382AF2B23D00FDC42A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		759985D72AF9542A0067F661 /* UINavigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigation+Extension.swift"; sourceTree = "<group>"; };
 		75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAUsecase.swift; sourceTree = "<group>"; };
 		75DD8B922AF26BB20030DF89 /* ETAClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAClient.swift; sourceTree = "<group>"; };
 		75DD8B942AF26D270030DF89 /* ETAModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAModel.swift; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 				07DCAD662AC355E40002D2FF /* String+Extension.swift */,
 				07DCAD6A2AC48F0D0002D2FF /* UIStackview+extension.swift */,
 				7549D8762AF7BB6500D49C62 /* UIImage+Extension.swift */,
+				759985D72AF9542A0067F661 /* UINavigation+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -929,6 +932,7 @@
 				D00F0AE42A9604AB00F9F310 /* EnterCodeViewModel.swift in Sources */,
 				0772F4C72AA0F27A000951BF /* VehicleCheckListUsecase.swift in Sources */,
 				079422A32A90FE3F00684513 /* GetCustomer.swift in Sources */,
+				759985D82AF9542A0067F661 /* UINavigation+Extension.swift in Sources */,
 				07317FDA2A7FFEB70066341F /* GetConstomerUsecase.swift in Sources */,
 				7549D8712AF3C7CC00D49C62 /* DeliverySubmitViewModel.swift in Sources */,
 				07DCAD652AC3556E0002D2FF /* BaseContainerView.swift in Sources */,

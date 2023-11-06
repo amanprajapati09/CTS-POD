@@ -121,6 +121,7 @@ class DashboardViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        optionList = viewModel.fetchOptions()
     }
     
     private func prepareFooterView() {
@@ -279,13 +280,13 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
                 self.navigationController?.pushViewController(controller, animated: true)
             }
         case .job:
-            if viewModel.updateJobListComplete {
+            if viewModel.updateJobListComplete && LocalDataBaseWraper().fetchUpdatedJobs().count > 0 {
                 self.navigationController?.pushViewController(JobConfirm.build(), animated: true)
             }
         case .deliveries:
-            self.navigationController?.pushViewController(MyDeliveriesList.build(), animated: true)
-        default:
-            print("Default")
+            if LocalDataBaseWraper().fetchJobsForDeliveryList().count > 0 {
+                self.navigationController?.pushViewController(MyDeliveriesList.build(), animated: true)
+            }
         }
     }
     

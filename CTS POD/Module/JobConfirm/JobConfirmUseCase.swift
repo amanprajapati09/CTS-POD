@@ -4,7 +4,6 @@ import Foundation
 protocol JobConfirmUseCaseProtocol {
     func fetchJob(completion: @escaping (Result<JobConfirmResponse, Error>)->()) async throws -> Void
     func updateJob(request: JobStatusUpdate, completion: @escaping (Result<JobStatusUpdateResponse, Error>)->()) async throws -> Void
-    
 }
 
 final class JobConfirmUseCase: JobConfirmUseCaseProtocol {

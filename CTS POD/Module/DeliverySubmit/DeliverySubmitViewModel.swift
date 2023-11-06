@@ -8,6 +8,7 @@ final class DeliverySubmitViewModel {
     let configuration: DeliverySubmit.Configuration
     let usecase: JobSubmitUseCaseProtocol
     @Published var viewState: APIState<JobStatusUpdateResponse>?
+    let myGroup = DispatchGroup()
     
     init(jobs: [Job], configuration: DeliverySubmit.Configuration, usecase: JobSubmitUseCaseProtocol = JobSubmitUseCase(client: JobSubmitClient())) {
         self.jobs = jobs
@@ -30,6 +31,7 @@ final class DeliverySubmitViewModel {
     }
     
     func submitJob(comment: String, name: String, images: [UIImage]?, status: DeliveryOption, signature: Data?)  {
+        viewState = .loading
         for job in jobs {
             let request = job.toSubmitJobRquest()
             request.comments = comment
@@ -53,19 +55,53 @@ final class DeliverySubmitViewModel {
             }
             request.status = status.status
             request.modifiedTime = Date().apiSupportedDate()
-            
+            request.userID = LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: UserDefaultKeys.user)?.id ?? "0"
             if let signature {
                 request.customerSign = signature.base64EncodedString()
             }
-            Task { @MainActor in
-                do {
-                    try await usecase.updateJobStatus(request: request) { result in
-                        
-                    }
-                } catch {
-                    
+            LocationManagerSwift.shared.updateLocation { latitude, longitude, status, error in
+                guard error == nil else {
+                    self.viewState = .error("Please enable location permission from settings")
+                    return
                 }
+                request.latitude = latitude
+                request.longitude = longitude
+                self.myGroup.enter()
+                self.callAPI(request: request)
+            }
+            
+        }
+        myGroup.notify(queue: DispatchQueue.main, execute: {
+            self.viewState = .loaded(JobStatusUpdateResponse(status: "Done", message: "Success"))
+            self.updateJobStatus()
+        })
+    }
+    
+    private func callAPI(request: JobSubmitRequest) {
+        Task { @MainActor in
+            do {
+                try await usecase.updateJobStatus(request: request) { result in
+                    self.myGroup.leave()
+                    switch result {
+                    case .success(_):
+                        break
+                    default:
+                        self.viewState = .error("Something went wrong")
+                    }
+                }
+            } catch {
+                self.viewState = .error("Something went wrong")
             }
         }
+    }
+    
+    private func updateJobStatus() {
+        do {
+            try RealmManager.shared.realm.write {
+                for job in jobs {
+                    job.jobStatus = StatusString.submited.rawValue
+                }
+            }
+        } catch {}
     }
 }

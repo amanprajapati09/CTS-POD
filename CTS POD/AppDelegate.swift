@@ -46,4 +46,11 @@ extension AppDelegate : MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         UserDefaults.standard.set(fcmToken, forKey: UserDefaultKeys.fcmToke)
     }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if let controller = UIApplication.shared.windows.first?.rootViewController as? UINavigationController {
+            let dashboard = controller.findViewController(type: DashboardViewController.self)
+            dashboard?.fetchJobList()
+        }
+    }
 }

@@ -28,7 +28,6 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
         tableView.register(MyDeliveriesListTableViewCell.self)
         setupView()
         bindView()
-        viewModel.fetchList()
     }
     
     private func setupNavigation() {
@@ -57,6 +56,7 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.fetchList()
     }
     
     init(viewModel: MyDeliveriesListViewModel) {
