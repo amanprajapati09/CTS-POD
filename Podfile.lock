@@ -812,7 +812,6 @@ PODS:
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.3.1)
   - PryntTrimmerView (4.0.2)
-  - ReachabilitySwift (5.0.0)
   - Realm (10.43.1):
     - Realm/Headers (= 10.43.1)
   - Realm/Headers (10.43.1)
@@ -839,7 +838,6 @@ DEPENDENCIES:
   - FirebaseAuth
   - FirebaseFirestore
   - IQKeyboardManagerSwift
-  - ReachabilitySwift
   - RealmSwift
   - RxCocoa
   - RxSwift
@@ -872,7 +870,6 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - PryntTrimmerView
-    - ReachabilitySwift
     - Realm
     - RealmSwift
     - RecaptchaInterop
@@ -908,7 +905,6 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
-  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   Realm: d97b438de77459e443bd2c8ad5ca0f95107aee4b
   RealmSwift: 6be3f27a7fd3f5cc8f99f4b187cc4e7150299e32
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
@@ -921,6 +917,6 @@ SPEC CHECKSUMS:
   SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
   YPImagePicker: afc81b3cffab05a6e7261c5daf80dc31b4e917b4
 
-PODFILE CHECKSUM: 8f40c009bcb6a00bbd9e96d1ac1cc077ba3dcde3
+PODFILE CHECKSUM: e8bbafac64e2c26b2ca200414f2fd3a7847f20f0
 
 COCOAPODS: 1.14.2

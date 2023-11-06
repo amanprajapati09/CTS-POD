@@ -166,8 +166,8 @@ class Job: Object, Decodable {
     }
     
     func toSubmitJobRquest() -> JobSubmitRequest {
-        var request = JobSubmitRequest()
-        request.jobID = id
+        let request = JobSubmitRequest()
+        request.jobID = id        
         if let driverSign {
             request.driverSign = driverSign.base64EncodedString(options: .lineLength64Characters)
         }
@@ -182,6 +182,7 @@ enum StatusString: String {
     case jobConfirm
     case ETA
     case delay
+    case submited
 }
 
 enum ETAString: String {

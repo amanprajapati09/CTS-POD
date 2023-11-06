@@ -16,6 +16,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         super.viewDidLoad()
         setupView()
         updateValue()
+        bind()
         manageButtons(option: .deliver)
     }
     
@@ -125,9 +126,9 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
     
     private lazy var rightButton: UIBarButtonItem = {
         let view = UIBarButtonItem(image: UIImage(named: "done"),
-                                 style: .done,
-                                 target:self,
-                                 action: #selector(navigationRightClick))
+                                   style: .done,
+                                   target:self,
+                                   action: #selector(navigationRightClick))
         return view
     }()
     
@@ -151,7 +152,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         navigationController?.setNavigationBarHidden(false, animated: false)
         view.backgroundColor = Colors.viewBackground
         navigationItem.title = viewModel.configuration.string.navigationTitle + ": " + viewModel.orderTitle
-               
+        
         navigationItem.rightBarButtonItem = rightButton
         
         orderNo.text = viewModel.orderNumber
@@ -320,6 +321,23 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
                             images: nil,
                             status: selectedState,
                             signature: nil)
+    }
+    
+    private func bind() {
+        viewModel.$viewState.receive(on: DispatchQueue.main)
+            .sink { state in
+                self.activityIndicator.stopAnimating()
+                switch state {
+                case .loaded(_):
+                    self.navigationItem.rightBarButtonItem = self.rightButton
+                    self.navigationController?.popViewController(animated: true)
+                case .error(let message):
+                    self.showErrorAlert(message: message)
+                    self.navigationItem.rightBarButtonItem = self.rightButton
+                default:
+                    print("")
+                }
+            }.store(in: &cancellable)
     }
 }
 
