@@ -110,6 +110,7 @@
 		D0A9F70D2A93BD4600C87638 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F70C2A93BD4600C87638 /* SignInUseCase.swift */; };
 		D0A9F70F2A93BDCE00C87638 /* SignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9F70E2A93BDCE00C87638 /* SignInClient.swift */; };
 		D0EFCCB52AF26DB300281EC9 /* MyDeliveriesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EFCCB42AF26DB300281EC9 /* MyDeliveriesListTableViewCell.swift */; };
+		D0F7D2EF2AF76DA2007C02D6 /* PDFViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F7D2EE2AF76DA2007C02D6 /* PDFViewerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -242,6 +243,7 @@
 		D0A9F70C2A93BD4600C87638 /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
 		D0A9F70E2A93BDCE00C87638 /* SignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInClient.swift; sourceTree = "<group>"; };
 		D0EFCCB42AF26DB300281EC9 /* MyDeliveriesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeliveriesListTableViewCell.swift; sourceTree = "<group>"; };
+		D0F7D2EE2AF76DA2007C02D6 /* PDFViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewerViewController.swift; sourceTree = "<group>"; };
 		DCE5216669F67F6A3CB6076C /* Pods-CTS PODTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS PODTests.debug.xcconfig"; path = "Target Support Files/Pods-CTS PODTests/Pods-CTS PODTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD7794EF65ADE2313D6343AA /* Pods-CTS POD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTS POD.debug.xcconfig"; path = "Target Support Files/Pods-CTS POD/Pods-CTS POD.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -442,6 +444,7 @@
 				079422AF2A91214200684513 /* Fonts.swift */,
 				079422B12A91234700684513 /* Constant.swift */,
 				079422B62A91FBAA00684513 /* SharedObject.swift */,
+				D0F7D2EE2AF76DA2007C02D6 /* PDFViewerViewController.swift */,
 				071882CD2A9213DE00EE4747 /* LocalTempStorage.swift */,
 				D0481D3B2AC1796100DC8A4C /* Preferances.swift */,
 				07046A342A926E9E0074C711 /* Reusable.swift */,
@@ -887,6 +890,7 @@
 				7549D87B2AF812C600D49C62 /* JobSubmitClient.swift in Sources */,
 				07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */,
 				071882CE2A9213DE00EE4747 /* LocalTempStorage.swift in Sources */,
+				D0F7D2EF2AF76DA2007C02D6 /* PDFViewerViewController.swift in Sources */,
 				079422A52A91072300684513 /* GetCustomerModels.swift in Sources */,
 				07B6575D2ADD675F00E6CA08 /* LocalDataBaseWraper.swift in Sources */,
 				078E762D2A98F051008F7F8A /* ValidateOTPModels.swift in Sources */,

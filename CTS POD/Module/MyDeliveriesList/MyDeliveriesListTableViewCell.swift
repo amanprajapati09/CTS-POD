@@ -24,6 +24,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     
     var didTapCheckbox: ((_ index: Int) -> ())?
     var didTapETAButton: ((_ index: Int) -> ())?
+    var didTapAction: ((_ action: ActionOption) -> ())?
     
     private func updateValue() {
         guard let job else { return }
@@ -240,15 +241,15 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     }
     
     @objc private func callButtonTapped() {
-        
+        didTapAction?(.call)
     }
     
     @objc private func navButtonTapped() {
-        
+        didTapAction?(.navigation)
     }
     
     @objc private func pdfButtonTapped() {
-        
+        didTapAction?(.document)
     }
     
     @objc private func etaButtonTapped() {

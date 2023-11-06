@@ -2,6 +2,12 @@
 import UIKit
 import SnapKit
 
+enum ActionOption {
+    case call
+    case navigation
+    case document
+}
+
 class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     
     var isExpand: Bool = false {
@@ -142,6 +148,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         let view = RowView()
         view.icon.image = UIImage(named: "job_call")
         view.translatesAutoresizingMaskIntoConstraints = false
+        
         return view
     }()
     
