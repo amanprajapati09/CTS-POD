@@ -242,6 +242,8 @@ extension JobConfirmListViewController: UITableViewDataSource, UITableViewDelega
                 }
             }
         }
+        
+        
         return cell
     }
     
