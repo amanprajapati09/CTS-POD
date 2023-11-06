@@ -164,6 +164,18 @@ class Job: Object, Decodable {
     
     required override init() {
     }
+    
+    func toSubmitJobRquest() -> JobSubmitRequest {
+        var request = JobSubmitRequest()
+        request.jobID = id
+        if let driverSign {
+            request.driverSign = driverSign.base64EncodedString(options: .lineLength64Characters)
+        }
+        if let supervisonSign {
+            request.supervisorSign = supervisonSign.base64EncodedString(options: .lineLength64Characters)
+        }
+        return request
+    }
 }
 
 enum StatusString: String {

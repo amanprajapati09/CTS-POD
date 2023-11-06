@@ -17,6 +17,7 @@ target 'CTS POD' do
   pod 'FirebaseFirestore'
   pod 'Firebase/Messaging'
   pod 'YPImagePicker'
+  pod 'ReachabilitySwift'
 
   # Pods for CTS POD
 

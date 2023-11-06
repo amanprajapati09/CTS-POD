@@ -71,6 +71,10 @@
 		7549D86D2AF3C68D00D49C62 /* DeliverySubmit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D86C2AF3C68D00D49C62 /* DeliverySubmit.swift */; };
 		7549D86F2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D86E2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift */; };
 		7549D8712AF3C7CC00D49C62 /* DeliverySubmitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D8702AF3C7CC00D49C62 /* DeliverySubmitViewModel.swift */; };
+		7549D8752AF7B86600D49C62 /* JobSubmitRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D8742AF7B86600D49C62 /* JobSubmitRequest.swift */; };
+		7549D8772AF7BB6500D49C62 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D8762AF7BB6500D49C62 /* UIImage+Extension.swift */; };
+		7549D8792AF812B900D49C62 /* JobSubmitUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D8782AF812B900D49C62 /* JobSubmitUsecase.swift */; };
+		7549D87B2AF812C600D49C62 /* JobSubmitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D87A2AF812C600D49C62 /* JobSubmitClient.swift */; };
 		75705B392AF2B23D00FDC42A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75705B382AF2B23D00FDC42A /* GoogleService-Info.plist */; };
 		75DD8B912AF26BA90030DF89 /* ETAUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */; };
 		75DD8B932AF26BB20030DF89 /* ETAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B922AF26BB20030DF89 /* ETAClient.swift */; };
@@ -195,6 +199,10 @@
 		7549D86C2AF3C68D00D49C62 /* DeliverySubmit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverySubmit.swift; sourceTree = "<group>"; };
 		7549D86E2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverySubmitViewController.swift; sourceTree = "<group>"; };
 		7549D8702AF3C7CC00D49C62 /* DeliverySubmitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverySubmitViewModel.swift; sourceTree = "<group>"; };
+		7549D8742AF7B86600D49C62 /* JobSubmitRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSubmitRequest.swift; sourceTree = "<group>"; };
+		7549D8762AF7BB6500D49C62 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		7549D8782AF812B900D49C62 /* JobSubmitUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSubmitUsecase.swift; sourceTree = "<group>"; };
+		7549D87A2AF812C600D49C62 /* JobSubmitClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSubmitClient.swift; sourceTree = "<group>"; };
 		755410912AF2B86C004214A2 /* CTS POD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CTS POD.entitlements"; sourceTree = "<group>"; };
 		75705B382AF2B23D00FDC42A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAUsecase.swift; sourceTree = "<group>"; };
@@ -449,6 +457,7 @@
 				0772F4BE2AA0ED10000951BF /* Date+Extension.swift */,
 				07DCAD662AC355E40002D2FF /* String+Extension.swift */,
 				07DCAD6A2AC48F0D0002D2FF /* UIStackview+extension.swift */,
+				7549D8762AF7BB6500D49C62 /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -490,6 +499,9 @@
 				7549D86E2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift */,
 				D0950BBA2AF4CB170096ACE7 /* SignatureImageCollectionViewCell.swift */,
 				7549D8702AF3C7CC00D49C62 /* DeliverySubmitViewModel.swift */,
+				7549D8742AF7B86600D49C62 /* JobSubmitRequest.swift */,
+				7549D8782AF812B900D49C62 /* JobSubmitUsecase.swift */,
+				7549D87A2AF812C600D49C62 /* JobSubmitClient.swift */,
 			);
 			path = DeliverySubmit;
 			sourceTree = "<group>";
@@ -869,6 +881,7 @@
 				07668D082AD2F7D800D5AD3B /* JobConfirmClient.swift in Sources */,
 				07317FA02A7E2BE10066341F /* AppDelegate.swift in Sources */,
 				07317FD82A7FFEA40066341F /* GetCustomerClient.swift in Sources */,
+				7549D87B2AF812C600D49C62 /* JobSubmitClient.swift in Sources */,
 				07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */,
 				071882CE2A9213DE00EE4747 /* LocalTempStorage.swift in Sources */,
 				079422A52A91072300684513 /* GetCustomerModels.swift in Sources */,
@@ -884,8 +897,10 @@
 				079422BA2A92045900684513 /* DashboardViewModel.swift in Sources */,
 				079422A12A8E7E6B00684513 /* GetCustomerViewModel.swift in Sources */,
 				07668D0C2AD2F89000D5AD3B /* JobConfirmModel.swift in Sources */,
+				7549D8792AF812B900D49C62 /* JobSubmitUsecase.swift in Sources */,
 				D00D0EF82AEE2EB9008F7722 /* MyDeliveriesList.swift in Sources */,
 				D00F0AE02A96048E00F9F310 /* EnterCode.swift in Sources */,
+				7549D8752AF7B86600D49C62 /* JobSubmitRequest.swift in Sources */,
 				D094E8032A947DBD00FDFD61 /* ForgotPassword.swift in Sources */,
 				079422B52A912D8500684513 /* UIColor+Extension.swift in Sources */,
 				07317FA22A7E2BE10066341F /* SceneDelegate.swift in Sources */,
@@ -903,6 +918,7 @@
 				D0A9F70D2A93BD4600C87638 /* SignInUseCase.swift in Sources */,
 				D0A9F7052A936F2100C87638 /* SignInViewController.swift in Sources */,
 				75DD8B952AF26D270030DF89 /* ETAModel.swift in Sources */,
+				7549D8772AF7BB6500D49C62 /* UIImage+Extension.swift in Sources */,
 				D094E8012A947D4500FDFD61 /* ForgotPasswordViewController.swift in Sources */,
 				07317FD32A7F55720066341F /* APIHandler.swift in Sources */,
 				07DCAD5D2AC170C20002D2FF /* TextContainerView.swift in Sources */,
@@ -1090,9 +1106,11 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M243A8GXSD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CTS POD/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera used to take photos of your delivery items.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "CTS needs your location permission please allow for more accurate result";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Photo library used to pick capture item";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";
@@ -1127,9 +1145,11 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M243A8GXSD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CTS POD/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera used to take photos of your delivery items.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "CTS needs your location permission please allow for more accurate result";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Photo library used to pick capture item";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";

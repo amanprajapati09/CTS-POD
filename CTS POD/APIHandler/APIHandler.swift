@@ -37,7 +37,6 @@ extension APIClient: WebClient  {
         return executeTask(session: session, request: urlRequest, completion: completion)
     }
     
-    
     private func executeTask<T: Decodable, E: Error>(session:URLSession, request: URLRequest, completion: @escaping (Result<T, E>)->()) -> URLSessionDataTask? {
         do {
             let task = session.dataTask(with: request) { data, response, error in

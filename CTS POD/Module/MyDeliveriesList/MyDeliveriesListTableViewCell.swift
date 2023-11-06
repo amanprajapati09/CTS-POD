@@ -202,7 +202,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         }
         
         checkBoxIcon.snp.makeConstraints { make in
-            make.height.width.equalTo(15)
+            make.height.width.equalTo(25)
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(checkBoxDidTap))

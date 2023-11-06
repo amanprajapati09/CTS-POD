@@ -1,12 +1,12 @@
 
-import Foundation
+import UIKit
 
 final class DeliverySubmit {
     struct Configuration {
         let images = Images()
         let string = Strings()
         var usecase: SignInUseCaseProtocol = SignInUseCase(client: SignInClient())
-        
+        let optionList: [DeliveryOption] = [.deliver, .deliveredNoSign, .unableToDeliver]
         init() { }
     }
     
@@ -19,11 +19,29 @@ final class DeliverySubmit {
 }
 
 extension DeliverySubmit.Configuration {
-
+    
     struct Images {
+        let cameraIcon = UIImage(named: "btn_camera")
+        let signatureIcon = UIImage(named: "btn_signature")
     }
-
+    
     struct Strings {
-        let navigationTitle = "Sales Order"        
+        let navigationTitle = "Sales Order"
+        let signatureTitle = "Signature"
+        let cameraTitle = "Camera"
+    }
+}
+
+enum DeliveryOption: String {
+    case deliver = "Deliver"
+    case deliveredNoSign = "Delivered/No Sign"
+    case unableToDeliver = "Unable to Deliver"
+    
+    var status: Int {
+        switch self {
+        case .deliver: return 6
+        case .deliveredNoSign: return 7
+        case .unableToDeliver: return 8
+        }
     }
 }

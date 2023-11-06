@@ -173,7 +173,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         }
         
         checkBoxIcon.snp.makeConstraints { make in
-            make.height.width.equalTo(15)
+            make.height.width.equalTo(25)
         }
         
         signContainer.snp.makeConstraints { make in

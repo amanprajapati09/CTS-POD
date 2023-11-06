@@ -57,26 +57,28 @@ class SplashViewController: UIViewController {
     
     private func fetchCustomer(customer: Customer) {
         let usecase = GetCustomerUsecase(client: GetCustomerClient())
-        Task {
-            activityIndicator.startAnimating()
-            do {
-                try await usecase.getGustomer(name: customer.domainname, completion: { result in
-                    switch result {
-                    case .success(let customerResult):
-                        if let customer = customerResult.data?.Customer {
-                            SharedObject.shared.customer = customer
-                            LocalTempStorage.storeValue(inUserdefault: customer, key: "customer")
-                            self.navigateToDashboard(customer: customer)
-                        } else {
-                            self.showErrorAlert(message: customerResult.message)
-                        }
-                    case .failure:
-                        self.navigateToCustomer()
-                    }
-                })
-            } catch {
-            }
-        }
+        LocalTempStorage.storeValue(inUserdefault: customer, key: "customer")
+        self.navigateToDashboard(customer: customer)
+//        Task {
+//            activityIndicator.startAnimating()
+//            do {
+//                try await usecase.getGustomer(name: customer.domainname, completion: { result in
+//                    switch result {
+//                    case .success(let customerResult):
+//                        if let customer = customerResult.data?.Customer {
+//                            SharedObject.shared.customer = customer
+//                            LocalTempStorage.storeValue(inUserdefault: customer, key: "customer")
+//                            self.navigateToDashboard(customer: customer)
+//                        } else {
+//                            self.showErrorAlert(message: customerResult.message)
+//                        }
+//                    case .failure:
+//                        self.navigateToCustomer()
+//                    }
+//                })
+//            } catch {
+//            }
+//        }
     }
     
     private func showErrorAlert(message: String) {
