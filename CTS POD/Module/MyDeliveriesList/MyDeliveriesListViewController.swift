@@ -77,7 +77,9 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
     }
     
     private func bindView() {
-        self.tableView.reloadData()
+        //        self.jobs = [JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test")), JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test"))]
+        //        self.tableView.reloadData()
+        
         viewModel.$jobList.subscribe(on: DispatchQueue.main)
             .sink { [weak self] jobList in
                 self?.jobs = jobList
@@ -122,6 +124,13 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
         alert.addAction(action)
         present(alert, animated: true)
     }
+    
+    private func naviagteToGoogleMap(latitude: Double, longitude: Double) {
+        if let url = URL(string: "comgooglemaps://?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving"),
+           UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
 }
 
 extension MyDeliveriesListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -148,6 +157,30 @@ extension MyDeliveriesListViewController: UITableViewDataSource, UITableViewDele
                 self.viewModel.updateStatus(selectedJob: job.job)
             }
         }
+        
+        cell.didTapAction = { [weak self] action in
+            guard let self = self else { return }
+            switch action {
+            case .document:
+                if let document = self.jobs?[indexPath.row].job.document,
+                   let data = Data(base64Encoded: document) {
+                    let pdfViewController = PDFViewerViewController(data: data)
+                    self.navigationController?.pushViewController(pdfViewController, animated: true)
+                 }
+            case .call:
+                if let url = URL(string: "tel://\(self.jobs?[indexPath.row].job.delPhone ?? "")") {
+                     UIApplication.shared.open(url)
+                 }
+            case .navigation:
+                if let latitude = self.jobs?[indexPath.row].job.latitude,
+                   let longitude = self.jobs?[indexPath.row].job.longitude {
+                     print(latitude)
+                     print(longitude)
+                    self.naviagteToGoogleMap(latitude: latitude, longitude: longitude)
+                 }
+            }
+        }
+        
         return cell
     }
     

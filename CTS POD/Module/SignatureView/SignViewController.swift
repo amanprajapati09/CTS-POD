@@ -27,7 +27,8 @@ class SignViewController: BaseViewController<SignViewModel> {
         view.backgroundColor = Colors.colorPrimary
         view.setTitleColor(Colors.colorWhite, for: .normal)
         view.setTitle(viewModel.configuration.string.clearTitle, for: .normal)
-        view.snp.makeConstraints { $0.height.equalTo(40) }
+        view.snp.makeConstraints { $0.height.equalTo(40)
+        }
         view.addTarget(self, action: #selector(buttonClearTap), for: .touchUpInside)
         view.layer.cornerRadius = 10
         view.titleLabel?.font = Fonts.popRegular
