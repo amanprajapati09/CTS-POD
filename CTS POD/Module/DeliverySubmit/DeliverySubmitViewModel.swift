@@ -8,9 +8,9 @@ final class DeliverySubmitViewModel {
     let configuration: DeliverySubmit.Configuration
     let usecase: JobSubmitUseCaseProtocol
     @Published var viewState: APIState<JobStatusUpdateResponse>?
-    let myGroup = DispatchGroup()
+
     let networkCheck = NetworkCheck.sharedInstance()
-    var isError: Bool = false
+    
     init(jobs: [Job], configuration: DeliverySubmit.Configuration, usecase: JobSubmitUseCaseProtocol = JobSubmitUseCase(client: JobSubmitClient())) {
         self.jobs = jobs
         self.configuration = configuration
@@ -34,81 +34,91 @@ final class DeliverySubmitViewModel {
     func submitJob(comment: String, 
                    name: String,
                    images: [UIImage]?,
-                   status: DeliveryOption,
+                   statusOption: DeliveryOption,
                    signature: Data?)  {
-        isError = false
-        viewState = .loading
+        
+        var requestModelList = [JobSubmitRequest]()
+        
         for job in jobs {
-            let request = job.toSubmitJobRquest()
-            request.comments = comment
-            request.customerName = name
-            if let images {
-                for (index, image) in images.enumerated() {
-                    guard let data = image.base64String else {return}
-                    switch index {
-                    case 0:
-                        request.image1 = data
-                    case 1:
-                        request.image2 = data
-                    case 2:
-                        request.image3 = data
-                    case 3:
-                        request.image4 = data
-                    default:
-                        request.image5 = data
-                    }
-                }
-            }
-            request.status = status.status
-            request.modifiedTime = Date().apiSupportedDate()
-            request.userID = LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: UserDefaultKeys.user)?.id ?? "0"
-            if let signature {
-                request.customerSign = signature.base64EncodedString()
-            }
+            
             LocationManagerSwift.shared.updateLocation { latitude, longitude, status, error in
                 guard error == nil else {
                     self.viewState = .error("Please enable location permission from settings")
                     return
                 }
+                let request = job.toSubmitJobRquest()
+                request.comments = comment
+                request.customerName = name
+                if let images {
+                    for (index, image) in images.enumerated() {
+                        guard let data = image.base64String else {return}
+                        switch index {
+                        case 0:
+                            request.image1 = data
+                        case 1:
+                            request.image2 = data
+                        case 2:
+                            request.image3 = data
+                        case 3:
+                            request.image4 = data
+                        default:
+                            request.image5 = data
+                        }
+                    }
+                }
+                request.status = statusOption.status
+                request.modifiedTime = Date().apiSupportedDate()
+                request.userID = LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: UserDefaultKeys.user)?.id ?? "0"
+                if let signature {
+                    request.customerSign = signature.base64EncodedString()
+                }
                 request.latitude = latitude
                 request.longitude = longitude
-                self.myGroup.enter()
-                self.callAPI(request: request)
+                requestModelList.append(request)
+                DispatchQueue.main.async {
+                    self.viewState = .loading
+                    self.manageAPICallingIndex(list: requestModelList, index: 0)
+                }
             }
-            
         }
-        myGroup.notify(queue: DispatchQueue.main, execute: {
-            if !self.isError {
-                self.viewState = .loaded(JobStatusUpdateResponse(status: "Done", message: "Success"))
-                self.updateJobStatus()
-            }
-        })
     }
     
-    private func callAPI(request: JobSubmitRequest) {
+    private func manageAPICallingIndex(list: [JobSubmitRequest], index: Int) {
+        guard index < jobs.count else {
+            self.viewState = .loaded(JobStatusUpdateResponse(status: "Done", message: "Success"))
+            self.updateJobStatus()
+            return
+        }
+        let requestModel = list[index]
+        callAPI(request: requestModel) { isSuccess in
+            if isSuccess {
+                self.manageAPICallingIndex(list: list, index: (index + 1))
+            } else {
+                self.viewState = .error("Somthing went wrong! \nPlease try again!")
+            }
+        }
+    }
+    
+    private func callAPI(request: JobSubmitRequest, complition: @escaping ((_ isSuccess: Bool)->Void)) {
         if networkCheck.currentStatus == .satisfied {
             Task { @MainActor in
                 do {
                     try await usecase.updateJobStatus(request: request) { result in
-                        self.myGroup.leave()
                         switch result {
                         case .success(_):
-                            break
+                            complition(true)
                         default:
-                            self.isError = true
-                            self.viewState = .error("Something went wrong")
-                            break
+                            complition(false)
                         }
                     }
-                } catch {
-                    isError = true
-                    self.viewState = .error("Something went wrong")
+                } catch (let error) {
+                    print(error)
+                    complition(false)
                 }
             }
         } else {            
             RealmManager.shared.addAndUpdateObjectToRealm(realmObject: request)
-            self.myGroup.leave()
-            
+            complition(true)
         }
     }
     

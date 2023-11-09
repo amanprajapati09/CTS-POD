@@ -42,7 +42,8 @@ final class JobSubmitClient: JobSubmitClientProtocol {
     
     func updateJobStatus(requestModel: JobSubmitRequest, completion: @escaping (Result<JobStatusUpdateResponse, Error>) -> ()) async throws {
         let configuration =  JobSubmitClient.Endpoint.updateState(requestModel)
-        let request = try URLRequest.init(endpoint: configuration)
+        var request = try URLRequest.init(endpoint: configuration)
+        request.timeoutInterval = 240
         _ = APIClient.sharedObject.load(urlRequest: request, completion: completion)
     }
 }

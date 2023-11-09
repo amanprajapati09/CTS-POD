@@ -42,7 +42,9 @@ extension APIClient: WebClient  {
             let task = session.dataTask(with: request) { data, response, error in
                 DispatchQueue.main.async {
                     do {
-                        guard let response = response else { return }
+                        guard let response = response else {
+                            completion(.failure(error as! E))
+                            return }
                         switch self.handleNetworkResponse(response as! HTTPURLResponse) {
                         case .success:
                             guard let data else { return }

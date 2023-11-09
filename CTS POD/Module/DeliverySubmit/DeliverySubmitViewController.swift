@@ -273,8 +273,6 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
     
     @objc
     private func navigationRightClick() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
-        activityIndicator.startAnimating()
         switch selectedState {
         case .deliver:
             validateDelivery()
@@ -298,7 +296,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         viewModel.submitJob(comment: commentsView.textField.text ?? "",
                             name: customerView.textField.text ?? "",
                             images: collectionImages,
-                            status: selectedState,
+                            statusOption: selectedState,
                             signature: signatureImage)
     }
     
@@ -311,7 +309,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         viewModel.submitJob(comment: commentsView.textField.text ?? "",
                             name: customerView.textField.text ?? "",
                             images: collectionImages,
-                            status: selectedState,
+                            statusOption: selectedState,
                             signature: nil)
     }
     
@@ -319,7 +317,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         viewModel.submitJob(comment: commentsView.textField.text ?? "",
                             name: customerView.textField.text ?? "",
                             images: nil,
-                            status: selectedState,
+                            statusOption: selectedState,
                             signature: nil)
     }
     
@@ -328,12 +326,18 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
             .sink { state in
                 self.activityIndicator.stopAnimating()
                 switch state {
+                case .loading:
+                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.activityIndicator)
+                    self.activityIndicator.startAnimating()
+                    self.navigationItem.leftBarButtonItem?.isEnabled = false
                 case .loaded(_):
                     self.navigationItem.rightBarButtonItem = self.rightButton
                     self.navigationController?.popViewController(animated: true)
+                    self.navigationItem.leftBarButtonItem?.isEnabled = true
                 case .error(let message):
                     self.showErrorAlert(message: message)
                     self.navigationItem.rightBarButtonItem = self.rightButton
+                    self.navigationItem.leftBarButtonItem?.isEnabled = true
                 default:
                     print("")
                 }
