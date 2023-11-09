@@ -1,7 +1,3 @@
-//
-// Created 6/10/21
-// Copyright © 2020 Backbase APAC. All rights reserved.
-//
 
 import Foundation
 import PDFKit

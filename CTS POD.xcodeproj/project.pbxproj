@@ -77,6 +77,8 @@
 		7549D87B2AF812C600D49C62 /* JobSubmitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D87A2AF812C600D49C62 /* JobSubmitClient.swift */; };
 		75705B392AF2B23D00FDC42A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75705B382AF2B23D00FDC42A /* GoogleService-Info.plist */; };
 		759985D82AF9542A0067F661 /* UINavigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985D72AF9542A0067F661 /* UINavigation+Extension.swift */; };
+		759985DA2AFA9F710067F661 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985D92AFA9F710067F661 /* Reachability.swift */; };
+		759985DC2AFAA82E0067F661 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985DB2AFAA82E0067F661 /* LoadingButton.swift */; };
 		75DD8B912AF26BA90030DF89 /* ETAUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */; };
 		75DD8B932AF26BB20030DF89 /* ETAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B922AF26BB20030DF89 /* ETAClient.swift */; };
 		75DD8B952AF26D270030DF89 /* ETAModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B942AF26D270030DF89 /* ETAModel.swift */; };
@@ -208,6 +210,8 @@
 		755410912AF2B86C004214A2 /* CTS POD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CTS POD.entitlements"; sourceTree = "<group>"; };
 		75705B382AF2B23D00FDC42A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		759985D72AF9542A0067F661 /* UINavigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigation+Extension.swift"; sourceTree = "<group>"; };
+		759985D92AFA9F710067F661 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		759985DB2AFAA82E0067F661 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAUsecase.swift; sourceTree = "<group>"; };
 		75DD8B922AF26BB20030DF89 /* ETAClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAClient.swift; sourceTree = "<group>"; };
 		75DD8B942AF26D270030DF89 /* ETAModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAModel.swift; sourceTree = "<group>"; };
@@ -450,6 +454,8 @@
 				07046A342A926E9E0074C711 /* Reusable.swift */,
 				D0A9F70A2A93713C00C87638 /* BaseViewController.swift */,
 				7549D8692AF3817E00D49C62 /* LocationManager.swift */,
+				759985D92AFA9F710067F661 /* Reachability.swift */,
+				759985DB2AFAA82E0067F661 /* LoadingButton.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -897,6 +903,7 @@
 				078E762B2A97C57B008F7F8A /* ForgotPasswordModels.swift in Sources */,
 				07DCAD692AC461DB0002D2FF /* VehicleStatusUpdateRequestModel.swift in Sources */,
 				07046A352A926E9E0074C711 /* Reusable.swift in Sources */,
+				759985DC2AFAA82E0067F661 /* LoadingButton.swift in Sources */,
 				750175462AF0274C00F4888B /* SignViewController.swift in Sources */,
 				D04D287B2AD138A000C22A93 /* JobConfirmListTableViewCell.swift in Sources */,
 				75DD8B932AF26BB20030DF89 /* ETAClient.swift in Sources */,
@@ -927,6 +934,7 @@
 				75DD8B952AF26D270030DF89 /* ETAModel.swift in Sources */,
 				7549D8772AF7BB6500D49C62 /* UIImage+Extension.swift in Sources */,
 				D094E8012A947D4500FDFD61 /* ForgotPasswordViewController.swift in Sources */,
+				759985DA2AFA9F710067F661 /* Reachability.swift in Sources */,
 				07317FD32A7F55720066341F /* APIHandler.swift in Sources */,
 				07DCAD5D2AC170C20002D2FF /* TextContainerView.swift in Sources */,
 				D00F0AE42A9604AB00F9F310 /* EnterCodeViewModel.swift in Sources */,

@@ -9,7 +9,8 @@ final class DeliverySubmitViewModel {
     let usecase: JobSubmitUseCaseProtocol
     @Published var viewState: APIState<JobStatusUpdateResponse>?
     let myGroup = DispatchGroup()
-    
+    let networkCheck = NetworkCheck.sharedInstance()
+    var isError: Bool = false
     init(jobs: [Job], configuration: DeliverySubmit.Configuration, usecase: JobSubmitUseCaseProtocol = JobSubmitUseCase(client: JobSubmitClient())) {
         self.jobs = jobs
         self.configuration = configuration
@@ -30,7 +31,12 @@ final class DeliverySubmitViewModel {
         return configuration.string.navigationTitle
     }
     
-    func submitJob(comment: String, name: String, images: [UIImage]?, status: DeliveryOption, signature: Data?)  {
+    func submitJob(comment: String, 
+                   name: String,
+                   images: [UIImage]?,
+                   status: DeliveryOption,
+                   signature: Data?)  {
+        isError = false
         viewState = .loading
         for job in jobs {
             let request = job.toSubmitJobRquest()
@@ -72,26 +78,37 @@ final class DeliverySubmitViewModel {
             
         }
         myGroup.notify(queue: DispatchQueue.main, execute: {
-            self.viewState = .loaded(JobStatusUpdateResponse(status: "Done", message: "Success"))
-            self.updateJobStatus()
+            if !self.isError {
+                self.viewState = .loaded(JobStatusUpdateResponse(status: "Done", message: "Success"))
+                self.updateJobStatus()
+            }
         })
     }
     
     private func callAPI(request: JobSubmitRequest) {
-        Task { @MainActor in
-            do {
-                try await usecase.updateJobStatus(request: request) { result in
-                    self.myGroup.leave()
-                    switch result {
-                    case .success(_):
-                        break
-                    default:
-                        self.viewState = .error("Something went wrong")
+        if networkCheck.currentStatus == .satisfied {
+            Task { @MainActor in
+                do {
+                    try await usecase.updateJobStatus(request: request) { result in
+                        self.myGroup.leave()
+                        switch result {
+                        case .success(_):
+                            break
+                        default:
+                            self.isError = true
+                            self.viewState = .error("Something went wrong")
+                            break
+                        }
                     }
+                } catch {
+                    isError = true
+                    self.viewState = .error("Something went wrong")
                 }
-            } catch {
-                self.viewState = .error("Something went wrong")
             }
+        } else {            
+            RealmManager.shared.addAndUpdateObjectToRealm(realmObject: request)
+            self.myGroup.leave()
+            
         }
     }
     

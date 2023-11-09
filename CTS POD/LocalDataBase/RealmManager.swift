@@ -66,6 +66,12 @@ final class RealmManager {
         }
     }
     
+    func delete(realmList: Object) {
+        try! realm.write {
+            realm.delete(realmList)
+        }
+    }
+    
     func fetchList<T: Object>(type : T.Type) -> [T]? {
         return realm.objects(type).toArray(ofType: type)
     }

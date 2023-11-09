@@ -92,7 +92,7 @@ final class DashboardViewModel {
                                                      type: model.type,
                                                      backgroundColor: Colors.colorWhite,
                                                      textColor: Colors.colorPrimary)
-                    }                    
+                    }
                     return model
                 }
             }
@@ -120,10 +120,23 @@ final class DashboardViewModel {
         return true
     }
     
+    func checkForSyncData() -> Bool {
+        if Constant.isLogin {
+            if NetworkCheck.sharedInstance().currentStatus == .satisfied {
+                if LocalDataBaseWraper().fetchLocalSavedJob().count > 0 {
+                    return false
+                } else {
+                    return true
+                }
+            }
+        }
+        return true
+    }
+    
     func signOutDriver() {
         LocalTempStorage.removeValue(for: UserDefaultKeys.user)
         LocalTempStorage.removeValue(for: UserDefaultKeys.checkVehicle)
-        LocalTempStorage.removeValue(for: UserDefaultKeys.isVehicalSubmit)        
+        LocalTempStorage.removeValue(for: UserDefaultKeys.isVehicalSubmit)
     }
     
     func fetchJobList() {
@@ -133,7 +146,7 @@ final class DashboardViewModel {
                     switch result  {
                     case .success(let value):
                         if let jobs = value.data.jobs, jobs.count > 0 {
-                            self.jobList = jobs                            
+                            self.jobList = jobs
                             RealmManager.shared.addAndUpdateObjectsToRealm(realmList: jobs)
                         } else {
                             print("error")
@@ -171,6 +184,24 @@ final class DashboardViewModel {
                     }
                     self.updateJobListComplete = true
                 })
+            }
+        }
+    }
+    
+    func submitJobs()  {
+        let jobs = LocalDataBaseWraper().fetchLocalSavedJob()        
+        for job in jobs {
+            Task {@MainActor in
+                do {
+                    try await configuration.jobSubmitUsecase.updateJobStatus(request: job) { result in
+                        switch result {
+                        case .success:
+                            RealmManager.shared.delete(realmList: job)
+                        default:
+                            print("error")
+                        }
+                    }
+                }
             }
         }
     }
