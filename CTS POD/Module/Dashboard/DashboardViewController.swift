@@ -65,6 +65,17 @@ class DashboardViewController: UIViewController {
         return button
     }()
     
+    private lazy var syncButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(viewModel.configuration.string.syncButtonTitle, for: .normal)
+        button.setImage(viewModel.configuration.images.fetchJobs, for: .normal)
+        button.backgroundColor = Colors.colorPrimaryDark
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        button.addTarget(self, action: #selector(syncButtonClick), for: .touchUpInside)
+        return button
+    }()
+    
     private lazy var supportButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = Fonts.popRegular
@@ -75,11 +86,11 @@ class DashboardViewController: UIViewController {
         return button
     }()
     
-    private lazy var buttonContainer: UIView = {
-        let view = UIView()
-        view.addSubview(fetchButton)
+    private lazy var buttonContainer: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [fetchButton, syncButton])
         view.backgroundColor = .clear
-        view.isHidden = true
+        view.axis = .horizontal        
+        view.spacing = 20
         return view
     }()
     
@@ -99,6 +110,7 @@ class DashboardViewController: UIViewController {
         bind()
         canShowFetchButton()
         fetchJobList()
+        canShowSyncButton()
         print(RealmManager.shared.printRealmPath())
     }
     
@@ -213,7 +225,7 @@ class DashboardViewController: UIViewController {
     private func bind() {
         viewModel.$canShowFetchButton.subscribe(on: DispatchQueue.main)
             .sink { [weak self] value in
-                  self?.buttonContainer.isHidden = value
+                  self?.fetchButton.isHidden = value
             }.store(in: &cancellable)
         
         viewModel.$updateJobListComplete.subscribe(on: DispatchQueue.main)
@@ -232,8 +244,17 @@ class DashboardViewController: UIViewController {
         viewModel.updateJobStatus()
     }
     
+    @objc
+    func syncButtonClick() {
+        viewModel.submitJobs()
+    }
+    
     private func canShowFetchButton() {
-        buttonContainer.isHidden =  viewModel.checkFetchButtonStatus()
+        fetchButton.isHidden =  viewModel.checkFetchButtonStatus()
+    }
+    
+    private func canShowSyncButton() {
+        syncButton.isHidden = viewModel.checkForSyncData()
     }
     
     func fetchJobList() {

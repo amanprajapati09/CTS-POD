@@ -38,5 +38,10 @@ class LocalDataBaseWraper {
             job.ETAStatus = status.rawValue
         }
     }
+    
+    func fetchLocalSavedJob() -> [JobSubmitRequest]  {
+        let jobs = realmManager.fetchList(type: JobSubmitRequest.self) ?? []
+        return jobs
+    }
 }
 
