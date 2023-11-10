@@ -28,7 +28,16 @@ class LocalTempStorage {
     }
     
     static func removeValue(for key: String) {
-        UserDefaults.standard.set(nil, forKey: key)
+        UserDefaults.standard.removeObject(forKey: key)
         UserDefaults.standard.synchronize()
+    }
+    
+    static func storeValue(value: Any, key: String) {
+        UserDefaults.standard.setValue(value, forKey: key)
+        UserDefaults.standard.synchronize()
+    }
+    
+    static func getValue(key: String) -> Any? {
+        return UserDefaults.standard.value(forKey: key)
     }
 }

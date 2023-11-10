@@ -137,6 +137,7 @@ final class DashboardViewModel {
         LocalTempStorage.removeValue(for: UserDefaultKeys.user)
         LocalTempStorage.removeValue(for: UserDefaultKeys.checkVehicle)
         LocalTempStorage.removeValue(for: UserDefaultKeys.isVehicalSubmit)
+        LocalTempStorage.removeValue(for: UserDefaultKeys.lastTimeStampUpdateLocation)
     }
     
     func fetchJobList() {

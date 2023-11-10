@@ -21,4 +21,9 @@ extension Date {
         let string = formatter.string(from: self).components(separatedBy: "+")[0]
         return "\(string)Z"
     }
+    
+    func getDiffrenceBetweenDatesInMinutes() -> Int {
+        let difference = Calendar.current.dateComponents([.minute], from: self, to: Date())
+        return difference.minute ?? 0
+    }
 }
