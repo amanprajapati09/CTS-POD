@@ -1,7 +1,7 @@
 
 import UIKit
 
-final class DropdownContainer: BaseContainerView {
+final class DateTimeContainer: BaseContainerView {
     
     private var selectedValue: String?
     
@@ -22,7 +22,6 @@ final class DropdownContainer: BaseContainerView {
         view.textAlignment = .left
         view.text = models.title
         view.font = Fonts.popRegular
-        view.numberOfLines = 0
         return view
     }()
     
@@ -37,7 +36,6 @@ final class DropdownContainer: BaseContainerView {
         view.placeholder = models.title
         view.backgroundColor = Colors.colorLightGray
         view.tintColor = .clear
-        view.delegate = self
         return view
     }()
     
@@ -71,53 +69,35 @@ final class DropdownContainer: BaseContainerView {
         stackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        textField.text = models.prefilledValue
     }
-    let picker = UIPickerView()
+    
+    private lazy var datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.timeZone = TimeZone.current
+        return datePicker
+    }()
+    
     private func prepareDropdown() {
-       
-        picker.delegate = self
-        textField.inputView = picker
+        
+        textField.inputView = datePicker
+        datePicker.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
         
         let buttonDone = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donePicker))
         buttonDone.tintColor = .systemBlue
         toolBar.setItems([UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil), buttonDone], animated: false)
         textField.inputAccessoryView = toolBar
-        textField.text = models.prefilledValue
     }
     
     @objc private func donePicker() {
         textField.resignFirstResponder()
         textField.text = selectedValue
-            didUpdateValue?(CheckListItem(id: models.id, value: selectedValue ?? ""))
-    }
-}
-
-extension DropdownContainer: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        didUpdateValue?(CheckListItem(id: models.id, value: selectedValue ?? ""))
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return models.info.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return models.info[row].title
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedValue = models.info[row].title
-    }
-}
-
-extension DropdownContainer: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return false
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        guard selectedValue == nil else { return }
-            picker.selectRow(0, inComponent: 0, animated: true)
-            pickerView(picker, didSelectRow: 0, inComponent: 0)
+    @objc func handleDatePicker(sender: UIDatePicker) {
+        textField.text = sender.date.createUTCDateString()
+        selectedValue = sender.date.createUTCDateString()
     }
 }

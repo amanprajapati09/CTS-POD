@@ -5,6 +5,7 @@ final class Dashboard {
     struct Configuration {
         var jobConformUsecase: JobConfirmUseCaseProtocol = JobConfirmUseCase(client: JobConfirmClient())
         var jobSubmitUsecase: JobSubmitUseCaseProtocol = JobSubmitUseCase(client: JobSubmitClient())
+        var incidentReportUsecase: IncidentReportUsecaseProtocol = IncidentReportUsecase(client: IncidentReportClient())
         let images = Images()
         let string = Strings()
     }
@@ -41,5 +42,6 @@ extension Dashboard.Configuration {
         let logoutAlertMessage = "Are you sure want to logout?"
         let fetchJobTitle = "Fetch Jobs"
         let syncButtonTitle = "Day end sync"
+        let IncidentReportTitle = "Incident Report"
     }
 }

@@ -1,10 +1,3 @@
-//
-//  LocationManager.swift
-//  Gr8dish
-//
-//  Created by Jayesh on 25/11/18.
-//  Copyright © 2018 Jayesh kanzariya. All rights reserved.
-//
 
 import UIKit
 import CoreLocation
