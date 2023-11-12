@@ -1,8 +1,10 @@
 
+import Foundation
+
 import UIKit
 import RxSwift
 
-final class TextContainer: BaseContainerView {
+final class TextareaContainer: BaseContainerView {
     
     let bag = DisposeBag()
     
@@ -30,7 +32,7 @@ final class TextContainer: BaseContainerView {
         let view = VehicleTextField ()
         view.layer.cornerRadius = 5.0
         view.layer.borderWidth = 1.0
-        view.layer.borderColor = Colors.colorGray.cgColor        
+        view.layer.borderColor = Colors.colorGray.cgColor
         view.snp.makeConstraints { $0.height.equalTo(50) }
         view.placeholder = models.title
         return view

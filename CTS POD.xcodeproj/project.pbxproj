@@ -79,6 +79,17 @@
 		759985D82AF9542A0067F661 /* UINavigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985D72AF9542A0067F661 /* UINavigation+Extension.swift */; };
 		759985DA2AFA9F710067F661 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985D92AFA9F710067F661 /* Reachability.swift */; };
 		759985DC2AFAA82E0067F661 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985DB2AFAA82E0067F661 /* LoadingButton.swift */; };
+		759985DF2AFD53B00067F661 /* IncidentReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985DE2AFD53B00067F661 /* IncidentReportViewController.swift */; };
+		759985E12AFD53C40067F661 /* IncidentReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985E02AFD53C40067F661 /* IncidentReportViewModel.swift */; };
+		759985E32AFD542C0067F661 /* IncidentReportClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985E22AFD542C0067F661 /* IncidentReportClient.swift */; };
+		759985E52AFD543C0067F661 /* IncidentReportUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985E42AFD543C0067F661 /* IncidentReportUsecase.swift */; };
+		759985E72AFD54750067F661 /* IncidentRepostResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985E62AFD54750067F661 /* IncidentRepostResponseModel.swift */; };
+		759985E92AFE2DC90067F661 /* IncidentNavigatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985E82AFE2DC90067F661 /* IncidentNavigatorController.swift */; };
+		759985EB2AFE339F0067F661 /* IncidentReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985EA2AFE339F0067F661 /* IncidentReport.swift */; };
+		759985ED2AFE3CB20067F661 /* DateTimeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985EC2AFE3CB20067F661 /* DateTimeContainer.swift */; };
+		759985F02AFF61AB0067F661 /* TextareaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985EF2AFF61AB0067F661 /* TextareaContainer.swift */; };
+		759985F22AFF8C830067F661 /* IncidentReportCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985F12AFF8C830067F661 /* IncidentReportCameraViewController.swift */; };
+		759985F42AFF8C8D0067F661 /* IncidentReportCameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985F32AFF8C8D0067F661 /* IncidentReportCameraViewModel.swift */; };
 		75DD8B912AF26BA90030DF89 /* ETAUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */; };
 		75DD8B932AF26BB20030DF89 /* ETAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B922AF26BB20030DF89 /* ETAClient.swift */; };
 		75DD8B952AF26D270030DF89 /* ETAModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B942AF26D270030DF89 /* ETAModel.swift */; };
@@ -212,6 +223,17 @@
 		759985D72AF9542A0067F661 /* UINavigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigation+Extension.swift"; sourceTree = "<group>"; };
 		759985D92AFA9F710067F661 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		759985DB2AFAA82E0067F661 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
+		759985DE2AFD53B00067F661 /* IncidentReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentReportViewController.swift; sourceTree = "<group>"; };
+		759985E02AFD53C40067F661 /* IncidentReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentReportViewModel.swift; sourceTree = "<group>"; };
+		759985E22AFD542C0067F661 /* IncidentReportClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentReportClient.swift; sourceTree = "<group>"; };
+		759985E42AFD543C0067F661 /* IncidentReportUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentReportUsecase.swift; sourceTree = "<group>"; };
+		759985E62AFD54750067F661 /* IncidentRepostResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentRepostResponseModel.swift; sourceTree = "<group>"; };
+		759985E82AFE2DC90067F661 /* IncidentNavigatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentNavigatorController.swift; sourceTree = "<group>"; };
+		759985EA2AFE339F0067F661 /* IncidentReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentReport.swift; sourceTree = "<group>"; };
+		759985EC2AFE3CB20067F661 /* DateTimeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeContainer.swift; sourceTree = "<group>"; };
+		759985EF2AFF61AB0067F661 /* TextareaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextareaContainer.swift; sourceTree = "<group>"; };
+		759985F12AFF8C830067F661 /* IncidentReportCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentReportCameraViewController.swift; sourceTree = "<group>"; };
+		759985F32AFF8C8D0067F661 /* IncidentReportCameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentReportCameraViewModel.swift; sourceTree = "<group>"; };
 		75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAUsecase.swift; sourceTree = "<group>"; };
 		75DD8B922AF26BB20030DF89 /* ETAClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAClient.swift; sourceTree = "<group>"; };
 		75DD8B942AF26D270030DF89 /* ETAModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAModel.swift; sourceTree = "<group>"; };
@@ -343,6 +365,7 @@
 		07317FCF2A7E30DE0066341F /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				759985DD2AFD4FB50067F661 /* IncidentReport */,
 				7549D86B2AF3C67300D49C62 /* DeliverySubmit */,
 				750175442AF026A100F4888B /* SignatureView */,
 				D00D0EF42AEE2DD0008F7722 /* MyDeliveriesList */,
@@ -428,6 +451,8 @@
 				07DCAD5E2AC1BDDA0002D2FF /* DropdownContainer.swift */,
 				07DCAD622AC31D830002D2FF /* NumberContainer.swift */,
 				07DCAD642AC3556E0002D2FF /* BaseContainerView.swift */,
+				759985EC2AFE3CB20067F661 /* DateTimeContainer.swift */,
+				759985EF2AFF61AB0067F661 /* TextareaContainer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -516,6 +541,22 @@
 				7549D87A2AF812C600D49C62 /* JobSubmitClient.swift */,
 			);
 			path = DeliverySubmit;
+			sourceTree = "<group>";
+		};
+		759985DD2AFD4FB50067F661 /* IncidentReport */ = {
+			isa = PBXGroup;
+			children = (
+				759985DE2AFD53B00067F661 /* IncidentReportViewController.swift */,
+				759985E02AFD53C40067F661 /* IncidentReportViewModel.swift */,
+				759985E22AFD542C0067F661 /* IncidentReportClient.swift */,
+				759985E42AFD543C0067F661 /* IncidentReportUsecase.swift */,
+				759985E62AFD54750067F661 /* IncidentRepostResponseModel.swift */,
+				759985E82AFE2DC90067F661 /* IncidentNavigatorController.swift */,
+				759985EA2AFE339F0067F661 /* IncidentReport.swift */,
+				759985F12AFF8C830067F661 /* IncidentReportCameraViewController.swift */,
+				759985F32AFF8C8D0067F661 /* IncidentReportCameraViewModel.swift */,
+			);
+			path = IncidentReport;
 			sourceTree = "<group>";
 		};
 		A091F4A7635ABFF1798BDAF6 /* Frameworks */ = {
@@ -854,6 +895,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07DCAD612AC1BE8F0002D2FF /* VehicleTextField.swift in Sources */,
+				759985EB2AFE339F0067F661 /* IncidentReport.swift in Sources */,
 				07668D0A2AD2F7F100D5AD3B /* JobConfirmUseCase.swift in Sources */,
 				079422B02A91214200684513 /* Fonts.swift in Sources */,
 				0772F4BF2AA0ED10000951BF /* Date+Extension.swift in Sources */,
@@ -865,8 +907,10 @@
 				078F7E3F2AA1F3F800125F88 /* CheckboxContainer.swift in Sources */,
 				D00F0AE22A96049F00F9F310 /* EnterCodeViewController.swift in Sources */,
 				7549D86D2AF3C68D00D49C62 /* DeliverySubmit.swift in Sources */,
+				759985F22AFF8C830067F661 /* IncidentReportCameraViewController.swift in Sources */,
 				07DCAD5F2AC1BDDA0002D2FF /* DropdownContainer.swift in Sources */,
 				D0950BBB2AF4CB170096ACE7 /* SignatureImageCollectionViewCell.swift in Sources */,
+				759985E32AFD542C0067F661 /* IncidentReportClient.swift in Sources */,
 				D0A9F70F2A93BDCE00C87638 /* SignInClient.swift in Sources */,
 				079422BC2A92046D00684513 /* DashboardViewController.swift in Sources */,
 				071882D02A92160E00EE4747 /* Dashboard.swift in Sources */,
@@ -883,6 +927,7 @@
 				079422B22A91234700684513 /* Constant.swift in Sources */,
 				07DCAD5B2AC154210002D2FF /* ScrollableStackView.swift in Sources */,
 				D022EA452A960D0100B44E4B /* ResetPasswordViewController.swift in Sources */,
+				759985DF2AFD53B00067F661 /* IncidentReportViewController.swift in Sources */,
 				D094E8052A947E7300FDFD61 /* ForgotPasswordViewModel.swift in Sources */,
 				0772F4C92AA0F293000951BF /* VehicleCheckListClient.swift in Sources */,
 				078B21222A9294FE000F6A1E /* SplashViewController.swift in Sources */,
@@ -890,14 +935,17 @@
 				07046A332A926CF40074C711 /* DashBoardCell.swift in Sources */,
 				D022EA432A960CF600B44E4B /* ResetPassword.swift in Sources */,
 				07835EBB2A874A640071A3AD /* URLRequest+Extension.swift in Sources */,
+				759985F42AFF8C8D0067F661 /* IncidentReportCameraViewModel.swift in Sources */,
 				07668D082AD2F7D800D5AD3B /* JobConfirmClient.swift in Sources */,
 				07317FA02A7E2BE10066341F /* AppDelegate.swift in Sources */,
 				07317FD82A7FFEA40066341F /* GetCustomerClient.swift in Sources */,
 				7549D87B2AF812C600D49C62 /* JobSubmitClient.swift in Sources */,
+				759985E52AFD543C0067F661 /* IncidentReportUsecase.swift in Sources */,
 				07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */,
 				071882CE2A9213DE00EE4747 /* LocalTempStorage.swift in Sources */,
 				D0F7D2EF2AF76DA2007C02D6 /* PDFViewerViewController.swift in Sources */,
 				079422A52A91072300684513 /* GetCustomerModels.swift in Sources */,
+				759985E12AFD53C40067F661 /* IncidentReportViewModel.swift in Sources */,
 				07B6575D2ADD675F00E6CA08 /* LocalDataBaseWraper.swift in Sources */,
 				078E762D2A98F051008F7F8A /* ValidateOTPModels.swift in Sources */,
 				078E762B2A97C57B008F7F8A /* ForgotPasswordModels.swift in Sources */,
@@ -915,6 +963,7 @@
 				D00D0EF82AEE2EB9008F7722 /* MyDeliveriesList.swift in Sources */,
 				D00F0AE02A96048E00F9F310 /* EnterCode.swift in Sources */,
 				7549D8752AF7B86600D49C62 /* JobSubmitRequest.swift in Sources */,
+				759985F02AFF61AB0067F661 /* TextareaContainer.swift in Sources */,
 				D094E8032A947DBD00FDFD61 /* ForgotPassword.swift in Sources */,
 				079422B52A912D8500684513 /* UIColor+Extension.swift in Sources */,
 				07317FA22A7E2BE10066341F /* SceneDelegate.swift in Sources */,
@@ -927,6 +976,7 @@
 				D04D28792AD135DE00C22A93 /* JobConfirm.swift in Sources */,
 				0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */,
 				07B6575A2AD58BD300E6CA08 /* RealmManager.swift in Sources */,
+				759985E72AFD54750067F661 /* IncidentRepostResponseModel.swift in Sources */,
 				7549D86A2AF3817E00D49C62 /* LocationManager.swift in Sources */,
 				D00D0EFA2AEE2F01008F7722 /* MyDeliveriesListViewModel.swift in Sources */,
 				D0A9F70D2A93BD4600C87638 /* SignInUseCase.swift in Sources */,
@@ -935,6 +985,7 @@
 				7549D8772AF7BB6500D49C62 /* UIImage+Extension.swift in Sources */,
 				D094E8012A947D4500FDFD61 /* ForgotPasswordViewController.swift in Sources */,
 				759985DA2AFA9F710067F661 /* Reachability.swift in Sources */,
+				759985E92AFE2DC90067F661 /* IncidentNavigatorController.swift in Sources */,
 				07317FD32A7F55720066341F /* APIHandler.swift in Sources */,
 				07DCAD5D2AC170C20002D2FF /* TextContainerView.swift in Sources */,
 				D00F0AE42A9604AB00F9F310 /* EnterCodeViewModel.swift in Sources */,
@@ -945,6 +996,7 @@
 				7549D8712AF3C7CC00D49C62 /* DeliverySubmitViewModel.swift in Sources */,
 				07DCAD652AC3556E0002D2FF /* BaseContainerView.swift in Sources */,
 				07ABD1772A952BD600460A8A /* SignInModel.swift in Sources */,
+				759985ED2AFE3CB20067F661 /* DateTimeContainer.swift in Sources */,
 				0772F4C12AA0F230000951BF /* VehicleCheckListViewController.swift in Sources */,
 				07B6575F2ADD984400E6CA08 /* JobStatusRequest.swift in Sources */,
 			);

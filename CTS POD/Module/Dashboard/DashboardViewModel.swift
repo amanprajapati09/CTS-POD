@@ -205,6 +205,21 @@ final class DashboardViewModel {
             }
         }
     }
+    
+    func fetchIncidentReport(completion: @escaping (_ result: [DynamicReportlist]?)->())  {
+        Task {@MainActor in
+            do {
+                try await configuration.incidentReportUsecase.fetchDynamicReport(completion:  { result in
+                    switch result {
+                    case .success:
+                        completion(result.value?.data.dynamicReportlist)
+                    default:
+                        print("error")
+                    }
+                })
+            }
+        }
+    }
 }
 
 struct DashboardDisplayModel {

@@ -24,7 +24,8 @@ class SignatureImageCollectionViewCell: UICollectionViewCell, Reusable {
         self.contentView.backgroundColor = Colors.viewBackground
         self.contentView.addSubview(icon)
         icon.snp.makeConstraints { make in
-            make.height.width.equalTo(80)
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(15)
             make.center.equalToSuperview()
         }
         self.contentView.addSubview(closeButton)

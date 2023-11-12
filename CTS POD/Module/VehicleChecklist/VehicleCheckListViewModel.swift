@@ -35,8 +35,7 @@ final class VehicleCheckListViewModel {
             requestModel.checklists[index] = item
         } else {
             requestModel.checklists.append(item)
-        }
-        print(requestModel)
+        }        
     }
     
     func updateStatus(status: String) {
