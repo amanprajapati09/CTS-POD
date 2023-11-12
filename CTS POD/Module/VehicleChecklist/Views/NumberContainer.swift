@@ -49,6 +49,7 @@ final class NumberContainer: BaseContainerView {
         stackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        textField.text = models.prefilledValue
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {

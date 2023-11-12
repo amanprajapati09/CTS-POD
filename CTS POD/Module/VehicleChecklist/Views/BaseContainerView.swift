@@ -20,6 +20,7 @@ struct ValueOption {
     let id: String
     let title: String
     var info: [DetailValueOption]
+    var prefilledValue: String?
 }
 
 struct DetailValueOption {

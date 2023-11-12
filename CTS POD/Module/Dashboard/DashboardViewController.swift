@@ -30,7 +30,7 @@ class DashboardViewController: UIViewController {
     
     private lazy var footerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -81,8 +81,10 @@ class DashboardViewController: UIViewController {
         button.titleLabel?.font = Fonts.popRegular
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 5
-        button.setTitle("Support", for: .normal)
+        button.setTitle(viewModel.configuration.string.IncidentReportTitle, for: .normal)
+        button.addTarget(self, action: #selector(incidentButtonClick), for: .touchUpInside)
         button.layer.borderColor = UIColor.white.cgColor
+        button.isUserInteractionEnabled = true
         return button
     }()
     
@@ -185,6 +187,7 @@ class DashboardViewController: UIViewController {
         footerView.snp.makeConstraints {
             $0.leading.trailing.equalTo(safearea)
             $0.bottom.equalToSuperview()
+            $0.height.equalTo(122)
         }
         
         footerView.addSubview(contentFooterView)
@@ -212,7 +215,7 @@ class DashboardViewController: UIViewController {
             $0.trailing.equalToSuperview().inset(16)
             $0.bottom.equalTo(contentFooterView.snp.top).inset(-16)
             $0.height.equalTo(40)
-            $0.width.equalTo(100)
+            $0.width.equalTo(140)
         }
         
         view.addSubview(fetchActivityIndicator)
@@ -260,6 +263,16 @@ class DashboardViewController: UIViewController {
     func fetchJobList() {
         if Constant.isLogin, Constant.isVehicalSubmit {
             viewModel.fetchJobList()
+        }
+    }
+    
+    @objc
+    func incidentButtonClick() {
+        viewModel.fetchIncidentReport { result in
+            if let result {
+                let controller = IncidentReport.build(reportList: result)
+                self.navigationController?.present(controller, animated: true)
+            }
         }
     }
 }
