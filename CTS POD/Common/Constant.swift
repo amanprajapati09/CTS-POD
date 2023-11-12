@@ -81,4 +81,5 @@ struct UserDefaultKeys {
     static let checkVehicle = "checkVehicle"
     static let isVehicalSubmit = "VehicalSubmit"
     static let fcmToke = "fcmToken"
+    static let lastTimeStampUpdateLocation = "lastTimeStampUpdateLocation"
 }
