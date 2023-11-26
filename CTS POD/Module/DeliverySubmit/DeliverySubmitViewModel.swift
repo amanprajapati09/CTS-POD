@@ -105,10 +105,16 @@ final class DeliverySubmitViewModel {
                 do {
                     try await usecase.updateJobStatus(request: request) { result in
                         switch result {
-                        case .success(_):
-                            complition(true)
-                        default:
+                        case .success(let value):
+                            if value.message == "Success" {
+                                complition(true)
+                            } else {
+                                complition(false)
+                                ErrorLogManager.uploadErrorLog(apiName: "Job/AddOrUpdateJobDocument", error: value.message)
+                            }
+                        case .failure(let error):
                             complition(false)
+                            ErrorLogManager.uploadErrorLog(apiName: "Job/AddOrUpdateJobDocument", error: error.localizedDescription)
                         }
                     }
                 } catch (let error) {

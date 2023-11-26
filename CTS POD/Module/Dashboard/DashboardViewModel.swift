@@ -150,10 +150,10 @@ final class DashboardViewModel {
                             self.jobList = jobs
                             RealmManager.shared.addAndUpdateObjectsToRealm(realmList: jobs)
                         } else {
-                            print("error")
+                            ErrorLogManager.uploadErrorLog(apiName: "Job/JobList", error: value.message)
                         }
-                    case .failure(_):
-                        print("error")
+                    case .failure(let error):
+                        ErrorLogManager.uploadErrorLog(apiName: "Job/JobList", error: error.localizedDescription)
                     }
                     self.fetchJobsForUpdate()
                     self.canShowFetchButton = self.checkFetchButtonStatus()
@@ -179,9 +179,11 @@ final class DashboardViewModel {
                     case .success(let res):
                         if res.status == "Success" {
                             self.fetchManager.updateJobStatus(jobs: self.jobList)
+                        } else {
+                            ErrorLogManager.uploadErrorLog(apiName: "Job/ChangeJobStatus", error: res.message)
                         }
-                    default:
-                        print("error")
+                    case .failure(let error):
+                        ErrorLogManager.uploadErrorLog(apiName: "Job/ChangeJobStatus", error: error.localizedDescription)
                     }
                     self.updateJobListComplete = true
                 })
@@ -196,10 +198,14 @@ final class DashboardViewModel {
                 do {
                     try await configuration.jobSubmitUsecase.updateJobStatus(request: job) { result in
                         switch result {
-                        case .success:
-                            RealmManager.shared.delete(realmList: job)
-                        default:
-                            print("error")
+                        case .success(let value):
+                            if value.status == "Success" {
+                                RealmManager.shared.delete(realmList: job)
+                            } else {
+                                ErrorLogManager.uploadErrorLog(apiName: "Job/AddOrUpdateJobDocument", error: value.message)
+                            }
+                        case .failure(let error):
+                            ErrorLogManager.uploadErrorLog(apiName: "Job/AddOrUpdateJobDocument", error: error.localizedDescription)
                         }
                     }
                 }
@@ -212,10 +218,14 @@ final class DashboardViewModel {
             do {
                 try await configuration.incidentReportUsecase.fetchDynamicReport(completion:  { result in
                     switch result {
-                    case .success:
-                        completion(result.value?.data.dynamicReportlist)
-                    default:
-                        print("error")
+                    case .success(let value):
+                        if value.status == "Success" {
+                            completion(result.value?.data.dynamicReportlist)
+                        } else {
+                            ErrorLogManager.uploadErrorLog(apiName: "DynamicIncidentReport/GetIncidenceReportDynamic", error: value.message)
+                        }
+                    case .failure(let error):
+                        ErrorLogManager.uploadErrorLog(apiName: "DynamicIncidentReport/GetIncidenceReportDynamic", error: error.localizedDescription)
                     }
                 })
             }

@@ -13,6 +13,7 @@ final class IncidentReportCameraViewModel {
     func callIncidentReportAPI(requestModel: IncidentReportRequestModel, collectionImages: [UIImage])  {
         Task{@MainActor in
             do {
+                viewState = .loading
                 try await configuration.usecase.postDynamicReport(requestModel: requestModel) { result in
                     switch result {
                     case .success(let response):
@@ -20,9 +21,11 @@ final class IncidentReportCameraViewModel {
                             self.uploadImages(collectionImages: collectionImages, incidentId: response.data.IncidentId, index: 0)
                         } else {
                             self.viewState = .error(response.message)
+                            ErrorLogManager.uploadErrorLog(apiName: "DynamicIncidentReport/PostReportDetails", error: response.message)
                         }
                     case .failure(let error):
                         self.viewState = .error(error.localizedDescription)
+                        ErrorLogManager.uploadErrorLog(apiName: "DynamicIncidentReport/PostReportDetails", error: error.localizedDescription)
                     }
                 }
             } catch {
@@ -45,9 +48,14 @@ final class IncidentReportCameraViewModel {
                 try await configuration.usecase.uploadDynamicReportImage(requestModel: request, completion: { result in
                     switch result {
                     case .success(let response):
-                        self.uploadImages(collectionImages: collectionImages, incidentId: incidentId, index: index + 1)
+                        if response.status == "Success" {
+                            self.uploadImages(collectionImages: collectionImages, incidentId: incidentId, index: index + 1)
+                        } else {
+                            ErrorLogManager.uploadErrorLog(apiName: "Incident/AddPhoto", error: response.message)
+                        }
                     case .failure(let error):
                         self.viewState = .error(error.localizedDescription)
+                        ErrorLogManager.uploadErrorLog(apiName: "Incident/AddPhoto", error: error.localizedDescription)
                     }
                 })
             } catch {

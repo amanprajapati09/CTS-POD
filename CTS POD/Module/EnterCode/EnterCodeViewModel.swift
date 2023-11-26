@@ -25,9 +25,10 @@ final class EnterCodeViewModel {
                             self.viewState = .loaded(otp)
                         } else {
                             self.viewState = .error(otpResult.message)
+                            ErrorLogManager.uploadErrorLog(apiName: "User/ValidateOTPAPI", error: otpResult.message)
                         }
-                    case .failure:
-                        self.viewState = .error("Somthing went wrong!")
+                    case .failure(let error):
+                        ErrorLogManager.uploadErrorLog(apiName: "User/ValidateOTPAPI", error: error.localizedDescription)
                     }
                 })
             } catch {

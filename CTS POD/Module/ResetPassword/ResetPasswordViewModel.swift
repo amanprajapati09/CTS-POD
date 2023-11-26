@@ -25,9 +25,11 @@ final class ResetPasswordViewModel {
                             self.viewState = .loaded(response)
                         } else {
                             self.viewState = .error(response.message)
+                            ErrorLogManager.uploadErrorLog(apiName: "User/ResetPassword", error: response.message)
                         }
-                    case .failure:
+                    case .failure(let error):
                         self.viewState = .error("Somthing went wrong!")
+                        ErrorLogManager.uploadErrorLog(apiName: "User/ResetPassword", error: error.localizedDescription)
                     }
                 })
             } catch {

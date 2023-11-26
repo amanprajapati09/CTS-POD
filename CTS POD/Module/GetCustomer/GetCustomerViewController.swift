@@ -71,6 +71,7 @@ class GetCustomerViewController: BaseViewController<GetCustomerViewModel> {
         setupView()
         bind()
         activityIndicator.stopAnimating()
+        txtCustomer.becomeFirstResponder()
     }
     
     init(viewModel: GetCustomerViewModel) {

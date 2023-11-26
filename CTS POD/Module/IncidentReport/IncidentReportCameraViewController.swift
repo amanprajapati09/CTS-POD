@@ -80,6 +80,10 @@ final class IncidentReportCameraViewController: BaseViewController<IncidentRepor
             showErrorAlert(message: viewModel.configuration.string.imagePickertAlertMessage)
             return
         }
+        guard collectionImages.count <= 20 else {
+            showErrorAlert(message: viewModel.configuration.string.maxImageAlertMessage)
+            return
+        }
         if let navigation = navigationController as? IncidentNavigatorController {
             navigation.requestModel.photoCount = collectionImages.count
             navigation.requestModel.createdDate = Date().apiSupportedDate()

@@ -26,9 +26,11 @@ final class SignInViewModel {
                             self.didCompleteLogin?()
                         } else {
                             self.viewState = .error(customerResult.message)
+                            ErrorLogManager.uploadErrorLog(apiName: "User/LogIn", error: customerResult.message)
                         }
-                    case .failure:
+                    case .failure(let error):
                         self.viewState = .error("Somthing went wrong!")
+                        ErrorLogManager.uploadErrorLog(apiName: "User/LogIn", error: error.localizedDescription)
                     }
                 })
             } catch {

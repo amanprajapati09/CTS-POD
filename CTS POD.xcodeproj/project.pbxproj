@@ -90,6 +90,10 @@
 		759985F02AFF61AB0067F661 /* TextareaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985EF2AFF61AB0067F661 /* TextareaContainer.swift */; };
 		759985F22AFF8C830067F661 /* IncidentReportCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985F12AFF8C830067F661 /* IncidentReportCameraViewController.swift */; };
 		759985F42AFF8C8D0067F661 /* IncidentReportCameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985F32AFF8C8D0067F661 /* IncidentReportCameraViewModel.swift */; };
+		75A734B02B12027D00A60796 /* ErrorLogUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A734AF2B12027D00A60796 /* ErrorLogUsecase.swift */; };
+		75A734B22B12028700A60796 /* ErrorLogClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A734B12B12028700A60796 /* ErrorLogClient.swift */; };
+		75A734B42B1202A000A60796 /* ErrorLogReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A734B32B1202A000A60796 /* ErrorLogReqModel.swift */; };
+		75A734B62B1208E500A60796 /* ErrorLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A734B52B1208E500A60796 /* ErrorLogManager.swift */; };
 		75DD8B912AF26BA90030DF89 /* ETAUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */; };
 		75DD8B932AF26BB20030DF89 /* ETAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B922AF26BB20030DF89 /* ETAClient.swift */; };
 		75DD8B952AF26D270030DF89 /* ETAModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B942AF26D270030DF89 /* ETAModel.swift */; };
@@ -237,6 +241,10 @@
 		759985EF2AFF61AB0067F661 /* TextareaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextareaContainer.swift; sourceTree = "<group>"; };
 		759985F12AFF8C830067F661 /* IncidentReportCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentReportCameraViewController.swift; sourceTree = "<group>"; };
 		759985F32AFF8C8D0067F661 /* IncidentReportCameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentReportCameraViewModel.swift; sourceTree = "<group>"; };
+		75A734AF2B12027D00A60796 /* ErrorLogUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogUsecase.swift; sourceTree = "<group>"; };
+		75A734B12B12028700A60796 /* ErrorLogClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogClient.swift; sourceTree = "<group>"; };
+		75A734B32B1202A000A60796 /* ErrorLogReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogReqModel.swift; sourceTree = "<group>"; };
+		75A734B52B1208E500A60796 /* ErrorLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogManager.swift; sourceTree = "<group>"; };
 		75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAUsecase.swift; sourceTree = "<group>"; };
 		75DD8B922AF26BB20030DF89 /* ETAClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAClient.swift; sourceTree = "<group>"; };
 		75DD8B942AF26D270030DF89 /* ETAModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAModel.swift; sourceTree = "<group>"; };
@@ -474,6 +482,7 @@
 		079422AE2A91213500684513 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				75A734AE2B12026400A60796 /* ErrorLog */,
 				07DCAD602AC1BE8F0002D2FF /* VehicleTextField.swift */,
 				07DCAD5A2AC154210002D2FF /* ScrollableStackView.swift */,
 				079422AF2A91214200684513 /* Fonts.swift */,
@@ -565,6 +574,17 @@
 				759985F32AFF8C8D0067F661 /* IncidentReportCameraViewModel.swift */,
 			);
 			path = IncidentReport;
+			sourceTree = "<group>";
+		};
+		75A734AE2B12026400A60796 /* ErrorLog */ = {
+			isa = PBXGroup;
+			children = (
+				75A734AF2B12027D00A60796 /* ErrorLogUsecase.swift */,
+				75A734B12B12028700A60796 /* ErrorLogClient.swift */,
+				75A734B32B1202A000A60796 /* ErrorLogReqModel.swift */,
+				75A734B52B1208E500A60796 /* ErrorLogManager.swift */,
+			);
+			path = ErrorLog;
 			sourceTree = "<group>";
 		};
 		A091F4A7635ABFF1798BDAF6 /* Frameworks */ = {
@@ -917,6 +937,8 @@
 				079422B02A91214200684513 /* Fonts.swift in Sources */,
 				0772F4BF2AA0ED10000951BF /* Date+Extension.swift in Sources */,
 				D022EA472A960D1000B44E4B /* ResetPasswordViewModel.swift in Sources */,
+				75A734B22B12028700A60796 /* ErrorLogClient.swift in Sources */,
+				75A734B62B1208E500A60796 /* ErrorLogManager.swift in Sources */,
 				D0481D3C2AC1796100DC8A4C /* Preferances.swift in Sources */,
 				D0A9F7092A936F3C00C87638 /* SignIn.swift in Sources */,
 				07DCAD6B2AC48F0D0002D2FF /* UIStackview+extension.swift in Sources */,
@@ -960,6 +982,7 @@
 				7549D87B2AF812C600D49C62 /* JobSubmitClient.swift in Sources */,
 				759985E52AFD543C0067F661 /* IncidentReportUsecase.swift in Sources */,
 				07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */,
+				75A734B02B12027D00A60796 /* ErrorLogUsecase.swift in Sources */,
 				071882CE2A9213DE00EE4747 /* LocalTempStorage.swift in Sources */,
 				D0F7D2EF2AF76DA2007C02D6 /* PDFViewerViewController.swift in Sources */,
 				079422A52A91072300684513 /* GetCustomerModels.swift in Sources */,
@@ -1008,6 +1031,7 @@
 				759985E92AFE2DC90067F661 /* IncidentNavigatorController.swift in Sources */,
 				07317FD32A7F55720066341F /* APIHandler.swift in Sources */,
 				07DCAD5D2AC170C20002D2FF /* TextContainerView.swift in Sources */,
+				75A734B42B1202A000A60796 /* ErrorLogReqModel.swift in Sources */,
 				D00F0AE42A9604AB00F9F310 /* EnterCodeViewModel.swift in Sources */,
 				0772F4C72AA0F27A000951BF /* VehicleCheckListUsecase.swift in Sources */,
 				079422A32A90FE3F00684513 /* GetCustomer.swift in Sources */,
