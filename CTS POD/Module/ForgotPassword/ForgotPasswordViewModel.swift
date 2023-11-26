@@ -23,10 +23,11 @@ final class ForgotPasswordViewModel {
                             self.viewState = .loaded(otp)
                         } else {
                             self.viewState = .error(otpResult.message)
+                            ErrorLogManager.uploadErrorLog(apiName: "User/GenerateOTPAPI", error: otpResult.message)
                         }
-                        
-                    case .failure:
+                    case .failure(let error):
                         self.viewState = .error("Somthing went wrong!")
+                        ErrorLogManager.uploadErrorLog(apiName: "User/GenerateOTPAPI", error: error.localizedDescription)
                     }
                 })
             } catch {

@@ -36,6 +36,11 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         callRow.titleLabel.text = job.orderNumber
                 
         checkBoxIcon.setImage((jobModel?.isSelected ?? false) ? UIImage(named: "check_mark") : UIImage(named: "check_empty"), for: .normal)
+        if job.document == nil {
+            actionButtonView.isHidden = true
+        } else {
+            actionButtonView.isHidden = false
+        }
     }
     
     private lazy var titleLabel: UILabel = {
@@ -255,9 +260,14 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     @objc private func etaButtonTapped() {
         didTapETAButton?(tag)
     }
-    
+        
     private func manageETAButton() {
+        guard job?.document != nil else {
+            etaButton.isHidden = true
+            return
+        }
         var title: String
+        etaButton.isHidden = false
         guard let etaTitle = job?.ETAStatus else {
             title = "EAT"
             etaButton.backgroundColor = Colors.colorBlue

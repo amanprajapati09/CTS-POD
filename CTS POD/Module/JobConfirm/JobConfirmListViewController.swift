@@ -100,7 +100,9 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
     
     @objc
     private func navigationRightClick() {
-        guard let jobs else { return }
+        guard let jobs, jobs.count > 0 else { 
+            showSelectedJobAlert()
+            return }
         let selectedItems = jobs.filter {
             $0.isSelected == true && $0.job.driverSign != nil && $0.job.supervisonSign != nil
         }
@@ -116,7 +118,7 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
             }
             viewModel.fetchList()
         } else {
-            showSelectedJobAlert()
+            showSelectedJobAlert(message: "Please select jobs which complete driver and supervisor sign")
         }
     }
     
@@ -214,8 +216,8 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
         tableView.reloadData()
     }
     
-    private func showSelectedJobAlert() {
-        let alert = UIAlertController(title: "Error!", message: "Please select jobs which complete driver and supervisor sign", preferredStyle: .alert)
+    private func showSelectedJobAlert(message: String = "No Jobs are available to confirm!") {
+        let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Okay", style: .cancel) { _ in
             alert.dismiss(animated: true)
         }

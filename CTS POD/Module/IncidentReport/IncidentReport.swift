@@ -53,6 +53,6 @@ extension IncidentReport.Configuration {
         let commentMessage = "Please enter required field"
         let cameraNavigationTitle = "Incident Report"
         let imagePickertAlertMessage = "Please capture alt least one image"
+        let maxImageAlertMessage = "No more then 20 images are allow to select!"
     }
 }
-

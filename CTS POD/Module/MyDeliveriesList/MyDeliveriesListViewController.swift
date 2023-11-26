@@ -76,10 +76,7 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
         }
     }
     
-    private func bindView() {
-        //        self.jobs = [JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test")), JobDisplayModel(isExpand: false, job: Job(id: "test", cmpName: "Test", yourRef: "test", delAddressLine1: "Test", delPhone: "test", comments: "test"))]
-        //        self.tableView.reloadData()
-        
+    private func bindView() {       
         viewModel.$jobList.subscribe(on: DispatchQueue.main)
             .sink { [weak self] jobList in
                 self?.jobs = jobList
@@ -103,7 +100,10 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
     
     @objc
     private func navigationRightClick() {
-        guard let jobs else { return }
+        guard let jobs, jobs.count > 0 else {
+            showSelectedJobAlert()
+            return
+        }
         let selectedItems = jobs.filter {
             $0.isSelected == true
         }
@@ -112,12 +112,12 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
             let controller = DeliverySubmit.build(jobs: joblist)
             navigationController?.pushViewController(controller, animated: true)
         } else {
-            showSelectedJobAlert()
+            showSelectedJobAlert(message: "Please select delivery which complete driver and supervisor sign")
         }
     }
     
-    private func showSelectedJobAlert() {
-        let alert = UIAlertController(title: "Error!", message: "Please select jobs which complete driver and supervisor sign", preferredStyle: .alert)
+    private func showSelectedJobAlert(message: String = "No deliveries are available!") {
+        let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Okay", style: .cancel) { _ in
             alert.dismiss(animated: true)
         }

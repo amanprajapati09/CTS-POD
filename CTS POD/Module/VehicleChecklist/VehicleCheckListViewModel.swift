@@ -20,8 +20,19 @@ final class VehicleCheckListViewModel {
         Task { @MainActor in 
             do {
                 try await configuration.usecase.getCheckList { result in
-                    if let checklist = result.value {
-                        self.viewState = .loaded(checklist)
+                    switch result {
+                    case .success(let value):
+                        if value.status == "Success" {
+                            if let checklist = result.value {
+                                self.viewState = .loaded(checklist)
+                            }
+                        } else {
+                            self.viewState = .error(value.message)
+                            ErrorLogManager.uploadErrorLog(apiName: "VehicleChecklist/Get", error: value.message)
+                        }
+                    case .failure(let error):
+                        self.viewState = .error(error.localizedDescription)
+                        ErrorLogManager.uploadErrorLog(apiName: "VehicleChecklist/Get", error: error.localizedDescription)
                     }
                 }
             } catch {
@@ -45,11 +56,16 @@ final class VehicleCheckListViewModel {
             updateViewState = .loading
             do {
                 try await configuration.usecase.updateVehicleStatus(request: requestModel, completion: { result in
-                    if let value = result.value {
-                        self.updateViewState = .loaded(value)
-                        UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.checkVehicle)
-                    } else {
-                        self.updateViewState = .error("Somthing went wrong!")
+                    switch result {
+                    case .success(let data):
+                        if let value = result.value {
+                            self.updateViewState = .loaded(value)
+                            UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.checkVehicle)
+                        } else {
+                            ErrorLogManager.uploadErrorLog(apiName: "VehicleChecklist/Get", error: data.message)
+                        }
+                    case .failure(let error):
+                        ErrorLogManager.uploadErrorLog(apiName: "VehicleChecklist/Get", error: error.localizedDescription)
                     }
                 })
             } catch {

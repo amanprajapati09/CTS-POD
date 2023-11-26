@@ -51,9 +51,11 @@ final class MyDeliveriesListViewModel {
                             self.state = .success
                         } else {
                             self.state = .error(response.message)
+                            ErrorLogManager.uploadErrorLog(apiName: "Job/SendETA", error: response.message)
                         }
-                    case .failure(_):
+                    case .failure(let error):
                         self.state = .error("Somthing went wrong")
+                        ErrorLogManager.uploadErrorLog(apiName: "Job/SendETA", error: error.localizedDescription)
                     }
                 }
             } catch {
