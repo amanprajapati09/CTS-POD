@@ -334,7 +334,11 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
                     self.navigationItem.leftBarButtonItem?.isEnabled = false
                 case .loaded(_):
                     self.navigationItem.rightBarButtonItem = self.rightButton
-                    self.navigationController?.popViewController(animated: true)
+                    if LocalDataBaseWraper().fetchJobsForDeliveryList().count > 0 {
+                        self.navigationController?.popViewController(animated: true)
+                    } else {
+                        self.navigationController?.popToViewController(ofClass: DashboardViewController.self)
+                    }
                     self.navigationItem.leftBarButtonItem?.isEnabled = true
                 case .error(let message):
                     self.showErrorAlert(message: message)

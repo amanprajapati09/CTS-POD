@@ -11,6 +11,10 @@ struct VehicleStatusUpdateRequestModel: Encodable {
 struct CheckListItem: Encodable {
     var id: String
     var value: String
+    
+    func map() -> IncedentReportValue {
+        return IncedentReportValue(id: id, name: value)
+    }
 }
 
 struct UpdateStatusResult: Codable {

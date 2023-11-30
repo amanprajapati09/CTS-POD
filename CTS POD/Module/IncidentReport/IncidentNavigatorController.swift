@@ -44,9 +44,9 @@ extension IncidentNavigatorController: IncidentNavigatorProtocol {
     
     func modifyStatus(item: CheckListItem) {
         if let index = requestModel.values.firstIndex(where: {$0.id == item.id }) {
-            requestModel.values[index] = item
+            requestModel.values[index] = item.map()
         } else {
-            requestModel.values.append(item)
+            requestModel.values.append(item.map())
         }
         print(requestModel)
     }
