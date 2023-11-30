@@ -54,7 +54,7 @@ enum Status: String, Codable {
 struct IncidentReportRequestModel: Encodable {
     var createdDate: String?
     var photoCount: Int = 0
-    var values = [CheckListItem]()
+    var values = [IncedentReportValue]()
 }
 
 struct IncidentPhotoModel: Encodable {
@@ -70,4 +70,9 @@ struct IncidentReportResultModel: Decodable {
 
 struct IncidentReportID: Decodable {
     let IncidentId: Int
+}
+
+struct IncedentReportValue: Encodable {
+    var id: String
+    var name: String
 }

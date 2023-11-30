@@ -85,8 +85,8 @@ final class DeliverySubmitViewModel {
     
     private func manageAPICallingIndex(list: [JobSubmitRequest], index: Int) {
         guard index < jobs.count else {
-            self.viewState = .loaded(JobStatusUpdateResponse(status: "Done", message: "Success"))
             self.updateJobStatus()
+            self.viewState = .loaded(JobStatusUpdateResponse(status: "Done", message: "Success"))
             return
         }
         let requestModel = list[index]
@@ -106,7 +106,7 @@ final class DeliverySubmitViewModel {
                     try await usecase.updateJobStatus(request: request) { result in
                         switch result {
                         case .success(let value):
-                            if value.message == "Success" {
+                            if value.status == "Success" {
                                 complition(true)
                             } else {
                                 complition(false)

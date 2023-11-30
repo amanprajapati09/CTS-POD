@@ -138,7 +138,7 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
                 if let prefilledValue = (navigationController as? IncidentNavigatorController)?.requestModel.values.filter({
                     $0.id == item.id
                 }), prefilledValue.count > 0 {
-                    model = ValueOption(id: item.id, title: item.description, info: info, prefilledValue: prefilledValue.first?.value ?? "")
+                    model = ValueOption(id: item.id, title: item.description, info: info, prefilledValue: prefilledValue.first?.name ?? "")
                 } else {
                     model = ValueOption(id: item.id, title: item.description, info: info)
                 }
