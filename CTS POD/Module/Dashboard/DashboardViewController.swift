@@ -161,14 +161,14 @@ class DashboardViewController: UIViewController {
         view.addSubview(iconImage)
         iconImage.snp.makeConstraints {
             $0.height.width.equalTo(150)
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             $0.centerX.equalToSuperview()
         }
     
         let containerStack = UIStackView(arrangedSubviews: [buttonContainer, collectionView])
         containerStack.axis = .vertical
         
-        buttonContainer.snp.makeConstraints { $0.height.equalTo(50)}
+        buttonContainer.snp.makeConstraints { $0.height.equalTo(40)}
         
         fetchButton.snp.makeConstraints {
             $0.height.equalTo(40)
@@ -179,7 +179,7 @@ class DashboardViewController: UIViewController {
         view.addSubview(containerStack)
         containerStack.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.top.equalTo(iconImage.snp.bottom).offset(30)
+            $0.top.equalTo(iconImage.snp.bottom).offset(20)
             $0.height.equalTo(view.frame.size.width + 30)
         }
             
@@ -188,6 +188,7 @@ class DashboardViewController: UIViewController {
             $0.leading.trailing.equalTo(safearea)
             $0.bottom.equalToSuperview()
             $0.height.equalTo(122)
+            $0.top.equalTo(containerStack.snp.bottom)
         }
         
         footerView.addSubview(contentFooterView)
