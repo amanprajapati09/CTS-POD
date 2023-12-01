@@ -262,7 +262,7 @@ class DashboardViewController: UIViewController {
     }
     
     func fetchJobList() {
-        if Constant.isLogin, Constant.isVehicalSubmit {
+        if Constant.isLogin, !Constant.isVehicalCheck {
             viewModel.fetchJobList()
         }
     }

@@ -72,7 +72,8 @@ final class IncidentReportClient: IncidentReportProtocol {
     
     func uploadDynamicReportImage(requestModel: IncidentPhotoModel, completion: @escaping (Result<JobStatusUpdateResponse, Error>) -> ()) async throws {
         let configuration = IncidentReportClient.Endpoint.postImage(requestModel)
-        let request = try URLRequest.init(endpoint: configuration)
+        var request = try URLRequest.init(endpoint: configuration)
+        request.timeoutInterval = 240
         _ = APIClient.sharedObject.load(urlRequest: request, completion: completion)
     }
 }

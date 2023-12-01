@@ -286,10 +286,15 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
     }
     
     private func validateDelivery() {
-        guard collectionImages.count > 0 else {
-            showErrorAlert(message: "Please capture atleast one image!")
+        guard let name = customerView.textField.text, name.count > 0 else {
+            showErrorAlert(message: "Please enter customer name!")
             return
         }
+        
+//        guard collectionImages.count > 0 else {
+//            showErrorAlert(message: "Please capture atleast one image!")
+//            return
+//        }
         guard let signatureImage else {
             showErrorAlert(message: "Please capture customer signature!")
             return
@@ -303,6 +308,12 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
     }
     
     private func validateDeliveryNoSign() {
+        
+        guard let comment = commentsView.textField.text, comment.count > 0 else {
+            showErrorAlert(message: "Please enter comment!")
+            return
+        }
+        
         guard collectionImages.count > 0 else {
             showErrorAlert(message: "Please capture atleast one image!")
             return
@@ -316,6 +327,12 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
     }
     
     private func validateUnableToDeliver() {
+        
+        guard let comment = commentsView.textField.text, comment.count > 0 else {
+            showErrorAlert(message: "Please enter comment!")
+            return
+        }
+        
         viewModel.submitJob(comment: commentsView.textField.text ?? "",
                             name: customerView.textField.text ?? "",
                             images: nil,

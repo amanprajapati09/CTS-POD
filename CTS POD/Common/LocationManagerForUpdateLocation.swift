@@ -81,7 +81,6 @@ extension LocationManager : CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            print("Current Location : \(location)")
             if let user = LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: UserDefaultKeys.user) {
                 if let date = LocalTempStorage.getValue(key: UserDefaultKeys.lastTimeStampUpdateLocation) as? Date,
                    date.getDiffrenceBetweenDatesInMinutes() >= user.user.timeInterval {

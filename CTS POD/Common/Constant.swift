@@ -14,17 +14,16 @@ struct Constant {
     
     static var isVehicalCheck: Bool {        
         if Constant.isLogin {
-            if let date = UserDefaults.standard.value(forKey: UserDefaultKeys.checkVehicle) {
+            if let date = UserDefaults.standard.value(forKey: UserDefaultKeys.checkVehicle) as? Date {
+                if date.days(from: Date()) > 0 {
+                    return true
+                }
                 return false
             } else {
                 return true
             }
         }
         return false
-    }
-    
-    static var isVehicalSubmit: Bool {
-        return (UserDefaults.standard.value(forKey: UserDefaultKeys.isVehicalSubmit) as? Bool) ?? false
     }
 }
 

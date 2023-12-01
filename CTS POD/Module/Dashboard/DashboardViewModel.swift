@@ -62,7 +62,7 @@ final class DashboardViewModel {
     
     private func updateJobConfirmOption(optionList: [DashboardDisplayModel]) -> [DashboardDisplayModel] {
         guard Constant.isLogin else { return optionList }
-        if customer.hasVehicalCheckList == false, Constant.isVehicalSubmit {
+        if customer.hasVehicalCheckList == false, !Constant.isVehicalCheck {
             if fetchManager.fetchUpdatedJobs().count > 0 {
                 return optionList.map { model in
                     if model.id == 2 {
@@ -82,7 +82,7 @@ final class DashboardViewModel {
     
     private func updateDeliveryConfirmOption(optionList: [DashboardDisplayModel]) -> [DashboardDisplayModel] {
         guard Constant.isLogin else { return optionList }
-        if customer.hasVehicalCheckList == false, Constant.isVehicalSubmit {
+        if customer.hasVehicalCheckList == false, !Constant.isVehicalCheck {
             if fetchManager.fetchJobsForDeliveryList().count > 0 {
                 return optionList.map { model in
                     if model.id == 3 {
@@ -110,7 +110,7 @@ final class DashboardViewModel {
     func checkFetchButtonStatus() -> Bool  {
         if Constant.isLogin {
             if !customer.hasVehicalCheckList {
-                if Constant.isVehicalSubmit {
+                if !Constant.isVehicalCheck {
                     return jobList.isEmpty
                 }
             } else {
@@ -134,8 +134,7 @@ final class DashboardViewModel {
     }
     
     func signOutDriver() {
-        LocalTempStorage.removeValue(for: UserDefaultKeys.user)
-        LocalTempStorage.removeValue(for: UserDefaultKeys.checkVehicle)
+        LocalTempStorage.removeValue(for: UserDefaultKeys.user)        
         LocalTempStorage.removeValue(for: UserDefaultKeys.isVehicalSubmit)
         LocalTempStorage.removeValue(for: UserDefaultKeys.lastTimeStampUpdateLocation)
     }
