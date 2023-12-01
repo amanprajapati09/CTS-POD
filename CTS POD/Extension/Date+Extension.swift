@@ -26,4 +26,8 @@ extension Date {
         let difference = Calendar.current.dateComponents([.minute], from: self, to: Date())
         return difference.minute ?? 0
     }
+    
+    func days(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
+    }
 }

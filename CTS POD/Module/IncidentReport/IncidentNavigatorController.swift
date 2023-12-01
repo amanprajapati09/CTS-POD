@@ -15,11 +15,20 @@ class IncidentNavigatorController: UINavigationController {
     init (viewController: IncidentReportViewController, dynamicList: [[DynamicReportlist]]) {
         self.dynamicList = dynamicList
         super.init(rootViewController: viewController)
-        viewController.delegate = self        
+        viewController.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        for section in dynamicList {
+            for item in section {
+                requestModel.values.append(IncedentReportValue(id: item.id, name: ""))
+            }
+        }
     }
 }
 

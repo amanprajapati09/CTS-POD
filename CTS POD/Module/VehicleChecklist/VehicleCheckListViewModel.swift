@@ -74,3 +74,4 @@ final class VehicleCheckListViewModel {
         }
     }
 }
+//LocalTempStorage.removeValue(for: UserDefaultKeys.checkVehicle)
