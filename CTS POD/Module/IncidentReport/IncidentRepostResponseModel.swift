@@ -26,7 +26,7 @@ struct DynamicReportlist: Codable {
     let isRequierd: Bool
     let sectionID: String
     let sectionNo: Int
-    let sectionDescription: SectionDescription
+    let sectionDescription: String
     
     enum CodingKeys: String, CodingKey {
         case id, createdBy, modifiedBy, createdDate, modifiedDate, description, type, values, status, order, isRequierd
@@ -37,13 +37,6 @@ struct DynamicReportlist: Codable {
     func copyVariable() -> DynamicReportlist  {
         return self
     }
-}
-
-enum SectionDescription: String, Codable {
-    case cookSDriverQuestionnaire = "Cook's Driver Questionnaire"
-    case cookSEmployeeDetails = "Cook's Employee Details"
-    case outsidePartyInformationOtherDriverInvolvedInIncident = "Outside Party Information (other Driver involved in incident) "
-    case safetyReport = "Safety Report"
 }
 
 enum Status: String, Codable {

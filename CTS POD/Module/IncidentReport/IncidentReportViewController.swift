@@ -51,7 +51,7 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
     
     private func setupView() {
         navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationItem.title = viewModel.dynamicReportList.first?.sectionDescription.rawValue ?? ""
+        self.navigationItem.title = viewModel.dynamicReportList.first?.sectionDescription
         view.backgroundColor = Colors.viewBackground
         navigationItem.leftBarButtonItem = backButton
         
