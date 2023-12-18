@@ -16,7 +16,7 @@ class GetCustomerViewController: BaseViewController<GetCustomerViewModel> {
     
     private lazy var lableTitle: UILabel = {
         let view = UILabel()
-        view.font = Fonts.popSemiBold
+        view.font = Fonts.popSemiBold14
         view.textColor = Colors.colorBlack
         view.textAlignment = .center
         view.text = viewModel.configuration.string.title
@@ -25,7 +25,7 @@ class GetCustomerViewController: BaseViewController<GetCustomerViewModel> {
     
     private lazy var infoLabel: UILabel = {
         let view = UILabel()
-        view.font = Fonts.popMedium
+        view.font = Fonts.popMedium14
         view.textColor = Colors.colorGray
         view.textAlignment = .center
         view.text = viewModel.configuration.string.info
@@ -34,7 +34,7 @@ class GetCustomerViewController: BaseViewController<GetCustomerViewModel> {
     
     private lazy var txtCustomer: UITextField = {
         let view = UITextField()
-        view.font = Fonts.popSemiBold
+        view.font = Fonts.popSemiBold14
         view.placeholder = viewModel.configuration.string.title
         return view
     }()
@@ -90,11 +90,10 @@ class GetCustomerViewController: BaseViewController<GetCustomerViewModel> {
         containerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
-            $0.height.equalTo(230)
         }
         
         iconImage.snp.makeConstraints {
-            $0.height.width.equalTo(100)
+            $0.height.width.equalTo(150)
         }
         
         btnGo.snp.makeConstraints {
@@ -127,7 +126,9 @@ class GetCustomerViewController: BaseViewController<GetCustomerViewModel> {
     @objc
     func buttonGoTap() {
         guard let customerName = txtCustomer.text,
-              customerName.count > 0 else { return }
+              customerName.count > 0 else {
+            showErrorAlert(message: viewModel.configuration.string.info)
+            return }
         viewModel.fetchCustomer(name: customerName)
     }
     

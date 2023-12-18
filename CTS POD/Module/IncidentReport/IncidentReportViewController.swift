@@ -108,10 +108,18 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
         if let navigationController = navigationController as? IncidentNavigatorController {
             if compolsorryField.count > 0 {
                 for item in compolsorryField {
-                    if navigationController.requestModel.values.contains(where: { $0.id == item.id }) == false {
-                        showErrorAlert(message: "Please fill the \(item.description) field")
-                        return
+                    if let field = navigationController.requestModel.values.filter({
+                        return $0.id == item.id
+                    }).first {
+                        if field.name.isEmpty {
+                            showErrorAlert(message: "Please fill the \(item.description) field")
+                            return
+                        }
                     }
+//                    if navigationController.requestModel.values.contains(where: { $0.id == item.id }) == false {
+//                        showErrorAlert(message: "Please fill the \(item.description) field")
+//                        return
+//                    }
                 }
             }
             delegate?.didPressNext(index: viewModel.dynamicReportList.first?.sectionNo ?? 0)

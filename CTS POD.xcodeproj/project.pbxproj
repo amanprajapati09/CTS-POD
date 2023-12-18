@@ -1211,7 +1211,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "CTS POD/CTS POD.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = "";
@@ -1219,8 +1219,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CTS POD/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera used to take photos of your delivery items.";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "CTS needs your location permission please allow for more accurate result";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "\"Use Location for track the delivery\"";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"Use Location for track the delivery\"";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Photo library used to pick capture item";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1236,7 +1236,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.exigotech.ctspod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "cstpod-development";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "css-pod Adhoc";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1250,7 +1250,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "CTS POD/CTS POD.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = "";
@@ -1258,8 +1258,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CTS POD/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera used to take photos of your delivery items.";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "CTS needs your location permission please allow for more accurate result";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "\"Use Location for track the delivery\"";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"Use Location for track the delivery\"";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Photo library used to pick capture item";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1275,7 +1275,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.exigotech.ctspod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "cstpod-development";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "css-pod Adhoc";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -151,7 +151,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
     private func setupView() {
         navigationController?.setNavigationBarHidden(false, animated: false)
         view.backgroundColor = Colors.viewBackground
-        navigationItem.title = viewModel.configuration.string.navigationTitle + ": " + viewModel.orderTitle
+        navigationItem.title = viewModel.orderTitle
         
         navigationItem.rightBarButtonItem = rightButton
         

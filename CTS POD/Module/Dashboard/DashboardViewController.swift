@@ -179,7 +179,7 @@ class DashboardViewController: UIViewController {
         view.addSubview(containerStack)
         containerStack.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.top.equalTo(iconImage.snp.bottom).offset(20)
+            $0.top.equalTo(iconImage.snp.bottom).offset(10)
             $0.height.equalTo(view.frame.size.width + 30)
         }
             

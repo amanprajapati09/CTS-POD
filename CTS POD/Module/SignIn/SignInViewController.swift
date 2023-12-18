@@ -14,7 +14,7 @@ class SignInViewController: BaseViewController<SignInViewModel> {
     
     private lazy var lableTitle: UILabel = {
         let view = UILabel()
-        view.font = Fonts.popSemiBold
+        view.font = Fonts.popSemiBold14
         view.textColor = Colors.colorBlack
         view.textAlignment = .center
         view.text = viewModel.configuration.string.title
@@ -23,7 +23,7 @@ class SignInViewController: BaseViewController<SignInViewModel> {
     
     private lazy var subTitleLabel: UILabel = {
         let view = UILabel()
-        view.font = Fonts.popMedium
+        view.font = Fonts.popMedium14
         view.textColor = Colors.colorGray
         view.textAlignment = .center
         view.text = viewModel.configuration.string.subTitle
@@ -32,7 +32,7 @@ class SignInViewController: BaseViewController<SignInViewModel> {
     
     private lazy var txtUserName: UITextField = {
         let view = UITextField()
-        view.font = Fonts.popSemiBold
+        view.font = Fonts.popSemiBold14
         view.placeholder = viewModel.configuration.string.userName
         view.borderStyle = .none
         view.layer.cornerRadius = 5
@@ -45,7 +45,7 @@ class SignInViewController: BaseViewController<SignInViewModel> {
     
     private lazy var txtPassword: UITextField = {
         let view = UITextField()
-        view.font = Fonts.popSemiBold
+        view.font = Fonts.popSemiBold14
         view.placeholder = viewModel.configuration.string.password
         view.isSecureTextEntry = true
         view.backgroundColor = .white
@@ -95,7 +95,7 @@ class SignInViewController: BaseViewController<SignInViewModel> {
     
     private lazy var btnForgotPassword: UIButton = {
         let view = UIButton()
-        view.titleLabel?.font = Fonts.popRegular
+        view.titleLabel?.font = Fonts.popSemiBold14
         view.setTitle(viewModel.configuration.string.forgotPassword, for: .normal)
         view.setTitleColor(Colors.colorGray, for: .normal)
         view.addTarget(self, action: #selector(buttonForgotPasswordTap), for: .touchUpInside)
@@ -146,7 +146,7 @@ class SignInViewController: BaseViewController<SignInViewModel> {
         }
 
         iconImage.snp.makeConstraints {
-            $0.height.width.equalTo(70)
+            $0.height.width.equalTo(100)
         }
         
         textFieldsStackView.snp.makeConstraints { make in
@@ -212,7 +212,10 @@ class SignInViewController: BaseViewController<SignInViewModel> {
     @objc
     func buttonSignInTap() {
         guard let userName = txtUserName.text, let password = txtPassword.text,
-                (userName.count > 0 && password.count > 0) else { return }
+              (userName.count > 0 && password.count > 0) else {
+            showErrorAlert(message: "Please enter required field!")
+            return
+        }
         viewModel.signIn(username: userName, password: password)
     }
     

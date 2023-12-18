@@ -19,7 +19,7 @@ final class DeliverySubmitViewModel {
     
     var orderTitle: String {
         if jobs.count == 1 {
-            return jobs.first?.orderNumber ?? ""
+            return configuration.string.navigationTitle + " " + (jobs.first?.orderNumber ?? "")
         }
         return configuration.string.navigationTitle
     }
