@@ -112,6 +112,7 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
                     try RealmManager.shared.realm.write {
                         item.job.jobStatus = StatusString.jobConfirm.rawValue
                     }
+                    navigationController?.popViewController(animated: true)
                 } catch {
                     print("error in update the data")
                 }
@@ -161,6 +162,7 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
         viewModel.$jobList.subscribe(on: DispatchQueue.main)
             .sink { [weak self] jobList in
                 self?.jobs = jobList
+                self?.updateButtons()
             }.store(in: &cancellable)
     }
     
@@ -195,6 +197,7 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
         })
         isAllSelected = !isAllSelected
         tableView.reloadData()
+        updateButtons()
     }
     
     private func updateSignValue(sign: SignatureType, data: Data) {
@@ -243,8 +246,8 @@ extension JobConfirmListViewController: UITableViewDataSource, UITableViewDelega
                     self.jobs?[index].isSelected = true
                 }
             }
+            self.updateButtons()
         }
-        
         
         return cell
     }
@@ -268,5 +271,15 @@ extension JobConfirmListViewController: UITableViewDataSource, UITableViewDelega
             jobs?[indexPath.row].isExpand = true
         }
         tableView.reloadRows(at: [indexPath], with: .fade)
+    }
+    
+    private func updateButtons() {
+        if let jobs, jobs.filter({ $0.isSelected == true }).count > 0 {
+            buttonDriverSign.isHidden = false
+            buttonSupervisorSign.isHidden = false
+        } else {
+            buttonDriverSign.isHidden = true
+            buttonSupervisorSign.isHidden = true
+        }
     }
 }

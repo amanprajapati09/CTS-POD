@@ -37,13 +37,24 @@ final class CheckboxContainer: BaseContainerView {
         return view
     }()
     
+    private lazy var scrollview: UIScrollView = {
+        let view = UIScrollView()
+        return view
+    }()
+    
     func prepareCheckView()  {
         stackView.addArrangedSubview(titleLabel)
         
-        stackView.addArrangedSubview(checkboxContainer)
-        checkboxContainer.snp.makeConstraints { make in
+        stackView.addArrangedSubview(scrollview)
+        
+        scrollview.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
         }
+        scrollview.addSubview(checkboxContainer)
+        checkboxContainer.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalToSuperview()
+        }
+    
         addSubview(stackView)
         stackView.snp.makeConstraints {
             $0.leading.trailing.top.bottom.equalToSuperview()

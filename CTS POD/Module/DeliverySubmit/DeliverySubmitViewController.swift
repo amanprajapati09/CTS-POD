@@ -114,6 +114,14 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         return view
     }()
     
+    private lazy var signPreview: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        view.isHidden = true
+        return view
+    }()
+    
     private lazy var imagesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -173,7 +181,13 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         containerStack.stackView.addArrangedSubview(customerView)
         containerStack.stackView.addArrangedSubview(jobStatusView)
         containerStack.stackView.addArrangedSubview(commentsView)
+        containerStack.stackView.addArrangedSubview(signPreview)
         containerStack.addSubview(actionButtonView)
+        
+        signPreview.snp.makeConstraints { make in
+            make.height.equalTo(70)
+            make.width.equalTo(200)
+        }
         
         actionButtonView.snp.makeConstraints { make in
             make.top.equalTo(containerStack.stackView.snp.bottom).offset(20)
@@ -215,6 +229,8 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         let signatureView = Signature.build(signType: .driverSign)
         signatureView.viewModel.complition = { data in
             self.signatureImage = data
+            self.signPreview.image = UIImage(data: data)
+            self.signPreview.isHidden = false
             signatureView.dismiss(animated: true)
         }
         present(signatureView, animated: true)
@@ -257,11 +273,13 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         case .deliveredNoSign:
             btnCamera.isHidden = false
             btnSignature.isHidden = true
+            signPreview.isHidden = true
             signatureImage = nil
         case .unableToDeliver:
             btnCamera.isHidden = true
             btnSignature.isHidden = true
             signatureImage = nil
+            signPreview.isHidden = true
             collectionImages.removeAll()
         }
         jobStatusView.textField.text = option.rawValue

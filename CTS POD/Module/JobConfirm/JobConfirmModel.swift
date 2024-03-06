@@ -93,14 +93,7 @@ class Job: Object, Decodable {
     }
     
     var titleAddress: String {
-        if let delFullAddress {
-            return delFullAddress
-        } else {
-            if let orderNumber {
-                return orderNumber + "-" + (delCity ?? "")
-            }
-        }
-        return ""
+        return (orderNumber ?? "") + "-" + (delCity ?? "")
     }
     
     var locationAddress: String {
