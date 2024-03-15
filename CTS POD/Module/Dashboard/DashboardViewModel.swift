@@ -23,9 +23,11 @@ final class DashboardViewModel {
         let options = (customer.workflow.map { $0.mapToDisplay() })
         optionList += options
         
-        let list = updateVehicleCheckListOption(optionList: optionList).sorted(by: { $0.id < $1.id })
-        let updatedJobList = updateDeliveryConfirmOption(optionList: list)
-        return updateJobConfirmOption(optionList: updatedJobList)
+        let firstlist = updateVehicleCheckListOption(optionList: optionList).filter({ $0.id < 2 }).sorted(by: { $0.id < $1.id })
+        let secondlist = updateVehicleCheckListOption(optionList: optionList).filter({ $0.id > 1 }).sorted(by: { $0.id > $1.id })
+        let list = firstlist + secondlist
+        let updatedJobList = updateJobConfirmOption(optionList: list)
+        return updateDeliveryConfirmOption(optionList: updatedJobList)
     }
     
     private func getSiginOption() -> DashboardDisplayModel {

@@ -19,6 +19,7 @@ class EnterCodeViewController: BaseViewController<EnterCodeViewModel> {
         pinView.borderLineThickness = 1
         pinView.activeBorderLineThickness = 2
         pinView.font = Fonts.popRegular ?? UIFont.systemFont(ofSize: 12)
+        pinView.isContentTypeOneTimeCode = true
         return pinView
     }()
     

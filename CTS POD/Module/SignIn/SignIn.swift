@@ -31,7 +31,7 @@ extension SignIn.Configuration {
         let signIn = "Sign In"
         let userName = "Username"
         let password = "Password"
-        let forgotPassword = "Forgot Password"
+        let forgotPassword = "Forgot Password?"
     }
 }
 

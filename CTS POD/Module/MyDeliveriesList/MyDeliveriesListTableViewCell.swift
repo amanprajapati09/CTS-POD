@@ -33,7 +33,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         
         locationRow.titleLabel.text = job.locationAddress
         messageRow.titleLabel.text = job.comments
-        callRow.titleLabel.text = job.orderNumber
+        callRow.titleLabel.text = job.deliveryNo
                 
         checkBoxIcon.setImage((jobModel?.isSelected ?? false) ? UIImage(named: "check_mark") : UIImage(named: "check_empty"), for: .normal)
         if job.document == nil {
@@ -169,7 +169,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     
     private lazy var callRow: RowView = {
         let view = RowView()
-        view.icon.image = UIImage(named: "job_call")
+        view.icon.image = UIImage(named: "deliver_number")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -316,9 +316,9 @@ class ActionButtonView: UIView {
     init(title: String?, image: UIImage, viewColor: UIColor) {
         self.viewColor = viewColor
         super.init(frame: .zero)
-        setUpView()
         self.titleLabel.text = title
         self.icon.image = image.withRenderingMode(.alwaysTemplate)
+        setUpView()
     }
     
     required init?(coder: NSCoder) {
@@ -330,19 +330,27 @@ class ActionButtonView: UIView {
         self.layer.cornerRadius = 5
         self.layer.borderWidth = 1
         self.layer.borderColor = viewColor.cgColor
-        icon.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(15)
-            $0.height.width.equalTo(30)
-            $0.top.bottom.equalToSuperview().inset(15)
+        if let text = titleLabel.text, !text.isEmpty {
+            icon.snp.makeConstraints {
+                $0.leading.equalToSuperview().inset(15)
+                $0.height.width.equalTo(30)
+                $0.top.bottom.equalToSuperview().inset(15)
+            }
+            
+            addSubview(titleLabel)
+            titleLabel.snp.makeConstraints { make in
+                make.top.bottom.equalToSuperview().inset(15)
+                make.leading.equalTo(icon.snp.trailing).offset(10)
+                make.trailing.equalToSuperview().inset(10)
+            }
+        } else {
+            icon.snp.makeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.height.width.equalTo(30)
+                $0.top.bottom.equalToSuperview().inset(15)
+            }
         }
-        
-        addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(15)
-            make.leading.equalTo(icon.snp.trailing).offset(10)
-            make.trailing.equalToSuperview().inset(10)
-        }
-        
+    
         addSubview(tappedButton)
         tappedButton.snp.makeConstraints { make in
             make.edges.equalToSuperview()

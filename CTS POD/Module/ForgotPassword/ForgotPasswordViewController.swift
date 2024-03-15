@@ -47,7 +47,7 @@ class ForgotPasswordViewController: BaseViewController<ForgotPasswordViewModel> 
     
     private lazy var txtUserName: UITextField = {
         let view = UITextField()
-        view.font = Fonts.popSemiBold
+        view.font = Fonts.popSemiBold14
         view.placeholder = viewModel.configuration.string.userName
         view.borderStyle = .none
         view.layer.cornerRadius = 5
@@ -60,7 +60,7 @@ class ForgotPasswordViewController: BaseViewController<ForgotPasswordViewModel> 
     
     private lazy var txtCustomerName: UITextField = {
         let view = UITextField()
-        view.font = Fonts.popSemiBold
+        view.font = Fonts.popSemiBold14
         view.borderStyle = .none
         view.layer.cornerRadius = 5
         view.backgroundColor = .white
@@ -114,6 +114,11 @@ class ForgotPasswordViewController: BaseViewController<ForgotPasswordViewModel> 
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectedValue = .regenerateCode
     }
     
     private func setupView() {
@@ -192,7 +197,10 @@ class ForgotPasswordViewController: BaseViewController<ForgotPasswordViewModel> 
             guard let username = txtUserName.text?.trimmingCharacters(in: .whitespacesAndNewlines),
                   let customerName = txtCustomerName.text?.trimmingCharacters(in: .whitespacesAndNewlines),
             !username.isEmpty,
-            !customerName.isEmpty else { return  }
+                  !customerName.isEmpty else {
+                showErrorAlert(message: "Please enter username!")
+                return
+            }
             self.viewModel.generateOTP(username: username, client: customerName)
         }).disposed(by: disposeBag)
     }
@@ -207,7 +215,7 @@ extension ForgotPasswordViewController {
         
         private lazy var lableTitle: UILabel = {
             let view = UILabel()
-            view.font = Fonts.popSemiBold
+            view.font = Fonts.popSemiBold14
             view.textColor = Colors.colorBlack
             view.textAlignment = .left
             view.translatesAutoresizingMaskIntoConstraints = false
