@@ -123,7 +123,7 @@ final class DeliverySubmitViewModel {
                 }
             }
         } else {            
-            RealmManager.shared.addAndUpdateObjectToRealm(realmObject: request)
+            RealmManager.shared.addObject(realmObject: request)
             complition(true)
         }
     }

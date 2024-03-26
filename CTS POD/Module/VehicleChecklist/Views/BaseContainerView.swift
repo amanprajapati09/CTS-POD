@@ -21,6 +21,10 @@ struct ValueOption {
     let title: String
     var info: [DetailValueOption]
     var prefilledValue: String?
+    
+    var attributedTitle: NSMutableAttributedString {
+        title.attributedString
+    }
 }
 
 struct DetailValueOption {

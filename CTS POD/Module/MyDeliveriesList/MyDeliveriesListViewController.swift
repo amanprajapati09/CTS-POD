@@ -29,12 +29,11 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
         setupView()
         bindView()
     }
-    
+
     private func setupNavigation() {
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.navigationBar.tintColor = .black
-        self.title = viewModel.configuration.string.navigationTitle
         if let navigationBar = navigationController?.navigationBar {
             let titleTextAttributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: UIColor.black,
@@ -56,6 +55,7 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.title = viewModel.configuration.string.navigationTitle
         viewModel.fetchList()
     }
     

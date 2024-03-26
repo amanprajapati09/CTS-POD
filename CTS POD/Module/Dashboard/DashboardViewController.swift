@@ -1,6 +1,7 @@
 
 import UIKit
 import Combine
+import Network
 
 class DashboardViewController: UIViewController {
     
@@ -25,6 +26,7 @@ class DashboardViewController: UIViewController {
         layout.minimumInteritemSpacing = 10
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         view.backgroundColor = .clear
+        view.showsHorizontalScrollIndicator = false
         return view
     }()
     
@@ -92,7 +94,11 @@ class DashboardViewController: UIViewController {
         let view = UIStackView(arrangedSubviews: [fetchButton, syncButton])
         view.backgroundColor = .clear
         view.axis = .horizontal        
-        view.spacing = 20
+        view.spacing = 15
+        view.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        view.isLayoutMarginsRelativeArrangement = true
+        view.distribution = .fillEqually
+        view.alignment = .center
         return view
     }()
     
@@ -110,9 +116,7 @@ class DashboardViewController: UIViewController {
         prepareCollectionView()
         prepareFooterView()
         bind()
-        canShowFetchButton()
-        fetchJobList()
-        canShowSyncButton()
+        fetchJobList()        
         print(RealmManager.shared.printRealmPath())
     }
     
@@ -120,6 +124,7 @@ class DashboardViewController: UIViewController {
         self.viewModel = viewModel
         self.optionList = viewModel.fetchOptions()
         super.init(nibName: nil, bundle: nil)
+        observeNetworkChange()
     }
     
     required init?(coder: NSCoder) {
@@ -135,7 +140,7 @@ class DashboardViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        optionList = viewModel.fetchOptions()
+        optionList = viewModel.fetchOptions()        
     }
     
     private func prepareFooterView() {
@@ -168,13 +173,11 @@ class DashboardViewController: UIViewController {
         let containerStack = UIStackView(arrangedSubviews: [buttonContainer, collectionView])
         containerStack.axis = .vertical
         
-        buttonContainer.snp.makeConstraints { $0.height.equalTo(40)}
+        buttonContainer.snp.makeConstraints { $0.height.equalTo(40) }
         
-        fetchButton.snp.makeConstraints {
-            $0.height.equalTo(40)
-            $0.width.equalTo(170)
-            $0.center.equalToSuperview()
-        }
+        fetchButton.snp.makeConstraints { $0.height.equalTo(40) }
+        
+        syncButton.snp.makeConstraints { $0.height.equalTo(40) }
         
         view.addSubview(containerStack)
         containerStack.snp.makeConstraints {
@@ -182,7 +185,7 @@ class DashboardViewController: UIViewController {
             $0.top.equalTo(iconImage.snp.bottom).offset(10)
             $0.height.equalTo(view.frame.size.width + 30)
         }
-            
+        
         view.addSubview(footerView)
         footerView.snp.makeConstraints {
             $0.leading.trailing.equalTo(safearea)
@@ -239,6 +242,30 @@ class DashboardViewController: UIViewController {
                 self.optionList = self.viewModel.fetchOptions()                
                 self.fetchActivityIndicator.stopAnimating()
             }.store(in: &cancellable)
+        
+        viewModel.$showAlert.subscribe(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                guard let value else { return }
+                let alert = UIAlertController(title: "No Job founds", message: "There is no job founds for you, please try after some time!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+                    alert.dismiss(animated: true)
+                }))
+                self?.navigationController?.present(alert, animated: true)
+            }.store(in: &cancellable)
+        
+        viewModel.$syncState.subscribe(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                switch value {
+                case .loading:
+                    self?.syncButton.isHidden = true
+                case .loaded(_):                    
+                    self?.ShowSuccessSyncMessage()
+                case .error(_):
+                    self?.syncButton.isHidden = false
+                case .none:
+                    return
+                }
+            }.store(in: &cancellable)
     }
     
     @objc
@@ -276,6 +303,14 @@ class DashboardViewController: UIViewController {
             }
         }
     }
+    
+    private func ShowSuccessSyncMessage() {
+        let alert = UIAlertController(title: "Success!", message: "Your job is successfully sync!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+            alert.dismiss(animated: true)
+        }))
+        present(alert, animated: true)
+    }
 }
 
 extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -290,7 +325,7 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.size.width/2 - 30, height: view.frame.size.width/2 - 30)
+        return CGSize(width: collectionView.frame.size.width/2 - 20, height: collectionView.frame.size.width/2 - 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -344,4 +379,19 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
         self.canShowFetchButton()
     }
 
+}
+
+extension DashboardViewController: NetworkCheckObserver {
+    func statusDidChange(status: NWPath.Status) {
+        switch status {
+        case .satisfied:
+            canShowSyncButton()
+        default:
+            syncButton.isHidden = true
+        }
+    }
+    
+    func observeNetworkChange() {
+        NetworkCheck.sharedInstance().addObserver(observer: self)
+    }
 }

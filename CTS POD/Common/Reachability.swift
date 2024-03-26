@@ -13,6 +13,8 @@ class NetworkCheck {
     private var monitor = NWPathMonitor()
     private static let _sharedInstance = NetworkCheck()
     private var observations = [ObjectIdentifier: NetworkChangeObservation]()
+    private var previousStatus: NWPath.Status?
+    
     var currentStatus: NWPath.Status {
         get {
             return monitor.currentPath.status
@@ -32,10 +34,14 @@ class NetworkCheck {
                     self.observations.removeValue(forKey: id)
                     continue
                 }
-
-                DispatchQueue.main.async(execute: {
-                    observer.statusDidChange(status: path.status)
-                })
+                let newStatus = path.status
+                if newStatus != self.previousStatus {
+                    self.previousStatus = newStatus
+                    DispatchQueue.main.async(execute: {
+                        observer.statusDidChange(status: path.status)
+                    })
+                }
+                
             }
         }
         monitor.start(queue: DispatchQueue.global(qos: .background))

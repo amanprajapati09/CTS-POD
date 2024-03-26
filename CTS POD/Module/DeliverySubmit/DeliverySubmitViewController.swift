@@ -369,12 +369,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
                     self.navigationItem.leftBarButtonItem?.isEnabled = false
                 case .loaded(_):
                     self.navigationItem.rightBarButtonItem = self.rightButton
-                    if LocalDataBaseWraper().fetchJobsForDeliveryList().count > 0 {
-                        self.navigationController?.popViewController(animated: true)
-                    } else {
-                        self.navigationController?.popToViewController(ofClass: DashboardViewController.self)
-                    }
-                    self.navigationItem.leftBarButtonItem?.isEnabled = true
+                    self.showSuccessAlert()
                 case .error(let message):
                     self.showErrorAlert(message: message)
                     self.navigationItem.rightBarButtonItem = self.rightButton
@@ -383,6 +378,19 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
                     print("")
                 }
             }.store(in: &cancellable)
+    }
+    
+    private func showSuccessAlert() {
+        let alert = UIAlertController(title: "Job Submited successfully", message: "Your Job successfully submited.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+            if LocalDataBaseWraper().fetchJobsForDeliveryList().count > 0 {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                self.navigationController?.popToViewController(ofClass: DashboardViewController.self)
+            }
+            self.navigationItem.leftBarButtonItem?.isEnabled = true
+        }))
+        present(alert, animated: true)
     }
 }
 

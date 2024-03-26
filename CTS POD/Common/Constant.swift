@@ -72,6 +72,8 @@ struct Colors {
     static let viewBackground = UIColor(hex:"#F9F9F9")
     
     static let forgotPasswordViewBackground = UIColor(hex:"#FAFAFA")
+    
+    static let dashboardOptionColor = UIColor(hex: "#84c4cb")
 }
 
 struct UserDefaultKeys {

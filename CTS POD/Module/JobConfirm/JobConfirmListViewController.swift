@@ -216,6 +216,8 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
                 }
             }
         })
+        isAllSelected = false
+        buttonAllTap()
         tableView.reloadData()
     }
     

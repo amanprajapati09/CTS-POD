@@ -116,10 +116,6 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
                             return
                         }
                     }
-//                    if navigationController.requestModel.values.contains(where: { $0.id == item.id }) == false {
-//                        showErrorAlert(message: "Please fill the \(item.description) field")
-//                        return
-//                    }
                 }
             }
             delegate?.didPressNext(index: viewModel.dynamicReportList.first?.sectionNo ?? 0)
