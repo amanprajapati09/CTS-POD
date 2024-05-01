@@ -90,6 +90,11 @@ class DashboardViewController: UIViewController {
         return button
     }()
     
+    private lazy var logoImage: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "dashboard_logo"))
+        return view
+    }()
+    
     private lazy var buttonContainer: UIStackView = {
         let view = UIStackView(arrangedSubviews: [fetchButton, syncButton])
         view.backgroundColor = .clear
@@ -220,6 +225,14 @@ class DashboardViewController: UIViewController {
             $0.bottom.equalTo(contentFooterView.snp.top).inset(-16)
             $0.height.equalTo(40)
             $0.width.equalTo(140)
+        }
+        
+        footerView.addSubview(logoImage)
+        logoImage.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(16)
+            $0.bottom.equalTo(contentFooterView.snp.top).inset(-16)
+            $0.height.equalTo(35)
+            $0.width.equalTo(160)
         }
         
         view.addSubview(fetchActivityIndicator)

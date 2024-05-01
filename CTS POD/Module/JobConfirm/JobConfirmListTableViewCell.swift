@@ -146,7 +146,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     
     private lazy var callRow: RowView = {
         let view = RowView()
-        view.icon.image = UIImage(named: "job_call")
+        view.icon.image = UIImage(named: "job_order")
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -197,9 +197,10 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         dataStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        dataStackView.addArrangedSubview(callRow)
         dataStackView.addArrangedSubview(locationRow)
         dataStackView.addArrangedSubview(messageRow)
-        dataStackView.addArrangedSubview(callRow)
+        
         containerStack.addArrangedSubview(dataView)
     }
     

@@ -116,7 +116,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
     
     private lazy var signPreview: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleAspectFit
         view.clipsToBounds = true
         view.isHidden = true
         return view
