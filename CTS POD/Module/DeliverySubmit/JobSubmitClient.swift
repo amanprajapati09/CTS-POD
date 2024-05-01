@@ -47,3 +47,50 @@ final class JobSubmitClient: JobSubmitClientProtocol {
         _ = APIClient.sharedObject.load(urlRequest: request, completion: completion)
     }
 }
+
+protocol JobReSubmitClientProtocol {
+    func updateJobStatus(requestModel: JobSubmitResendRequest, completion: @escaping (Result<JobStatusUpdateResponse, Error>)->()) async throws -> Void
+}
+
+final class JobReSubmitClient: JobReSubmitClientProtocol {
+    
+    enum Endpoint: EndpointConfiguration {
+        case updateState(JobSubmitResendRequest)
+        
+        var path: String {
+            switch self {
+            case .updateState: return Constant.baseURL + "Job/AddOrUpdateJobDocument"
+            }
+        }
+        
+        var method: RequestMethods {
+            switch self {
+            case .updateState: return .POST
+            }
+        }
+        
+        var body: Encodable? {
+            switch self {
+            case .updateState(let request): return request
+            }
+        }
+        
+        var queryParam: [URLQueryItem]? {
+            return nil
+        }
+        
+        var header: [String : String] {
+            if let user = LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: UserDefaultKeys.user) {
+                return ["Authorization": user.token.authToken]
+            }
+            return [:]
+        }
+    }
+    
+    func updateJobStatus(requestModel: JobSubmitResendRequest, completion: @escaping (Result<JobStatusUpdateResponse, Error>) -> ()) async throws {
+        let configuration =  JobReSubmitClient.Endpoint.updateState(requestModel)
+        var request = try URLRequest.init(endpoint: configuration)
+        request.timeoutInterval = 240
+        _ = APIClient.sharedObject.load(urlRequest: request, completion: completion)
+    }
+}

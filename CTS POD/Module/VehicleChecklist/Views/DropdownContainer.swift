@@ -20,7 +20,7 @@ final class DropdownContainer: BaseContainerView {
         view.font = Fonts.popSemiBold
         view.textColor = Colors.colorBlack
         view.textAlignment = .left
-        view.text = models.title
+        view.attributedText = models.attributedTitle
         view.font = Fonts.popRegular
         view.numberOfLines = 0
         return view
@@ -33,8 +33,7 @@ final class DropdownContainer: BaseContainerView {
         let dropdown = UIImageView(frame: .init(x: 0, y: 0, width: 40, height: 20))
         dropdown.image = UIImage(named: "down_arrow")
         view.rightView = dropdown
-        view.rightViewMode = .always
-        view.placeholder = models.title
+        view.rightViewMode = .always        
         view.backgroundColor = Colors.colorLightGray
         view.tintColor = .clear
         view.delegate = self

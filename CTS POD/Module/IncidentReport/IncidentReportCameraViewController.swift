@@ -35,6 +35,18 @@ final class IncidentReportCameraViewController: BaseViewController<IncidentRepor
         return view
     }()
     
+    private lazy var buttonSubmit: UIButton = {
+        let view = UIButton()
+        view.backgroundColor = Colors.colorGray
+        view.setTitleColor(Colors.colorBlack, for: .normal)
+        view.setTitle(viewModel.configuration.string.buttonSubmitTitle, for: .normal)
+        view.snp.makeConstraints { $0.height.equalTo(40) }
+        view.addTarget(self, action: #selector(buttonSubmitTap), for: .touchUpInside)
+        view.layer.cornerRadius = 10
+        view.titleLabel?.font = Fonts.popRegular
+        return view
+    }()
+    
     private lazy var collection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -45,17 +57,17 @@ final class IncidentReportCameraViewController: BaseViewController<IncidentRepor
         return view
     }()
     
-    private lazy var rightButton: UIBarButtonItem = {
-        let view = UIBarButtonItem(image: UIImage(named: "done"),
-                                   style: .done,
-                                   target:self,
-                                   action: #selector(navigationRightClick))
-        return view
-    }()
-    
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
         view.hidesWhenStopped = true
+        return view
+    }()
+    
+    private lazy var buttonContainer: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [buttonPrevious, buttonSubmit])
+        view.axis = .horizontal
+        view.distribution = .fillEqually
+        view.spacing = 15
         return view
     }()
     
@@ -75,7 +87,7 @@ final class IncidentReportCameraViewController: BaseViewController<IncidentRepor
     }
     
     @objc
-    private func navigationRightClick() {
+    private func buttonSubmitTap() {
         guard collectionImages.count > 0 else {
             showErrorAlert(message: viewModel.configuration.string.imagePickertAlertMessage)
             return
@@ -96,27 +108,35 @@ final class IncidentReportCameraViewController: BaseViewController<IncidentRepor
         view.backgroundColor = Colors.viewBackground
         navigationItem.title = viewModel.configuration.string.cameraNavigationTitle
         
-        navigationItem.rightBarButtonItem = rightButton
-        
         view.addSubview(btnCamera)
         btnCamera.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(40)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
         }
-        
-        view.addSubview(buttonPrevious)
-        buttonPrevious.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(16)
+                        
+        view.addSubview(buttonContainer)
+        buttonContainer.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview().inset(20)
             $0.height.equalTo(40)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(10)
+        }
+        view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalTo(buttonContainer)
+        }
+        buttonPrevious.snp.makeConstraints { make in
+            make.height.equalTo(40)
+        }
+        
+        buttonSubmit.snp.makeConstraints { make in
+            make.height.equalTo(40)
         }
         
         view.addSubview(collection)
         collection.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.top.equalTo(btnCamera.snp.bottom).offset(15)
-            $0.bottom.equalTo(buttonPrevious.snp.top).offset(-20)
+            $0.bottom.equalTo(buttonContainer.snp.top).offset(-10)
         }
     }
     
@@ -148,27 +168,35 @@ final class IncidentReportCameraViewController: BaseViewController<IncidentRepor
     func buttonPreviousTap() {
         delegate?.didPressPrevious()
     }
-    
+
     private func bind() {
         viewModel.$viewState.receive(on: DispatchQueue.main)
             .sink { state in
                 self.activityIndicator.stopAnimating()
                 switch state {
                 case .loading:
-                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.activityIndicator)
                     self.activityIndicator.startAnimating()
                     self.navigationItem.leftBarButtonItem?.isEnabled = false
+                    self.buttonContainer.isHidden = true
                 case .loaded:
-                    self.navigationController?.dismiss(animated: true)
+                    self.showSuccessAlert()
                 case .error(let message):
+                    self.navigationItem.leftBarButtonItem?.isEnabled = true
                     self.showErrorAlert(message: message)
-                    self.navigationItem.rightBarButtonItem = self.rightButton
-                    self.navigationItem.leftBarButtonItem?.isEnabled = true
+                    self.buttonContainer.isHidden = false
                 default :
-                    self.navigationItem.rightBarButtonItem = self.rightButton
                     self.navigationItem.leftBarButtonItem?.isEnabled = true
+                    self.buttonContainer.isHidden = false
                 }
             }.store(in: &cancellable)
+    }
+    
+    private func showSuccessAlert() {
+        let alert = UIAlertController(title: "Incedence Submited!", message: "Your Incedence successfully submited.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+            self.navigationController?.dismiss(animated: true)
+        }))
+        present(alert, animated: true)
     }
 }
 

@@ -18,7 +18,7 @@ final class CheckboxContainer: BaseContainerView {
         view.font = Fonts.popSemiBold
         view.textColor = Colors.colorBlack
         view.textAlignment = .left
-        view.text = models.title
+        view.attributedText = models.attributedTitle
         view.font = Fonts.popRegular
         return view
     }()

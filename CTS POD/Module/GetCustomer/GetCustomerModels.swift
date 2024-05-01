@@ -23,8 +23,12 @@ struct Workflow: Codable {
                                      title: flowName,
                                      icon: UIImage(named: "\(flowID)_dashboard") ?? UIImage() ,
                                      type: Dashboard.DashboardOption(rawValue: flowID) ?? .login,
-                                     backgroundColor: Colors.colorPrimaryDark,
+                                     backgroundColor: getBGColor(id: flowID),
                                      textColor: Colors.colorPrimary)
+    }
+    
+    func getBGColor(id: Int) -> UIColor {
+        return id > 1 ? Colors.dashboardOptionColor : Colors.colorPrimaryDark
     }
 }
 

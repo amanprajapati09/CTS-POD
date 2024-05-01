@@ -221,9 +221,9 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         dataStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        dataStackView.addArrangedSubview(callRow)
         dataStackView.addArrangedSubview(locationRow)
         dataStackView.addArrangedSubview(messageRow)
-        dataStackView.addArrangedSubview(callRow)
         dataStackView.addArrangedSubview(actionButtonView)
         containerStack.addArrangedSubview(dataView)
     }

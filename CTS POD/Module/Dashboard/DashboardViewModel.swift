@@ -6,9 +6,11 @@ final class DashboardViewModel {
     let configuration: Dashboard.Configuration
     let customer: Customer
     let fetchManager = LocalDataBaseWraper()
+    @Published var syncState: APIState<JobStatusUpdateResponse>?
     
     @Published var canShowFetchButton: Bool = true
     @Published var updateJobListComplete: Bool = false
+    @Published var showAlert: String?
     
     private var jobList = [Job]()
     
@@ -171,6 +173,7 @@ final class DashboardViewModel {
                 let ids = jobList.map { $0.id }
                 guard ids.count > 0 else {
                     self.updateJobListComplete = true
+                    self.showAlert = "Error"
                     return
                 }
                 let requestModel = JobStatusUpdate(ids: ids, status: 5, branchCode: "code")
@@ -193,25 +196,9 @@ final class DashboardViewModel {
     }
     
     func submitJobs()  {
-        let jobs = LocalDataBaseWraper().fetchLocalSavedJob()        
-        for job in jobs {
-            Task {@MainActor in
-                do {
-                    try await configuration.jobSubmitUsecase.updateJobStatus(request: job) { result in
-                        switch result {
-                        case .success(let value):
-                            if value.status == "Success" {
-                                RealmManager.shared.delete(realmList: job)
-                            } else {
-                                ErrorLogManager.uploadErrorLog(apiName: "Job/AddOrUpdateJobDocument", error: value.message)
-                            }
-                        case .failure(let error):
-                            ErrorLogManager.uploadErrorLog(apiName: "Job/AddOrUpdateJobDocument", error: error.localizedDescription)
-                        }
-                    }
-                }
-            }
-        }
+        let localList = LocalDataBaseWraper().fetchLocalSavedJob()
+        let jobs = localList.map { $0.map() }
+        manageAPICallingIndex(list: jobs, index: 0, localList: localList)
     }
     
     func fetchIncidentReport(completion: @escaping (_ result: [DynamicReportlist]?)->())  {
@@ -229,6 +216,47 @@ final class DashboardViewModel {
                         ErrorLogManager.uploadErrorLog(apiName: "DynamicIncidentReport/GetIncidenceReportDynamic", error: error.localizedDescription)
                     }
                 })
+            }
+        }
+    }
+    
+    private func manageAPICallingIndex(list: [JobSubmitResendRequest], index: Int, localList: [JobSubmitRequest]) {
+        self.syncState = .loading
+        guard index < list.count else {            
+            self.syncState = .loaded(JobStatusUpdateResponse(status: "Done", message: "Success"))
+            return
+        }
+        let requestModel = list[index]
+        callAPI(request: requestModel) { isSuccess in
+            if isSuccess {
+                RealmManager.shared.delete(realmList: localList[index])
+                self.manageAPICallingIndex(list: list, index: (index + 1), localList: localList)
+            } else {
+                self.syncState = .error("Somthing went wrong! \nPlease try again!")
+            }
+        }
+    }
+    
+    private func callAPI(request: JobSubmitResendRequest, complition: @escaping ((_ isSuccess: Bool)->Void)) {
+        Task { @MainActor in
+            do {
+                try await configuration.jobReSubmitUsecase.updateJobStatus(request: request) { result in
+                    switch result {
+                    case .success(let value):
+                        if value.status == "Success" {
+                            complition(true)
+                        } else {
+                            complition(false)
+                            ErrorLogManager.uploadErrorLog(apiName: "Job/AddOrUpdateJobDocument", error: value.message)
+                        }
+                    case .failure(let error):
+                        complition(false)
+                        ErrorLogManager.uploadErrorLog(apiName: "Job/AddOrUpdateJobDocument", error: error.localizedDescription)
+                    }
+                }
+            } catch (let error) {
+                print(error)
+                complition(false)
             }
         }
     }

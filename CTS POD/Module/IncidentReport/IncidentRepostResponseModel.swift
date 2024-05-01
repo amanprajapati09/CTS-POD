@@ -1,5 +1,6 @@
 
 import Foundation
+import UIKit
 
 struct IncidentRepostResponseModel: Codable {
     let status, message: String

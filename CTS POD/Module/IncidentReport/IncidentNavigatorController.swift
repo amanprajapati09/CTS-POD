@@ -26,7 +26,11 @@ class IncidentNavigatorController: UINavigationController {
         super.viewDidLoad()
         for section in dynamicList {
             for item in section {
-                requestModel.values.append(IncedentReportValue(id: item.id, name: ""))
+                if item.type == "Dropdown" {
+                    requestModel.values.append(IncedentReportValue(id: item.id, name: item.values.first?.name ?? ""))
+                } else {
+                    requestModel.values.append(IncedentReportValue(id: item.id, name: ""))
+                }
             }
         }
     }
