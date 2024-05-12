@@ -84,7 +84,7 @@ final class DeliverySubmitViewModel {
     }
     
     private func manageAPICallingIndex(list: [JobSubmitRequest], index: Int) {
-        guard index < jobs.count else {
+        guard index < list.count else {
             self.updateJobStatus()
             self.viewState = .loaded(JobStatusUpdateResponse(status: "Done", message: "Success"))
             return

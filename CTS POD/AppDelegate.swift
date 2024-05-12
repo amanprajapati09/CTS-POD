@@ -51,7 +51,7 @@ extension AppDelegate : MessagingDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let controller = UIApplication.shared.windows.first?.rootViewController as? UINavigationController {
             let dashboard = controller.findViewController(type: DashboardViewController.self)
-            dashboard?.fetchJobList()
+            dashboard?.fetchJobList(canStore: false)
         }
     }
 }

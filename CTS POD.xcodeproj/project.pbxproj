@@ -1224,6 +1224,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"Use Location for track the delivery\"";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Photo library used to pick capture item";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo library used to pick capture item";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";
@@ -1264,6 +1265,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"Use Location for track the delivery\"";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Photo library used to pick capture item";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo library used to pick capture item";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";

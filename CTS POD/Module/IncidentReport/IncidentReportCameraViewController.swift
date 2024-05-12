@@ -192,7 +192,7 @@ final class IncidentReportCameraViewController: BaseViewController<IncidentRepor
     }
     
     private func showSuccessAlert() {
-        let alert = UIAlertController(title: "Incedence Submited!", message: "Your Incedence successfully submited.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Incident submitted!", message: "Your incident successfully submitted.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
             self.navigationController?.dismiss(animated: true)
         }))

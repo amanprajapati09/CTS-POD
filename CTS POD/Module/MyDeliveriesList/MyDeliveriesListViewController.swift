@@ -1,6 +1,8 @@
 import UIKit
 import RxSwift
 import Combine
+import MapKit
+import CoreLocation
 
 class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewModel> {
 
@@ -125,11 +127,43 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
         present(alert, animated: true)
     }
     
+    private func showMapOption(latitude: Double, longitude: Double) {
+        let actionSheet = UIAlertController(title: "Selection", message: "Select navigation app", preferredStyle: .actionSheet)
+        let googleMap = UIAlertAction(title: "Google Maps", style: .default) { action in
+            actionSheet.dismiss(animated: true)
+            self.naviagteToGoogleMap(latitude: latitude, longitude: longitude)
+        }
+        let appleMap = UIAlertAction(title: "Apple Maps", style: .default) { action in
+            actionSheet.dismiss(animated: true)
+            self.openAppleMap(latitude: latitude, longitude: longitude)
+        }
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel) { action in
+            actionSheet.dismiss(animated: true)
+        }
+        actionSheet.addAction(googleMap)
+        actionSheet.addAction(appleMap)
+        actionSheet.addAction(actionCancel)
+        present(actionSheet, animated: true)
+    }
+    
     private func naviagteToGoogleMap(latitude: Double, longitude: Double) {
         if let url = URL(string: "comgooglemaps://?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving"),
            UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
+    }
+    
+    private func openAppleMap(latitude: Double, longitude: Double) {
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.openInMaps(launchOptions: options)
     }
 }
 
@@ -176,7 +210,7 @@ extension MyDeliveriesListViewController: UITableViewDataSource, UITableViewDele
                    let longitude = self.jobs?[indexPath.row].job.longitude {
                      print(latitude)
                      print(longitude)
-                    self.naviagteToGoogleMap(latitude: latitude, longitude: longitude)
+                    self.showMapOption(latitude: latitude, longitude: longitude)
                  }
             }
         }
