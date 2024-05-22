@@ -32,7 +32,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         subTitleLabel.text = job.titleAddress
         
         locationRow.titleLabel.text = job.locationAddress
-        messageRow.titleLabel.text = job.comments
+        messageRow.titleLabel.text = job.delAddressLine3
         callRow.titleLabel.text = job.deliveryNo
                 
         checkBoxIcon.setImage((jobModel?.isSelected ?? false) ? UIImage(named: "check_mark") : UIImage(named: "check_empty"), for: .normal)
@@ -221,9 +221,10 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         dataStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        dataStackView.addArrangedSubview(callRow)
+        
         dataStackView.addArrangedSubview(locationRow)
         dataStackView.addArrangedSubview(messageRow)
+        dataStackView.addArrangedSubview(callRow)
         dataStackView.addArrangedSubview(actionButtonView)
         containerStack.addArrangedSubview(dataView)
     }
@@ -269,7 +270,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         var title: String
         etaButton.isHidden = false
         guard let etaTitle = job?.ETAStatus else {
-            title = "EAT"
+            title = "ETA"
             etaButton.backgroundColor = Colors.colorBlue
             etaButton.isUserInteractionEnabled = true
             etaButton.setTitle(title, for: .normal)

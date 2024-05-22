@@ -30,6 +30,7 @@ extension URLRequest {
         for value in endpoint.header {
             setValue(value.value, forHTTPHeaderField: value.key)
         }
+        timeoutInterval = 600
     }
 }
 

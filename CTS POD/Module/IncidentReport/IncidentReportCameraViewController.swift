@@ -152,9 +152,11 @@ final class IncidentReportCameraViewController: BaseViewController<IncidentRepor
             for item in items {
                 switch item {
                 case .photo(let photo):
-                    guard let photo = photo.image.compressTo(5) else {return}
-                    self.collectionImages.append(photo)
-                    self.collection.reloadData()
+                    ImageCompressor.compress(image: photo.image, maxByte: 200000) { image in
+                        guard let image else { return }
+                        self.collectionImages.append(image)
+                        self.collection.reloadData()
+                    }
                 default:
                     print("video not needed")
                 }
@@ -192,7 +194,7 @@ final class IncidentReportCameraViewController: BaseViewController<IncidentRepor
     }
     
     private func showSuccessAlert() {
-        let alert = UIAlertController(title: "Incedence Submited!", message: "Your Incedence successfully submited.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "", message: "incident is submitted successfully.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
             self.navigationController?.dismiss(animated: true)
         }))

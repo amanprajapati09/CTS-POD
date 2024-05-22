@@ -50,8 +50,7 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
     }()
     
     private func setupView() {
-        navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationItem.title = viewModel.dynamicReportList.first?.sectionDescription
+        navigationController?.setNavigationBarHidden(false, animated: false)        
         view.backgroundColor = Colors.viewBackground
         navigationItem.leftBarButtonItem = backButton
         
@@ -95,6 +94,11 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.title = viewModel.dynamicReportList.first?.sectionDescription
     }
     
     @objc
@@ -153,7 +157,11 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
                     self?.delegate?.modifyStatus(item: updatedValue)                    
                 }
                 fieldView.snp.makeConstraints {
-                    $0.height.greaterThanOrEqualTo(80)
+                    if item.type == "Textarea" {
+                        $0.height.greaterThanOrEqualTo(120)
+                    } else {
+                        $0.height.greaterThanOrEqualTo(80)
+                    }
                     $0.leading.trailing.equalToSuperview()
                 }
             }

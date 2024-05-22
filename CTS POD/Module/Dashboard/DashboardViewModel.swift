@@ -9,7 +9,7 @@ final class DashboardViewModel {
     @Published var syncState: APIState<JobStatusUpdateResponse>?
     
     @Published var canShowFetchButton: Bool = true
-    @Published var updateJobListComplete: Bool = false
+    @Published var updateJobListComplete: Bool = true
     @Published var showAlert: String?
     
     private var jobList = [Job]()
@@ -143,7 +143,7 @@ final class DashboardViewModel {
         LocalTempStorage.removeValue(for: UserDefaultKeys.lastTimeStampUpdateLocation)
     }
     
-    func fetchJobList() {
+    func fetchJobList(canStore: Bool) {
         Task { @MainActor in
             do {
                 try await configuration.jobConformUsecase.fetchJob(completion: { result in
@@ -151,15 +151,20 @@ final class DashboardViewModel {
                     case .success(let value):
                         if let jobs = value.data.jobs, jobs.count > 0 {
                             self.jobList = jobs
-                            RealmManager.shared.addAndUpdateObjectsToRealm(realmList: jobs)
+                            if canStore {
+                                RealmManager.shared.addAndUpdateObjectsToRealm(realmList: jobs)
+                                self.fetchJobsForUpdate()
+                                self.updateJobStatus()
+                            } else {
+                                self.canShowFetchButton = self.checkFetchButtonStatus()
+                            }
                         } else {
                             ErrorLogManager.uploadErrorLog(apiName: "Job/JobList", error: value.message)
+                            self.fetchJobsForUpdate()
                         }
                     case .failure(let error):
                         ErrorLogManager.uploadErrorLog(apiName: "Job/JobList", error: error.localizedDescription)
                     }
-                    self.fetchJobsForUpdate()
-                    self.canShowFetchButton = self.checkFetchButtonStatus()
                 })
             } catch (let error) {
                 print(error)
@@ -170,6 +175,7 @@ final class DashboardViewModel {
     func updateJobStatus()  {
         Task { @MainActor in
             do {
+                updateJobListComplete = false
                 let ids = jobList.map { $0.id }
                 guard ids.count > 0 else {
                     self.updateJobListComplete = true

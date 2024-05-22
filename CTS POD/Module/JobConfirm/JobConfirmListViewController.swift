@@ -112,7 +112,7 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
                     try RealmManager.shared.realm.write {
                         item.job.jobStatus = StatusString.jobConfirm.rawValue
                     }
-                    navigationController?.popViewController(animated: true)
+                    navigationController?.popToViewController(ofClass: DashboardViewController.self)
                 } catch {
                     print("error in update the data")
                 }

@@ -26,8 +26,8 @@ extension GetCustomer.Configuration {
     }
     
     struct Strings {
-        let title = "Organization"
-        let info = "Please enter your organization name"
+        let title = "Organisation"
+        let info = "Please enter your organisation name"
         let buttonTitle = "Go"
     }
 }

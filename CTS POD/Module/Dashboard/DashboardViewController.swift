@@ -121,7 +121,7 @@ class DashboardViewController: UIViewController {
         prepareCollectionView()
         prepareFooterView()
         bind()
-        fetchJobList()        
+        fetchJobList(canStore: false)
         print(RealmManager.shared.printRealmPath())
     }
     
@@ -285,7 +285,7 @@ class DashboardViewController: UIViewController {
     func fetchButtonClick() {
         fetchButton.isHidden = true
         fetchActivityIndicator.startAnimating()
-        viewModel.updateJobStatus()
+        viewModel.fetchJobList(canStore: true)
     }
     
     @objc
@@ -301,9 +301,9 @@ class DashboardViewController: UIViewController {
         syncButton.isHidden = viewModel.checkForSyncData()
     }
     
-    func fetchJobList() {
+    func fetchJobList(canStore: Bool) {
         if Constant.isLogin, !Constant.isVehicalCheck {
-            viewModel.fetchJobList()
+            viewModel.fetchJobList(canStore: canStore)
         }
     }
     
@@ -358,7 +358,7 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
                 let controller = VehicleCheckList.build()
                 controller.vehicalCheckUpdate = {
                     self.optionList = self.viewModel.fetchOptions()
-                    self.fetchJobList()
+                    self.fetchJobList(canStore: true)
                 }
                 self.navigationController?.pushViewController(controller, animated: true)
             }

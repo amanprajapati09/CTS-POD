@@ -238,19 +238,26 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
     
     @objc
     private func buttonCameraTap() {
+        guard collectionImages.count < 5 else {
+            showErrorAlert(message: "Maximum 5 images are allow to upload!")
+            return
+        }
         var config = YPImagePickerConfiguration()
-        config.library.maxNumberOfItems = 5
+        config.library.maxNumberOfItems = 5 - collectionImages.count
         config.library.defaultMultipleSelection = true
-        config.targetImageSize = YPImageSize.cappedTo(size: 960.0)
-        config.showsPhotoFilters = false
+        config.targetImageSize = YPImageSize.cappedTo(size: 960.0)        
+        config.showsPhotoFilters = false        
         let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking { items, cancelled in
             for item in items {
                 switch item {
                 case .photo(let photo):
-                    guard let photo = photo.image.compressTo(5) else {return}
-                    self.collectionImages.append(photo)
-                    self.imagesCollectionView.reloadData()
+                    ImageCompressor.compress(image: photo.image, maxByte: 200000) { image in
+                        guard let image else { return }
+                        self.collectionImages.append(image)
+                        self.imagesCollectionView.reloadData()
+                    }
+                    
                 default:
                     print("video not needed")
                 }
@@ -258,11 +265,6 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
             picker.dismiss(animated: true)
         }
         present(picker, animated: true)
-    }
-    
-    @objc
-    private func buttonSaveTap() {
-        //TODO: - API call or local save
     }
     
     fileprivate func manageButtons(option: DeliveryOption) {
@@ -309,10 +311,6 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
             return
         }
         
-//        guard collectionImages.count > 0 else {
-//            showErrorAlert(message: "Please capture atleast one image!")
-//            return
-//        }
         guard let signatureImage else {
             showErrorAlert(message: "Please capture customer signature!")
             return
@@ -381,7 +379,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
     }
     
     private func showSuccessAlert() {
-        let alert = UIAlertController(title: "Job Submited successfully", message: "Your Job successfully submited.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Success", message: "Delivery has been processed", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
             if LocalDataBaseWraper().fetchJobsForDeliveryList().count > 0 {
                 self.navigationController?.popViewController(animated: true)
