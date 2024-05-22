@@ -32,7 +32,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         subTitleLabel.text = job.titleAddress
         
         locationRow.titleLabel.text = job.locationAddress
-        messageRow.titleLabel.text = job.notes
+        messageRow.titleLabel.text = job.delAddressLine3
         callRow.titleLabel.text = job.deliveryNo
                 
         checkBoxIcon.setImage((jobModel?.isSelected ?? false) ? UIImage(named: "check_mark") : UIImage(named: "check_empty"), for: .normal)

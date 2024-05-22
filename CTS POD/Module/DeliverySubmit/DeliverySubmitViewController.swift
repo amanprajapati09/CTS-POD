@@ -245,16 +245,19 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         var config = YPImagePickerConfiguration()
         config.library.maxNumberOfItems = 5 - collectionImages.count
         config.library.defaultMultipleSelection = true
-        config.targetImageSize = YPImageSize.cappedTo(size: 960.0)
-        config.showsPhotoFilters = false
+        config.targetImageSize = YPImageSize.cappedTo(size: 960.0)        
+        config.showsPhotoFilters = false        
         let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking { items, cancelled in
             for item in items {
                 switch item {
                 case .photo(let photo):
-                    guard let photo = photo.image.compressTo(5) else {return}
-                    self.collectionImages.append(photo)
-                    self.imagesCollectionView.reloadData()
+                    ImageCompressor.compress(image: photo.image, maxByte: 200000) { image in
+                        guard let image else { return }
+                        self.collectionImages.append(image)
+                        self.imagesCollectionView.reloadData()
+                    }
+                    
                 default:
                     print("video not needed")
                 }

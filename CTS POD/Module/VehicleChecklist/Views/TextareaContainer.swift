@@ -28,13 +28,15 @@ final class TextareaContainer: BaseContainerView {
         return view
     }()
     
-    private lazy var textField: VehicleTextField = {
-        let view = VehicleTextField ()
+    private lazy var textField: UITextView = {
+        let view = UITextView()
         view.layer.cornerRadius = 5.0
         view.layer.borderWidth = 1.0
         view.layer.borderColor = Colors.colorGray.cgColor
         view.snp.makeConstraints { $0.height.equalTo(50) }
-        view.placeholder = models.title
+        view.text = models.title
+        view.textColor = .gray
+        view.font = Fonts.popRegular16
         return view
     }()
     
@@ -48,18 +50,38 @@ final class TextareaContainer: BaseContainerView {
     func prepareCheckView()  {
         
         stackView.addArrangedSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.height.equalTo(20)
+        }
         stackView.addArrangedSubview(textField)
         addSubview(stackView)
         stackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        textField.text = models.prefilledValue
+        if let value = models.prefilledValue, !value.isEmpty {
+            textField.text = models.prefilledValue
+        } else {
+            textField.text = models.title
+        }
     }
     
     func bindValue()  {
-        textField.rx.controlEvent([.editingChanged])
-            .asObservable().subscribe({ [weak self] text in
-                self?.didUpdateValue?(CheckListItem(id: self?.models.id ?? "", value: self?.textField.text ?? ""))
-            }).disposed(by: bag)
+        textField.rx.didChange.subscribe { [weak self] element in
+            self?.didUpdateValue?(CheckListItem(id: self?.models.id ?? "", value: self?.textField.text ?? ""))
+        }.disposed(by: bag)
+        textField.rx.didBeginEditing.subscribe { [weak self] element in
+            guard let self else { return }
+            if self.textField.text == models.title {
+                self.textField.text = ""
+            }
+            self.textField.textColor = .black
+        }.disposed(by: bag)
+        textField.rx.didEndEditing.subscribe { [weak self] element in
+            guard let self else { return }
+            if self.textField.text.isEmpty {
+                self.textField.text = models.title
+                self.textField.textColor = UIColor.lightGray
+            }
+        }.disposed(by: bag)
     }
 }
