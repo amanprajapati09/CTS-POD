@@ -379,13 +379,11 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
     }
     
     private func showSuccessAlert() {
-        let alert = UIAlertController(title: "Success", message: "Delivery has been processed", preferredStyle: .alert)
+        let message = selectedState == .unableToDeliver ? "Unable to deliver" : "Delivery has been proceed"
+        let title = selectedState == .unableToDeliver ? "Status" : "Success"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
-            if LocalDataBaseWraper().fetchJobsForDeliveryList().count > 0 {
-                self.navigationController?.popViewController(animated: true)
-            } else {
-                self.navigationController?.popToViewController(ofClass: DashboardViewController.self)
-            }
+            self.navigationController?.popViewController(animated: true)
             self.navigationItem.leftBarButtonItem?.isEnabled = true
         }))
         present(alert, animated: true)

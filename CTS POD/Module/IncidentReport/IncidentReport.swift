@@ -33,7 +33,7 @@ final class IncidentReport {
         var dynamicList = [[DynamicReportlist]]()
         var index = 1
         while index <= maxSection {            
-            dynamicList.append(updatedList.filter({ $0.sectionNo == index}).sorted(by: { $0.order < $1.order }))
+            dynamicList.append(updatedList.filter({ $0.sectionNo == index}).sorted(by: { $0.description < $1.description }).sorted(by: { $0.order < $1.order }))
             index = index + 1
         }
         return dynamicList
