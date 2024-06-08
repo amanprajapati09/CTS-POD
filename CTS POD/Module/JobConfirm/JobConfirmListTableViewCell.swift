@@ -154,7 +154,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     
     private lazy var messageRow: RowView = {
         let view = RowView()
-        view.icon.image = UIImage(named: "job_message")
+        view.icon.image = UIImage(named: "job_message")        
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -273,7 +273,7 @@ class RowView: UIView {
         
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(15)
+            make.centerY.equalToSuperview()
             make.leading.equalTo(icon.snp.trailing).offset(10)
             make.trailing.equalToSuperview().inset(10)
         }

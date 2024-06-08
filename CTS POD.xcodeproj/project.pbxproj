@@ -94,6 +94,7 @@
 		75A734B22B12028700A60796 /* ErrorLogClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A734B12B12028700A60796 /* ErrorLogClient.swift */; };
 		75A734B42B1202A000A60796 /* ErrorLogReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A734B32B1202A000A60796 /* ErrorLogReqModel.swift */; };
 		75A734B62B1208E500A60796 /* ErrorLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A734B52B1208E500A60796 /* ErrorLogManager.swift */; };
+		75C02A622C143255003570EE /* MapAppChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C02A612C143255003570EE /* MapAppChooser.swift */; };
 		75DD8B912AF26BA90030DF89 /* ETAUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */; };
 		75DD8B932AF26BB20030DF89 /* ETAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B922AF26BB20030DF89 /* ETAClient.swift */; };
 		75DD8B952AF26D270030DF89 /* ETAModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B942AF26D270030DF89 /* ETAModel.swift */; };
@@ -245,6 +246,7 @@
 		75A734B12B12028700A60796 /* ErrorLogClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogClient.swift; sourceTree = "<group>"; };
 		75A734B32B1202A000A60796 /* ErrorLogReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogReqModel.swift; sourceTree = "<group>"; };
 		75A734B52B1208E500A60796 /* ErrorLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogManager.swift; sourceTree = "<group>"; };
+		75C02A612C143255003570EE /* MapAppChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAppChooser.swift; sourceTree = "<group>"; };
 		75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAUsecase.swift; sourceTree = "<group>"; };
 		75DD8B922AF26BB20030DF89 /* ETAClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAClient.swift; sourceTree = "<group>"; };
 		75DD8B942AF26D270030DF89 /* ETAModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAModel.swift; sourceTree = "<group>"; };
@@ -620,6 +622,7 @@
 				75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */,
 				75DD8B922AF26BB20030DF89 /* ETAClient.swift */,
 				75DD8B942AF26D270030DF89 /* ETAModel.swift */,
+				75C02A612C143255003570EE /* MapAppChooser.swift */,
 			);
 			path = MyDeliveriesList;
 			sourceTree = "<group>";
@@ -979,6 +982,7 @@
 				07668D082AD2F7D800D5AD3B /* JobConfirmClient.swift in Sources */,
 				07317FA02A7E2BE10066341F /* AppDelegate.swift in Sources */,
 				07317FD82A7FFEA40066341F /* GetCustomerClient.swift in Sources */,
+				75C02A622C143255003570EE /* MapAppChooser.swift in Sources */,
 				7549D87B2AF812C600D49C62 /* JobSubmitClient.swift in Sources */,
 				759985E52AFD543C0067F661 /* IncidentReportUsecase.swift in Sources */,
 				07835EB92A8739E60071A3AD /* EndpointProtocol.swift in Sources */,
@@ -1211,7 +1215,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "CTS POD/CTS POD.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = "";
@@ -1238,7 +1242,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.exigotech.ctspod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "css-pod Adhoc";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "cstpod-development";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1252,7 +1256,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "CTS POD/CTS POD.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = "";
@@ -1279,7 +1283,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.exigotech.ctspod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "css-pod Adhoc";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "cstpod-development";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
