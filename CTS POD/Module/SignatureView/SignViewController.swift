@@ -114,7 +114,10 @@ class SignViewController: BaseViewController<SignViewModel> {
     @objc
     private func buttonSaveTap() {
         if let signImage = signaturePad.getSignature() {
-            if let data = signImage.pngData() {
+            let width: CGFloat = 400
+            let aspectRatio: CGFloat = 16.0 / 9.0
+            let height = width * (1 / aspectRatio)
+            if let data = signImage.resize(Int(width), Int(height)).pngData() {
                 viewModel.updateJobs(signData: data)
             }
         }

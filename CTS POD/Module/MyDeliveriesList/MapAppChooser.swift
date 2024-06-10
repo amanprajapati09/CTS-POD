@@ -17,6 +17,7 @@ public enum DirectionsOpts {
     case Waze
     case TomTom
     case manpsWithMe
+    case SyncGPS
     
     public var appname: String {
         switch self {
@@ -32,6 +33,8 @@ public enum DirectionsOpts {
             return "TomTom"
         case .manpsWithMe:
             return "Maps.Me"
+        case .SyncGPS:
+            return "Sync GPS"
         }
     }
     public var baseUrl: String {
@@ -48,6 +51,8 @@ public enum DirectionsOpts {
             return "tomtomhome://"
         case .manpsWithMe:
             return "mapswithme://"
+        case .SyncGPS:
+            return "com.sygic.aura://"
         }
     }
     
@@ -89,6 +94,9 @@ public enum DirectionsOpts {
             
         case .manpsWithMe:
             urlString.append("map?v=1&ll=\(coordinate.latitude),\(coordinate.longitude)&n=\(name)&id=AnyStringOrEncodedUrl&backurl=UrlToCallOnBackButton&appname=TrackProof")
+        
+        case .SyncGPS:
+            urlString.append("coordinate/\(coordinate.latitude)\(coordinate.longitude)/drive")
         }
         
         let urlwithPercentEscapes =
