@@ -824,10 +824,10 @@ PODS:
   - RxRelay (6.6.0):
     - RxSwift (= 6.6.0)
   - RxSwift (6.6.0)
-  - SignaturePad (1.0.3)
   - SnapKit (5.6.0)
   - SteviaLayout (5.1.2)
   - SVPinView (1.0.11)
+  - SwiftSignatureView (3.2.1)
   - YPImagePicker (5.2.2):
     - PryntTrimmerView (= 4.0.2)
     - SteviaLayout (= 5.1.2)
@@ -841,9 +841,9 @@ DEPENDENCIES:
   - RealmSwift
   - RxCocoa
   - RxSwift
-  - SignaturePad (~> 1.0.3)
   - SnapKit
   - SVPinView
+  - SwiftSignatureView
   - YPImagePicker
 
 SPEC REPOS:
@@ -876,10 +876,10 @@ SPEC REPOS:
     - RxCocoa
     - RxRelay
     - RxSwift
-    - SignaturePad
     - SnapKit
     - SteviaLayout
     - SVPinView
+    - SwiftSignatureView
     - YPImagePicker
 
 SPEC CHECKSUMS:
@@ -911,12 +911,12 @@ SPEC CHECKSUMS:
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
   RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
-  SignaturePad: b0d6322a27e90fe3e7d55194606503f5dfacb077
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SteviaLayout: 05424e528d643657d39ce72c786e4adf13cfc5f2
   SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
+  SwiftSignatureView: b09443ea8359a5bc267202226f4606fc03193173
   YPImagePicker: afc81b3cffab05a6e7261c5daf80dc31b4e917b4
 
-PODFILE CHECKSUM: e8bbafac64e2c26b2ca200414f2fd3a7847f20f0
+PODFILE CHECKSUM: 6223682acb21c6024e622a9ef0f512e32c04f05e
 
 COCOAPODS: 1.14.2
