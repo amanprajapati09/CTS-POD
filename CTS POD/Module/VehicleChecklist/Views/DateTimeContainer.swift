@@ -1,5 +1,6 @@
 
 import UIKit
+import DatePicker
 
 final class DateTimeContainer: BaseContainerView {
     
@@ -35,7 +36,10 @@ final class DateTimeContainer: BaseContainerView {
         view.rightViewMode = .always
         view.placeholder = models.title
         view.backgroundColor = Colors.colorLightGray
+        view.delegate = self
         view.tintColor = .clear
+        view.inputView = UIView()
+        view.inputAccessoryView = UIView()
         return view
     }()
     
@@ -72,32 +76,35 @@ final class DateTimeContainer: BaseContainerView {
         textField.text = models.prefilledValue
     }
     
-    private lazy var datePicker: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.timeZone = TimeZone.current
-        return datePicker
+    private lazy var datePicker: DatePicker = {
+        let picker = DatePicker()
+        return picker
     }()
     
     private func prepareDropdown() {
-        
-        textField.inputView = datePicker
-        datePicker.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
-        
-        let buttonDone = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donePicker))
-        buttonDone.tintColor = .systemBlue
-        toolBar.setItems([UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil), buttonDone], animated: false)
-        textField.inputAccessoryView = toolBar
+        let minDate = DatePickerHelper.shared.dateFrom(day: 1, month: 01, year: 1800)!
+        let maxDate = DatePickerHelper.shared.dateFrom(day: 31, month: 12, year: 2080)!
+        datePicker.setup(beginWith: Date(), min: minDate, max: maxDate) { (selected, date) in
+            if selected, let selectedDate = date {
+                self.textField.resignFirstResponder()
+                self.handleDatePicker(date: selectedDate.string().calanderDateToDate())
+            } else {
+                print("Cancelled")
+            }
+        }
     }
     
-    @objc private func donePicker() {
-        textField.resignFirstResponder()
-        textField.text = selectedValue
+    @objc func handleDatePicker(date: Date) {
+        textField.text = date.createUTCDateString()
+        selectedValue = date.createUTCDateString()
         didUpdateValue?(CheckListItem(id: models.id, value: selectedValue ?? ""))
     }
-    
-    @objc func handleDatePicker(sender: UIDatePicker) {
-        textField.text = sender.date.createUTCDateString()
-        selectedValue = sender.date.createUTCDateString()
+}
+
+extension DateTimeContainer: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let controller = self.parentViewController {
+            datePicker.show(in: controller)
+        }
     }
 }

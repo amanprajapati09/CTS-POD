@@ -241,7 +241,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         guard collectionImages.count < 5 else {
             showErrorAlert(message: "Maximum 5 images are allow to upload!")
             return
-        }
+        }        
         var config = YPImagePickerConfiguration()
         config.library.maxNumberOfItems = 5 - collectionImages.count
         config.library.defaultMultipleSelection = true

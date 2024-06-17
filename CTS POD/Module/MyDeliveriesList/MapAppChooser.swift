@@ -56,7 +56,7 @@ public enum DirectionsOpts {
         }
     }
     
-    public static let allApps: [DirectionsOpts] = [.AppleMaps, .GoogleMaps, .Navigon, .Waze]
+    public static let allApps: [DirectionsOpts] = [.AppleMaps, .GoogleMaps, .Navigon, .Waze, .TomTom, .manpsWithMe, .SyncGPS]
     public static var availableApps: [DirectionsOpts] {
         return self.allApps.filter { app in app.available }
     }

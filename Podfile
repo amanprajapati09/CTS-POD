@@ -17,7 +17,8 @@ target 'CTS POD' do
   pod 'Firebase/Messaging'
   pod 'YPImagePicker'
   pod "SwiftSignatureView"
-
+  pod 'DatePicker', '~> 1.3.0'
+  
   # Pods for CTS POD
 
   target 'CTS PODTests' do

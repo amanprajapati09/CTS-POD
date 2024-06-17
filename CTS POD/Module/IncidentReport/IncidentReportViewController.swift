@@ -61,7 +61,6 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
         label.textAlignment = .center
         label.textColor = .black
         self.navigationItem.titleView = label
-        
         view.addSubview(containerView)
         containerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(10)
