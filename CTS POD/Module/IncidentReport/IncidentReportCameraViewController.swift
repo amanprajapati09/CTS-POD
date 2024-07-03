@@ -145,6 +145,7 @@ final class IncidentReportCameraViewController: BaseViewController<IncidentRepor
         var config = YPImagePickerConfiguration()
         config.library.maxNumberOfItems = 5
         config.library.defaultMultipleSelection = true
+        config.onlySquareImagesFromCamera = false
         config.targetImageSize = YPImageSize.cappedTo(size: 960.0)
         config.showsPhotoFilters = false
         let picker = YPImagePicker(configuration: config)

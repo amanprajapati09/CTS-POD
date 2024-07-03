@@ -241,23 +241,21 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         guard collectionImages.count < 5 else {
             showErrorAlert(message: "Maximum 5 images are allow to upload!")
             return
-        }        
+        }
         var config = YPImagePickerConfiguration()
         config.library.maxNumberOfItems = 5 - collectionImages.count
         config.library.defaultMultipleSelection = true
-        config.targetImageSize = YPImageSize.cappedTo(size: 960.0)        
+        config.onlySquareImagesFromCamera = false
         config.showsPhotoFilters = false        
         let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking { items, cancelled in
             for item in items {
                 switch item {
                 case .photo(let photo):
-                    ImageCompressor.compress(image: photo.image, maxByte: 200000) { image in
-                        guard let image else { return }
-                        self.collectionImages.append(image)
-                        self.imagesCollectionView.reloadData()
-                    }
-                    
+                    let image = photo.image
+                    let thumbnail = image.imageWithImage(scaledToWidth: image.size.width/10)
+                    self.collectionImages.append(thumbnail)
+                    self.imagesCollectionView.reloadData()
                 default:
                     print("video not needed")
                 }
