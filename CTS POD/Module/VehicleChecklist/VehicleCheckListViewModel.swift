@@ -49,9 +49,18 @@ final class VehicleCheckListViewModel {
         }        
     }
     
-    func updateStatus(status: String) {
+    func updateCheckBox(item: CheckListItem) {
+        if let index = requestModel.checklists.firstIndex(where: {$0.id == item.id }) {
+            requestModel.checklists.remove(at: index)
+        } else {
+            requestModel.checklists.append(item)
+        }
+    }
+    
+    func updateStatus(status: String, comment: String? = nil) {
         requestModel.createdDate = Date().createUTCDateString()
         requestModel.vehicleStatus = status
+        requestModel.comments = comment
         Task { @MainActor in
             updateViewState = .loading
             do {

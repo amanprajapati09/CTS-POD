@@ -146,7 +146,7 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
     
     private func prepareView() {
         for item in viewModel.dynamicReportList {
-            let info = item.values.map { $0.map() }
+            let info = item.values.map { $0.map(type: .incidentReport) }
             if let className = "\(item.type)Container".toMyModuleClass() as? BaseContainerView.Type {
                 var model: ValueOption!
                 

@@ -4,7 +4,12 @@
 <dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>waze</string>
 		<string>comgooglemaps</string>
+		<string>navigon</string>
+		<string>tomtomhome</string>
+		<string>mapswithme</string>
+		<string>com.sygic.aura</string>
 	</array>
 	<key>UIAppFonts</key>
 	<array>
@@ -36,14 +41,5 @@
 		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>waze</string>
-      <string>comgooglemaps</string>
-      <string>navigon</string>
-      <string>tomtomhome</string>
-      <string>mapswithme</string>
-      <string>com.sygic.aura</string>
-    </array>
 </dict>
 </plist>

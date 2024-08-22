@@ -31,5 +31,12 @@ struct DetailValueOption {
     let title: String
     let id: Int
     var isCheckd: Bool = false
+    var parentType: ParentContainerType
+    
+}
+
+enum ParentContainerType {
+    case vehicleCheckList
+    case incidentReport
 }
 

@@ -27,8 +27,8 @@ struct Value: Codable {
     let id: Int
     let name: String
     
-    func map() -> DetailValueOption {
-        return DetailValueOption(title: name, id: id)
+    func map(type: ParentContainerType) -> DetailValueOption {
+        return DetailValueOption(title: name, id: id, parentType: type)
     }
 }
 
