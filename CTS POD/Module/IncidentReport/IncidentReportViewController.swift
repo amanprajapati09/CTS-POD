@@ -146,7 +146,7 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
     
     private func prepareView() {
         for item in viewModel.dynamicReportList {
-            let info = item.values.map { $0.map(type: .incidentReport) }
+            let info = item.values.map { $0.map() }
             if let className = "\(item.type)Container".toMyModuleClass() as? BaseContainerView.Type {
                 var model: ValueOption!
                 
@@ -161,7 +161,11 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
                 let fieldView = className.init(models: model)
                 containerStack.stackView.addArrangedSubview(fieldView)
                 fieldView.didUpdateValue = { [weak self] updatedValue in
-                    self?.delegate?.modifyStatus(item: updatedValue)                    
+                    if fieldView.isKind(of: CheckboxContainer.self) {
+                        self?.delegate?.updateCheckBox(item: updatedValue)
+                    } else {
+                        self?.delegate?.modifyStatus(item: updatedValue)
+                    }
                 }
                 fieldView.snp.makeConstraints {
                     if item.type == "Textarea" {

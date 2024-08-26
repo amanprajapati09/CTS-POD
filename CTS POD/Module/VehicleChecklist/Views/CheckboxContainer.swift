@@ -70,11 +70,7 @@ final class CheckboxContainer: BaseContainerView {
             if info.id == $0.id {
                 return DetailValueOption(title: $0.title, id: $0.id, isCheckd: !$0.isCheckd)
             } else {
-                if !info.isCheckd {
-                    return DetailValueOption(title: $0.title, id: $0.id, isCheckd: false)
-                } else {
-                    return DetailValueOption(title: $0.title, id: $0.id, isCheckd: $0.isCheckd)
-                }
+                return DetailValueOption(title: $0.title, id: $0.id, isCheckd: $0.isCheckd)
             }
         }
         models.info = updatedList
@@ -87,9 +83,7 @@ final class CheckboxContainer: BaseContainerView {
             let checkbox =  CheckBox(models: info)
             checkbox.didButtonTap = {
                 self.updateMark(info: info)
-                if !info.isCheckd {
-                    self.didUpdateValue?(CheckListItem(id: self.models.id, value: info.title))      
-                }
+                self.didUpdateValue?(CheckListItem(id: self.models.id, value: info.title))
             }
             checkboxContainer.addArrangedSubview(checkbox)
         }

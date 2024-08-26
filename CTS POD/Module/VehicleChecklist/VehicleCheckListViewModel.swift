@@ -51,7 +51,21 @@ final class VehicleCheckListViewModel {
     
     func updateCheckBox(item: CheckListItem) {
         if let index = requestModel.checklists.firstIndex(where: {$0.id == item.id }) {
-            requestModel.checklists.remove(at: index)
+            var valueAarray = requestModel.checklists[index].value.components(separatedBy: ",")
+            if let valIndex = valueAarray.firstIndex(where: { $0 == item.value }) {
+                valueAarray.remove(at: valIndex)
+            } else {
+                valueAarray.append(item.value)
+            }
+            
+            let updatedValue = valueAarray.joined(separator: ",")
+            guard  !updatedValue.isEmpty else { return  }
+            if !updatedValue.isEmpty {
+                requestModel.checklists[index] = CheckListItem(id: item.id, value: updatedValue)
+            } else {
+                requestModel.checklists.remove(at: index)
+            }
+            
         } else {
             requestModel.checklists.append(item)
         }

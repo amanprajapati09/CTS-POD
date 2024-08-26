@@ -27,14 +27,7 @@ struct Value: Codable {
     let id: Int
     let name: String
     
-    func map(type: ParentContainerType) -> DetailValueOption {
-        return DetailValueOption(title: name, id: id, parentType: type)
+    func map() -> DetailValueOption {
+        return DetailValueOption(title: name, id: id)
     }
-}
-
-enum VehicalCheckType: String {
-    case Checkbox
-    case Text
-    case Dropdown
-    case Number
 }

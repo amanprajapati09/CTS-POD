@@ -5,6 +5,7 @@ protocol IncidentNavigatorProtocol: AnyObject {
     func didPressNext(index: Int)
     func didPressPrevious()
     func modifyStatus(item: CheckListItem)
+    func updateCheckBox(item: CheckListItem)
 }
 
 class IncidentNavigatorController: UINavigationController {
@@ -58,6 +59,28 @@ extension IncidentNavigatorController: IncidentNavigatorProtocol {
     func modifyStatus(item: CheckListItem) {
         if let index = requestModel.values.firstIndex(where: {$0.id == item.id }) {
             requestModel.values[index] = item.map()
+        } else {
+            requestModel.values.append(item.map())
+        }
+        print(requestModel)
+    }
+    
+    func updateCheckBox(item: CheckListItem) {
+        if let index = requestModel.values.firstIndex(where: {$0.id == item.id }) {
+            var valueAarray = requestModel.values[index].name.components(separatedBy: ",")
+            if let valIndex = valueAarray.firstIndex(where: { $0 == item.value }) {
+                valueAarray.remove(at: valIndex)
+            } else {
+                valueAarray.append(item.value)
+            }
+
+            let updatedValue = valueAarray.filter({ !$0.isEmpty }).joined(separator: ",")
+            if !updatedValue.isEmpty {
+                requestModel.values[index] = IncedentReportValue(id: item.id, name: updatedValue)
+            } else {
+                requestModel.values[index] = IncedentReportValue(id: item.id, name: "")
+            }
+            
         } else {
             requestModel.values.append(item.map())
         }

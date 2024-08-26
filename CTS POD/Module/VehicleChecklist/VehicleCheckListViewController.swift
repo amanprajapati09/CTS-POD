@@ -120,7 +120,7 @@ class VehicleCheckListViewController: BaseViewController<VehicleCheckListViewMod
     
     private func prepareView() {
         for item in vehicalCheckList!.data.vehicleChecklist {
-            let info = item.values.map { $0.map(type: .vehicleCheckList) }
+            let info = item.values.map { $0.map() }
             guard let className = "\(item.type)Container".toMyModuleClass() as? BaseContainerView.Type else { return }
             let fieldView = className.init(models: .init(id: item.id, title: item.description, info: info))
             containerStack.stackView.addArrangedSubview(fieldView)
