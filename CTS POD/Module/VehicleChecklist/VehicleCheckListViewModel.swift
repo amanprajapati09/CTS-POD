@@ -24,6 +24,7 @@ final class VehicleCheckListViewModel {
                     case .success(let value):
                         if value.status == "Success" {
                             if let checklist = result.value {
+                                self.prepareDefaultList(checkList: checklist.data.vehicleChecklist)
                                 self.viewState = .loaded(checklist)
                             }
                         } else {
@@ -37,6 +38,16 @@ final class VehicleCheckListViewModel {
                 }
             } catch {
                 viewState = .error("Somthing went wrong!")
+            }
+        }
+    }
+    
+    func prepareDefaultList(checkList: [VehicleChecklist]) {
+        for item in checkList {
+            if item.type == "Dropdown" {
+                requestModel.checklists.append(CheckListItem(id: item.id, value: item.values.first?.name ?? ""))
+            } else {
+                requestModel.checklists.append(CheckListItem(id: item.id, value: ""))
             }
         }
     }
@@ -58,12 +69,11 @@ final class VehicleCheckListViewModel {
                 valueAarray.append(item.value)
             }
             
-            let updatedValue = valueAarray.joined(separator: ",")
-            guard  !updatedValue.isEmpty else { return  }
+            let updatedValue = valueAarray.filter({ !$0.isEmpty }).joined(separator: ",")
             if !updatedValue.isEmpty {
                 requestModel.checklists[index] = CheckListItem(id: item.id, value: updatedValue)
             } else {
-                requestModel.checklists.remove(at: index)
+                requestModel.checklists[index] = CheckListItem(id: item.id, value: "")
             }
             
         } else {
