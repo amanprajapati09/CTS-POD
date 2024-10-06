@@ -52,7 +52,7 @@ final class DashboardViewModel {
     
     private func updateVehicleCheckListOption(optionList: [DashboardDisplayModel]) -> [DashboardDisplayModel] {
         return optionList.map { model in
-            if Constant.isVehicalCheck, model.id == 1 {
+            if Constant.canShowVehicalCheck, model.id == 1 {
                 return DashboardDisplayModel(id: model.id,
                                              title: model.title,
                                              icon: model.icon,

@@ -179,8 +179,14 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         
         containerStack.stackView.addArrangedSubview(orderNoView)
         containerStack.stackView.addArrangedSubview(customerView)
+        customerView.snp.makeConstraints {
+            $0.width.equalToSuperview()
+        }
         containerStack.stackView.addArrangedSubview(jobStatusView)
         containerStack.stackView.addArrangedSubview(commentsView)
+        commentsView.snp.makeConstraints {
+            $0.width.equalToSuperview()
+        }
         containerStack.stackView.addArrangedSubview(signPreview)
         containerStack.addSubview(actionButtonView)
         
@@ -444,6 +450,9 @@ class DeliveryRowView: UIView {
         let view = VehicleTextField()
         view.font = Fonts.popRegular
         view.backgroundColor = .white
+        view.layer.cornerRadius = 5.0
+        view.layer.borderWidth = 1.0
+        view.layer.borderColor = Colors.colorGray.cgColor
         return view
     }()
     
@@ -469,10 +478,10 @@ class DeliveryRowView: UIView {
         
         self.addSubview(textField)
         textField.snp.makeConstraints { make in
-            make.leading.equalTo(titleLabel.snp.leading).inset(10)
+            make.leading.equalTo(titleLabel.snp.leading)
             make.trailing.equalToSuperview().inset(10)
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.height.equalTo(30)
+            make.height.equalTo(50)
             make.bottom.equalToSuperview()
         }
     }

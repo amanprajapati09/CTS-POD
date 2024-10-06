@@ -26,6 +26,20 @@ struct Constant {
         }
         return false
     }
+    
+    static var canShowVehicalCheck: Bool {
+        if Constant.isLogin {
+            if let date = UserDefaults.standard.value(forKey: UserDefaultKeys.checkVehicle) as? Date {
+                if Date().days(from: date) > 0 {
+                    return true
+                }
+                return false
+            } else {
+                return true
+            }
+        }
+        return false
+    }
 }
 
 struct Colors {
