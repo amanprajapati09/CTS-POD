@@ -75,6 +75,7 @@
 		7549D8772AF7BB6500D49C62 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D8762AF7BB6500D49C62 /* UIImage+Extension.swift */; };
 		7549D8792AF812B900D49C62 /* JobSubmitUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D8782AF812B900D49C62 /* JobSubmitUsecase.swift */; };
 		7549D87B2AF812C600D49C62 /* JobSubmitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D87A2AF812C600D49C62 /* JobSubmitClient.swift */; };
+		7584A4A32CBE7EFD00422BA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7584A4A22CBE7EFD00422BA5 /* GoogleService-Info.plist */; };
 		759985D82AF9542A0067F661 /* UINavigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985D72AF9542A0067F661 /* UINavigation+Extension.swift */; };
 		759985DA2AFA9F710067F661 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985D92AFA9F710067F661 /* Reachability.swift */; };
 		759985DC2AFAA82E0067F661 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985DB2AFAA82E0067F661 /* LoadingButton.swift */; };
@@ -89,7 +90,6 @@
 		759985F02AFF61AB0067F661 /* TextareaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985EF2AFF61AB0067F661 /* TextareaContainer.swift */; };
 		759985F22AFF8C830067F661 /* IncidentReportCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985F12AFF8C830067F661 /* IncidentReportCameraViewController.swift */; };
 		759985F42AFF8C8D0067F661 /* IncidentReportCameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759985F32AFF8C8D0067F661 /* IncidentReportCameraViewModel.swift */; };
-		759D12AC2C75FBD10035D7D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 759D12AB2C75FBD10035D7D0 /* GoogleService-Info.plist */; };
 		75A734B02B12027D00A60796 /* ErrorLogUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A734AF2B12027D00A60796 /* ErrorLogUsecase.swift */; };
 		75A734B22B12028700A60796 /* ErrorLogClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A734B12B12028700A60796 /* ErrorLogClient.swift */; };
 		75A734B42B1202A000A60796 /* ErrorLogReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A734B32B1202A000A60796 /* ErrorLogReqModel.swift */; };
@@ -227,6 +227,7 @@
 		7549D8782AF812B900D49C62 /* JobSubmitUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSubmitUsecase.swift; sourceTree = "<group>"; };
 		7549D87A2AF812C600D49C62 /* JobSubmitClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSubmitClient.swift; sourceTree = "<group>"; };
 		755410912AF2B86C004214A2 /* CTS POD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CTS POD.entitlements"; sourceTree = "<group>"; };
+		7584A4A22CBE7EFD00422BA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		759985D72AF9542A0067F661 /* UINavigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigation+Extension.swift"; sourceTree = "<group>"; };
 		759985D92AFA9F710067F661 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		759985DB2AFAA82E0067F661 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
@@ -241,7 +242,6 @@
 		759985EF2AFF61AB0067F661 /* TextareaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextareaContainer.swift; sourceTree = "<group>"; };
 		759985F12AFF8C830067F661 /* IncidentReportCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentReportCameraViewController.swift; sourceTree = "<group>"; };
 		759985F32AFF8C8D0067F661 /* IncidentReportCameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentReportCameraViewModel.swift; sourceTree = "<group>"; };
-		759D12AB2C75FBD10035D7D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75A734AF2B12027D00A60796 /* ErrorLogUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogUsecase.swift; sourceTree = "<group>"; };
 		75A734B12B12028700A60796 /* ErrorLogClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogClient.swift; sourceTree = "<group>"; };
 		75A734B32B1202A000A60796 /* ErrorLogReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogReqModel.swift; sourceTree = "<group>"; };
@@ -354,7 +354,7 @@
 				07317F9F2A7E2BE10066341F /* AppDelegate.swift */,
 				07317FA12A7E2BE10066341F /* SceneDelegate.swift */,
 				07317FAA2A7E2BE80066341F /* LaunchScreen.storyboard */,
-				759D12AB2C75FBD10035D7D0 /* GoogleService-Info.plist */,
+				7584A4A22CBE7EFD00422BA5 /* GoogleService-Info.plist */,
 				07317FAD2A7E2BE80066341F /* Info.plist */,
 				078B21212A9294FE000F6A1E /* SplashViewController.swift */,
 			);
@@ -806,7 +806,7 @@
 				D01344C42AF2A6B300CD2CBD /* Poppins-Regular.ttf in Resources */,
 				07317FAC2A7E2BE80066341F /* LaunchScreen.storyboard in Resources */,
 				07317FA92A7E2BE80066341F /* Assets.xcassets in Resources */,
-				759D12AC2C75FBD10035D7D0 /* GoogleService-Info.plist in Resources */,
+				7584A4A32CBE7EFD00422BA5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1215,20 +1215,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "CTS POD/CTS POD.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M243A8GXSD;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 4TSG39NQLA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CTS POD/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Track Proof";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera used to take photos of your delivery items.";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "\"Use Location for track the delivery\"";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"Use Location for track the delivery\"";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "\"Use the Location for track your path while you are going for delivery so we can have proof to show the customer.\"";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"Use the Location for track your path while you are going for delivery so we can have proof to show the customer.\"";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission to calculate accurate delivery location disatance and also help to get spot location of the delivery while complete it. so please allow for more accurate result.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Photo library used to pick capture item";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo library used to pick capture item";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Photo library used to capture item while make the delivery successfully.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";
@@ -1239,10 +1240,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exigotech.trackproof;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trackproof.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Track Proof App store";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Track Proof Distribution";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1256,20 +1257,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "CTS POD/CTS POD.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M243A8GXSD;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 4TSG39NQLA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CTS POD/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Track Proof";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera used to take photos of your delivery items.";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "\"Use Location for track the delivery\"";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"Use Location for track the delivery\"";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission please allow for more accurate result";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "\"Use the Location for track your path while you are going for delivery so we can have proof to show the customer.\"";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"Use the Location for track your path while you are going for delivery so we can have proof to show the customer.\"";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission to calculate accurate delivery location disatance and also help to get spot location of the delivery while complete it. so please allow for more accurate result.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Photo library used to pick capture item";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo library used to pick capture item";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Photo library used to capture item while make the delivery successfully.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";
@@ -1280,10 +1282,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exigotech.trackproof;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trackproof.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Track Proof App store";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Track Proof Distribution";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
