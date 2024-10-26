@@ -54,6 +54,13 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
         view.backgroundColor = Colors.viewBackground
         navigationItem.leftBarButtonItem = backButton
         
+        let label = UILabel()
+        label.backgroundColor = .clear
+        label.numberOfLines = 2
+        label.font = UIFont.boldSystemFont(ofSize: 16.0)
+        label.textAlignment = .center
+        label.textColor = .black
+        self.navigationItem.titleView = label
         view.addSubview(containerView)
         containerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(10)
@@ -98,7 +105,7 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.title = viewModel.dynamicReportList.first?.sectionDescription
+        (self.navigationItem.titleView as? UILabel)?.text = viewModel.dynamicReportList.first?.sectionDescription
     }
     
     @objc
@@ -154,11 +161,18 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
                 let fieldView = className.init(models: model)
                 containerStack.stackView.addArrangedSubview(fieldView)
                 fieldView.didUpdateValue = { [weak self] updatedValue in
-                    self?.delegate?.modifyStatus(item: updatedValue)                    
+                    if fieldView.isKind(of: CheckboxContainer.self) {
+                        self?.delegate?.updateCheckBox(item: updatedValue)
+                    } else {
+                        self?.delegate?.modifyStatus(item: updatedValue)
+                    }
                 }
                 fieldView.snp.makeConstraints {
                     if item.type == "Textarea" {
                         $0.height.greaterThanOrEqualTo(120)
+                    } else if item.type == "Checkbox" {
+                        let height = (item.values.count * 30) + ((item.values.count + 1 ) * 20) + 10
+                        $0.height.greaterThanOrEqualTo(height)
                     } else {
                         $0.height.greaterThanOrEqualTo(80)
                     }

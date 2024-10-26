@@ -179,8 +179,14 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         
         containerStack.stackView.addArrangedSubview(orderNoView)
         containerStack.stackView.addArrangedSubview(customerView)
+        customerView.snp.makeConstraints {
+            $0.width.equalToSuperview()
+        }
         containerStack.stackView.addArrangedSubview(jobStatusView)
         containerStack.stackView.addArrangedSubview(commentsView)
+        commentsView.snp.makeConstraints {
+            $0.width.equalToSuperview()
+        }
         containerStack.stackView.addArrangedSubview(signPreview)
         containerStack.addSubview(actionButtonView)
         
@@ -245,19 +251,17 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         var config = YPImagePickerConfiguration()
         config.library.maxNumberOfItems = 5 - collectionImages.count
         config.library.defaultMultipleSelection = true
-        config.targetImageSize = YPImageSize.cappedTo(size: 960.0)        
+        config.onlySquareImagesFromCamera = false
         config.showsPhotoFilters = false        
         let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking { items, cancelled in
             for item in items {
                 switch item {
                 case .photo(let photo):
-                    ImageCompressor.compress(image: photo.image, maxByte: 200000) { image in
-                        guard let image else { return }
-                        self.collectionImages.append(image)
-                        self.imagesCollectionView.reloadData()
-                    }
-                    
+                    let image = photo.image
+                    let thumbnail = image.imageWithImage(scaledToWidth: image.size.width/10)
+                    self.collectionImages.append(thumbnail)
+                    self.imagesCollectionView.reloadData()
                 default:
                     print("video not needed")
                 }
@@ -379,13 +383,11 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
     }
     
     private func showSuccessAlert() {
-        let alert = UIAlertController(title: "Success", message: "Delivery has been processed", preferredStyle: .alert)
+        let message = selectedState == .unableToDeliver ? "Unable to deliver" : "Delivery has been proceed"
+        let title = selectedState == .unableToDeliver ? "Status" : "Success"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
-            if LocalDataBaseWraper().fetchJobsForDeliveryList().count > 0 {
-                self.navigationController?.popViewController(animated: true)
-            } else {
-                self.navigationController?.popToViewController(ofClass: DashboardViewController.self)
-            }
+            self.navigationController?.popViewController(animated: true)
             self.navigationItem.leftBarButtonItem?.isEnabled = true
         }))
         present(alert, animated: true)
@@ -448,6 +450,9 @@ class DeliveryRowView: UIView {
         let view = VehicleTextField()
         view.font = Fonts.popRegular
         view.backgroundColor = .white
+        view.layer.cornerRadius = 5.0
+        view.layer.borderWidth = 1.0
+        view.layer.borderColor = Colors.colorGray.cgColor
         return view
     }()
     
@@ -473,10 +478,10 @@ class DeliveryRowView: UIView {
         
         self.addSubview(textField)
         textField.snp.makeConstraints { make in
-            make.leading.equalTo(titleLabel.snp.leading).inset(10)
+            make.leading.equalTo(titleLabel.snp.leading)
             make.trailing.equalToSuperview().inset(10)
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.height.equalTo(30)
+            make.height.equalTo(50)
             make.bottom.equalToSuperview()
         }
     }

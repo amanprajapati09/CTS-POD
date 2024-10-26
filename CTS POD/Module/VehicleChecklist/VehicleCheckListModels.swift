@@ -31,10 +31,3 @@ struct Value: Codable {
         return DetailValueOption(title: name, id: id)
     }
 }
-
-enum VehicalCheckType: String {
-    case Checkbox
-    case Text
-    case Dropdown
-    case Number
-}

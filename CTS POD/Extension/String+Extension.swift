@@ -15,4 +15,11 @@ extension String {
         attString.addAttribute(.foregroundColor, value: UIColor.red, range: asteriskRange)
         return attString
     }
+    
+    func calanderDateToDate() -> Date {
+        let formattor = DateFormatter()
+        formattor.dateFormat = "MMM dd, yyyy"
+        formattor.timeZone = TimeZone(identifier: "UTC")
+        return formattor.date(from: self) ?? Date()
+    }
 }

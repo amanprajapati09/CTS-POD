@@ -41,7 +41,7 @@ enum DeliveryOption: String {
         switch self {
         case .deliver: return 6
         case .deliveredNoSign: return 7
-        case .unableToDeliver: return 8
+        case .unableToDeliver: return 9
         }
     }
 }

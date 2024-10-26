@@ -45,7 +45,7 @@ class VehicleCheckListViewController: BaseViewController<VehicleCheckListViewMod
     }()
     
     private lazy var buttonContainer: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [buttonSafe, buttonUnSafe])
+        let view = UIStackView(arrangedSubviews: [buttonSafe, updateActivityIndicator, buttonUnSafe])
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.spacing = 15
@@ -111,11 +111,10 @@ class VehicleCheckListViewController: BaseViewController<VehicleCheckListViewMod
         containerStack.addSubview(activityIndicator)
         activityIndicator.snp.makeConstraints { $0.center.equalToSuperview() }
     
-        containerStack.addSubview(updateActivityIndicator)
-        updateActivityIndicator.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(-20)
-            $0.centerX.equalToSuperview()
-        }
+//        containerView.addSubview(updateActivityIndicator)
+//        updateActivityIndicator.snp.makeConstraints {
+//            $0.centerX.equalTo(buttonContainer)
+//        }
     }
     
     private func prepareView() {
@@ -125,10 +124,21 @@ class VehicleCheckListViewController: BaseViewController<VehicleCheckListViewMod
             let fieldView = className.init(models: .init(id: item.id, title: item.description, info: info))
             containerStack.stackView.addArrangedSubview(fieldView)
             fieldView.didUpdateValue = { [weak self] updatedValue in
-                self?.viewModel.modifyStatus(item: updatedValue)
+                if fieldView.isKind(of: CheckboxContainer.self) {
+                    self?.viewModel.updateCheckBox(item: updatedValue)
+                } else {
+                    self?.viewModel.modifyStatus(item: updatedValue)
+                }
             }
             fieldView.snp.makeConstraints {
-                $0.height.equalTo(80)
+                if item.type == "Textarea" {
+                    $0.height.greaterThanOrEqualTo(120)
+                } else if item.type == "Checkbox" {
+                    let height = (item.values.count * 30) + ((item.values.count + 1 ) * 20) + 10
+                    $0.height.greaterThanOrEqualTo(height)
+                } else {
+                    $0.height.greaterThanOrEqualTo(80)
+                }
                 $0.leading.trailing.equalToSuperview()
             }
        }
@@ -173,7 +183,8 @@ class VehicleCheckListViewController: BaseViewController<VehicleCheckListViewMod
     }
     
     private func manageUpdateLoading(showLoading: Bool) {
-        buttonContainer.isHidden = showLoading
+        buttonSafe.isHidden = showLoading
+        buttonUnSafe.isHidden = showLoading
         if showLoading {
             updateActivityIndicator.startAnimating()
         } else {
@@ -183,7 +194,7 @@ class VehicleCheckListViewController: BaseViewController<VehicleCheckListViewMod
     
     @objc
     func buttonSafeTap() {
-        viewModel.updateStatus(status: "")
+        viewModel.updateStatus(status: "safe")
     }
     
     @objc
@@ -204,7 +215,9 @@ class VehicleCheckListViewController: BaseViewController<VehicleCheckListViewMod
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
-            self.viewModel.updateStatus(status: textField?.text ?? "")
+            guard let comment = textField?.text,
+            !comment.isEmpty else { return }
+            self.viewModel.updateStatus(status: "unsafe", comment: comment)
         }))
         
         self.present(alert, animated: true, completion: nil)

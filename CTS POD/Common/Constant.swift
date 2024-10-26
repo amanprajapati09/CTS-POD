@@ -2,7 +2,8 @@
 import UIKit
 
 struct Constant {
-    static let baseURL = "https://ctstestapi.cooksconnection.com.au/api/v1/"
+//    static let baseURL = "https://ctstestapi.cooksconnection.com.au/api/v1/"
+    static let baseURL = "https://api.trackproof.com.au/api/v1/"
     
     static var deviceID: String {
         return UserDefaults.standard.string(forKey: UserDefaultKeys.fcmToke) ?? UIDevice.current.identifierForVendor!.uuidString
@@ -16,6 +17,20 @@ struct Constant {
         if Constant.isLogin {
             if let date = UserDefaults.standard.value(forKey: UserDefaultKeys.checkVehicle) as? Date {
                 if date.days(from: Date()) > 0 {
+                    return true
+                }
+                return false
+            } else {
+                return true
+            }
+        }
+        return false
+    }
+    
+    static var canShowVehicalCheck: Bool {
+        if Constant.isLogin {
+            if let date = UserDefaults.standard.value(forKey: UserDefaultKeys.checkVehicle) as? Date {
+                if Date().days(from: date) > 0 {
                     return true
                 }
                 return false

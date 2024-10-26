@@ -154,7 +154,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
     
     private lazy var messageRow: RowView = {
         let view = RowView()
-        view.icon.image = UIImage(named: "job_message")
+        view.icon.image = UIImage(named: "job_message")        
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -230,6 +230,11 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
 
 class RowView: UIView {
     
+    lazy var contentView: UIView = {
+        let view = UIView()
+        return view
+    }()
+
     lazy var icon: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
@@ -243,6 +248,7 @@ class RowView: UIView {
         view.textColor = Colors.colorGray
         view.textAlignment = .left
         view.numberOfLines = 0
+        view.lineBreakMode = .byWordWrapping
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -264,27 +270,33 @@ class RowView: UIView {
     }
     
     private func setUpView() {
-        addSubview(icon)
+        self.addSubview(contentView)
+        contentView.addSubview(icon)
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.height.greaterThanOrEqualTo(60)
+        }
+
         icon.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(15)
             $0.height.width.equalTo(30)
-            $0.top.bottom.equalToSuperview().inset(15)
+            $0.top.equalToSuperview().inset(15)
         }
         
-        addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(15)
             make.leading.equalTo(icon.snp.trailing).offset(10)
             make.trailing.equalToSuperview().inset(10)
         }
         
-        addSubview(view)
+        contentView.addSubview(view)
         view.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(1)
         }
     }
-}
+} 
 
 struct JobDisplayModel {
     var isExpand: Bool

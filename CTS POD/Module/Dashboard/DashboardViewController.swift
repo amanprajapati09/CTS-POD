@@ -358,7 +358,7 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
                 let controller = VehicleCheckList.build()
                 controller.vehicalCheckUpdate = {
                     self.optionList = self.viewModel.fetchOptions()
-                    self.fetchJobList(canStore: true)
+                    self.fetchJobList(canStore: false)
                 }
                 self.navigationController?.pushViewController(controller, animated: true)
             }

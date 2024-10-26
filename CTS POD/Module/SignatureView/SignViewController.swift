@@ -2,7 +2,7 @@
 import UIKit
 import RxSwift
 import Combine
-import SignaturePad
+import SwiftSignatureView
 
 class SignViewController: BaseViewController<SignViewModel> {
     
@@ -57,9 +57,8 @@ class SignViewController: BaseViewController<SignViewModel> {
         return view
     }()
     
-    private lazy var signaturePad: SignaturePad = {
-        let view = SignaturePad()
-        view.delegate = self
+    private lazy var signaturePad: SwiftSignatureView = {
+        let view = SwiftSignatureView()
         return view
     }()
     
@@ -113,15 +112,13 @@ class SignViewController: BaseViewController<SignViewModel> {
     
     @objc
     private func buttonSaveTap() {
-        if let signImage = signaturePad.getSignature() {
-            if let data = signImage.pngData() {
+        if let signImage = signaturePad.getCroppedSignature() {
+            let width: CGFloat = 400
+            let aspectRatio: CGFloat = 16.0 / 9.0
+            let height = width * (1 / aspectRatio)
+            if let data = signImage.resize(Int(width), Int(height)).pngData() {
                 viewModel.updateJobs(signData: data)
             }
         }
     }
-}
-
-extension SignViewController: SignaturePadDelegate {
-    func didStart() {}
-    func didFinish() {}
 }

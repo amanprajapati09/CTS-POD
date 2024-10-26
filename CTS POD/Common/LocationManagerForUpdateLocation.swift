@@ -88,6 +88,7 @@ extension LocationManager : CLLocationManagerDelegate{
                    self.postLocation(location: location)
                 } else if LocalTempStorage.getValue(key: UserDefaultKeys.lastTimeStampUpdateLocation) == nil {
                     self.postLocation(location: location)
+                    LocalTempStorage.storeValue(value: Date(), key: UserDefaultKeys.lastTimeStampUpdateLocation)
                 }
             }
             currentLocation = location

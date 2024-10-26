@@ -29,6 +29,7 @@ class ResetPasswordViewController: BaseViewController<ResetPasswordViewModel> {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: view.frame.height))
         view.leftView = paddingView
         view.leftViewMode = .always
+        view.autocapitalizationType = .none
         return view
     }()
     
@@ -42,6 +43,7 @@ class ResetPasswordViewController: BaseViewController<ResetPasswordViewModel> {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: view.frame.height))
         view.leftView = paddingView
         view.leftViewMode = .always
+        view.autocapitalizationType = .none
         return view
     }()
     

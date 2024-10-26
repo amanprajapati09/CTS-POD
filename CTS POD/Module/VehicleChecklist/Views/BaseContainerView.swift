@@ -32,4 +32,3 @@ struct DetailValueOption {
     let id: Int
     var isCheckd: Bool = false
 }
-

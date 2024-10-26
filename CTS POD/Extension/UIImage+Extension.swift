@@ -1,9 +1,41 @@
 
 import UIKit
+import AVFoundation
 
 extension UIImage {
     var base64String: String? {
-       return self.jpegData(compressionQuality: 1)?.base64EncodedString()
+        return self.jpegData(compressionQuality: 1)?.base64EncodedString()
+    }
+    
+    func resize(_ width: Int, _ height: Int) -> UIImage {
+        let maxSize = CGSize(width: width, height: height)
+        
+        let availableRect = AVFoundation.AVMakeRect(
+            aspectRatio: self.size,
+            insideRect: .init(origin: .zero, size: maxSize)
+        )
+        let targetSize = availableRect.size
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        let renderer = UIGraphicsImageRenderer(size: targetSize, format: format)
+        let resized = renderer.image { _ in
+            self.draw(in: CGRect(origin: .zero, size: targetSize))
+        }
+        return resized
+    }
+    
+    func imageWithImage(scaledToWidth: CGFloat) -> UIImage {
+        let oldWidth = self.size.width
+        let scaleFactor = scaledToWidth / oldWidth
+
+        let newHeight = self.size.height * scaleFactor
+        let newWidth = oldWidth * scaleFactor
+
+        UIGraphicsBeginImageContext(CGSize(width:newWidth, height:newHeight))
+        self.draw(in: CGRect(x:0, y:0, width:newWidth, height:newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
     }
 }
 
@@ -14,21 +46,21 @@ struct ImageCompressor {
             guard let currentImageSize = image.jpegData(compressionQuality: 1.0)?.count else {
                 return completion(nil)
             }
-        
+            
             var iterationImage: UIImage? = image
             var iterationImageSize = currentImageSize
             var iterationCompression: CGFloat = 1.0
-        
+            
             while iterationImageSize > maxByte && iterationCompression > 0.01 {
                 let percentageDecrease = getPercentageToDecreaseTo(forDataCount: iterationImageSize)
-            
+                
                 let canvasSize = CGSize(width: image.size.width * iterationCompression,
                                         height: image.size.height * iterationCompression)
                 UIGraphicsBeginImageContextWithOptions(canvasSize, false, image.scale)
                 defer { UIGraphicsEndImageContext() }
                 image.draw(in: CGRect(origin: .zero, size: canvasSize))
                 iterationImage = UIGraphicsGetImageFromCurrentImageContext()
-            
+                
                 guard let newImageSize = iterationImage?.jpegData(compressionQuality: 1.0)?.count else {
                     return completion(nil)
                 }
@@ -40,7 +72,7 @@ struct ImageCompressor {
             }
         }
     }
-
+    
     private static func getPercentageToDecreaseTo(forDataCount dataCount: Int) -> CGFloat {
         switch dataCount {
         case 0..<5000000: return 0.03

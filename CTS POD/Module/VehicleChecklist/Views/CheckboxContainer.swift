@@ -20,6 +20,7 @@ final class CheckboxContainer: BaseContainerView {
         view.textAlignment = .left
         view.attributedText = models.attributedTitle
         view.font = Fonts.popRegular
+        view.numberOfLines = 0
         return view
     }()
     
@@ -32,13 +33,15 @@ final class CheckboxContainer: BaseContainerView {
     
     private lazy var checkboxContainer: UIStackView = {
         let view = UIStackView()
-        view.axis = .horizontal
-        view.spacing = 40
+        view.axis = .vertical
+        view.spacing = 20
         return view
     }()
     
     private lazy var scrollview: UIScrollView = {
         let view = UIScrollView()
+        view.showsVerticalScrollIndicator = false
+        view.isScrollEnabled = false
         return view
     }()
     
@@ -67,11 +70,7 @@ final class CheckboxContainer: BaseContainerView {
             if info.id == $0.id {
                 return DetailValueOption(title: $0.title, id: $0.id, isCheckd: !$0.isCheckd)
             } else {
-                if !info.isCheckd {
-                    return DetailValueOption(title: $0.title, id: $0.id, isCheckd: false)
-                } else {
-                    return DetailValueOption(title: $0.title, id: $0.id, isCheckd: $0.isCheckd)
-                }
+                return DetailValueOption(title: $0.title, id: $0.id, isCheckd: $0.isCheckd)
             }
         }
         models.info = updatedList
@@ -84,9 +83,7 @@ final class CheckboxContainer: BaseContainerView {
             let checkbox =  CheckBox(models: info)
             checkbox.didButtonTap = {
                 self.updateMark(info: info)
-                if !info.isCheckd {
-                    self.didUpdateValue?(CheckListItem(id: self.models.id, value: info.title))      
-                }
+                self.didUpdateValue?(CheckListItem(id: self.models.id, value: info.title))
             }
             checkboxContainer.addArrangedSubview(checkbox)
         }
@@ -149,7 +146,7 @@ final class CheckBox: UIView {
         addSubview(checkContainer)
         checkContainer.snp.makeConstraints {
             $0.leading.trailing.top.bottom.equalToSuperview()
-        }
+        }       
         button.rx.tap.bind { _ in
             self.didButtonTap?()
         }.disposed(by: bag)

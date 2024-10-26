@@ -70,7 +70,7 @@ final class DeliverySubmitViewModel {
                 request.modifiedTime = Date().apiSupportedDate()
                 request.userID = LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: UserDefaultKeys.user)?.id ?? "0"
                 if let signature {
-                    request.customerSign = signature.base64EncodedString()
+                    request.customerSign = signature.base64EncodedString(options: .lineLength64Characters)
                 }
                 request.latitude = latitude
                 request.longitude = longitude

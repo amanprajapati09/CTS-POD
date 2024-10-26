@@ -24,6 +24,7 @@ final class VehicleCheckListViewModel {
                     case .success(let value):
                         if value.status == "Success" {
                             if let checklist = result.value {
+                                self.prepareDefaultList(checkList: checklist.data.vehicleChecklist)
                                 self.viewState = .loaded(checklist)
                             }
                         } else {
@@ -41,6 +42,16 @@ final class VehicleCheckListViewModel {
         }
     }
     
+    func prepareDefaultList(checkList: [VehicleChecklist]) {
+        for item in checkList {
+            if item.type == "Dropdown" {
+                requestModel.checklists.append(CheckListItem(id: item.id, value: item.values.first?.name ?? ""))
+            } else {
+                requestModel.checklists.append(CheckListItem(id: item.id, value: ""))
+            }
+        }
+    }
+    
     func modifyStatus(item: CheckListItem) {
         if let index = requestModel.checklists.firstIndex(where: {$0.id == item.id }) {
             requestModel.checklists[index] = item
@@ -49,9 +60,31 @@ final class VehicleCheckListViewModel {
         }        
     }
     
-    func updateStatus(status: String) {
+    func updateCheckBox(item: CheckListItem) {
+        if let index = requestModel.checklists.firstIndex(where: {$0.id == item.id }) {
+            var valueAarray = requestModel.checklists[index].value.components(separatedBy: ",")
+            if let valIndex = valueAarray.firstIndex(where: { $0 == item.value }) {
+                valueAarray.remove(at: valIndex)
+            } else {
+                valueAarray.append(item.value)
+            }
+            
+            let updatedValue = valueAarray.filter({ !$0.isEmpty }).joined(separator: ",")
+            if !updatedValue.isEmpty {
+                requestModel.checklists[index] = CheckListItem(id: item.id, value: updatedValue)
+            } else {
+                requestModel.checklists[index] = CheckListItem(id: item.id, value: "")
+            }
+            
+        } else {
+            requestModel.checklists.append(item)
+        }
+    }
+    
+    func updateStatus(status: String, comment: String? = nil) {
         requestModel.createdDate = Date().createUTCDateString()
         requestModel.vehicleStatus = status
+        requestModel.comments = comment
         Task { @MainActor in
             updateViewState = .loading
             do {
