@@ -30,4 +30,8 @@ extension Date {
     func days(from date: Date) -> Int {
         return Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
     }
+    
+    func isTheSameDay(date: Date) -> Bool {
+        Calendar.current.isDate(self, inSameDayAs: date)
+    }
 }

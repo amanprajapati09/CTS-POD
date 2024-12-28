@@ -53,6 +53,10 @@ extension IncidentNavigatorController: IncidentNavigatorProtocol {
     }
     
     func didPressPrevious() {
+        guard viewControllers.count > 1 else {
+            dismiss(animated: true)
+            return
+        }
         popViewController(animated: true)
     }
     

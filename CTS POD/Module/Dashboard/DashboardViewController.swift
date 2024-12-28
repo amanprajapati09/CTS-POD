@@ -115,6 +115,7 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.checkAutoLogout()
         setupView()
         navigationController?.setNavigationBarHidden(true, animated: false)
         setLogo()

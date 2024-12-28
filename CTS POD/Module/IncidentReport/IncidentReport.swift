@@ -55,5 +55,6 @@ extension IncidentReport.Configuration {
         let imagePickertAlertMessage = "Please capture alt least one image"
         let maxImageAlertMessage = "No more then 20 images are allow to select!"
         let buttonSubmitTitle = "Submit"
+        let buttonCancelTitle = "Cancel"
     }
 }

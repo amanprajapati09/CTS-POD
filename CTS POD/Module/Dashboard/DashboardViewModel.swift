@@ -19,6 +19,14 @@ final class DashboardViewModel {
         self.customer = customer
     }
     
+    func checkAutoLogout() {
+        if let date = UserDefaults.standard.value(forKey: UserDefaultKeys.lastLoginTime) as? Date {
+            if !Date().isTheSameDay(date: date) {
+                signOutDriver()
+            }
+        }
+    }
+    
     func fetchOptions() -> [DashboardDisplayModel]  {
         var optionList = [DashboardDisplayModel]()
         optionList.append(getSiginOption())
