@@ -44,7 +44,7 @@ final class DashboardViewModel {
         if Constant.isLogin {
             return DashboardDisplayModel(id: 0,
                                          title: configuration.string.signOut,
-                                         icon: configuration.images.signin ?? UIImage(),
+                                         icon: configuration.images.signOut ?? UIImage(),
                                          type: .login,
                                          backgroundColor: Colors.colorPrimaryDark,
                                          textColor: Colors.colorWhite)
@@ -60,6 +60,14 @@ final class DashboardViewModel {
     
     private func updateVehicleCheckListOption(optionList: [DashboardDisplayModel]) -> [DashboardDisplayModel] {
         return optionList.map { model in
+            if Constant.isLogin, model.id == 1, !Constant.canShowVehicalCheck {
+                return DashboardDisplayModel(id: model.id,
+                                             title: model.title,
+                                             icon: configuration.images.vehicanCheckDone ?? UIImage(),
+                                             type: model.type,
+                                             backgroundColor: Colors.colorPrimaryDark,
+                                             textColor: Colors.colorWhite)
+            }
             if Constant.canShowVehicalCheck, model.id == 1 {
                 return DashboardDisplayModel(id: model.id,
                                              title: model.title,
