@@ -16,10 +16,7 @@ struct Constant {
     static var isVehicalCheck: Bool {        
         if Constant.isLogin {
             if let date = UserDefaults.standard.value(forKey: UserDefaultKeys.checkVehicle) as? Date {
-                if date.days(from: Date()) > 0 {
-                    return true
-                }
-                return false
+                return !Date().isTheSameDay(date: date)
             } else {
                 return true
             }
@@ -30,10 +27,7 @@ struct Constant {
     static var canShowVehicalCheck: Bool {
         if Constant.isLogin {
             if let date = UserDefaults.standard.value(forKey: UserDefaultKeys.checkVehicle) as? Date {
-                if Date().days(from: date) > 0 {
-                    return true
-                }
-                return false
+                return !Date().isTheSameDay(date: date)
             } else {
                 return true
             }
@@ -98,4 +92,5 @@ struct UserDefaultKeys {
     static let isVehicalSubmit = "VehicalSubmit"
     static let fcmToke = "fcmToken"
     static let lastTimeStampUpdateLocation = "lastTimeStampUpdateLocation"
+    static let lastLoginTime = "lastLoginDate"
 }

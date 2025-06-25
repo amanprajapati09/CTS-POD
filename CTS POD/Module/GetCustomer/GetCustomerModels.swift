@@ -28,7 +28,7 @@ struct Workflow: Codable {
     }
     
     func getBGColor(id: Int) -> UIColor {
-        return id > 1 ? Colors.dashboardOptionColor : Colors.colorPrimaryDark
+        return id >= 1 ? Colors.dashboardOptionColor : Colors.colorPrimaryDark
     }
 }
 

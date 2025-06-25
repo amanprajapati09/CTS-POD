@@ -28,7 +28,9 @@ extension Dashboard.Configuration {
     
     struct Images {
         let signin = UIImage(named: "0_dashboard")
+        let signOut = UIImage(named: "4_dashboard")
         let vehicalCheck = UIImage(named: "1_dashboard")
+        let vehicanCheckDone = UIImage(named: "5_dashboard")
         let jobConfirm = UIImage(named: "2_dashboard")
         let deleviry = UIImage(named: "3_dashboard")
         let fetchJobs = UIImage(named: "sync_icon")

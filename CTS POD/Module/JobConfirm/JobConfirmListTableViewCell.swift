@@ -38,7 +38,7 @@ class JobConfirmListTableViewCell: UITableViewCell, Reusable {
         
         locationRow.titleLabel.text = job.locationAddress
         messageRow.titleLabel.text = job.delAddressLine3
-        callRow.titleLabel.text = job.orderNumber
+        callRow.titleLabel.text = job.deliveryNo
                 
         checkBoxIcon.setImage((jobModel?.isSelected ?? false) ? UIImage(named: "check_mark") : UIImage(named: "check_empty"), for: .normal)
     }

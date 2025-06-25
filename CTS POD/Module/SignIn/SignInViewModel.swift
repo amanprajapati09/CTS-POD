@@ -23,6 +23,7 @@ final class SignInViewModel {
                         if let user = customerResult.data?.loginDetails {
                             LocalTempStorage.storeValue(inUserdefault: user, key: UserDefaultKeys.user)
                             self.viewState = .loaded(user)
+                            UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.lastLoginTime)
                             self.didCompleteLogin?()
                         } else {
                             self.viewState = .error(customerResult.message)

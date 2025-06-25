@@ -21,7 +21,6 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
         let view = UIButton()
         view.backgroundColor = Colors.colorGray
         view.setTitleColor(Colors.colorBlack, for: .normal)
-        view.setTitle(viewModel.configuration.string.buttonPreviousTitle, for: .normal)
         view.snp.makeConstraints { $0.height.equalTo(40) }
         view.addTarget(self, action: #selector(buttonPreviousTap), for: .touchUpInside)
         view.layer.cornerRadius = 10
@@ -98,14 +97,25 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
         super.viewDidLoad()
         setupView()
         prepareView()
+        setPreviousButtonTitle()
+        containerStack.scrollToTop()
+        prepareNavigationTitle()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        (self.navigationItem.titleView as? UILabel)?.text = viewModel.dynamicReportList.first?.sectionDescription
+     
+    private func prepareNavigationTitle() {
+        let titleLabel = UILabel()
+        titleLabel.font = Fonts.popSemibold15
+        if navigationController?.viewControllers.count == 1 {
+            titleLabel.numberOfLines = 1
+        } else {
+            titleLabel.numberOfLines = 0
+        }
+        titleLabel.text = viewModel.dynamicReportList.first?.sectionDescription
+        navigationItem.titleView = titleLabel
     }
     
     @objc
@@ -179,6 +189,14 @@ final class IncidentReportViewController: BaseViewController<IncidentReportViewM
                     $0.leading.trailing.equalToSuperview()
                 }
             }
+        }
+    }
+    
+    private func setPreviousButtonTitle() {
+        if navigationController?.viewControllers.count == 1 {
+            buttonPrevious.setTitle(viewModel.configuration.string.buttonCancelTitle, for: .normal)
+        } else {
+            buttonPrevious.setTitle(viewModel.configuration.string.buttonPreviousTitle, for: .normal)
         }
     }
 }
