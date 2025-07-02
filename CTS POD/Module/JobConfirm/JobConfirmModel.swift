@@ -66,6 +66,7 @@ class Job: Object, Decodable {
     @Persisted var selectedJob: String?
     @Persisted var ETAStatus: String?
     @Persisted var deliveryStatus: String?
+    @Persisted var numberOfBoxes: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -84,7 +85,7 @@ class Job: Object, Decodable {
         case delContactperson = "del_contactperson"
         case delContactemail = "del_contactemail"
         case delPhone = "del_Phone"
-        case document, comments, notes, type, status, latitude, longitude, customOrder, isDeleted, branch, jobStatus, customerID, driverSign, supervisonSign, customerSign, customerPhotos, deliveryComment, selectedJob, ETAStatus, deliveryStatus
+        case document, comments, notes, type, status, latitude, longitude, customOrder, isDeleted, branch, jobStatus, customerID, driverSign, supervisonSign, customerSign, customerPhotos, deliveryComment, selectedJob, ETAStatus, deliveryStatus, numberOfBoxes
     }
     
     func mapToJobConfirmDisplay() -> JobDisplayModel {
@@ -103,7 +104,7 @@ class Job: Object, Decodable {
         return delFullAddress ?? ""
     }
     
-    init(id: String, cmpCode: String? = nil, createdDate: String? = nil, deliveryNo: String? = nil, shipmentStatus: String? = nil, deliveryDate: String? = nil, hid: String? = nil, cmpName: String? = nil, orderNumber: String? = nil, yourRef: String? = nil, sendEmail: String? = nil, branchCode: String? = nil, voteCount: String? = nil, delDebtorName: String? = nil, delAddressLine1: String? = nil, delAddressLine2: String? = nil, delAddressLine3: String? = nil, delCity: String? = nil, delStateCode: String? = nil, delPostCode: String? = nil, delFullAddress: String? = nil, delContactperson: String? = nil, delContactemail: String? = nil, delPhone: String? = nil, document: String? = nil, comments: String? = nil, notes: String? = nil, type: String? = nil, status: Int? = nil, latitude: Double? = nil, longitude: Double? = nil, customOrder: Int? = nil, isDeleted: Bool? = nil, branch: String? = nil, jobStatus: String? = nil, customerID: String? = nil, driverSign: Data? = nil, supervisonSign: Data? = nil, customerSign: Data? = nil, customerPhotos: Data? = nil, deliveryComment: String? = nil, selectedJob: String? = nil, ETAStatus: String? = nil, deliveryStatus: String? = nil) {
+    init(id: String, cmpCode: String? = nil, createdDate: String? = nil, deliveryNo: String? = nil, shipmentStatus: String? = nil, deliveryDate: String? = nil, hid: String? = nil, cmpName: String? = nil, orderNumber: String? = nil, yourRef: String? = nil, sendEmail: String? = nil, branchCode: String? = nil, voteCount: String? = nil, delDebtorName: String? = nil, delAddressLine1: String? = nil, delAddressLine2: String? = nil, delAddressLine3: String? = nil, delCity: String? = nil, delStateCode: String? = nil, delPostCode: String? = nil, delFullAddress: String? = nil, delContactperson: String? = nil, delContactemail: String? = nil, delPhone: String? = nil, document: String? = nil, comments: String? = nil, notes: String? = nil, type: String? = nil, status: Int? = nil, latitude: Double? = nil, longitude: Double? = nil, customOrder: Int? = nil, isDeleted: Bool? = nil, branch: String? = nil, jobStatus: String? = nil, customerID: String? = nil, driverSign: Data? = nil, supervisonSign: Data? = nil, customerSign: Data? = nil, customerPhotos: Data? = nil, deliveryComment: String? = nil, selectedJob: String? = nil, ETAStatus: String? = nil, deliveryStatus: String? = nil, numberOfBoxes: String? = nil) {
         super.init()
         self.id = id
         self.cmpCode = cmpCode
@@ -149,6 +150,7 @@ class Job: Object, Decodable {
         self.selectedJob = selectedJob
         self.ETAStatus = ETAStatus
         self.deliveryStatus = deliveryStatus
+        self.numberOfBoxes = numberOfBoxes
     }
     
     required override init() {

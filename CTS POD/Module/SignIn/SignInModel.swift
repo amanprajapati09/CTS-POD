@@ -46,4 +46,5 @@ struct User: Codable {
     let firstname, lastname, username, mobilenumber: String
     let timeInterval: Int
     let customerID: String
+    let resolutionLevel: Int
 }
