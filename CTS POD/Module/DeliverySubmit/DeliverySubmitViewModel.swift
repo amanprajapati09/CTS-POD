@@ -51,7 +51,7 @@ final class DeliverySubmitViewModel {
                 request.customerName = name
                 if let images {
                     for (index, image) in images.enumerated() {
-                        guard let data = image.base64String else {return}
+                        guard let data = image.resizeAndConvertToBase64(resolution: .high) else {return}
                         switch index {
                         case 0:
                             request.image1 = data

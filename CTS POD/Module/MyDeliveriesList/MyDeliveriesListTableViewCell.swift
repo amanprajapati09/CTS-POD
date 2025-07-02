@@ -79,6 +79,24 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         return view
     }()
     
+    private lazy var boxCountLabel: UILabel = {
+        let view = UILabel()
+        view.font = Fonts.popRegular
+        view.textColor = Colors.colorGray
+        view.textAlignment = .center
+        view.numberOfLines = 0
+        return view
+    }()
+    
+    private lazy var checkboxContainer: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [checkBoxIcon, boxCountLabel])
+        view.axis = .vertical
+        view.alignment = .center
+        view.distribution = .fill
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private lazy var checkBoxIcon: UIButton = {
         let view = UIButton()
         view.setImage(UIImage(named: "check_empty"), for: .normal)
@@ -96,7 +114,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     }()
     
     private lazy var headerView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [expandCollapseIcon, titleContainer, etaButton, checkBoxIcon])
+        let view = UIStackView(arrangedSubviews: [expandCollapseIcon, titleContainer, etaButton, checkboxContainer])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
         view.alignment = .center
@@ -201,6 +219,10 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         
         containerStack.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(10)
+        }
+        
+        checkboxContainer.snp.makeConstraints { make in
+            make.width.equalTo(30)
         }
         
         expandCollapseIcon.snp.makeConstraints { make in

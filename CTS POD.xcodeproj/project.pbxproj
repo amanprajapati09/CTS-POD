@@ -94,6 +94,7 @@
 		75A734B22B12028700A60796 /* ErrorLogClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A734B12B12028700A60796 /* ErrorLogClient.swift */; };
 		75A734B42B1202A000A60796 /* ErrorLogReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A734B32B1202A000A60796 /* ErrorLogReqModel.swift */; };
 		75A734B62B1208E500A60796 /* ErrorLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A734B52B1208E500A60796 /* ErrorLogManager.swift */; };
+		75BAB0982E14F076002285FB /* ImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BAB0972E14F076002285FB /* ImageHandler.swift */; };
 		75C02A622C143255003570EE /* MapAppChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C02A612C143255003570EE /* MapAppChooser.swift */; };
 		75DD8B912AF26BA90030DF89 /* ETAUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */; };
 		75DD8B932AF26BB20030DF89 /* ETAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD8B922AF26BB20030DF89 /* ETAClient.swift */; };
@@ -246,6 +247,7 @@
 		75A734B12B12028700A60796 /* ErrorLogClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogClient.swift; sourceTree = "<group>"; };
 		75A734B32B1202A000A60796 /* ErrorLogReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogReqModel.swift; sourceTree = "<group>"; };
 		75A734B52B1208E500A60796 /* ErrorLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogManager.swift; sourceTree = "<group>"; };
+		75BAB0972E14F076002285FB /* ImageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandler.swift; sourceTree = "<group>"; };
 		75C02A612C143255003570EE /* MapAppChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAppChooser.swift; sourceTree = "<group>"; };
 		75DD8B902AF26BA90030DF89 /* ETAUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAUsecase.swift; sourceTree = "<group>"; };
 		75DD8B922AF26BB20030DF89 /* ETAClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAClient.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 				D0B3A8022AFE24EE004AD2AF /* LocationManagerForUpdateLocation.swift */,
 				759985DB2AFAA82E0067F661 /* LoadingButton.swift */,
 				D0B3A7FF2AFE20E0004AD2AF /* BackgroundLocatinUpdate */,
+				75BAB0972E14F076002285FB /* ImageHandler.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -962,6 +965,7 @@
 				D0EFCCB52AF26DB300281EC9 /* MyDeliveriesListTableViewCell.swift in Sources */,
 				0772F4C32AA0F24C000951BF /* VehicleCheckListViewModel.swift in Sources */,
 				75DD8B912AF26BA90030DF89 /* ETAUsecase.swift in Sources */,
+				75BAB0982E14F076002285FB /* ImageHandler.swift in Sources */,
 				D04D28752AD12F4100C22A93 /* JobConfirmListViewController.swift in Sources */,
 				078E762F2A9CB57E008F7F8A /* ResetPasswordRequest.swift in Sources */,
 				0772F4CB2AA0F53E000951BF /* VehicleCheckListModels.swift in Sources */,
@@ -1218,7 +1222,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 4TSG39NQLA;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1239,7 +1243,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trackproof.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1260,7 +1264,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 4TSG39NQLA;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1281,7 +1285,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trackproof.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

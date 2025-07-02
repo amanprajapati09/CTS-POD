@@ -10,7 +10,21 @@ final class RealmManager {
     var realm: Realm!
     
     init() {
-        realm = try! Realm()
+//        realm = try! Realm()
+            let migrationBlock: MigrationBlock = { migration, oldSchemaVersion in
+                if oldSchemaVersion < 1 {
+                    migration.enumerateObjects(ofType: Job.className()) { oldObject, newObject in
+                        newObject!["numberOfBoxes"] = ""
+                    }
+                }
+            }
+
+            let config = Realm.Configuration(
+                schemaVersion: 1,
+                migrationBlock: migrationBlock
+            )
+            Realm.Configuration.defaultConfiguration = config
+             realm = try! Realm()
     }
     
     func printRealmPath() {
