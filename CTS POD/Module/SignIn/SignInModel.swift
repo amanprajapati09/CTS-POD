@@ -47,4 +47,15 @@ struct User: Codable {
     let timeInterval: Int
     let customerID: String
     let resolutionLevel: Int
+    
+    var getResolution: ImageResolution {
+        switch resolutionLevel {
+        case 1:
+            return .low
+        case 2:
+            return .medium
+        default:
+            return .high
+        }
+    }
 }

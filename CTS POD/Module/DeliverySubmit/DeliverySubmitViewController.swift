@@ -252,7 +252,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         config.library.maxNumberOfItems = 5 - collectionImages.count
         config.library.defaultMultipleSelection = true
         config.onlySquareImagesFromCamera = false
-        config.showsPhotoFilters = false        
+        config.showsPhotoFilters = false
         let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking { items, cancelled in
             for item in items {
