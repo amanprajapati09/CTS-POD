@@ -2,7 +2,7 @@ import RealmSwift
 import Foundation
 
 class JobSubmitRequest: Object, Codable {
-    @Persisted var jobID: String
+    @Persisted var jobs = List<JobRequest>()
     @Persisted var userID: String
     @Persisted var driverSign: String
     @Persisted var supervisorSign: String
@@ -18,54 +18,25 @@ class JobSubmitRequest: Object, Codable {
     @Persisted var modifiedTime: String
     @Persisted var latitude: Double
     @Persisted var longitude: Double
-
-    enum CodingKeys: String, CodingKey {
-        case jobID = "jobId"
-        case userID = "userId"
-        case driverSign, supervisorSign, customerSign, comments, image1, image2, image3, image4, image5, status, customerName, modifiedTime, latitude, longitude
-    }
+    @Persisted var batchID: String
     
-    func map() -> JobSubmitResendRequest {
-        return JobSubmitResendRequest(jobID: jobID,
-                                      userID: userID,
-                                      driverSign: driverSign,
-                                      supervisorSign: supervisorSign,
-                                      customerSign: customerSign,
-                                      comments: comments,
-                                      image1: image1,
-                                      image2: image2,
-                                      image3: image3,
-                                      image4: image4,
-                                      image5: image5,
-                                      status: status,
-                                      customerName: customerName,
-                                      modifiedTime: modifiedTime,
-                                      latitude: latitude,
-                                      longitude: longitude)
-    }
-}
-
-struct JobSubmitResendRequest: Codable {
-    var jobID: String
-    var userID: String
-    var driverSign: String
-    var supervisorSign: String
-    var customerSign: String?
-    var comments: String
-    var image1: String?
-    var image2: String?
-    var image3: String?
-    var image4: String?
-    var image5: String?
-    var status: Int
-    var customerName: String
-    var modifiedTime: String
-    var latitude: Double
-    var longitude: Double
-
     enum CodingKeys: String, CodingKey {
-        case jobID = "jobId"
+        case jobs
         case userID = "userId"
         case driverSign, supervisorSign, customerSign, comments, image1, image2, image3, image4, image5, status, customerName, modifiedTime, latitude, longitude
+        case batchID = "batchId"
     }
 }
+
+class JobRequest: Object, Codable {
+    @Persisted var jobID: String
+    @Persisted var driverSign: String
+    @Persisted var supervisorSign: String
+    @Persisted var recordType: String
+    
+    enum CodingKeys: String, CodingKey {
+        case jobID = "jobId"
+        case driverSign, supervisorSign, recordType
+    }
+}
+

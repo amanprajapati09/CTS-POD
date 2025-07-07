@@ -8,7 +8,7 @@ final class DeliverySubmitViewModel {
     let configuration: DeliverySubmit.Configuration
     let usecase: JobSubmitUseCaseProtocol
     @Published var viewState: APIState<JobStatusUpdateResponse>?
-
+    
     let networkCheck = NetworkCheck.sharedInstance()
     
     init(jobs: [Job], configuration: DeliverySubmit.Configuration, usecase: JobSubmitUseCaseProtocol = JobSubmitUseCase(client: JobSubmitClient())) {
@@ -31,70 +31,66 @@ final class DeliverySubmitViewModel {
         return configuration.string.navigationTitle
     }
     
-    func submitJob(comment: String, 
+    func submitJob(comment: String,
                    name: String,
                    images: [UIImage]?,
                    statusOption: DeliveryOption,
                    signature: Data?)  {
         
-        var requestModelList = [JobSubmitRequest]()
-        
-        for job in jobs {
+        let request = JobSubmitRequest()
+        let user = LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: UserDefaultKeys.user)
+        LocationManagerSwift.shared.updateLocation { latitude, longitude, status, error in
+            guard error == nil else {
+                self.viewState = .error("Please enable location permission from settings")
+                return
+            }
             
-            LocationManagerSwift.shared.updateLocation { latitude, longitude, status, error in
-                guard error == nil else {
-                    self.viewState = .error("Please enable location permission from settings")
-                    return
-                }
-                let request = job.toSubmitJobRquest()
-                request.comments = comment
-                request.customerName = name
-                if let images {
-                    for (index, image) in images.enumerated() {
-                        guard let data = image.resizeAndConvertToBase64(resolution: .high) else {return}
-                        switch index {
-                        case 0:
-                            request.image1 = data
-                        case 1:
-                            request.image2 = data
-                        case 2:
-                            request.image3 = data
-                        case 3:
-                            request.image4 = data
-                        default:
-                            request.image5 = data
-                        }
-                    }
-                }
-                request.status = statusOption.status
-                request.modifiedTime = Date().apiSupportedDate()
-                request.userID = LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: UserDefaultKeys.user)?.id ?? "0"
-                if let signature {
-                    request.customerSign = signature.base64EncodedString(options: .lineLength64Characters)
-                }
-                request.latitude = latitude
-                request.longitude = longitude
-                requestModelList.append(request)
-                DispatchQueue.main.async {
-                    self.viewState = .loading
-                    self.manageAPICallingIndex(list: requestModelList, index: 0)
+            for (index,job) in self.jobs.enumerated() {
+                if index == 0 {
+                    request.jobs.append(job.toSubmitJobRquest(recordType: "M"))
+                } else {
+                    request.jobs.append(job.toSubmitJobRquest(recordType: "S"))
                 }
             }
-        }
-    }
-    
-    private func manageAPICallingIndex(list: [JobSubmitRequest], index: Int) {
-        guard index < list.count else {
-            self.updateJobStatus()
-            self.viewState = .loaded(JobStatusUpdateResponse(status: "Done", message: "Success"))
-            return
-        }
-        let requestModel = list[index]
-        callAPI(request: requestModel) { isSuccess in
-            if isSuccess {
-                self.manageAPICallingIndex(list: list, index: (index + 1))
-            } else {
-                self.viewState = .error("Somthing went wrong! \nPlease try again!")
+            
+            request.comments = comment
+            request.customerName = name
+            if let images {
+                for (index, image) in images.enumerated() {
+                    guard let data = image.resizeAndConvertToBase64(resolution: (user?.user.getResolution ?? .high)) else {return}
+                    switch index {
+                    case 0:
+                        request.image1 = data
+                    case 1:
+                        request.image2 = data
+                    case 2:
+                        request.image3 = data
+                    case 3:
+                        request.image4 = data
+                    default:
+                        request.image5 = data
+                    }
+                }
+            }
+            request.status = statusOption.status
+            request.modifiedTime = Date().apiSupportedDate()
+            request.userID = user?.id ?? "0"
+            if let signature {
+                request.customerSign = signature.base64EncodedString(options: .lineLength64Characters)
+            }
+            request.latitude = latitude
+            request.longitude = longitude
+            request.batchID = UUID().uuidString
+            DispatchQueue.main.async {
+                self.viewState = .loading
+                self.callAPI(request: request) { isSuccess in
+                    if isSuccess {
+                        self.updateJobStatus()
+                        self.viewState = .loaded(JobStatusUpdateResponse(status: "Done", message: "Success"))
+                    } else {
+                        self.viewState = .error("Somthing went wrong! \nPlease try again!")
+                    }
+                }
             }
         }
     }
@@ -122,7 +118,7 @@ final class DeliverySubmitViewModel {
                     complition(false)
                 }
             }
-        } else {            
+        } else {
             RealmManager.shared.addObject(realmObject: request)
             complition(true)
         }

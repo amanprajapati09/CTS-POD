@@ -20,7 +20,7 @@ final class RealmManager {
             }
 
             let config = Realm.Configuration(
-                schemaVersion: 1,
+                schemaVersion: 3,
                 migrationBlock: migrationBlock
             )
             Realm.Configuration.defaultConfiguration = config

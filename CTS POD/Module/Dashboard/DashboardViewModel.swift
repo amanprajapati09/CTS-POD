@@ -219,8 +219,7 @@ final class DashboardViewModel {
     
     func submitJobs()  {
         let localList = LocalDataBaseWraper().fetchLocalSavedJob()
-        let jobs = localList.map { $0.map() }
-        manageAPICallingIndex(list: jobs, index: 0, localList: localList)
+        manageAPICallingIndex(index: 0, localList: localList)
     }
     
     func fetchIncidentReport(completion: @escaping (_ result: [DynamicReportlist]?)->())  {
@@ -242,27 +241,27 @@ final class DashboardViewModel {
         }
     }
     
-    private func manageAPICallingIndex(list: [JobSubmitResendRequest], index: Int, localList: [JobSubmitRequest]) {
+    private func manageAPICallingIndex(index: Int, localList: [JobSubmitRequest]) {
         self.syncState = .loading
-        guard index < list.count else {            
+        guard index < localList.count else {
             self.syncState = .loaded(JobStatusUpdateResponse(status: "Done", message: "Success"))
             return
         }
-        let requestModel = list[index]
+        let requestModel = localList[index]
         callAPI(request: requestModel) { isSuccess in
             if isSuccess {
                 RealmManager.shared.delete(realmList: localList[index])
-                self.manageAPICallingIndex(list: list, index: (index + 1), localList: localList)
+                self.manageAPICallingIndex(index: (index + 1), localList: localList)
             } else {
                 self.syncState = .error("Somthing went wrong! \nPlease try again!")
             }
         }
     }
     
-    private func callAPI(request: JobSubmitResendRequest, complition: @escaping ((_ isSuccess: Bool)->Void)) {
+    private func callAPI(request: JobSubmitRequest, complition: @escaping ((_ isSuccess: Bool)->Void)) {
         Task { @MainActor in
             do {
-                try await configuration.jobReSubmitUsecase.updateJobStatus(request: request) { result in
+                try await configuration.jobSubmitUsecase.updateJobStatus(request: request) { result in
                     switch result {
                     case .success(let value):
                         if value.status == "Success" {

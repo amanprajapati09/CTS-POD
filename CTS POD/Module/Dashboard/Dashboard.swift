@@ -5,7 +5,6 @@ final class Dashboard {
     struct Configuration {
         var jobConformUsecase: JobConfirmUseCaseProtocol = JobConfirmUseCase(client: JobConfirmClient())
         var jobSubmitUsecase: JobSubmitUseCaseProtocol = JobSubmitUseCase(client: JobSubmitClient())
-        var jobReSubmitUsecase: JobReSubmitUseCaseProtocol = JobReSubmitUseCase(client: JobReSubmitClient())
         var incidentReportUsecase: IncidentReportUsecaseProtocol = IncidentReportUsecase(client: IncidentReportClient())
         let images = Images()
         let string = Strings()
