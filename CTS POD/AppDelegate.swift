@@ -4,6 +4,8 @@ import IQKeyboardManagerSwift
 import FirebaseCore
 import FirebaseMessaging
 import CoreLocation
+import Realm
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,10 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Messaging.messaging().delegate = self
         UIApplication.shared.registerForRemoteNotifications()
-        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.isEnabled = true
         LocationManagerSwift.shared.requestAuthorization(status: .authorizedAlways)
         LocationManager.sharedInstance.requestForAlwaysAuthorization()
         print("UUID String ------\(UUID().uuidString)")
+        realmDatabseMigration()
         return true
     }
     
@@ -54,5 +57,15 @@ extension AppDelegate : MessagingDelegate {
             let dashboard = controller.findViewController(type: DashboardViewController.self)
             dashboard?.fetchJobList(canStore: false)
         }
+    }
+
+    func realmDatabseMigration() {
+        let config = Realm.Configuration(
+            schemaVersion: 2,
+            migrationBlock: { migration, oldSchemaVersion in
+                if oldSchemaVersion < 2 { }
+            }
+        )
+        Realm.Configuration.defaultConfiguration = config
     }
 }

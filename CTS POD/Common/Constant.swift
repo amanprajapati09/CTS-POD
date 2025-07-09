@@ -93,4 +93,5 @@ struct UserDefaultKeys {
     static let fcmToke = "fcmToken"
     static let lastTimeStampUpdateLocation = "lastTimeStampUpdateLocation"
     static let lastLoginTime = "lastLoginDate"
+    static let jobDisplayOption = "jobDisplayOption"
 }
