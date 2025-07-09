@@ -48,6 +48,18 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
                                           style: .done, target: self,
                                           action: #selector(navigationRightClick))
         navigationItem.rightBarButtonItem = rightButton
+        
+        let btnBack = UIBarButtonItem(image: UIImage(named: "icn_back"),
+                                             style: .plain,
+                                             target: self,
+                                      action: #selector(navigationBack))
+        let btnBarcode = UIBarButtonItem(image: UIImage(named: "barcode"),
+                                             style: .plain,
+                                             target: self,
+                                         action: #selector(barcodeButtonTap))
+
+        navigationItem.leftBarButtonItems = [btnBack, btnBarcode]
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -116,6 +128,23 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
         } else {
             showSelectedJobAlert(message: "Please select delivery which complete driver and supervisor sign")
         }
+    }
+    
+    @objc
+    private func navigationBack() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    private func barcodeButtonTap() {
+        let alert = UIAlertController(title: "Select Option", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Single Scan", style: .default, handler: { action in
+            alert.dismiss(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Multiple Scan", style: .default, handler: { action in
+            alert.dismiss(animated: true)
+        }))
+        navigationController?.present(alert, animated: true)
     }
     
     private func showSelectedJobAlert(message: String = "No deliveries are available!") {
