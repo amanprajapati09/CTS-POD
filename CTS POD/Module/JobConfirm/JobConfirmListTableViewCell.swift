@@ -325,4 +325,5 @@ struct JobDisplayModel {
     var isExpand: Bool
     var job: Job
     var isSelected: Bool = false
+    var distance: Double
 }

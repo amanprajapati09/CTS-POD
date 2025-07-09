@@ -1,5 +1,6 @@
 
 import Foundation
+import RealmSwift
 
 class LocalDataBaseWraper {
     private let realmManager = RealmManager.shared
@@ -42,6 +43,21 @@ class LocalDataBaseWraper {
     func fetchLocalSavedJob() -> [JobSubmitRequest]  {
         let jobs = realmManager.fetchList(type: JobSubmitRequest.self) ?? []
         return jobs
+    }
+
+    func updateJobSequance(jobs: [Job]) {
+        try! realmManager.realm.write {
+            _ = jobs.map { job in
+                if job.jobSequance == 0 {
+                    job.jobSequance = self.getNextSequance()
+                }
+            }
+        }
+    }
+
+    func getNextSequance(key: String = "jobSequance") -> Int {
+        let realm = try! Realm()
+        return (realm.objects(Job.self).max(ofProperty: key) as Int? ?? 0) + 1
     }
 }
 
