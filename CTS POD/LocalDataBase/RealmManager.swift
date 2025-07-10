@@ -20,7 +20,7 @@ final class RealmManager {
             }
 
             let config = Realm.Configuration(
-                schemaVersion: 3,
+                schemaVersion: 4,
                 migrationBlock: migrationBlock
             )
             Realm.Configuration.defaultConfiguration = config
@@ -99,7 +99,6 @@ extension Results {
                 array.append(result)
             }
         }
-
         return array
     }
 }

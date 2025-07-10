@@ -1,6 +1,7 @@
 
 import UIKit
 import Combine
+import RealmSwift
 
 final class DashboardViewModel {
     let configuration: Dashboard.Configuration
@@ -261,7 +262,7 @@ final class DashboardViewModel {
     private func callAPI(request: JobSubmitRequest, complition: @escaping ((_ isSuccess: Bool)->Void)) {
         Task { @MainActor in
             do {
-                try await configuration.jobSubmitUsecase.updateJobStatus(request: request) { result in
+                try await configuration.jobSubmitUsecase.updateJobStatus(request: request.makeCopy()) { result in
                     switch result {
                     case .success(let value):
                         if value.status == "Success" {

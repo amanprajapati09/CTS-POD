@@ -89,7 +89,8 @@ class Job: Object, Decodable {
     
     func mapToJobConfirmDisplay(distance: Double = 0.0) -> JobDisplayModel {
         return JobDisplayModel(isExpand: false,
-                               job: self, distance: distance)
+                               job: self, 
+                               distance: distance)
     }
     
     var titleAddress: String {

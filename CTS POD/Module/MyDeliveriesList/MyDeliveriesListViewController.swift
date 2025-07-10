@@ -21,6 +21,8 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.allowsMultipleSelection = false
+        tableView.dragInteractionEnabled = true
+        tableView.allowsSelectionDuringEditing = true
         return tableView
     }()
     
@@ -30,6 +32,16 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
         tableView.register(MyDeliveriesListTableViewCell.self)
         setupView()
         bindView()
+        fetchJobList()
+    }
+    
+    private func fetchJobList() {
+        if let value = LocalTempStorage.getValue(key: UserDefaultKeys.jobDisplayOption) as? String,
+           let option = MyDeliveriesListViewModel.JobDisplayOption(rawValue: value) {
+            viewModel.fetchList(option: option)
+        } else {
+            viewModel.fetchDefaultList()
+        }
     }
 
     private func setupNavigation() {
@@ -47,7 +59,11 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
         let rightButton = UIBarButtonItem(image: UIImage(named: "done"),
                                           style: .done, target: self,
                                           action: #selector(navigationRightClick))
-        navigationItem.rightBarButtonItem = rightButton
+        let moreButton = UIBarButtonItem(image: UIImage(named: "more"),
+                                          style: .done, target: self,
+                                          action: #selector(moreButtonClick))
+        
+        navigationItem.rightBarButtonItems = [moreButton, rightButton]
         
         let btnBack = UIBarButtonItem(image: UIImage(named: "icn_back"),
                                              style: .plain,
@@ -70,7 +86,7 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.title = viewModel.configuration.string.navigationTitle
-        viewModel.fetchList()
+        fetchJobList()
     }
     
     init(viewModel: MyDeliveriesListViewModel) {
@@ -103,7 +119,7 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
                 case .LocationPermission:
                     self?.showErrorAlert(message: "Please allow location permission to access the location.")
                 case .success:
-                    self?.viewModel.fetchList()
+                    self?.fetchJobList()
                 case .error(let message):
                     self?.showErrorAlert(message: message)
                 default:
@@ -161,6 +177,29 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
                 
             }
             self.present(nav, animated: true, completion: nil)
+    }
+    
+    @objc private func moreButtonClick() {
+        let sortOptionSheet = UIAlertController(title: "",
+                                                    message: nil,
+                                                    preferredStyle: .actionSheet)
+        sortOptionSheet.addAction(UIAlertAction(title: MyDeliveriesListViewModel.JobDisplayOption.defaultView.rawValue, style: .default, handler: { [weak self]  action in
+            self?.viewModel.fetchDefaultList()
+            LocalTempStorage.storeValue(value: MyDeliveriesListViewModel.JobDisplayOption.defaultView.rawValue, key: UserDefaultKeys.jobDisplayOption)
+            self?.tableView.isEditing = false
+        }))
+        sortOptionSheet.addAction(UIAlertAction(title: MyDeliveriesListViewModel.JobDisplayOption.optimizedRoute.rawValue, style: .default, handler: { [weak self] action in
+            self?.viewModel.sortBasedOnDistance()
+            self?.tableView.isEditing = false
+            LocalTempStorage.storeValue(value: MyDeliveriesListViewModel.JobDisplayOption.optimizedRoute.rawValue, key: UserDefaultKeys.jobDisplayOption)
+        }))
+        sortOptionSheet.addAction(UIAlertAction(title: MyDeliveriesListViewModel.JobDisplayOption.dragAndDrop.rawValue, style: .default, handler: { [weak self] action in
+            self?.viewModel.sortBasedOnPosition()
+            LocalTempStorage.storeValue(value: MyDeliveriesListViewModel.JobDisplayOption.dragAndDrop.rawValue, key: UserDefaultKeys.jobDisplayOption)
+            self?.tableView.isEditing = true
+        }))
+        sortOptionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(sortOptionSheet, animated: true)
     }
 }
 
@@ -234,5 +273,31 @@ extension MyDeliveriesListViewController: UITableViewDataSource, UITableViewDele
             jobs?[indexPath.row].isExpand = true
         }
         tableView.reloadRows(at: [indexPath], with: .fade)
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard let movedItem = jobs?.remove(at: sourceIndexPath.row) else {
+            return
+        }
+        jobs?.insert(movedItem, at: destinationIndexPath.row)
+        do {
+            try RealmManager.shared.realm.write {
+                for (index, jobWrapper) in (jobs ?? []).enumerated() {
+                    jobWrapper.job.jobSequance = index + 1
+                }
+            }
+        } catch {}
+    }
+
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return nil
     }
 }

@@ -67,8 +67,6 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.allowsMultipleSelection = false
-        tableView.dragInteractionEnabled = true
-        tableView.allowsSelectionDuringEditing = true
         return tableView
     }()
     
@@ -78,12 +76,7 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
         tableView.register(JobConfirmListTableViewCell.self)
         setupView()
         bindView()
-        if let value = LocalTempStorage.getValue(key: UserDefaultKeys.jobDisplayOption) as? String,
-           let option = JobConfirmListViewModel.JobDisplayOption(rawValue: value) {
-            viewModel.fetchList(option: option)
-        } else {
-            viewModel.fetchDefaultList()
-        }
+        viewModel.fetchList()
     }
     
     private func setupNavigation() {
@@ -98,18 +91,16 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
             ]
             navigationBar.titleTextAttributes = titleTextAttributes
         }
-        let sortOptionButton = UIBarButtonItem(image: UIImage(named: "done"),
-                                               style: .plain, target: self,
-                                          action: #selector(navigationRightClick))
-        let doneButton = UIBarButtonItem(image: UIImage(named: "more"),
+        
+        let rightButton = UIBarButtonItem(image: UIImage(named: "done"),
                                           style: .done, target: self,
-                                          action: #selector(moreButtonClick))
-        navigationItem.rightBarButtonItems = [sortOptionButton, doneButton]
+                                          action: #selector(navigationRightClick))
+        navigationItem.rightBarButtonItem = rightButton
     }
     
     @objc
     private func navigationRightClick() {
-        guard let jobs, jobs.count > 0 else { 
+        guard let jobs, jobs.count > 0 else {
             showSelectedJobAlert()
             return }
         let selectedItems = jobs.filter {
@@ -126,36 +117,12 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
                     print("error in update the data")
                 }
             }
-//            viewModel.fetchList()
+            viewModel.fetchList()
         } else {
             showSelectedJobAlert(message: "Please select jobs which complete driver and supervisor sign")
         }
     }
-
-    @objc
-    private func moreButtonClick() {
-        let sortOptionSheet = UIAlertController(title: "",
-                                                    message: nil,
-                                                    preferredStyle: .actionSheet)
-        sortOptionSheet.addAction(UIAlertAction(title: JobConfirmListViewModel.JobDisplayOption.defaultView.rawValue, style: .default, handler: { [weak self]  action in
-            self?.viewModel.fetchDefaultList()
-            LocalTempStorage.storeValue(value: JobConfirmListViewModel.JobDisplayOption.defaultView.rawValue, key: UserDefaultKeys.jobDisplayOption)
-            self?.tableView.isEditing = false
-        }))
-        sortOptionSheet.addAction(UIAlertAction(title: JobConfirmListViewModel.JobDisplayOption.optimizedRoute.rawValue, style: .default, handler: { [weak self] action in
-            self?.viewModel.sortBasedOnDistance()
-            self?.tableView.isEditing = false
-            LocalTempStorage.storeValue(value: JobConfirmListViewModel.JobDisplayOption.optimizedRoute.rawValue, key: UserDefaultKeys.jobDisplayOption)
-        }))
-        sortOptionSheet.addAction(UIAlertAction(title: JobConfirmListViewModel.JobDisplayOption.dragAndDrop.rawValue, style: .default, handler: { [weak self] action in
-            self?.viewModel.sortBasedOnPosition()
-            LocalTempStorage.storeValue(value: JobConfirmListViewModel.JobDisplayOption.dragAndDrop.rawValue, key: UserDefaultKeys.jobDisplayOption)
-            self?.tableView.isEditing = true
-        }))
-        sortOptionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        self.present(sortOptionSheet, animated: true)
-    }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationItem.setHidesBackButton(false, animated: false)
@@ -226,7 +193,8 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
         jobs = jobs?.map({ value in
             return JobDisplayModel(isExpand: value.isExpand,
                                    job: value.job,
-                                   isSelected: isAllSelected, distance: 0)
+                                   isSelected: isAllSelected,
+                                   distance: 0)
         })
         isAllSelected = !isAllSelected
         tableView.reloadData()
@@ -316,31 +284,5 @@ extension JobConfirmListViewController: UITableViewDataSource, UITableViewDelega
             buttonDriverSign.isHidden = true
             buttonSupervisorSign.isHidden = true
         }
-    }
-
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        guard let movedItem = jobs?.remove(at: sourceIndexPath.row) else {
-            return
-        }
-        jobs?.insert(movedItem, at: destinationIndexPath.row)
-        do {
-            try RealmManager.shared.realm.write {
-                for (index, jobWrapper) in (jobs ?? []).enumerated() {
-                    jobWrapper.job.jobSequance = index + 1
-                }
-            }
-        } catch {}
-    }
-
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .none
-    }
-
-    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        return nil
     }
 }
