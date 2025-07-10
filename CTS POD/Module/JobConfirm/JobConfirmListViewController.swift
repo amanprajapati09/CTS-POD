@@ -92,15 +92,15 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
             navigationBar.titleTextAttributes = titleTextAttributes
         }
         
-        let rightButton = UIBarButtonItem(image: UIImage(named: "done"), 
-                                          style: .done, target: self, 
+        let rightButton = UIBarButtonItem(image: UIImage(named: "done"),
+                                          style: .done, target: self,
                                           action: #selector(navigationRightClick))
         navigationItem.rightBarButtonItem = rightButton
     }
     
     @objc
     private func navigationRightClick() {
-        guard let jobs, jobs.count > 0 else { 
+        guard let jobs, jobs.count > 0 else {
             showSelectedJobAlert()
             return }
         let selectedItems = jobs.filter {
@@ -193,7 +193,8 @@ class JobConfirmListViewController: BaseViewController<JobConfirmListViewModel> 
         jobs = jobs?.map({ value in
             return JobDisplayModel(isExpand: value.isExpand,
                                    job: value.job,
-                                   isSelected: isAllSelected)
+                                   isSelected: isAllSelected,
+                                   distance: 0)
         })
         isAllSelected = !isAllSelected
         tableView.reloadData()
