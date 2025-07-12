@@ -14,7 +14,7 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
         }
     }
     
-    private lazy var tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
@@ -149,18 +149,6 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
     @objc
     private func navigationBack() {
         navigationController?.popViewController(animated: true)
-    }
-    
-    @objc
-    private func barcodeButtonTap() {
-        let alert = UIAlertController(title: "Select Option", message: "", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Single Scan", style: .default, handler: { action in
-            alert.dismiss(animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: "Multiple Scan", style: .default, handler: { action in
-            alert.dismiss(animated: true)
-        }))
-        navigationController?.present(alert, animated: true)
     }
     
     private func showSelectedJobAlert(message: String = "No deliveries are available!") {

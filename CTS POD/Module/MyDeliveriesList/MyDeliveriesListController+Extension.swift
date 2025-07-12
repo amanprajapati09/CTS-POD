@@ -1,0 +1,65 @@
+//
+//  MyDeliveriesListController+Extension.swift
+//  CTS POD
+//
+//  Created by Aman Prajapati on 12/07/25.
+//
+
+import Foundation
+import UIKit
+
+extension MyDeliveriesListViewController {
+    
+    @objc
+    func barcodeButtonTap() {
+        let alert = UIAlertController(title: "Select Option", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Single Scan", style: .default, handler: { action in
+            alert.dismiss(animated: true)
+            self.presentBarcodeScannerController(mode: .single)
+        }))
+        alert.addAction(UIAlertAction(title: "Multiple Scan", style: .default, handler: { action in
+            alert.dismiss(animated: true)
+            self.presentBarcodeScannerController(mode: .multiple)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            alert.dismiss(animated: true)
+        }))
+        navigationController?.present(alert, animated: true)
+    }
+    
+    private func presentBarcodeScannerController(mode: BarcodeScannerViewController.ScanMode) {
+        let scannerVC = BarcodeScannerViewController()
+        scannerVC.scanMode = mode
+        scannerVC.onBarcodeDetected = { codes in
+            if mode == .single {
+                if let scannedJob = codes.first {
+                    self.manageSingleScan(scannedID: scannedJob)
+                }
+            } else {
+                self.manageMultipleScan(scannedIDs: codes)
+            }
+        }
+        present(scannerVC, animated: true)
+    }
+    
+    private func manageSingleScan(scannedID: String) {
+        if let selectedJob = jobs?.filter({
+            $0.job.deliveryNo == scannedID
+        }).first {
+            let joblist = [selectedJob.job]
+            let controller = DeliverySubmit.build(jobs: joblist)
+            navigationController?.pushViewController(controller, animated: true)
+        } else {
+            showErrorAlert(message: "Job Not found")
+        }
+    }
+    
+    private func manageMultipleScan(scannedIDs: [String]) {
+        for updateItem in scannedIDs {
+            if let index = jobs?.firstIndex(where: { $0.job.deliveryNo == updateItem }) {
+                jobs?[index].isSelected = true
+            }
+        }
+        tableView.reloadData()
+    }
+}
