@@ -18,7 +18,6 @@ target 'CTS POD' do
   pod 'YPImagePicker'
   pod "SwiftSignatureView"
   pod 'DatePicker', '~> 1.3.0'
-  pod 'BarcodeScanner'
   
   # Pods for CTS POD
 
