@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Messaging.messaging().delegate = self
         UIApplication.shared.registerForRemoteNotifications()
-        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.isEnabled = true
         LocationManagerSwift.shared.requestAuthorization(status: .authorizedAlways)
         LocationManager.sharedInstance.requestForAlwaysAuthorization()
         print("UUID String ------\(UUID().uuidString)")
