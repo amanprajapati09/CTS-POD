@@ -15,6 +15,10 @@
 		<string>mapswithme</string>
 		<string>com.sygic.aura</string>
 	</array>
+	<key>NSMicrophoneInjectionUsageDescription</key>
+	<string>&quot;This app does not use the microphone directly. It includes third-party components that may request access.&quot;</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>&quot;This app does not use the microphone directly. It includes third-party components that may request access.&quot;</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-SemiBold.ttf</string>
