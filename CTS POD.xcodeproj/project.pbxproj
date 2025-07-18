@@ -844,9 +844,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CTS POD-CTS PODUITests/Pods-CTS POD-CTS PODUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CTS POD-CTS PODUITests/Pods-CTS POD-CTS PODUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -883,9 +887,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CTS POD/Pods-CTS POD-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CTS POD/Pods-CTS POD-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1239,7 +1247,8 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera used to take photos of your delivery items.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "\"Use the Location for track your path while you are going for delivery so we can have proof to show the customer.\"";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"Use the Location for track your path while you are going for delivery so we can have proof to show the customer.\"";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission to calculate accurate delivery location disatance and also help to get spot location of the delivery while complete it. so please allow for more accurate result.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"Use the Location for track your path while you are going for delivery so we can have proof to show the customer.\"";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"This app does not use the microphone directly. It includes third-party components that may request access.\"";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Photo library used to pick capture item";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Photo library used to capture item while make the delivery successfully.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1251,11 +1260,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trackproof.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Track Proof Adhoc App Center";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Track Proof Distribution";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1281,7 +1290,8 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera used to take photos of your delivery items.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "\"Use the Location for track your path while you are going for delivery so we can have proof to show the customer.\"";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"Use the Location for track your path while you are going for delivery so we can have proof to show the customer.\"";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CTS needs your location permission to calculate accurate delivery location disatance and also help to get spot location of the delivery while complete it. so please allow for more accurate result.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"Use the Location for track your path while you are going for delivery so we can have proof to show the customer.\"";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"This app does not use the microphone directly. It includes third-party components that may request access.\"";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Photo library used to pick capture item";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Photo library used to capture item while make the delivery successfully.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1293,11 +1303,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trackproof.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Track Proof Adhoc App Center";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Track Proof Distribution";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

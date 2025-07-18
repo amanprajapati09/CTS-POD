@@ -64,7 +64,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
     
     private lazy var jobStatusView: DeliveryRowView = {
         let view = DeliveryRowView(title: "Job Status")
-        view.textField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(doneClick))
+        view.textField.iq.toolbar.doneBarButton.setTarget(self, action: #selector(doneClick))
         let dropdown = UIImageView(frame: .init(x: 0, y: 0, width: 40, height: 20))
         dropdown.image = UIImage(named: "down_arrow")
         view.textField.rightView = dropdown
