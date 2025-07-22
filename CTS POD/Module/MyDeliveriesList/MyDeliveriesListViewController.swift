@@ -63,7 +63,7 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
                                           style: .done, target: self,
                                           action: #selector(moreButtonClick))
         
-        navigationItem.rightBarButtonItems = [moreButton, rightButton]
+        navigationItem.rightBarButtonItems = [rightButton, moreButton]
         
         let btnBack = UIBarButtonItem(image: UIImage(named: "icn_back"),
                                              style: .plain,
@@ -116,11 +116,15 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
         viewModel.$state.subscribe(on: DispatchQueue.main)
             .sink { [weak self] state in
                 switch state {
+                case .loading:
+                    LoadingOverlay.shared.show()
                 case .LocationPermission:
                     self?.showErrorAlert(message: "Please allow location permission to access the location.")
                 case .success:
                     self?.fetchJobList()
+                    LoadingOverlay.shared.hide()
                 case .error(let message):
+                    LoadingOverlay.shared.hide()
                     self?.showErrorAlert(message: message)
                 default:
                     print("nothing")
@@ -171,6 +175,7 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
         let sortOptionSheet = UIAlertController(title: "",
                                                     message: nil,
                                                     preferredStyle: .actionSheet)
+        sortOptionSheet.view.tintColor = .black
         sortOptionSheet.addAction(UIAlertAction(title: MyDeliveriesListViewModel.JobDisplayOption.defaultView.rawValue, style: .default, handler: { [weak self]  action in
             self?.viewModel.fetchDefaultList()
             LocalTempStorage.storeValue(value: MyDeliveriesListViewModel.JobDisplayOption.defaultView.rawValue, key: UserDefaultKeys.jobDisplayOption)

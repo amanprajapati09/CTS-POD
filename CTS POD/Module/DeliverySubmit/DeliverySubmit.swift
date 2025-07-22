@@ -23,12 +23,14 @@ extension DeliverySubmit.Configuration {
     struct Images {
         let cameraIcon = UIImage(named: "btn_camera")
         let signatureIcon = UIImage(named: "btn_signature")
+        let backIcon = UIImage(named: "icn_back")
     }
     
     struct Strings {
         let navigationTitle = "Sales Order"
         let signatureTitle = "Signature"
         let cameraTitle = "Camera"
+        let backWarningTitle = "You will lose all changes, Are you sure you want to go back?"
     }
 }
 

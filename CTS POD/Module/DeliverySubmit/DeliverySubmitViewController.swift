@@ -9,14 +9,17 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
     
     private var cancellable = Set<AnyCancellable>()
     private var collectionImages = [UIImage]()
+    private var originalImages = [UIImage]()
     private var signatureImage: Data?
     private var selectedState: DeliveryOption
+    var overlayView: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         updateValue()
         bind()
+        setupNavigationView()
         manageButtons(option: .deliver)
     }
     
@@ -156,6 +159,15 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setupNavigationView() {
+        self.navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(image: viewModel.configuration.images.backIcon,
+                                       style: .done,
+                                       target:self,
+                                       action: #selector(navigationBackClick))
+        self.navigationItem.leftBarButtonItem = backButton
+    }
+    
     private func setupView() {
         navigationController?.setNavigationBarHidden(false, animated: false)
         view.backgroundColor = Colors.viewBackground
@@ -260,6 +272,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
                 switch item {
                 case .photo(let photo):
                     let image = photo.image
+                    self.originalImages.append(image)
                     let thumbnail = image.imageWithImage(scaledToWidth: image.size.width/10)
                     self.collectionImages.append(thumbnail)
                     self.imagesCollectionView.reloadData()
@@ -270,6 +283,16 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
             picker.dismiss(animated: true)
         }
         present(picker, animated: true)
+    }
+    
+    @objc func navigationBackClick() {
+        // Example: Show confirmation alert
+        let alert = UIAlertController(title: "", message: viewModel.configuration.string.backWarningTitle, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        self.present(alert, animated: true)
     }
     
     fileprivate func manageButtons(option: DeliveryOption) {
@@ -288,6 +311,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
             signatureImage = nil
             signPreview.isHidden = true
             collectionImages.removeAll()
+            originalImages.removeAll()
         }
         jobStatusView.textField.text = option.rawValue
         selectedState = option
@@ -323,7 +347,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         
         viewModel.submitJob(comment: commentsView.textField.text ?? "",
                             name: customerView.textField.text ?? "",
-                            images: collectionImages,
+                            images: originalImages,
                             statusOption: selectedState,
                             signature: signatureImage)
     }
@@ -342,7 +366,7 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
         
         viewModel.submitJob(comment: commentsView.textField.text ?? "",
                             name: customerView.textField.text ?? "",
-                            images: collectionImages,
+                            images: originalImages,
                             statusOption: selectedState,
                             signature: nil)
     }
@@ -370,10 +394,13 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
                     self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.activityIndicator)
                     self.activityIndicator.startAnimating()
                     self.navigationItem.leftBarButtonItem?.isEnabled = false
+                    self.disableUIWithLoading()
                 case .loaded(_):
+                    self.enableUIAndRemoveLoading()
                     self.navigationItem.rightBarButtonItem = self.rightButton
                     self.showSuccessAlert()
                 case .error(let message):
+                    self.enableUIAndRemoveLoading()
                     self.showErrorAlert(message: message)
                     self.navigationItem.rightBarButtonItem = self.rightButton
                     self.navigationItem.leftBarButtonItem?.isEnabled = true
@@ -392,6 +419,20 @@ class DeliverySubmitViewController: BaseViewController<DeliverySubmitViewModel> 
             self.navigationItem.leftBarButtonItem?.isEnabled = true
         }))
         present(alert, animated: true)
+    }
+    
+    func disableUIWithLoading() {
+        // Create overlay
+        let overlay = UIView(frame: view.bounds)
+        overlay.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        overlay.isUserInteractionEnabled = true // Block touches
+        view.addSubview(overlay)
+        overlayView = overlay
+    }
+    
+    func enableUIAndRemoveLoading() {
+        overlayView?.removeFromSuperview()
+        overlayView = nil
     }
 }
 

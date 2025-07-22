@@ -35,9 +35,11 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
 
         setupCamera()
         setupTableView()
+        setupCloseButton()
         if scanMode == .multiple {
             setupDoneButton()
         }
+        isModalInPresentation = true
     }
 
     // MARK: - Camera Setup
@@ -104,6 +106,30 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         ])
     }
 
+    private func setupCloseButton() {
+        let closeButton = UIButton(type: .system)
+        closeButton.setTitle("Close", for: .normal)
+        closeButton.setTitleColor(.white, for: .normal)
+        closeButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        closeButton.layer.cornerRadius = 6
+        closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
+        view.addSubview(closeButton)
+
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            closeButton.widthAnchor.constraint(equalToConstant: 60),
+            closeButton.heightAnchor.constraint(equalToConstant: 32)
+        ])
+    }
+
+    @objc private func closeTapped() {
+        captureSession.stopRunning()
+        dismiss(animated: true)
+    }
+    
     // MARK: - Metadata Delegate
     func metadataOutput(_ output: AVCaptureMetadataOutput,
                         didOutput metadataObjects: [AVMetadataObject],
@@ -122,6 +148,9 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                 if !foundBarcodes.contains(stringValue) {
                     foundBarcodes.append(stringValue)
                     tableView.reloadData()
+
+                    let lastIndex = IndexPath(row: foundBarcodes.count - 1, section: 0)
+                    tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
                 }
             }
         }
@@ -148,7 +177,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BarcodeCell", for: indexPath)
-        cell.textLabel?.text = foundBarcodes[indexPath.row]
+        cell.textLabel?.text = "\(indexPath.row + 1). \(foundBarcodes[indexPath.row])"
         cell.textLabel?.textColor = .white
         cell.backgroundColor = .clear
         return cell

@@ -150,13 +150,14 @@ class DashboardViewController: UIViewController {
     }
     
     private func prepareFooterView() {
+        versionLabel.text = "Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
         if let user = LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: "user") {
-            footerView.isHidden = false
+            supportButton.isHidden = false
             driverNameLabel.text = user.user.username
-            versionLabel.text = "Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
             footerView.layoutIfNeeded()
         } else {
-            footerView.isHidden = true
+            supportButton.isHidden = true
+            driverNameLabel.text = nil
         }
     }
     

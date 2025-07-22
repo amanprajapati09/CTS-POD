@@ -35,7 +35,7 @@ extension UIImage {
         UIGraphicsEndImageContext()
         
         guard let resized = resizedImage,
-              let imageData = resized.jpegData(compressionQuality: 0.9) else {
+              let imageData = resized.jpegData(compressionQuality: 0.8) else {
             return nil
         }
         

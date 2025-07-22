@@ -6,6 +6,7 @@ enum UpdateETAViewState {
     case LocationPermission
     case success
     case error(String)
+    case loading
 }
 
 final class MyDeliveriesListViewModel {
@@ -65,6 +66,7 @@ final class MyDeliveriesListViewModel {
     private func callAPI(selectedJob: Job, latitude: Double, longitude: Double) {
         Task { @MainActor in
             do {
+                state = .loading
                 let eta = ETAReuqest(jobID: selectedJob.id,
                                      sourceLatitude: latitude,
                                      sourceLongitude: longitude,
