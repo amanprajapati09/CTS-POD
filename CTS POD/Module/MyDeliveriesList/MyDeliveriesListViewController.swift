@@ -172,7 +172,7 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
     }
     
     @objc private func moreButtonClick() {
-        let sortOptionSheet = UIAlertController(title: "",
+        let sortOptionSheet = UIAlertController(title: nil,
                                                     message: nil,
                                                     preferredStyle: .actionSheet)
         sortOptionSheet.view.tintColor = .black

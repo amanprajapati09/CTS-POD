@@ -68,6 +68,7 @@
 		750175482AF0D42100F4888B /* SignViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750175472AF0D42100F4888B /* SignViewModel.swift */; };
 		7501754A2AF0D7EC00F4888B /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750175492AF0D7EC00F4888B /* Signature.swift */; };
 		7519903E2E2D690A00D7F4F1 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519903D2E2D690A00D7F4F1 /* LoadingOverlay.swift */; };
+		752E54CF2E30B02C000E8587 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752E54CE2E30B02C000E8587 /* ToastView.swift */; };
 		7549D86A2AF3817E00D49C62 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D8692AF3817E00D49C62 /* LocationManager.swift */; };
 		7549D86D2AF3C68D00D49C62 /* DeliverySubmit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D86C2AF3C68D00D49C62 /* DeliverySubmit.swift */; };
 		7549D86F2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549D86E2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift */; };
@@ -223,6 +224,7 @@
 		750175472AF0D42100F4888B /* SignViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignViewModel.swift; sourceTree = "<group>"; };
 		750175492AF0D7EC00F4888B /* Signature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
 		7519903D2E2D690A00D7F4F1 /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
+		752E54CE2E30B02C000E8587 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		7549D8692AF3817E00D49C62 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7549D86C2AF3C68D00D49C62 /* DeliverySubmit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverySubmit.swift; sourceTree = "<group>"; };
 		7549D86E2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverySubmitViewController.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 		079422AE2A91213500684513 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				752E54CE2E30B02C000E8587 /* ToastView.swift */,
 				7519903D2E2D690A00D7F4F1 /* LoadingOverlay.swift */,
 				75A734AE2B12026400A60796 /* ErrorLog */,
 				07DCAD602AC1BE8F0002D2FF /* VehicleTextField.swift */,
@@ -1044,6 +1047,7 @@
 				079422B72A91FBAA00684513 /* SharedObject.swift in Sources */,
 				D04D28772AD12F5D00C22A93 /* JobConfirmListViewModel.swift in Sources */,
 				7549D86F2AF3C7BE00D49C62 /* DeliverySubmitViewController.swift in Sources */,
+				752E54CF2E30B02C000E8587 /* ToastView.swift in Sources */,
 				D04D28792AD135DE00C22A93 /* JobConfirm.swift in Sources */,
 				0794229F2A8E7E5400684513 /* GetCustomerViewController.swift in Sources */,
 				07B6575A2AD58BD300E6CA08 /* RealmManager.swift in Sources */,

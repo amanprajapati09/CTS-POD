@@ -12,8 +12,13 @@ extension MyDeliveriesListViewController {
     
     @objc
     func barcodeButtonTap() {
-        let alert = UIAlertController(title: "Select Sacn Mode", message: "", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.view.tintColor = .black
+        let titleFont = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold),
+                         NSAttributedString.Key.foregroundColor: UIColor.black]
+
+        let attributedTitle = NSAttributedString(string: "Select Sacn Mode", attributes: titleFont)
+        alert.setValue(attributedTitle, forKey: "attributedTitle")
         alert.addAction(UIAlertAction(title: "Single Scan", style: .default, handler: { action in
             alert.dismiss(animated: true)
             self.presentBarcodeScannerController(mode: .single)

@@ -33,6 +33,7 @@ extension Dashboard.Configuration {
         let jobConfirm = UIImage(named: "2_dashboard")
         let deleviry = UIImage(named: "3_dashboard")
         let fetchJobs = UIImage(named: "sync_icon")
+        let toastLogo = UIImage(named: "logoImage")
     }
     
     struct Strings {
@@ -45,5 +46,6 @@ extension Dashboard.Configuration {
         let fetchJobTitle = "Fetch Jobs"
         let syncButtonTitle = "Day end sync"
         let IncidentReportTitle = "Incident Report"
+        let vehicleCheckListToastMessage = "Safety Checklist recorded successfully!"
     }
 }

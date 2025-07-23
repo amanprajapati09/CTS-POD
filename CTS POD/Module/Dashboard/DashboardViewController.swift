@@ -113,8 +113,12 @@ class DashboardViewController: UIViewController {
         return view
     }()
     
+    private lazy var toast = ToastView(message: viewModel.configuration.string.vehicleCheckListToastMessage,
+                                       icon: viewModel.configuration.images.toastLogo)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         viewModel.checkAutoLogout()
         setupView()
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -360,6 +364,7 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
                 let controller = VehicleCheckList.build()
                 controller.vehicalCheckUpdate = {
                     self.optionList = self.viewModel.fetchOptions()
+                    self.toast.show(in: self.view)
                     self.fetchJobList(canStore: false)
                 }
                 self.navigationController?.pushViewController(controller, animated: true)

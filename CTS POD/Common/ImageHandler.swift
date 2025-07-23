@@ -15,7 +15,7 @@ enum ImageResolution {
     var size: CGSize {
         switch self {
         case .high:
-            return CGSize(width: 1600, height: 1600)
+            return CGSize(width: 1600, height: 1280)
         case .medium:
             return CGSize(width: 1000, height: 800)
         case .low:
