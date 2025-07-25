@@ -15,7 +15,7 @@ class JobSubmitRequest: Object, Codable {
     @Persisted var image5: String?
     @Persisted var status: Int
     @Persisted var customerName: String
-    @Persisted var modifiedTime: String
+    @Persisted var modifiedDate: String
     @Persisted var latitude: Double
     @Persisted var longitude: Double
     @Persisted var batchID: String
@@ -23,7 +23,7 @@ class JobSubmitRequest: Object, Codable {
     enum CodingKeys: String, CodingKey {
         case jobs
         case userID = "userId"
-        case driverSign, supervisorSign, customerSign, comments, image1, image2, image3, image4, image5, status, customerName, modifiedTime, latitude, longitude
+        case driverSign, supervisorSign, customerSign, comments, image1, image2, image3, image4, image5, status, customerName, modifiedDate, latitude, longitude
         case batchID = "batchId"
     }
     
@@ -44,7 +44,7 @@ class JobSubmitRequest: Object, Codable {
         newObject.image5 = image5
         newObject.status = status
         newObject.customerName = customerName
-        newObject.modifiedTime = modifiedTime
+        newObject.modifiedDate = modifiedDate
         newObject.latitude = latitude
         newObject.longitude = longitude
         newObject.batchID = batchID

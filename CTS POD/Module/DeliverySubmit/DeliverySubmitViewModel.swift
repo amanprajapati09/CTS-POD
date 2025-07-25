@@ -73,7 +73,7 @@ final class DeliverySubmitViewModel {
                 }
             }
             request.status = statusOption.status
-            request.modifiedTime = Date().apiSupportedDate()
+            request.modifiedDate = Date().apiSupportedDate()
             request.userID = user?.id ?? "0"
             if let signature {
                 request.customerSign = signature.base64EncodedString(options: .lineLength64Characters)

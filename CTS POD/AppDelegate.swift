@@ -1,6 +1,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import IQKeyboardToolbarManager
 import FirebaseCore
 import FirebaseMessaging
 import CoreLocation
@@ -16,11 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Messaging.messaging().delegate = self
         UIApplication.shared.registerForRemoteNotifications()
-        IQKeyboardManager.shared.isEnabled = true
         LocationManagerSwift.shared.requestAuthorization(status: .authorizedAlways)
         LocationManager.sharedInstance.requestForAlwaysAuthorization()
-        print("UUID String ------\(UUID().uuidString)")
         realmDatabseMigration()
+        prepareIQKeyboard()
         return true
     }
     
@@ -44,6 +44,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         return UIInterfaceOrientationMask.portrait
+    }
+    
+    private func prepareIQKeyboard() {
+        IQKeyboardManager.shared.isEnabled = true
+        IQKeyboardManager.shared.resignOnTouchOutside = true
+        IQKeyboardToolbarManager.shared.isEnabled = true
     }
 }
 

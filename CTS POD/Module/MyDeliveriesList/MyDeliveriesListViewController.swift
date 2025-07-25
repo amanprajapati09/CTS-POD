@@ -63,7 +63,7 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
                                           style: .done, target: self,
                                           action: #selector(moreButtonClick))
         
-        navigationItem.rightBarButtonItems = [moreButton, rightButton]
+        navigationItem.rightBarButtonItems = [rightButton, moreButton]
         
         let btnBack = UIBarButtonItem(image: UIImage(named: "icn_back"),
                                              style: .plain,
@@ -112,20 +112,6 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
                 self?.jobs = jobList
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
-        
-        viewModel.$state.subscribe(on: DispatchQueue.main)
-            .sink { [weak self] state in
-                switch state {
-                case .LocationPermission:
-                    self?.showErrorAlert(message: "Please allow location permission to access the location.")
-                case .success:
-                    self?.fetchJobList()
-                case .error(let message):
-                    self?.showErrorAlert(message: message)
-                default:
-                    print("nothing")
-                }
-            }.store(in: &cancellable)
     }
     
     @objc
@@ -168,9 +154,10 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
     }
     
     @objc private func moreButtonClick() {
-        let sortOptionSheet = UIAlertController(title: "",
+        let sortOptionSheet = UIAlertController(title: nil,
                                                     message: nil,
                                                     preferredStyle: .actionSheet)
+        sortOptionSheet.view.tintColor = .black
         sortOptionSheet.addAction(UIAlertAction(title: MyDeliveriesListViewModel.JobDisplayOption.defaultView.rawValue, style: .default, handler: { [weak self]  action in
             self?.viewModel.fetchDefaultList()
             LocalTempStorage.storeValue(value: MyDeliveriesListViewModel.JobDisplayOption.defaultView.rawValue, key: UserDefaultKeys.jobDisplayOption)
@@ -209,12 +196,20 @@ extension MyDeliveriesListViewController: UITableViewDataSource, UITableViewDele
                 }
             }
         }
-        cell.didTapETAButton = { index in
-            if let jobList = self.jobs {
-                let job = jobList[index]
-                self.viewModel.updateStatus(selectedJob: job.job)
-            }
-        }
+        
+        cell.$state.subscribe(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .LocationPermission:
+                    self?.showErrorAlert(message: "Please allow location permission to access the location.")
+                case .success:
+                    self?.fetchJobList()
+                case .error(let message):
+                    self?.showErrorAlert(message: message)
+                default:
+                    print("nothing")
+                }
+            }.store(in: &cancellable)
         
         cell.didTapAction = { [weak self] action in
             guard let self = self else { return }

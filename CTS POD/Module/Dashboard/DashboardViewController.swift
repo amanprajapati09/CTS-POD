@@ -113,8 +113,12 @@ class DashboardViewController: UIViewController {
         return view
     }()
     
+    private lazy var toast = ToastView(message: viewModel.configuration.string.vehicleCheckListToastMessage,
+                                       icon: viewModel.configuration.images.toastLogo)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         viewModel.checkAutoLogout()
         setupView()
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -123,6 +127,7 @@ class DashboardViewController: UIViewController {
         prepareFooterView()
         bind()
         fetchJobList(canStore: false)
+        canShowSyncButton()
         print(RealmManager.shared.printRealmPath())
     }
     
@@ -150,13 +155,14 @@ class DashboardViewController: UIViewController {
     }
     
     private func prepareFooterView() {
+        versionLabel.text = "Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
         if let user = LocalTempStorage.getValue(fromUserDefault: LoginDetails.self, key: "user") {
-            footerView.isHidden = false
+            supportButton.isHidden = false
             driverNameLabel.text = user.user.username
-            versionLabel.text = "Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
             footerView.layoutIfNeeded()
         } else {
-            footerView.isHidden = true
+            supportButton.isHidden = true
+            driverNameLabel.text = nil
         }
     }
     
@@ -359,6 +365,7 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
                 let controller = VehicleCheckList.build()
                 controller.vehicalCheckUpdate = {
                     self.optionList = self.viewModel.fetchOptions()
+                    self.toast.show(in: self.view)
                     self.fetchJobList(canStore: false)
                 }
                 self.navigationController?.pushViewController(controller, animated: true)
