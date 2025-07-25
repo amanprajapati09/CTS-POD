@@ -56,6 +56,10 @@ class SplashViewController: UIViewController {
     }
     
     private func fetchCustomer(customer: Customer) {
+        guard NetworkCheck.sharedInstance().currentStatus == .satisfied  else {
+            self.navigateToDashboard(customer: customer)
+            return
+        }
         let usecase = GetCustomerUsecase(client: GetCustomerClient())
         LocalTempStorage.storeValue(inUserdefault: customer, key: "customer")
         Task {

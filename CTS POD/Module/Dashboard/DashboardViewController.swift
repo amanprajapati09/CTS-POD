@@ -127,6 +127,7 @@ class DashboardViewController: UIViewController {
         prepareFooterView()
         bind()
         fetchJobList(canStore: false)
+        canShowSyncButton()
         print(RealmManager.shared.printRealmPath())
     }
     

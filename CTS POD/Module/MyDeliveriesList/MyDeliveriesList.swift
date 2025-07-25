@@ -4,8 +4,6 @@ final class MyDeliveriesList {
     struct Configuration {
         let images = Images()
         let string = Strings()
-        var usecase: ETAUseCaseProtocol = ETAUseCase(client: ETAClient())
-        
         init() { }
     }
     

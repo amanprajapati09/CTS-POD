@@ -3,6 +3,9 @@ import UIKit
 
 class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     
+    @Published var state: UpdateETAViewState?
+    var usecase: ETAUseCaseProtocol = ETAUseCase(client: ETAClient())
+    
     var isExpand: Bool = false {
         didSet {
             expandCollapseCell()
@@ -23,7 +26,6 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     }
     
     var didTapCheckbox: ((_ index: Int) -> ())?
-    var didTapETAButton: ((_ index: Int) -> ())?
     var didTapAction: ((_ action: ActionOption) -> ())?
     
     private func updateValue() {
@@ -199,6 +201,13 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         return view
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
+        view.tintColor = .black
+        return view
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpHeaderView()
@@ -281,7 +290,17 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     }
     
     @objc private func etaButtonTapped() {
-        didTapETAButton?(tag)
+        updateStatus()
+    }
+    
+    private func etaloading(isStart: Bool) {
+        if isStart {
+            headerView.replaceView(oldView: etaButton, with: activityIndicator)
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+            headerView.replaceView(oldView: activityIndicator, with: etaButton)
+        }
     }
         
     private func manageETAButton() {
@@ -306,6 +325,49 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         }
         etaButton.backgroundColor = Colors.colorGray
         etaButton.setTitle(title, for: .normal)
+    }
+    
+    func updateStatus() {
+        LocationManagerSwift.shared.updateLocation { [self] latitude, longitude, status, error in
+            guard error == nil else {
+                self.state = .LocationPermission
+                return }
+            self.callAPI(selectedJob: job!, latitude: latitude, longitude: longitude)
+        }
+    }
+    
+    private func callAPI(selectedJob: Job, latitude: Double, longitude: Double) {
+        Task { @MainActor in
+            do {
+                self.etaloading(isStart: true)
+                let eta = ETAReuqest(jobID: selectedJob.id,
+                                     sourceLatitude: latitude,
+                                     sourceLongitude: longitude,
+                                     destinationLatitude: selectedJob.latitude ?? 0.0,
+                                     destinationLongitude: selectedJob.longitude ?? 0.0,
+                                     createdDate: Date().apiSupportedDate(),
+                                     itemStatus: selectedJob.ETAStatus == nil ? 1 : 0)
+                
+                try await usecase.updateETAStatus(request: eta) { result in
+                    self.etaloading(isStart: false)
+                    switch result {
+                    case .success(let response):
+                        if response.status == "Success" {
+                            LocalDataBaseWraper().updateEtaStatus(job: selectedJob, status: selectedJob.ETAStatus == nil ? ETAString.eta : ETAString.delay)
+                            self.state = .success
+                        } else {
+                            self.state = .error(response.message)
+                            ErrorLogManager.uploadErrorLog(apiName: "Job/SendETA", error: response.message)
+                        }
+                    case .failure(let error):
+                        self.state = .error("Somthing went wrong")
+                        ErrorLogManager.uploadErrorLog(apiName: "Job/SendETA", error: error.localizedDescription)
+                    }
+                }
+            } catch {
+                self.state = .error("Somthing went wrong")
+            }
+        }
     }
 }
 

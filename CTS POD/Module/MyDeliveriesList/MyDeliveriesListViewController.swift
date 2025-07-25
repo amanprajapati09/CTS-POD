@@ -112,24 +112,6 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
                 self?.jobs = jobList
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
-        
-        viewModel.$state.subscribe(on: DispatchQueue.main)
-            .sink { [weak self] state in
-                switch state {
-                case .loading:
-                    LoadingOverlay.shared.show()
-                case .LocationPermission:
-                    self?.showErrorAlert(message: "Please allow location permission to access the location.")
-                case .success:
-                    self?.fetchJobList()
-                    LoadingOverlay.shared.hide()
-                case .error(let message):
-                    LoadingOverlay.shared.hide()
-                    self?.showErrorAlert(message: message)
-                default:
-                    print("nothing")
-                }
-            }.store(in: &cancellable)
     }
     
     @objc
@@ -214,12 +196,20 @@ extension MyDeliveriesListViewController: UITableViewDataSource, UITableViewDele
                 }
             }
         }
-        cell.didTapETAButton = { index in
-            if let jobList = self.jobs {
-                let job = jobList[index]
-                self.viewModel.updateStatus(selectedJob: job.job)
-            }
-        }
+        
+        cell.$state.subscribe(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .LocationPermission:
+                    self?.showErrorAlert(message: "Please allow location permission to access the location.")
+                case .success:
+                    self?.fetchJobList()
+                case .error(let message):
+                    self?.showErrorAlert(message: message)
+                default:
+                    print("nothing")
+                }
+            }.store(in: &cancellable)
         
         cell.didTapAction = { [weak self] action in
             guard let self = self else { return }
