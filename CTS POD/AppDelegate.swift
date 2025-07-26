@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.registerForRemoteNotifications()
         LocationManagerSwift.shared.requestAuthorization(status: .authorizedAlways)
         LocationManager.sharedInstance.requestForAlwaysAuthorization()
-        realmDatabseMigration()
         prepareIQKeyboard()
         return true
     }
@@ -63,15 +62,5 @@ extension AppDelegate : MessagingDelegate {
             let dashboard = controller.findViewController(type: DashboardViewController.self)
             dashboard?.fetchJobList(canStore: false)
         }
-    }
-
-    func realmDatabseMigration() {
-        let config = Realm.Configuration(
-            schemaVersion: 2,
-            migrationBlock: { migration, oldSchemaVersion in
-                if oldSchemaVersion < 2 { }
-            }
-        )
-        Realm.Configuration.defaultConfiguration = config
     }
 }

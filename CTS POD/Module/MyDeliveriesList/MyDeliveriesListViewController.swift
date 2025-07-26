@@ -197,19 +197,13 @@ extension MyDeliveriesListViewController: UITableViewDataSource, UITableViewDele
             }
         }
         
-        cell.$state.subscribe(on: DispatchQueue.main)
-            .sink { [weak self] state in
-                switch state {
-                case .LocationPermission:
-                    self?.showErrorAlert(message: "Please allow location permission to access the location.")
-                case .success:
-                    self?.fetchJobList()
-                case .error(let message):
-                    self?.showErrorAlert(message: message)
-                default:
-                    print("nothing")
-                }
-            }.store(in: &cancellable)
+        cell.didEATSubimited = { [weak self] (result, message) in
+            if result == true {
+                self?.fetchJobList()
+            } else {
+                self?.showErrorAlert(message: message ?? "")
+            }
+        }
         
         cell.didTapAction = { [weak self] action in
             guard let self = self else { return }
