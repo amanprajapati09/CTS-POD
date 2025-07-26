@@ -80,13 +80,14 @@ class DashboardViewController: UIViewController {
     
     private lazy var supportButton: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = Fonts.popRegular
+        button.titleLabel?.font = Fonts.popSemiBold14
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 5
         button.setTitle(viewModel.configuration.string.IncidentReportTitle, for: .normal)
         button.addTarget(self, action: #selector(incidentButtonClick), for: .touchUpInside)
         button.layer.borderColor = UIColor.white.cgColor
         button.isUserInteractionEnabled = true
+        button.backgroundColor = Colors.colorPrimaryDark
         return button
     }()
     

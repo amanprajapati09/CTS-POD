@@ -27,7 +27,7 @@ enum ImageResolution {
 extension UIImage {
     func resizeAndConvertToBase64(resolution: ImageResolution) -> String? {
         // Resize image
-        let resizedImage = resizeImageIfNeeded(image: self, maxDimension: resolution.size.width)
+        let resizedImage = resizeImage(image: self, maxWidth: resolution.size.width, maxHeight: resolution.size.height)!
         
         guard let imageData = resizedImage.jpegData(compressionQuality: 0.8) else {
             return nil
@@ -36,28 +36,28 @@ extension UIImage {
         return imageData.base64EncodedString()
     }
 
-    func resizeImageIfNeeded(image: UIImage, maxDimension: CGFloat = 1600) -> UIImage {
+    func resizeImage(image: UIImage, maxWidth: CGFloat, maxHeight: CGFloat) -> UIImage? {
         let originalSize = image.size
-        let width = originalSize.width
-        let height = originalSize.height
 
-        // Check if resizing is necessary
-        if width <= maxDimension && height <= maxDimension {
-            return image // No need to resize
-        }
-
-        // Determine scale ratio while preserving aspect ratio
-        let widthRatio = maxDimension / width
-        let heightRatio = maxDimension / height
+        let widthRatio  = maxWidth / originalSize.width
+        let heightRatio = maxHeight / originalSize.height
         let scaleFactor = min(widthRatio, heightRatio)
 
-        let newSize = CGSize(width: width * scaleFactor, height: height * scaleFactor)
-
-        // Resize the image using UIGraphics
-        let renderer = UIGraphicsImageRenderer(size: newSize)
-        let resizedImage = renderer.image { _ in
-            image.draw(in: CGRect(origin: .zero, size: newSize))
+        // If the image is smaller than the max size, return original
+        if scaleFactor >= 1 {
+            return image
         }
+
+        let newSize = CGSize(
+            width: originalSize.width * scaleFactor,
+            height: originalSize.height * scaleFactor
+        )
+
+        // Redraw the image at the new size
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: CGRect(origin: .zero, size: newSize))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
 
         return resizedImage
     }

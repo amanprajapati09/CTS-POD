@@ -2,8 +2,7 @@
 import UIKit
 
 class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
-    
-    @Published var state: UpdateETAViewState?
+
     var usecase: ETAUseCaseProtocol = ETAUseCase(client: ETAClient())
     
     var isExpand: Bool = false {
@@ -27,6 +26,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     
     var didTapCheckbox: ((_ index: Int) -> ())?
     var didTapAction: ((_ action: ActionOption) -> ())?
+    var didEATSubimited: ((_ isSuccess: Bool, _ errorMessage: String?) -> ())?
     
     private func updateValue() {
         guard let job else { return }
@@ -43,6 +43,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         } else {
             actionButtonView.isHidden = false
         }
+        boxCountLabel.text = job.numberOfBoxes
     }
     
     private lazy var titleLabel: UILabel = {
@@ -169,7 +170,6 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
         view.tappedButton.addTarget(self, action: #selector(pdfButtonTapped), for: .touchUpInside)
         return view
     }()
-    
     
     private lazy var containerStack: UIStackView = {
         let view = UIStackView(arrangedSubviews: [headerView])
@@ -330,7 +330,7 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
     func updateStatus() {
         LocationManagerSwift.shared.updateLocation { [self] latitude, longitude, status, error in
             guard error == nil else {
-                self.state = .LocationPermission
+                self.didEATSubimited?(false, "Please allow location permission to access the location.")
                 return }
             self.callAPI(selectedJob: job!, latitude: latitude, longitude: longitude)
         }
@@ -354,18 +354,18 @@ class MyDeliveriesListTableViewCell: UITableViewCell, Reusable {
                     case .success(let response):
                         if response.status == "Success" {
                             LocalDataBaseWraper().updateEtaStatus(job: selectedJob, status: selectedJob.ETAStatus == nil ? ETAString.eta : ETAString.delay)
-                            self.state = .success
+                            self.didEATSubimited?(true, nil)
                         } else {
-                            self.state = .error(response.message)
+                            self.didEATSubimited?(false, response.message)
                             ErrorLogManager.uploadErrorLog(apiName: "Job/SendETA", error: response.message)
                         }
                     case .failure(let error):
-                        self.state = .error("Somthing went wrong")
+                        self.didEATSubimited?(false, "Somthing went wrong")
                         ErrorLogManager.uploadErrorLog(apiName: "Job/SendETA", error: error.localizedDescription)
                     }
                 }
             } catch {
-                self.state = .error("Somthing went wrong")
+                self.didEATSubimited?(false, "Somthing went wrong")
             }
         }
     }
