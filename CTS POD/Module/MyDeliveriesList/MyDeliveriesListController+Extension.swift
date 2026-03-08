@@ -39,6 +39,7 @@ extension MyDeliveriesListViewController {
         scannerVC.onBarcodeDetected = { codes in
             if mode == .single {
                 if let scannedJob = codes.first {
+                    scannerVC.dismiss(animated: true)
                     self.manageSingleScan(scannedID: scannedJob)
                 }
             } else {
@@ -51,7 +52,7 @@ extension MyDeliveriesListViewController {
     
     private func manageSingleScan(scannedID: String) {
         if let selectedJob = jobs?.filter({
-            $0.job.deliveryNo == scannedID
+            $0.job.deliveryNo == scannedID || $0.job.orderNumber == scannedID
         }).first {
             let joblist = [selectedJob.job]
             let controller = DeliverySubmit.build(jobs: joblist)
@@ -64,7 +65,7 @@ extension MyDeliveriesListViewController {
     private func manageMultipleScan(scannedIDs: [String]) {
         var notScannedJob: [String] = []
         for updateItem in scannedIDs {
-            if let index = jobs?.firstIndex(where: { $0.job.deliveryNo == updateItem }) {
+            if let index = jobs?.firstIndex(where: { $0.job.deliveryNo == updateItem || $0.job.orderNumber == updateItem }) {
                 jobs?[index].isSelected = true
             } else {
                 notScannedJob.append(updateItem)

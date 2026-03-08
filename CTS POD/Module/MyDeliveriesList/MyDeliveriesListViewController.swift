@@ -56,12 +56,17 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
             navigationBar.titleTextAttributes = titleTextAttributes
         }
         
-        let rightButton = UIBarButtonItem(image: UIImage(named: "done"),
-                                          style: .done, target: self,
-                                          action: #selector(navigationRightClick))
-        let moreButton = UIBarButtonItem(image: UIImage(named: "more"),
-                                          style: .done, target: self,
-                                          action: #selector(moreButtonClick))
+        let right = UIButton(type: .system)
+        right.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        right.setImage(UIImage(named: "done"), for: .normal)
+        right.addTarget(self, action: #selector(navigationRightClick), for: .touchUpInside)
+        let rightButton = UIBarButtonItem(customView: right)
+        
+        let more = UIButton(type: .system)
+        more.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        more.setImage(UIImage(named: "more"), for: .normal)
+        more.addTarget(self, action: #selector(moreButtonClick), for: .touchUpInside)
+        let moreButton = UIBarButtonItem(customView: more)
         
         navigationItem.rightBarButtonItems = [rightButton, moreButton]
         
@@ -69,10 +74,12 @@ class MyDeliveriesListViewController: BaseViewController<MyDeliveriesListViewMod
                                              style: .plain,
                                              target: self,
                                       action: #selector(navigationBack))
-        let btnBarcode = UIBarButtonItem(image: UIImage(named: "barcode"),
-                                             style: .plain,
-                                             target: self,
-                                         action: #selector(barcodeButtonTap))
+        
+        let barcode = UIButton(type: .system)
+        barcode.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        barcode.setImage(UIImage(named: "barcode"), for: .normal)
+        barcode.addTarget(self, action: #selector(barcodeButtonTap), for: .touchUpInside)
+        let btnBarcode = UIBarButtonItem(customView: barcode)
 
         navigationItem.leftBarButtonItems = [btnBack, btnBarcode]
         

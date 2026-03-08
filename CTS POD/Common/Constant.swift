@@ -3,7 +3,8 @@ import UIKit
 
 struct Constant {
 //    static let baseURL = "https://ctstestapi.cooksconnection.com.au/api/v1/"
-    static let baseURL = "https://api.devtrackproof.com.au/api/v1/"
+//    static let baseURL = "https://api.devtrackproof.com.au/api/v1/"
+    static let baseURL = "https://api.trackproof.com.au/api/v1/"
     
     static var deviceID: String {
         return UserDefaults.standard.string(forKey: UserDefaultKeys.fcmToke) ?? UIDevice.current.identifierForVendor!.uuidString
